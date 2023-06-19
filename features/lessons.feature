@@ -3,8 +3,8 @@ Feature: display lesson content
 
   As Aloysius, a student learner, I want to be able to see my lesson notes
   so that I will be able to continue learning by myself and go to physical lessons prepared with the content
-  I want to see see my lessons notes
-  Background: lesson have been added to database
+
+Background: lesson have been added to database
 
     Given the following topics exist:
       | topic_id | title                | number_of_lessons |
