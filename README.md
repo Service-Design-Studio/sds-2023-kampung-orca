@@ -9,8 +9,8 @@ It is highly recommended to install [`volta`](https://volta.sh/) for Node and Ya
 ```sh
 # Volta installation
 curl https://get.volta.sh | bash
-volta install yarn
 volta install node
+volta install yarn
 
 bundle install # Install gems
 yarn # Install node packages
