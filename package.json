@@ -1,6 +1,5 @@
 {
   "name": "kampung-lms",
-  "private": "true",
   "dependencies": {
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
@@ -23,7 +22,6 @@
     "lib": "lib",
     "test": "test"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SDS-Orca/kampung-lms.git"
