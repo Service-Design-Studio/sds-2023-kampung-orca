@@ -1,24 +1,17 @@
-# README
+# Kampung.SG
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Local Development
 
-Things you may want to cover:
+```sh
+bundle install
+yarn
+./bin/dev
+```
 
-* Ruby version
+## TODO
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Set up Dockerfile and cloudbuild.yaml
+- Deployment
+- Configuration and dependencies
+- Database
+- Test suite
