@@ -27,7 +27,7 @@ body {
   white-space: pre-wrap;
 }
 
-.video {
+.lesson-video {
   flex: 1;
   padding: 80px;
   border-radius: 8px;
