@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Fade, ScaleFade, Slide, SlideFade, Collapse } from '@chakra-ui/react'
-import { Stack, Button, Text, Image } from '@chakra-ui/react'
+import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box } from '@chakra-ui/react'
 
 function SlideEx() {
   const { isOpen, onToggle } = useDisclosure()
@@ -13,17 +12,24 @@ function SlideEx() {
         Chat with Students!
       </Button>
       <Slide direction='right' in={isOpen} style={{ zIndex: 10 }}>
+          
         <Box
           p='40px'
           color='white'
           mt='4'
-          bg='teal.500'
           rounded='md'
           shadow='md'
+          height="700px"
+          width="500px"
+          bg="rgba(192, 192, 192, 0.9)"
         >
-          {/* Replace this with your chat component */}
           <Text>Chat component goes here</Text>
+
+          <Text lineHeight="1.33">1. Chat needs to be on the right but it isnt on the right</Text>
+          <Text lineHeight="1.33">2. Clicking the button again is supposed to toggle it closed but it does not close</Text>
+          <Text fontSize="12px">im tired it's just gonna be like this for now, we can do a chat component to put into this box</Text>
         </Box>
+    
       </Slide>
     </>
   )
@@ -65,6 +71,11 @@ export default () => (
       width="1440px"
       height="625px"
       maxWidth="100%"
+      style={{
+        backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+      }}
     >
       <Stack
         paddingX="37px"
@@ -182,9 +193,7 @@ export default () => (
       height="80px"
       maxWidth="100%"
     >
-      <Button size="lg" colorScheme="blue" height="48px">
-        Chat with Students!
-      </Button>
+      <SlideEx/>
     </Stack>
   </Stack>
 
