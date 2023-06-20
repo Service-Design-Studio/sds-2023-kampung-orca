@@ -68,11 +68,19 @@ Given("that I am viewing lesson with lesson_id {string} and at page {int}") do |
 end
 
 When("I press on one of the embedded lesson videos") do
-    find('.lesson-video').click # Checks for CSS class .lesson-video attribute
+    expect(page).to have_css('iframe[src^="https://www.youtube.com/embed/"]') 
 end
 
 Then("I should see the video play out within the website") do
-    expect(page).to have_selector('video') # May have to adjust the selector 'video' based on how the video elements are structured in your application.
+    expect(page).to have_selector('video') # Ensure the video element is present
+
+  # Get the video element using JavaScript
+  video_element = page.evaluate_script('document.querySelector("video")')
+
+  # Check if the video is playing by accessing its 'paused' property
+  is_playing = page.evaluate_script('arguments[0].paused', video_element)
+
+  expect(is_playing).to be_falsey
 end
 
 
