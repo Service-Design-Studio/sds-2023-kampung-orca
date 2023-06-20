@@ -1,30 +1,193 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const LessonView = ({ lessonId }) => {
-  const placeholderVideoUrl = "https://youtube.com/embed/C3irQ7wp9Mw";
-  const placeholderNotes =
-    "The Importance of Diversity and Harmony in Any Country \nDiversity and harmony are essential components of any country's social fabric. They play a critical role in promoting peace, stability, and economic growth while also fostering a sense of belonging and unity among citizens. In this article, we will explore why diversity and harmony are so important and how they can benefit society as a whole. \n\nPromoting Understanding and Tolerance\nOne of the most significant benefits of diversity and harmony is that they promote understanding and tolerance between people of different backgrounds, cultures, and beliefs. When people come together and learn about each other's traditions, customs, and perspectives, they are more likely to develop empathy and respect for one another. This can help reduce stereotypes, prejudices, and discrimination, creating a more inclusive and welcoming society.\n\n Encouraging Innovation and Creativity \n Another benefit of diversity and harmony is that they encourage innovation and creativity. When people of different backgrounds come together, they bring with them unique perspectives and experiences that can help generate new ideas and solutions. This diversity of thought can help drive innovation in various industries, including technology, science, and the arts.\n\n Boosting Economic Growth \n Diversity and harmony can also play a crucial role in boosting economic growth. When people of different backgrounds work together towards common goals, they can achieve more significant results than when working alone. A diverse workforce can also help companies expand into new markets and attract a broader customer base, leading to increased revenues and profits.";
-  const placeholderLessonDuration = "11 min";
+import { Fade, ScaleFade, Slide, SlideFade, Collapse } from '@chakra-ui/react'
+import { Stack, Button, Text, Image } from '@chakra-ui/react'
+
+function SlideEx() {
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
-    <div className="lesson-view-container">
-      <div className="notes">
-        <div className="notes-content">{placeholderNotes}</div>
-      </div>
-      <div className="video">
-        {/* Uncomment the following line once you have the actual video */}
-        {/* <iframe src={videoUrl} width="560" height="315" title="Lesson Video" frameborder="0" allowfullscreen></iframe> */}
-        <iframe
-          src={placeholderVideoUrl}
-          width="560"
-          height="315"
-          title="Lesson Video"
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </div>
-    </div>
-  );
-};
+    <>
+      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px">
+        Chat with Students!
+      </Button>
+      <Slide direction='right' in={isOpen} style={{ zIndex: 10 }}>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          {/* Replace this with your chat component */}
+          <Text>Chat component goes here</Text>
+        </Box>
+      </Slide>
+    </>
+  )
+}
 
-export default LessonView;
+export default () => (
+  <Stack
+    justify="flex-start"
+    align="flex-start"
+    spacing="13px"
+    height="824px"
+    background="#FFFFFF"
+  >
+    <Stack
+      paddingX="65px"
+      paddingTop="10px"
+      paddingBottom="5px"
+      direction="row"
+      justify="flex-start"
+      align="center"
+      spacing="126px"
+      overflow="hidden"
+      width="1440px"
+      height="90px"
+      maxWidth="100%"
+      background="green.200"
+    >
+      <Button size="lg" colorScheme="green" height="48px">
+        back to main
+      </Button>
+    </Stack>
+    <Stack
+      paddingX="91px"
+      paddingY="80px"
+      direction="row"
+      justify="center"
+      align="flex-start"
+      spacing="100px"
+      width="1440px"
+      height="625px"
+      maxWidth="100%"
+    >
+      <Stack
+        paddingX="37px"
+        paddingY="54px"
+        borderRadius="50px"
+        justify="center"
+        align="center"
+        spacing="5px"
+        overflow="hidden"
+        width="583px"
+        height="545px"
+        maxWidth="100%"
+        background="green.200"
+      >
+        <Stack
+          justify="flex-start"
+          align="center"
+          spacing="20px"
+          overflow="hidden"
+          width="492px"
+          height="459px"
+          maxWidth="100%"
+          overflowY="auto"
+        >
+          <Text
+            fontFamily="Helvetica"
+            lineHeight="1.2"
+            fontWeight="bold"
+            fontSize="24px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+          >
+            Introduction
+          </Text>
+          <Text
+            fontFamily="Helvetica"
+            lineHeight="1.33"
+            fontWeight="regular"
+            fontSize="18px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+          >
+            Christianity and Hinduism are two of the world's major religions.
+            While both religions share some similarities, there are also many
+            differences between them. This article will discuss the main
+            differences between Christianity and Hinduism.
+          </Text>
+          <Text
+            fontFamily="Helvetica"
+            lineHeight="1.2"
+            fontWeight="bold"
+            fontSize="24px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+          >
+            Beliefs
+          </Text>
+          <Text
+            fontFamily="Helvetica"
+            lineHeight="1.33"
+            fontWeight="regular"
+            fontSize="18px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+          >
+            One of the main differences between Christianity and Hinduism is the
+            belief in one God. Christians believe in the Holy Trinity, which is
+            one God in three persons: the Father, the Son, and the Holy Spirit.
+            In contrast, Hinduism believes in multiple gods and goddesses.
+            Hinduism believes that there are many paths to reach God, whereas
+            Christianity believes that Jesus Christ is the only way to reach
+            God. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Vivamus viverra pretium est, maximus sollicitudin neque fringilla 
+            vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet 
+            lacus tellus, in finibus lorem lobortis vel. Integer vitae mi pharetra, 
+            faucibus lacus et, dapibus neque. Phasellus dolor mauris, vehicula consequat 
+            ullamcorper interdum, ornare finibus nisl. Nunc sit amet libero purus. Duis 
+            viverra ante sed sem sollicitudin, ac malesuada nulla gravida. Nam at tortor 
+            purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices 
+            posuere cubilia curae; Aenean dapibus est vehicula, interdum tellus nec, 
+            consectetur risus. Etiam non imperdiet metus. Vestibulum in magna vel massa 
+            posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas 
+            condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
+          </Text>
+        </Stack>
+      </Stack>
+      <Stack
+        borderRadius="20px"
+        justify="flex-start"
+        align="flex-start"
+        spacing="0px"
+        overflow="hidden"
+        background="#E0C825"
+      >
+        <iframe
+          src="https://www.youtube.com/embed/n5xYb4TOaYs"
+          width="700"
+          height="400"
+          maxWidth="100%"
+          objectFit="cover"
+        />
+      </Stack>
+    </Stack>
+    <Stack
+      padding="20px"
+      justify="flex-end"
+      align="flex-end"
+      spacing="10px"
+      overflow="hidden"
+      width="1440px"
+      height="80px"
+      maxWidth="100%"
+    >
+      <Button size="lg" colorScheme="blue" height="48px">
+        Chat with Students!
+      </Button>
+    </Stack>
+  </Stack>
+
+
+
+);
