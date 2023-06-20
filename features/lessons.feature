@@ -40,9 +40,9 @@ Feature: display lesson content
     And 8 seed pages should exist
 
   Scenario: Creation of basic lesson view
-    Given that I am at the lessons contents page,
+    Given that I am at the lessons pathway page,
     When I click on a lesson,
-    Then I should see the basic lesson view.
+    Then I should see the lesson.
 
 
 
