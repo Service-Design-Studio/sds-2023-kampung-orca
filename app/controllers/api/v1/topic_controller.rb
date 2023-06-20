@@ -26,6 +26,7 @@ class Api::V1::TopicController < ApplicationController
     render json: @topic
   end
 
+
   def destroy
     @topic&.destroy
     render json: { message: 'Topic deleted!' }

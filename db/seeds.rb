@@ -12,8 +12,8 @@ Page.destroy_all
 Exercise.destroy_all
 
 Topic.create!(topic_id: "00001", title: "help", num_of_lessons: 1)
-Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0)
-Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1)
+Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: "help")
+Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1, title: "help2")
 qns = ["dasdasda","asdadsadsad"]
 Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "help", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
