@@ -4,16 +4,15 @@ Interfaith LMS Project in collaboration with Being Bridges and Google
 
 ## Local Development
 
-It is highly recommended to install [`volta`](https://volta.sh/) for Node and Yarn versioning.
+It is highly recommended to install [`volta`](https://volta.sh/) for Node versioning.
 
 ```sh
 # Volta installation
 curl https://get.volta.sh | bash
 volta install node
-volta install yarn
 
 bundle install # Install gems
-yarn # Install node packages
+npm i # Install node packages
 ./bin/dev
 ```
 
@@ -41,7 +40,9 @@ rubocop app
 
 ## TODO
 
+Tasks outside of Jira to complete.
+
 - Github CI
-- Configuration and dependencies
 - Database
 - Test suite
+- Deployment

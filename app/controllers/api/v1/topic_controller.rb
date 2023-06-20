@@ -7,6 +7,7 @@ class Api::V1::TopicController < ApplicationController
   end
 
   def create
+    # TODO: Use uuid or other id generators
     id = rand(0...99_999)
     check = Topic.find(id)
     while check.length != 0
@@ -25,7 +26,6 @@ class Api::V1::TopicController < ApplicationController
   def show
     render json: @topic
   end
-
 
   def destroy
     @topic&.destroy
