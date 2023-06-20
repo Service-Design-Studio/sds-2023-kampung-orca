@@ -6,7 +6,7 @@ import LessonView from "../components/LessonView";
 export default (
   <Router>
     <Routes>
-      <Route path="/" element={<LessonView />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   </Router>
 );
