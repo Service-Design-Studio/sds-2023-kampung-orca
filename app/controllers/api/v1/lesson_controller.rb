@@ -27,6 +27,13 @@ class Api::V1::LessonController < ApplicationController
     render json: @lesson
   end
 
+  def lessonlist
+    p params[:id]
+    lesson = Lesson.new 
+    lessons = lesson.get_lessons_by_topic(params[:id])
+    render json: lessons
+  end
+
   def destroy
     Lesson&.destroy(params[:id])
     render json: { message: 'Lesson deleted!' }
