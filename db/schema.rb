@@ -11,42 +11,30 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
-  create_table "exercise_contents", force: :cascade do |t|
+  create_table "exercises", id: false, force: :cascade do |t|
     t.integer "exercise_id"
+    t.integer "topic_id"
+    t.integer "lesson_id"
     t.string "title"
     t.string "qns"
   end
 
-  create_table "exercise_lists", force: :cascade do |t|
-    t.string "exercise_id"
-    t.string "topic_id"
-    t.string "lesson_id"
-  end
-
-  create_table "lesson_contents", force: :cascade do |t|
-    t.string "lesson_id"
+  create_table "lessons", id: false, force: :cascade do |t|
+    t.integer "lesson_id"
+    t.integer "topic_id"
     t.string "title"
-  end
-
-  create_table "lesson_lists", force: :cascade do |t|
-    t.string "lesson_id"
-    t.string "topic_id"
     t.integer "order_index"
   end
 
-  create_table "page_contents", force: :cascade do |t|
+  create_table "pages", id: false, force: :cascade do |t|
     t.integer "page_id"
+    t.integer "lesson_id"
+    t.integer "order_index"
     t.string "video"
     t.string "words"
   end
 
-  create_table "page_lists", force: :cascade do |t|
-    t.integer "page_id"
-    t.integer "lesson_id"
-    t.integer "order_index"
-  end
-
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", id: false, force: :cascade do |t|
     t.integer "topic_id"
     t.string "title"
     t.integer "num_of_lessons"

@@ -1,22 +1,21 @@
+require 'json'
 class Api::V1::ExerciseController < ApplicationController
   before_action :set_exercise, only: %i[show destroy]
   def index
-    exercise = ExerciseContent.all
-    puts exercise.to_json
-    render json: exercise
+    exercises = Exercise.all
+    render json: exercises
   end
 
   def create
     id = rand(0...99999)
-    check = ExerciseList.find(id)
+    check = Exercise.find(id)
     while check.length != 0
       id = rand(0...99999)
-      check = ExerciseList.find(id)
+      check = Exercise.find(id)
     end
-    exercise = ExerciseContent.create!(exercise_id: id, title: params[:title], qns: params[:qns])
-    exercise_list = ExerciseList.create!(exercise_id: id, topic_id: params[:topic_id], lesson_id: params[:lesson_id])
+    exercise = Exercise.create!(exercise_id: id, topic_id: params[:topic_id], lesson_id: params[:lesson_id], title: params[:title], qns: params[:qns])
 
-    if exercise and exercise_list
+    if exercise
       render json: exercise
     else
       render json: exercise.errors
@@ -28,7 +27,7 @@ class Api::V1::ExerciseController < ApplicationController
   end
 
   def destroy
-    delete_exercise
+    Exercise&.destroy(params[:id])
     render json: { message: 'Exercise deleted!' }
   end
 
@@ -38,11 +37,7 @@ class Api::V1::ExerciseController < ApplicationController
   end
 
   def set_page
-    @exercise = ExerciseContent.find(params[:id])
+    @exercise = Exercise.find(params[:id])
   end
 
-  def delete_page
-    ExerciseContent&.destroy(params[:id])
-    ExerciseList&.destroy(params[:id])
-  end
 end
