@@ -1,12 +1,32 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import LessonView from './LessonView';
 
-import Routes from "../routes";
+export function App(props) {
+  const [lessonId, setLessonId] = useState(null);
 
-export default (props) => {
+  const handleLessonClick = (id) => {
+    setLessonId(id);
+  };
+
+  const lessonIds = [123, 456, 789]; // Static array of lesson IDs
+
   return (
-    <ChakraProvider>
-      <>{Routes}</>
-    </ChakraProvider>
+    <div className="app">
+      <h1>Lesson View</h1>
+      {lessonIds.map((id) => (
+        <button key={id} onClick={() => handleLessonClick(id)}>
+          Lesson {id}
+        </button>
+      ))}
+      {lessonId && (
+        <>
+          <p>Lesson duration: 11min</p>
+          <LessonView lessonId={lessonId} />
+        </>
+      )}
+    </div>
   );
-};
+}
+
+// Log to console
+console.log('Hello console');
