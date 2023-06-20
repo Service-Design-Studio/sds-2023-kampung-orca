@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,7 +12,6 @@ module KampungLms
     config.load_defaults 7.0
     config.autoload_paths << "#{Rails.root}/extras"
     config.eager_load_paths << "#{Rails.root}/extras"
-
 
     # Configuration for the application, engines, and railties goes here.
     #

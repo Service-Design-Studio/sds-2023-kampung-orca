@@ -7,10 +7,10 @@ class Api::V1::TopicController < ApplicationController
   end
 
   def create
-    id = rand(0...99999)
+    id = rand(0...99_999)
     check = Topic.find(id)
     while check.length != 0
-      id = rand(0...99999)
+      id = rand(0...99_999)
       check = Topic.find(id)
     end
     topic = Topic.create!(topic_id: id, title: params[:title], num_of_lessons: params[:num_of_lessons])
@@ -33,6 +33,7 @@ class Api::V1::TopicController < ApplicationController
   end
 
   private
+
   def topic_params
     params.permit(:topic_id, :title, :num_of_lessons)
   end

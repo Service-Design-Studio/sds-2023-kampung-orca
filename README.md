@@ -30,6 +30,15 @@ This should be replaced by CI on main branch in the future.
 
 This project uses [Chakra UI](https://chakra-ui.com/) for its components.
 
+## Linting
+
+This project uses Rubocop for its linting.
+
+```sh
+gem install rubocop
+rubocop app
+```
+
 ## TODO
 
 - Github CI

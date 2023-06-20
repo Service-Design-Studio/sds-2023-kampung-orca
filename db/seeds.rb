@@ -19,7 +19,6 @@ Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", ti
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")
 9.times do |i|
-    Page.create!(page_id: "0000%d" % [i], lesson_id: "00001", order_index: i, video: "http://", words: "help")
-    
-  end
-  p "Created #{Page.count} pages"
+  Page.create!(page_id: format('0000%d', i), lesson_id: '00001', order_index: i, video: 'http://', words: 'help')
+end
+p "Created #{Page.count} pages"
