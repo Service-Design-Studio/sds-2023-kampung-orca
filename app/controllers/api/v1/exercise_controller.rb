@@ -7,13 +7,14 @@ class Api::V1::ExerciseController < ApplicationController
   end
 
   def create
-    id = rand(0...99999)
+    id = rand(0...99_999)
     check = Exercise.find(id)
     while check.length != 0
-      id = rand(0...99999)
+      id = rand(0...99_999)
       check = Exercise.find(id)
     end
-    exercise = Exercise.create!(exercise_id: id, topic_id: params[:topic_id], lesson_id: params[:lesson_id], title: params[:title], qns: params[:qns])
+    exercise = Exercise.create!(exercise_id: id, topic_id: params[:topic_id], lesson_id: params[:lesson_id],
+                                title: params[:title], qns: params[:qns])
 
     if exercise
       render json: exercise
@@ -32,6 +33,7 @@ class Api::V1::ExerciseController < ApplicationController
   end
 
   private
+
   def exercise_params
     params.permit(:exercise_id, :topic_id, :lesson_id, :title, :qns)
   end
@@ -39,5 +41,4 @@ class Api::V1::ExerciseController < ApplicationController
   def set_page
     @exercise = Exercise.find(params[:id])
   end
-
 end

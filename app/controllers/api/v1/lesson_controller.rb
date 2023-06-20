@@ -7,13 +7,14 @@ class Api::V1::LessonController < ApplicationController
   end
 
   def create
-    id = rand(0...99999)
+    id = rand(0...99_999)
     check = Lesson.find(id)
     while check.length != 0
-      id = rand(0...99999)
+      id = rand(0...99_999)
       check = Lesson.find(id)
     end
-    lesson = Lesson.create!(lesson_id: id, topic_id: params[:topic_id], order_index: params[:order_index], title: params[:title])
+    lesson = Lesson.create!(lesson_id: id, topic_id: params[:topic_id], order_index: params[:order_index],
+                            title: params[:title])
 
     if lesson
       render json: lesson
@@ -35,7 +36,9 @@ class Api::V1::LessonController < ApplicationController
     lesson = Lesson.where(lesson_id: params[:topic_id], order_index: params[:order_index] + 1)
     render json: lesson
   end
+
   private
+
   def lesson_params
     params.permit(:lesson_id, :topic_id, :order_index, :title)
   end
@@ -43,5 +46,4 @@ class Api::V1::LessonController < ApplicationController
   def set_lesson
     @lesson = Lesson.find(params[:id])
   end
-
 end

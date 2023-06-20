@@ -4,18 +4,20 @@ Rails.application.routes.draw do
       get 'exercise/index'
       get 'exercise/create'
       get 'exercise/show/:id', to: 'exercise#show'
-      
       get 'exercise/destroy', to: 'exercise#destroy'
+
       get 'topic/index'
       get 'topic/create'
       get 'topic/show', to: 'topic#show'
       get 'topic/destroy', to: 'topic#destroy'
+
       get 'page/index'
       post 'page/create'
       get 'page/show/:id', to: 'page#show'
-      get 'page/destroy/:id', to: "page#destroy"
+      get 'page/destroy/:id', to: 'page#destroy'
       post 'page/show/:id/next_page', to: 'page#next_page'
       post 'page/show/:id/pre_page', to: 'page#pre_page'
+
       get 'lesson/index'
       post 'lesson/:id/next_lesson', to: 'lesson#next_lesson'
       post 'lesson/create'
@@ -37,8 +39,4 @@ Rails.application.routes.draw do
       get 'page/:page_number', action: :show, as: 'page'
     end
   end
-
-
-
-
 end
