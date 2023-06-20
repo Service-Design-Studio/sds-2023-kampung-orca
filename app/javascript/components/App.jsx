@@ -27,6 +27,3 @@ export function App(props) {
     </div>
   );
 }
-
-// Log to console
-console.log('Hello console');
