@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { Link,useNavigate,useParams } from "react-router-dom";
-import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box } from '@chakra-ui/react';
-=======
-import { Link,useNavigate } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 
 import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box } from '@chakra-ui/react'
 
->>>>>>> refs/remotes/origin/lesson-complete
 
 function SlideEx() {
   const { isOpen, onToggle } = useDisclosure()
