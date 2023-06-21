@@ -14,6 +14,7 @@ export default (
       <Route path="/page" element={<Pages />} />
       <Route path="/lesson-complete/:lesson_id" element ={<LessonCompletion/>} />
       <Route path="/" element = {<LessonPathway/>} />
+      <Route path="/home" element = {<Home/>} />
       <Route path="/chat" element={<Chat />} />
     </Routes>
   </Router>

@@ -40,7 +40,7 @@ function SlideEx() {
             <Header onToggle={onToggle} />
             <Chat my="0"/>
           </Flex>
-    
+          </Container>
       </Slide>
     </>
   )
@@ -132,7 +132,7 @@ const Lesson = () => {
             overflowY="auto"
           >
             {/* <Text
-              fontFamily="Helvetica"
+              fontFamily="Arial"
               lineHeight="1.2"
               fontWeight="bold"
               fontSize="24px"
@@ -143,7 +143,7 @@ const Lesson = () => {
               Introduction
             </Text>
             <Text
-              fontFamily="Helvetica"
+              fontFamily="Arial"
               lineHeight="1.33"
               fontWeight="regular"
               fontSize="18px"
@@ -154,7 +154,7 @@ const Lesson = () => {
               Christianity and Hinduism are two of the world's major religions. While both religions share some similarities, there are also many differences between them. This article will discuss the main differences between Christianity and Hinduism.
             </Text>
             <Text
-              fontFamily="Helvetica"
+              fontFamily="Arial"
               lineHeight="1.2"
               fontWeight="bold"
               fontSize="24px"
@@ -165,7 +165,7 @@ const Lesson = () => {
               Beliefs
             </Text> */}
             <Text
-              fontFamily="Helvetica"
+              fontFamily="Arial"
               lineHeight="1.33"
               fontWeight="regular"
               fontSize="18px"
