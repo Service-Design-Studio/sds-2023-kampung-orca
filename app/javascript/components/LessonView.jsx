@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link,useNavigate,useParams } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 import Header from "./Chatbox/Header"
-import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box, Container, CloseButton, Flex, Divider } from '@chakra-ui/react'
-
+import { BsChatDots } from "react-icons/bs"
+import { GoChevronLeft } from "react-icons/go";
+import { useDisclosure, Stack, Button, Text, Slide, Container, Flex, Icon } from '@chakra-ui/react'
 
 
 function SlideEx() { //This is the chat function button. Ideally, i'll move it to a different document later
   const { isOpen, onToggle } = useDisclosure()
   return (
     <>
-      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px" shadow="md">
+      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px" shadow="md" leftIcon={<Icon as={BsChatDots} boxSize="7"/>}>
         Chat with Students!
       </Button>
       <Slide
@@ -92,7 +93,7 @@ const Lesson = () => {
       >
 
         <Link to ={'/'}>
-        <Button size="lg" colorScheme="green" height="48px">
+        <Button size="lg" colorScheme="green" height="48px" leftIcon={<Icon as={GoChevronLeft} />}>
           Back to Lessons
         </Button>
         </Link>
@@ -132,7 +133,7 @@ const Lesson = () => {
           background="green.200"
           shadow='md'
         >
-          <Stack //the green box
+          <Stack
             justify="flex-start"
             align="center"
             spacing="20px"
@@ -161,12 +162,12 @@ const Lesson = () => {
               fontFamily="Arial"
               lineHeight="1.2"
               fontWeight="bold"
-              fontSize="22px"
+              fontSize="25px"
               color="#000000"
               width="492px"
               maxWidth="100%"
             >
-              Sample
+              Lesson
             </Text>
             <Text
               fontFamily="Arial"

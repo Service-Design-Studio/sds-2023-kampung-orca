@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { BsPatchCheck } from "react-icons/bs";
+import { BsPatchCheck, BsChatDots } from "react-icons/bs";
 import Chat from "./Chatbox/Chat"
 import Header from "./Chatbox/Header"
 
@@ -10,7 +10,7 @@ function SlideEx() { //This is the chat function button duplicated from LessonVi
   const { isOpen, onToggle } = useDisclosure()
   return (
     <>
-      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px" shadow="md">
+      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px" shadow="md" leftIcon={<Icon as={BsChatDots} boxSize="7"/>}>
         Chat with Students!
       </Button>
       <Slide
@@ -61,8 +61,8 @@ export const LessonCompletion = () => {
     >
       <Stack  //header stack with back button
         paddingX="91px"
-        paddingTop="15px"
-        paddingBottom="5px"
+        paddingTop="30px"
+        paddingBottom="20px"
         direction="row"
         justify="flex-start"
         align="center"
@@ -75,7 +75,7 @@ export const LessonCompletion = () => {
         borderRadius="0 0 20px 20px"
       >
         <Link to ={'/'}>
-          <Button size="lg" colorScheme="green" height="48px">
+          <Button size="lg" colorScheme="green" height="48px" leftIcon={<Icon as={GoChevronLeft} />}>
             Back to lessons
           </Button>
         </Link>
@@ -88,7 +88,7 @@ export const LessonCompletion = () => {
         direction="row"
         justify="center"
         spacing="50px"
-        width="100%"
+        width="1440px"
         height="625px"
         maxWidth="100%"
         style={{
