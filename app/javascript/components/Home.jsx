@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 import Header from "./Chatbox/Header"
@@ -11,29 +10,12 @@ import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box, 
 function SlideEx() {
   const { isOpen, onToggle } = useDisclosure()
   
-=======
-
-import {
-  ChakraProvider,
-  useDisclosure,
-  Stack,
-  Button,
-  Text,
-  Image,
-  Slide,
-  Box,
-} from "@chakra-ui/react";
-
-function SlideEx() {
-  const { isOpen, onToggle } = useDisclosure();
->>>>>>> 1a7ba8bd310ce3b2135cb217814925fef2cef246
 
   return (
     <>
       <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px">
         Chat with Students!
       </Button>
-<<<<<<< HEAD
       <Slide
         direction='right'
         in={isOpen}
@@ -48,21 +30,11 @@ function SlideEx() {
           mr="0"
           rounded='md'
           shadow='md'
-=======
-      <Slide direction="right" in={isOpen} style={{ zIndex: 10 }}>
-        <Box
-          p="40px"
-          color="white"
-          mt="4"
-          rounded="md"
-          shadow="md"
->>>>>>> 1a7ba8bd310ce3b2135cb217814925fef2cef246
           height="700px"
           width="500px"
           bg="rgba(100, 150, 100, 0.92)"
           overflow="visible"
         >
-<<<<<<< HEAD
           <Flex flexDirection="column" justify="center">
             <Header onToggle={onToggle} />
             <Chat my="0"/>
@@ -70,22 +42,6 @@ function SlideEx() {
         
         </Container>
     
-=======
-          <Text>Chat component goes here</Text>
-
-          <Text lineHeight="1.33">
-            1. Chat needs to be on the right but it isnt on the right
-          </Text>
-          <Text lineHeight="1.33">
-            2. Clicking the button again is supposed to toggle it closed but it
-            does not close
-          </Text>
-          <Text fontSize="12px">
-            im tired it's just gonna be like this for now, we can do a chat
-            component to put into this box
-          </Text>
-        </Box>
->>>>>>> 1a7ba8bd310ce3b2135cb217814925fef2cef246
       </Slide>
     </>
   );
@@ -226,7 +182,6 @@ export default () => (
             In contrast, Hinduism believes in multiple gods and goddesses.
             Hinduism believes that there are many paths to reach God, whereas
             Christianity believes that Jesus Christ is the only way to reach
-<<<<<<< HEAD
             God.
           </Text>
           <Text
@@ -262,22 +217,6 @@ export default () => (
             consectetur risus. Etiam non imperdiet metus. Vestibulum in magna vel massa 
             posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas 
             condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
-=======
-            God. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Vivamus viverra pretium est, maximus sollicitudin neque fringilla
-            vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet
-            lacus tellus, in finibus lorem lobortis vel. Integer vitae mi
-            pharetra, faucibus lacus et, dapibus neque. Phasellus dolor mauris,
-            vehicula consequat ullamcorper interdum, ornare finibus nisl. Nunc
-            sit amet libero purus. Duis viverra ante sed sem sollicitudin, ac
-            malesuada nulla gravida. Nam at tortor purus. Vestibulum ante ipsum
-            primis in faucibus orci luctus et ultrices posuere cubilia curae;
-            Aenean dapibus est vehicula, interdum tellus nec, consectetur risus.
-            Etiam non imperdiet metus. Vestibulum in magna vel massa posuere
-            interdum et et tortor. Vivamus mollis libero ac interdum tempus.
-            Maecenas condimentum nunc quis justo euismod condimentum. Quisque a
-            auctor eros.
->>>>>>> 1a7ba8bd310ce3b2135cb217814925fef2cef246
           </Text>
         </Stack>
       </Stack>
