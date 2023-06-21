@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link,useNavigate,useParams } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 import Header from "./Chatbox/Header"
 
@@ -9,7 +9,8 @@ import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box, 
 
 function SlideEx() {
   const { isOpen, onToggle } = useDisclosure()
-  
+
+
 
   return (
     <>
@@ -39,56 +40,38 @@ function SlideEx() {
             <Header onToggle={onToggle} />
             <Chat my="0"/>
           </Flex>
-        
-        </Container>
     
       </Slide>
     </>
   )
-}
+};
 
-export default () => (
-  <Stack
-    justify="flex-start"
-    align="flex-start"
-    spacing="13px"
-    height="824px"
-    background="#FFFFFF"
-  >
+const Lesson = () => {
+  params = useParams();
+  const navigate = useNavigate();
+  const [pages, setPage] = useState({});
+
+  useEffect(() => {
+    const url = `/api/v1/page/show/${params.lesson_id}`;
+    fetch(url)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((res) => setPage(res))
+      .catch(() => navigate("/"));
+  }, []);
+
+
+  return (
     <Stack
-      paddingX="91px"
-      paddingTop="10px"
-      paddingBottom="5px"
-      direction="row"
       justify="flex-start"
-      align="center"
-      spacing="126px"
-      overflow="hidden"
-      width="1440px"
-      height="90px"
-      maxWidth="100%"
-      background="green.200"
-      mt="5"
-    >
-      <Button size="lg" colorScheme="green" height="48px">
-        back to main
-      </Button>
-    </Stack>
-    <Stack
-      paddingX="91px"
-      paddingY="50px"
-      direction="row"
-      justify="center"
       align="flex-start"
-      spacing="50px"
-      width="1440px"
-      height="625px"
-      maxWidth="100%"
-      style={{
-        backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
-      }}
+      spacing="13px"
+      height="824px"
+      background="#FFFFFF"
     >
       <Stack
         paddingX="37px"
@@ -96,164 +79,151 @@ export default () => (
         borderRadius="20px"
         justify="center"
         align="center"
-        spacing="5px"
+        spacing="126px"
         overflow="hidden"
-        width="583px"
-        height="545px"
+        width="1440px"
+        height="90px"
         maxWidth="100%"
         background="green.200"
-        shadow='md'
+      >
+        <Link to ={'/'}>
+        <Button size="lg" colorScheme="green" height="48px">
+          back to lesson pathway
+        </Button>
+        </Link>
+      </Stack>
+      <Stack
+        paddingX="91px"
+        paddingY="80px"
+        direction="row"
+        justify="center"
+        align="flex-start"
+        spacing="100px"
+        width="1440px"
+        height="625px"
+        maxWidth="100%"
+        style={{
+          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+        }}
       >
         <Stack
-          justify="flex-start"
+          paddingX="37px"
+          paddingY="54px"
+          borderRadius="50px"
+          justify="center"
           align="center"
-          spacing="20px"
+          spacing="5px"
           overflow="hidden"
-          width="492px"
-          height="459px"
+          width="583px"
+          height="545px"
           maxWidth="100%"
-          paddingRight="5"
-          overflowY="auto"
-          style={{ zIndex: 10 }}
-          sx={{
-            '&::-webkit-scrollbar': {
-              width: '16px',
-              borderRadius: '8px',
-              backgroundColor: `rgba(0, 0, 0, 0.1)`,
-            },
-            '&::-webkit-scrollbar-thumb': {
-              width: '16px',
-			        borderRadius: '8px',
-              backgroundColor: `rgba(20, 170, 60, 0.6)`,
-            },
-          }}
+          background="green.200"
         >
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.2"
-            fontWeight="bold"
-            fontSize="22px"
-            color="#000000"
+          <Stack
+            justify="flex-start"
+            align="center"
+            spacing="20px"
+            overflow="hidden"
             width="492px"
+            height="459px"
             maxWidth="100%"
+            overflowY="auto"
           >
-            Introduction
-          </Text>
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.33"
-            fontWeight="regular"
-            fontSize="16px"
-            color="#000000"
-            width="492px"
+            {/* <Text
+              fontFamily="Helvetica"
+              lineHeight="1.2"
+              fontWeight="bold"
+              fontSize="24px"
+              color="#000000"
+              width="492px"
+              maxWidth="100%"
+            >
+              Introduction
+            </Text>
+            <Text
+              fontFamily="Helvetica"
+              lineHeight="1.33"
+              fontWeight="regular"
+              fontSize="18px"
+              color="#000000"
+              width="492px"
+              maxWidth="100%"
+            >
+              Christianity and Hinduism are two of the world's major religions. While both religions share some similarities, there are also many differences between them. This article will discuss the main differences between Christianity and Hinduism.
+            </Text>
+            <Text
+              fontFamily="Helvetica"
+              lineHeight="1.2"
+              fontWeight="bold"
+              fontSize="24px"
+              color="#000000"
+              width="492px"
+              maxWidth="100%"
+            >
+              Beliefs
+            </Text> */}
+            <Text
+              fontFamily="Helvetica"
+              lineHeight="1.33"
+              fontWeight="regular"
+              fontSize="18px"
+              color="#000000"
+              width="492px"
+              maxWidth="100%"
+            >
+              {pages.words}
+              One of the main differences between Christianity and Hinduism is the belief in one God. Christians believe in the Holy Trinity, which is one God in three persons: the Father, the Son, and the Holy Spirit. In contrast, Hinduism believes in multiple gods and goddesses. Hinduism believes that there are many paths to reach God, whereas Christianity believes that Jesus Christ is the only way to reach God. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra pretium est, maximus sollicitudin neque fringilla vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet lacus tellus, in finibus lorem lobortis vel. Integer vitae mi pharetra, faucibus lacus et, dapibus neque. Phasellus dolor mauris, vehicula consequat ullamcorper interdum, ornare finibus nisl. Nunc sit amet libero purus. Duis viverra ante sed sem sollicitudin, ac malesuada nulla gravida. Nam at tortor purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean dapibus est vehicula, interdum tellus nec, consectetur risus. Etiam non imperdiet metus. Vestibulum in magna vel massa posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
+            </Text>
+          </Stack>
+          <Link to={`/lesson-complete/${pages.page_id}`}>
+            <Button
+              position="absolute"
+              bottom="20px"
+              left="50%"
+              transform="translateX(-50%)"
+              size="lg"
+              colorScheme="green"
+              height="48px"
+            >
+              Complete Lesson
+            </Button>
+          </Link>
+        </Stack>
+        <Stack
+          borderRadius="20px"
+          justify="flex-start"
+          align="flex-start"
+          spacing="0px"
+          overflow="hidden"
+          background="#E0C825"
+        >
+          <iframe
+            src={pages.video}
+            width="700"
+            height="400"
             maxWidth="100%"
-            textAlign="justify"
-          >
-            Christianity and Hinduism are two of the world's major religions.
-            While both religions share some similarities, there are also many
-            differences between them. This article will discuss the main
-            differences between Christianity and Hinduism.
-          </Text>
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.2"
-            fontWeight="bold"
-            fontSize="22px"
-            color="#000000"
-            width="492px"
-            maxWidth="100%"
-            
-          >
-            Beliefs
-          </Text>
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.33"
-            fontWeight="regular"
-            fontSize="16px"
-            color="#000000"
-            width="492px"
-            maxWidth="100%"
-            textAlign="justify"
-          >
-            One of the main differences between Christianity and Hinduism is the
-            belief in one God. Christians believe in the Holy Trinity, which is
-            one God in three persons: the Father, the Son, and the Holy Spirit.
-            In contrast, Hinduism believes in multiple gods and goddesses.
-            Hinduism believes that there are many paths to reach God, whereas
-            Christianity believes that Jesus Christ is the only way to reach
-            God.
-          </Text>
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.2"
-            fontWeight="bold"
-            fontSize="22px"
-            color="#000000"
-            width="492px"
-            maxWidth="100%"
-          >
-            Lorem Ipsum
-          </Text>
-          <Text
-            fontFamily="Arial"
-            lineHeight="1.33"
-            fontWeight="regular"
-            fontSize="16px"
-            color="#000000"
-            width="492px"
-            maxWidth="100%"
-            textAlign="justify"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Vivamus viverra pretium est, maximus sollicitudin neque fringilla 
-            vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet 
-            lacus tellus, in finibus lorem lobortis vel. Integer vitae mi pharetra, 
-            faucibus lacus et, dapibus neque. Phasellus dolor mauris, vehicula consequat 
-            ullamcorper interdum, ornare finibus nisl. Nunc sit amet libero purus. Duis 
-            viverra ante sed sem sollicitudin, ac malesuada nulla gravida. Nam at tortor 
-            purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices 
-            posuere cubilia curae; Aenean dapibus est vehicula, interdum tellus nec, 
-            consectetur risus. Etiam non imperdiet metus. Vestibulum in magna vel massa 
-            posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas 
-            condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
-          </Text>
+            objectFit="cover"
+          />
         </Stack>
       </Stack>
       <Stack
-        borderRadius="20px"
-        justify="flex-start"
-        align="center"
-        spacing="0px"
+        padding="20px"
+        justify="flex-end"
+        align="flex-end"
+        spacing="10px"
         overflow="hidden"
-        background="#E0C825"
-        shadow='md'
+        width="1440px"
+        height="80px"
+        maxWidth="100%"
       >
-        <iframe
-          src="https://www.youtube.com/embed/n5xYb4TOaYs"
-          width="700"
-          height="400"
-          maxWidth="100%"
-          objectFit="cover"
-          
-        />
+        <SlideEx/>
       </Stack>
     </Stack>
-    <Stack
-      paddingRight="91px"
-      paddingbottom="91px"
-      justify="flex-end"
-      align="flex-end"
-      spacing="10px"
-      overflow="hidden"
-      width="1440px"
-      height="80px"
-      maxWidth="100%"
-    >
-      <SlideEx/>
-    </Stack>
-  </Stack>
+  );
+};
+
+export default Lesson;
 
 
-
-);

@@ -10,6 +10,7 @@ const Pages = () => {
       fetch(url)
         .then((res) => {
           if (res.ok) {
+            console.log(res.json());
             return res.json();
           }
           throw new Error("Network response was not ok.");
@@ -17,16 +18,13 @@ const Pages = () => {
         .then((res) => setPage(res))
         .catch(() => navigate("/"));
     }, []);
-  };
-
-
 
   const allPages = pages.map((page, index) => (
     <div key={index} className="col-md-6 col-lg-4">
       <div className="card mb-4">
         <div className="card-body">
-          <h5 className="card-title">{recipe.name}</h5>
-          <Link to={`/recipe/${recipe.id}`} className="btn custom-button">
+          <h5 className="card-title">{page.words}</h5>
+          <Link to={`/recipe/${page.id}`} className="btn custom-button">
             View Recipe
           </Link>
         </div>
@@ -54,7 +52,7 @@ const Pages = () => {
             </Link>
           </div>
           <div className="row">
-            {pages.length > 0 ? allRecipes : noRecipe}
+            {allPages}
           </div>
           <Link to="/" className="btn btn-link">
             Home
@@ -63,6 +61,7 @@ const Pages = () => {
       </div>
     </>
   );
+};
   export default Pages;
 
 
