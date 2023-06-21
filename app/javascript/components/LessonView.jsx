@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
+import Header from "./Chatbox/Header"
 
 
-import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box } from '@chakra-ui/react'
+import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box, Container, CloseButton, Flex, Divider } from '@chakra-ui/react'
 
 
 function SlideEx() {
@@ -18,20 +19,28 @@ function SlideEx() {
       <Slide
         direction='right'
         in={isOpen}
-        style={{ zIndex: 10 }}>
-          
-        <Box
+        autoFocus={false}
+        pointerEvents="none"
+        position="right"
+      >
+        <Container
           p='40px'
           color='white'
-          mt='4'
+          mb='4'
+          mr="0"
           rounded='md'
           shadow='md'
           height="700px"
           width="500px"
           bg="rgba(100, 150, 100, 0.92)"
+          overflow="visible"
         >
-          <Chat/>
-        </Box>
+          <Flex flexDirection="column" justify="center">
+            <Header onToggle={onToggle} />
+            <Chat my="0"/>
+          </Flex>
+        
+        </Container>
     
       </Slide>
     </>
@@ -47,7 +56,7 @@ export default () => (
     background="#FFFFFF"
   >
     <Stack
-      paddingX="65px"
+      paddingX="91px"
       paddingTop="10px"
       paddingBottom="5px"
       direction="row"
@@ -59,6 +68,7 @@ export default () => (
       height="90px"
       maxWidth="100%"
       background="green.200"
+      mt="5"
     >
       <Button size="lg" colorScheme="green" height="48px">
         back to main
@@ -66,11 +76,11 @@ export default () => (
     </Stack>
     <Stack
       paddingX="91px"
-      paddingY="80px"
+      paddingY="50px"
       direction="row"
       justify="center"
       align="flex-start"
-      spacing="100px"
+      spacing="50px"
       width="1440px"
       height="625px"
       maxWidth="100%"
@@ -92,6 +102,7 @@ export default () => (
         height="545px"
         maxWidth="100%"
         background="green.200"
+        shadow='md'
       >
         <Stack
           justify="flex-start"
@@ -101,13 +112,27 @@ export default () => (
           width="492px"
           height="459px"
           maxWidth="100%"
+          paddingRight="5"
           overflowY="auto"
+          style={{ zIndex: 10 }}
+          sx={{
+            '&::-webkit-scrollbar': {
+              width: '16px',
+              borderRadius: '8px',
+              backgroundColor: `rgba(0, 0, 0, 0.1)`,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              width: '16px',
+			        borderRadius: '8px',
+              backgroundColor: `rgba(20, 170, 60, 0.6)`,
+            },
+          }}
         >
           <Text
-            fontFamily="Helvetica"
+            fontFamily="Arial"
             lineHeight="1.2"
             fontWeight="bold"
-            fontSize="24px"
+            fontSize="22px"
             color="#000000"
             width="492px"
             maxWidth="100%"
@@ -115,13 +140,14 @@ export default () => (
             Introduction
           </Text>
           <Text
-            fontFamily="Helvetica"
+            fontFamily="Arial"
             lineHeight="1.33"
             fontWeight="regular"
-            fontSize="18px"
+            fontSize="16px"
             color="#000000"
             width="492px"
             maxWidth="100%"
+            textAlign="justify"
           >
             Christianity and Hinduism are two of the world's major religions.
             While both religions share some similarities, there are also many
@@ -129,24 +155,26 @@ export default () => (
             differences between Christianity and Hinduism.
           </Text>
           <Text
-            fontFamily="Helvetica"
+            fontFamily="Arial"
             lineHeight="1.2"
             fontWeight="bold"
-            fontSize="24px"
+            fontSize="22px"
             color="#000000"
             width="492px"
             maxWidth="100%"
+            
           >
             Beliefs
           </Text>
           <Text
-            fontFamily="Helvetica"
+            fontFamily="Arial"
             lineHeight="1.33"
             fontWeight="regular"
-            fontSize="18px"
+            fontSize="16px"
             color="#000000"
             width="492px"
             maxWidth="100%"
+            textAlign="justify"
           >
             One of the main differences between Christianity and Hinduism is the
             belief in one God. Christians believe in the Holy Trinity, which is
@@ -154,7 +182,30 @@ export default () => (
             In contrast, Hinduism believes in multiple gods and goddesses.
             Hinduism believes that there are many paths to reach God, whereas
             Christianity believes that Jesus Christ is the only way to reach
-            God. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            God.
+          </Text>
+          <Text
+            fontFamily="Arial"
+            lineHeight="1.2"
+            fontWeight="bold"
+            fontSize="22px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+          >
+            Lorem Ipsum
+          </Text>
+          <Text
+            fontFamily="Arial"
+            lineHeight="1.33"
+            fontWeight="regular"
+            fontSize="16px"
+            color="#000000"
+            width="492px"
+            maxWidth="100%"
+            textAlign="justify"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Vivamus viverra pretium est, maximus sollicitudin neque fringilla 
             vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet 
             lacus tellus, in finibus lorem lobortis vel. Integer vitae mi pharetra, 
@@ -172,10 +223,11 @@ export default () => (
       <Stack
         borderRadius="20px"
         justify="flex-start"
-        align="flex-start"
+        align="center"
         spacing="0px"
         overflow="hidden"
         background="#E0C825"
+        shadow='md'
       >
         <iframe
           src="https://www.youtube.com/embed/n5xYb4TOaYs"
@@ -183,11 +235,13 @@ export default () => (
           height="400"
           maxWidth="100%"
           objectFit="cover"
+          
         />
       </Stack>
     </Stack>
     <Stack
-      padding="20px"
+      paddingRight="91px"
+      paddingbottom="91px"
       justify="flex-end"
       align="flex-end"
       spacing="10px"

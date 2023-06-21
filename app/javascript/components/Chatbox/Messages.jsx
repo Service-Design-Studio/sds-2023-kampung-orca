@@ -9,7 +9,19 @@ const Messages = ({ messages }) => {
   };
 
   return (
-	<Flex w="100%" h="60%" overflowY="scroll" flexDirection="column" p="3">
+	<Flex w="100%" h="60%" overflowY="scroll" flexDirection="column" p="3"
+		sx={{
+		'&::-webkit-scrollbar': {
+			width: '16px',
+			borderRadius: '8px',
+			backgroundColor: `rgba(0, 0, 0, 0.1)`,
+		},
+		'&::-webkit-scrollbar-thumb': {
+			width: '16px',
+			borderRadius: '8px',
+			backgroundColor: `rgba(0, 100, 0, 0.8)`,
+		},
+	}}>
   	{messages.map((item, index) => {
     	if (item.from === "me") {
       	return (
@@ -22,7 +34,7 @@ const Messages = ({ messages }) => {
             	maxW="350px"
             	my="1"
             	p="3"
-							overflowWrap="break-word"
+							
           	>
             	<Text>{item.text}</Text>
           	</Flex>
