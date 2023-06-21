@@ -1,6 +1,6 @@
 import React from "react";
-import { Stack, Button } from '@chakra-ui/react'
-import { Link,useNavigate } from "react-router-dom";
+import { Stack, Button } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LessonPathway = () => (
   <Stack width="1440px" height="824px" maxWidth="100%" background="#FFFFFF">
@@ -39,25 +39,25 @@ export const LessonPathway = () => (
             justify="center"
             align="center"
             spacing="389px"
-          > 
-          <Link to={'/lesson-view/1'}>
-            <Button size="lg" variant="outline" colorScheme="green">
-              Lesson 1
-            </Button>
+          >
+            <Link to={"/lesson-view/1"}>
+              <Button size="lg" variant="outline" colorScheme="green">
+                Lesson 1
+              </Button>
             </Link>
-            <Link to={'/lesson-view/2'}>
-            <Button size="lg" variant="outline" colorScheme="green">
-              Lesson 2
-            </Button>
+            <Link to={"/lesson-view/2"}>
+              <Button size="lg" variant="outline" colorScheme="green">
+                Lesson 2
+              </Button>
             </Link>
-            <Link to={'/lesson-view/3'}>
-            <Button size="lg" variant="outline" colorScheme="green">
-              Lesson 3
-            </Button>
+            <Link to={"/lesson-view/3"}>
+              <Button size="lg" variant="outline" colorScheme="green">
+                Lesson 3
+              </Button>
             </Link>
           </Stack>
         </Stack>
       </Stack>
     </Stack>
   </Stack>
-)
+);
