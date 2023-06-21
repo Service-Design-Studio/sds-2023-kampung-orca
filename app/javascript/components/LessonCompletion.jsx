@@ -38,7 +38,7 @@ export const LessonCompletion = () => (
             >
               <Link to={'/'}>
                 <Button size="lg" colorScheme="green" height="48px">
-                  back to main
+                  back to lesson
                 </Button>
               </Link>
             </Stack>
