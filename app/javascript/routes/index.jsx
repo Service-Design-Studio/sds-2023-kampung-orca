@@ -9,10 +9,10 @@ import { LessonPathway } from "../components/LessonPathway";
 export default (
   <Router>
     <Routes>
-      <Route path="/" element={<LessonView />} />
+      <Route path="/lesson-view/:lesson_id" element={<LessonView />} />
       <Route path="/page" element={<Pages />} />
-      <Route path="/lesson-complete" element ={<LessonCompletion/>} />
-      <Route path="/lesson-pathway" element = {<LessonPathway/>} />
+      <Route path="/lesson-complete/:lesson_id" element ={<LessonCompletion/>} />
+      <Route path="/" element = {<LessonPathway/>} />
     </Routes>
   </Router>
 );

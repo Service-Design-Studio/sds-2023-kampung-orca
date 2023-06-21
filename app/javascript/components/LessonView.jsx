@@ -40,7 +40,7 @@ const Lesson = () => {
   const [pages, setPage] = useState({});
 
   useEffect(() => {
-    const url = `/api/v1/page/show/${params.id}`;
+    const url = `/api/v1/page/show/${params.lesson_id}`;
     fetch(url)
       .then((res) => {
         if (res.ok) {
@@ -75,7 +75,7 @@ const Lesson = () => {
         maxWidth="100%"
         background="green.200"
       >
-        <Link to ={'/lesson-pathway'}>
+        <Link to ={'/'}>
         <Button size="lg" colorScheme="green" height="48px">
           back to lesson pathway
         </Button>
@@ -166,7 +166,7 @@ const Lesson = () => {
               One of the main differences between Christianity and Hinduism is the belief in one God. Christians believe in the Holy Trinity, which is one God in three persons: the Father, the Son, and the Holy Spirit. In contrast, Hinduism believes in multiple gods and goddesses. Hinduism believes that there are many paths to reach God, whereas Christianity believes that Jesus Christ is the only way to reach God. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra pretium est, maximus sollicitudin neque fringilla vel. Duis venenatis mattis neque pellentesque pulvinar. Sed laoreet lacus tellus, in finibus lorem lobortis vel. Integer vitae mi pharetra, faucibus lacus et, dapibus neque. Phasellus dolor mauris, vehicula consequat ullamcorper interdum, ornare finibus nisl. Nunc sit amet libero purus. Duis viverra ante sed sem sollicitudin, ac malesuada nulla gravida. Nam at tortor purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean dapibus est vehicula, interdum tellus nec, consectetur risus. Etiam non imperdiet metus. Vestibulum in magna vel massa posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
             </Text>
           </Stack>
-          <Link to={`/lesson-complete`}>
+          <Link to={`/lesson-complete/${pages.page_id}`}>
             <Button
               position="absolute"
               bottom="20px"
@@ -189,7 +189,7 @@ const Lesson = () => {
           background="#E0C825"
         >
           <iframe
-            src={"https://www.youtube.com/embed/n5xYb4TOaYs"}
+            src={pages.video}
             width="700"
             height="400"
             maxWidth="100%"

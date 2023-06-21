@@ -39,18 +39,22 @@ export const LessonPathway = () => (
             justify="center"
             align="center"
             spacing="389px"
-          >
+          > 
+          <Link to={'/lesson-view/1'}>
             <Button size="lg" variant="outline" colorScheme="green">
               Lesson 1
             </Button>
-            <Link to={'/'}>
+            </Link>
+            <Link to={'/lesson-view/2'}>
             <Button size="lg" variant="outline" colorScheme="green">
               Lesson 2
             </Button>
             </Link>
+            <Link to={'/lesson-view/3'}>
             <Button size="lg" variant="outline" colorScheme="green">
               Lesson 3
             </Button>
+            </Link>
           </Stack>
         </Stack>
       </Stack>

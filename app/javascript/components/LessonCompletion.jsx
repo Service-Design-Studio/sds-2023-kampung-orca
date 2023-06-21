@@ -1,11 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from '@chakra-ui/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { BsPatchCheck } from 'react-icons/bs'
 
-export const LessonCompletion = () => (
-  <Stack
+
+export const LessonCompletion  = () => {
+  params = useParams();
+  const pre = parseInt(params.lesson_id) - 1;
+  const next = parseInt(params.lesson_id) + 1;
+
+  return(
+    <Stack
     justify="flex-start"
     align="flex-start"
     spacing="13px"
@@ -57,9 +63,11 @@ export const LessonCompletion = () => (
                 align="center"
                 spacing="70px"
               >
+                <Link to={`/lesson-view/${pre}`}>
                 <Button leftIcon={<Icon as={GoChevronLeft} />} size="lg">
                   Previous Lesson
                 </Button>
+                </Link>
                 <Stack
                   borderRadius="50px"
                   justify="center"
@@ -99,9 +107,11 @@ export const LessonCompletion = () => (
                     </Stack>
                   </Stack>
                 </Stack>
+                <Link to={`/lesson-view/${next}`}>
                 <Button rightIcon={<Icon as={GoChevronRight} />} size="lg">
                   Next Lesson
                 </Button>
+                </Link>
               </Stack>
             </Stack>
           </Stack>
@@ -122,4 +132,6 @@ export const LessonCompletion = () => (
       </Stack>
     </Stack>
   </Stack>
-)
+  )
+};
+
