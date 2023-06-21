@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Stack, Button, Icon, Text } from '@chakra-ui/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { BsPatchCheck } from 'react-icons/bs'
@@ -35,9 +36,11 @@ export const LessonCompletion = () => (
               maxWidth="100%"
               background="green.200"
             >
-              <Button size="lg" colorScheme="green" height="48px">
-                back to main
-              </Button>
+              <Link to={'/'}>
+                <Button size="lg" colorScheme="green" height="48px">
+                  back to main
+                </Button>
+              </Link>
             </Stack>
             <Stack
               paddingX="91px"
