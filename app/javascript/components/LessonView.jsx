@@ -77,9 +77,11 @@ const Lesson = () => {
         maxWidth="100%"
         background="green.200"
       >
+        <Link to ={'/lesson-pathway'}>
         <Button size="lg" colorScheme="green" height="48px">
-          back to main
+          back to lesson pathway
         </Button>
+        </Link>
       </Stack>
       <Stack
         paddingX="91px"
