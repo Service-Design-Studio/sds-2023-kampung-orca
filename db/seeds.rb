@@ -19,8 +19,8 @@ qns = ["sample_qn 1","sample_qn 2"]
 Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")
-Page.create!(page_id:'00001', lesson_id: '00001', order_index: 0, video: 'https://www.youtube.com/embed/QWTv8NbItt0', words: 'sample words1')
-Page.create!(page_id:'00002', lesson_id: '00002', order_index: 0, video: 'https://www.youtube.com/embed/_vtuEcwLgTU', words: 'sample words2')
-Page.create!(page_id:'00003', lesson_id: '00003', order_index: 0, video: 'https://www.youtube.com/embed/d3IDvqZrDUo', words: 'sample words3')
+Page.create!(page_id:'00001', lesson_id: '00001', order_index: 0, video: 'https://www.youtube.com/embed/QWTv8NbItt0', words: 'These are the sample words for sample lesson 1. The video on the right shows a short film on how we can embrace diversity and inclusion.')
+Page.create!(page_id:'00002', lesson_id: '00002', order_index: 0, video: 'https://www.youtube.com/embed/_vtuEcwLgTU', words: 'These are the sample words for sample lesson 2. The video on the right shows how we can incorporate gratitude into our lives, particularly during difficult periods such as COVID-19 times.')
+Page.create!(page_id:'00003', lesson_id: '00003', order_index: 0, video: 'https://www.youtube.com/embed/d3IDvqZrDUo', words: 'These are the sample words for sample lesson 3. The video on the right shows how hope is important, and we teach it as part of our programme, "A Dose of Spirituality".')
 
 p "Created #{Page.count} pages"

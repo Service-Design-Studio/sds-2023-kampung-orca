@@ -10,7 +10,7 @@ const Chat = () => {
 
 		
 	{ from: "me", text: "i wanna test this cool chatbox out!!!" },
-	{ from: "computer", text: "you can send a message here and i'll reply you with the same message." },
+	{ from: "computer", text: "you can send a message here and i'll reply you with the same message :D" },
   ]);
   const [inputMessage, setInputMessage] = useState("");
 

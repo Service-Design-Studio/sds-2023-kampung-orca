@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 import Header from "./Chatbox/Header"
-
-
 import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box, Container, CloseButton, Flex, Divider } from '@chakra-ui/react'
 
 
@@ -74,6 +72,7 @@ export default () => (
         back to main
       </Button>
     </Stack>
+    
     <Stack
       paddingX="91px"
       paddingY="50px"
