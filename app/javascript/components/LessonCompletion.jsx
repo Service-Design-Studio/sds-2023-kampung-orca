@@ -1,8 +1,9 @@
+import React from "react";
 import { Stack, Button, Icon, Text } from '@chakra-ui/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { BsPatchCheck } from 'react-icons/bs'
 
-export const App = () => (
+export const LessonCompletion = () => (
   <Stack
     justify="flex-start"
     align="flex-start"
