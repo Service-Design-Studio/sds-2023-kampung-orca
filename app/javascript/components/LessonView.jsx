@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useNavigate,useParams } from "react-router-dom";
 import Chat from "./Chatbox/Chat"
 
 import { ChakraProvider, useDisclosure, Stack, Button, Text, Image, Slide, Box } from '@chakra-ui/react'
