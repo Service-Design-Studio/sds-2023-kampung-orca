@@ -30,6 +30,7 @@ function SlideEx() { //This is the chat function button duplicated from LessonVi
           width="500px"
           bg="rgba(100, 150, 100, 0.92)"
           overflow="visible"
+          borderRadius="20px 0 0 20px"
         >
           <Flex flexDirection="column" justify="center">
             <Header onToggle={onToggle} />
