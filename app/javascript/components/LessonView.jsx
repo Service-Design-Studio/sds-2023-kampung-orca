@@ -90,6 +90,7 @@ const Lesson = () => {
         maxWidth="100%"
         background="green.200"
         borderRadius="0 0 20px 20px"
+        shadow='md'
       >
 
         <Link to ={'/'}>
@@ -131,7 +132,7 @@ const Lesson = () => {
           height="545px"
           maxWidth="100%"
           background="green.200"
-          shadow='md'
+          shadow='lg'
         >
           <Stack
             justify="flex-start"
@@ -275,7 +276,7 @@ const Lesson = () => {
             spacing="0px"
             overflow="hidden"
             background="#E0C825"
-            shadow='md'
+            shadow='lg'
             width="100%"
           >
             <iframe

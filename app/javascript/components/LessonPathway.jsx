@@ -27,6 +27,7 @@ export const LessonPathway = () => (
       maxWidth="100%"
       background="green.200"
       borderRadius="0 0 20px 20px"
+      shadow='md'
     >
       <Link to ={'/'}>
         <Button size="lg" colorScheme="green" height="48px" leftIcon={<Icon as={GoChevronLeft} />}>
@@ -63,6 +64,7 @@ export const LessonPathway = () => (
          maxWidth="100%"
          background="green.200"
          shadow='lg'
+         _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
         >
         <Text
           fontFamily="Arial"
@@ -75,7 +77,9 @@ export const LessonPathway = () => (
         </Text>
         <Icon as={BiDonateHeart} boxSize={100}/>
         <Link to={"/lesson-view/1"}>
-          <Button size="lg" variant="outline" colorScheme="black" mt="20px">
+          <Button size="lg" variant="outline" colorScheme="black" mt="20px"
+          _hover = { { bg: '#ebedf0' } }
+          >
             Lesson 1
           </Button>
         </Link>
@@ -94,6 +98,7 @@ export const LessonPathway = () => (
         maxWidth="100%"
         background="green.200"
         shadow='lg'
+        _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
       >
         <Text
           fontFamily="Arial"
@@ -106,7 +111,7 @@ export const LessonPathway = () => (
         </Text>
         <Icon as={BiGroup} boxSize={100}/>
         <Link to={"/lesson-view/2"}>
-          <Button size="lg" variant="outline" colorScheme="black" mt="20px">
+          <Button size="lg" variant="outline" colorScheme="black" mt="20px" _hover = { { bg: '#ebedf0' } }>
             Lesson 2
           </Button>
         </Link>
@@ -125,6 +130,7 @@ export const LessonPathway = () => (
         maxWidth="100%"
         background="green.200"
         shadow='lg'
+        _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
       >
         <Text
           fontFamily="Arial"
@@ -137,7 +143,7 @@ export const LessonPathway = () => (
         </Text>
         <Icon as={BiSpa} boxSize={100}/>
         <Link to={"/lesson-view/3"}>
-          <Button size="lg" variant="outline" colorScheme="black" mt="20px">
+          <Button size="lg" variant="outline" colorScheme="black" mt="20px" _hover = { { bg: '#ebedf0' } }>
             Lesson 3
           </Button>
         </Link>

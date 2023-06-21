@@ -7,6 +7,7 @@ import { LessonCompletion } from "../components/LessonCompletion";
 import { LessonPathway } from "../components/LessonPathway";
 import Chat from "../components/Chatbox/Chat";
 
+
 export default (
   <Router>
     <Routes>
@@ -15,7 +16,7 @@ export default (
       <Route path="/lesson-complete/:lesson_id" element ={<LessonCompletion/>} />
       <Route path="/" element = {<LessonPathway/>} />
       <Route path="/home" element = {<Home/>} />
-      <Route path="/lesson-view/:lesson_id" element={<LessonView />} />
+      <Route path="/lesson-view/:lesson_id" element={<LessonView/>} />
       <Route
         path="/lesson-complete/:lesson_id"
         element={<LessonCompletion />}

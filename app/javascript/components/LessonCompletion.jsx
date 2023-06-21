@@ -73,6 +73,7 @@ export const LessonCompletion = () => {
         maxWidth="100%"
         background="green.200"
         borderRadius="0 0 20px 20px"
+        shadow='md'
       >
         <Link to ={'/'}>
           <Button size="lg" colorScheme="green" height="48px" leftIcon={<Icon as={GoChevronLeft} />}>
