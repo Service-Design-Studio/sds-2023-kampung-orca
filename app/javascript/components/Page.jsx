@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Pages = () => {
-    const navigate = useNavigate();
-    const [pages, setPage] = useState([]);
-  
-    useEffect(() => {
-      const url = "/api/v1/page/index";
-      fetch(url)
-        .then((res) => {
-          if (res.ok) {
-            console.log(res.json());
-            return res.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then((res) => setPage(res))
-        .catch(() => navigate("/"));
-    }, []);
+  const navigate = useNavigate();
+  const [pages, setPage] = useState([]);
+
+  useEffect(() => {
+    const url = "/api/v1/page/index";
+    fetch(url)
+      .then((res) => {
+        if (res.ok) {
+          console.log(res.json());
+          return res.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((res) => setPage(res))
+      .catch(() => navigate("/"));
+  }, []);
 
   const allPages = pages.map((page, index) => (
     <div key={index} className="col-md-6 col-lg-4">
@@ -38,8 +38,8 @@ const Pages = () => {
         <div className="container py-5">
           <h1 className="display-4">Recipes for every occasion</h1>
           <p className="lead text-muted">
-            We’ve pulled together our most popular recipes, our latest
-            additions, and our editor’s picks, so there’s sure to be something
+            We've pulled together our most popular recipes, our latest
+            additions, and our editor's picks, so there's sure to be something
             tempting for you to try.
           </p>
         </div>
@@ -51,9 +51,7 @@ const Pages = () => {
               Create New Recipe
             </Link>
           </div>
-          <div className="row">
-            {allPages}
-          </div>
+          <div className="row">{allPages}</div>
           <Link to="/" className="btn btn-link">
             Home
           </Link>
@@ -62,8 +60,4 @@ const Pages = () => {
     </>
   );
 };
-  export default Pages;
-
-
-
-  
+export default Pages;

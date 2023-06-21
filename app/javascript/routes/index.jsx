@@ -10,11 +10,19 @@ import Chat from "../components/Chatbox/Chat";
 export default (
   <Router>
     <Routes>
-      <Route path="/lesson-view/:lesson_id" element={<LessonView />} />
+      <Route path="/" element={<LessonPathway />} />
       <Route path="/page" element={<Pages />} />
+<<<<<<< HEAD
       <Route path="/lesson-complete/:lesson_id" element ={<LessonCompletion/>} />
       <Route path="/" element = {<LessonPathway/>} />
       <Route path="/home" element = {<Home/>} />
+=======
+      <Route path="/lesson-view/:lesson_id" element={<LessonView />} />
+      <Route
+        path="/lesson-complete/:lesson_id"
+        element={<LessonCompletion />}
+      />
+>>>>>>> 1a7ba8bd310ce3b2135cb217814925fef2cef246
       <Route path="/chat" element={<Chat />} />
     </Routes>
   </Router>
