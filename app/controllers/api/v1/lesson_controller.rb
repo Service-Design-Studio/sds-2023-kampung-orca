@@ -7,6 +7,7 @@ class Api::V1::LessonController < ApplicationController
   end
 
   def create
+    # TODO: Use uuid or other id generators
     id = rand(0...99_999)
     check = Lesson.find(id)
     while check.length != 0
@@ -29,7 +30,7 @@ class Api::V1::LessonController < ApplicationController
 
   def lessonlist
     p params[:id]
-    lesson = Lesson.new 
+    lesson = Lesson.new
     lessons = lesson.get_lessons_by_topic(params[:id])
     render json: lessons
   end

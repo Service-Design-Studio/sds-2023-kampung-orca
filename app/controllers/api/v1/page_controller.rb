@@ -7,6 +7,7 @@ class Api::V1::PageController < ApplicationController
   end
 
   def create
+    # TODO: Use uuid or other id generators
     id = rand(0...99_999)
     check = Page.find(id)
     while check.length != 0

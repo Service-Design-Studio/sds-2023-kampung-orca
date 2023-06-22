@@ -28,13 +28,12 @@ Background: lesson have been added to database
 
     And the following exercises exist:
       | exercise_id | topic_id | lesson_id | qns                                 |
-      | 00001       | 00001    | 00001     | [why am i so dumb?, what is 2 + 2?] |
-      | 00006       | 00001    | 00002     | [what is 1 + 1?, ggwp]              |
+      | 00001       | 00001    | 00001     | why am i so dumb?, what is 2 + 2? |
+      | 00006       | 00001    | 00002     | what is 1 + 1?, ggwp           |
 
 
 
 
-    And  I am on the topics page
     Then 1 seed topics should exist
     And 2 seed lessons should exist
     And 8 seed pages should exist
@@ -43,8 +42,6 @@ Background: lesson have been added to database
     Given that I am at the lessons pathway page,
     When I click on a lesson,
     Then I should see the lesson.
-
-
 
   Scenario: Video viewing in lesson view
     Given that I am viewing lesson with lesson_id 00001 and at page 2,
