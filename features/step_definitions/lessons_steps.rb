@@ -7,21 +7,16 @@ Given(/the following (.*) exist/) do |variable, table|
 
   when 'lessons'
     table.hashes.each do |lesson|
-      LessonContent.create(lesson_id: lesson['lesson_id'], title: lesson['title'])
-      LessonList.create(lesson_id: lesson['lesson_id'], topic_id: lesson['topic_id'],
-                        order_index: lesson['order_index'])
+      Lesson.create(lesson_id: lesson['lesson_id'], topic_id: lesson['topic_id'], order_index: lesson['order_index'],title: lesson['title'])
     end
   when 'pages'
     table.hashes.each do |page|
-      PageContent.create(page_id: page['page_id'], video: page['video'], words: page['words'])
-      PageList.create(page_id: page['page_id'], lesson_id: page['lesson_id'], order_index: page['order_index'])
+      Page.create(page_id: page['page_id'], lesson_id: page['lesson_id'], order_index: page['order_index'], video: page['video'], words: page['words'])
     end
 
   when 'exercises'
     table.hashes.each do |exercise|
-      ExerciseList.create(exercise_id: exercise['exercise_id'], topic_id: exercise['topic_id'],
-                          lesson_id: exercise['lesson_id'])
-      ExerciseContent.create(exercise_id: exercise['exercise_id'], title: exercise['title'], qns: exercise['qns'])
+      Exercise.create(exercise_id: exercise['exercise_id'], topic_id: exercise['topic_id'], lesson_id: exercise['lesson_id'], title: exercise['title'], qns: exercise['qns'])
     end
   end
 end
