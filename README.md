@@ -53,6 +53,20 @@ gem install rubocop
 rubocop app
 ```
 
+## Debugging
+
+```sh
+bundle install
+yarn
+rails assets:precompile
+rails db:drop
+rails db:migrate
+rails db:seed
+
+./bin/dev # OR
+rails s
+```
+
 ## TODO
 
 Tasks outside of Jira to complete.
