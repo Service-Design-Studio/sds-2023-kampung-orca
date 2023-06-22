@@ -16,7 +16,8 @@ Given(/the following (.*) exist/) do |variable, table|
 
   when 'exercises'
     table.hashes.each do |exercise|
-      Exercise.create(exercise_id: exercise['exercise_id'], topic_id: exercise['topic_id'], lesson_id: exercise['lesson_id'], title: exercise['title'], qns: exercise['qns'])
+      exercises = exercise["qns"].split(",")
+      Exercise.create(exercise_id: exercise['exercise_id'], topic_id: exercise['topic_id'], lesson_id: exercise['lesson_id'], title: exercise['title'], qns: exercises)
     end
   end
 end
@@ -30,29 +31,31 @@ Then(/(.*) seed (.*) should exist/) do |n_seeds, variable|
     Topic.count == n_seeds.to_i
 
   when 'lessons'
-    LessonList.count == n_seeds.to_i
+    Lesson.count == n_seeds.to_i
 
   when 'pages'
-    PageList.count == n_seeds.to_i
+    Page.count == n_seeds.to_i
 
   when 'exercises'
-    ExerciseList.count == n_seeds.to_i
+    Exercise.count == n_seeds.to_i
   end
 end
 
 # Scenario: Creation of basic lesson view
-Given(/^that I am at the lessons contents page$/) do
-  visit lessons_contents_path
+Given(/that I am at the lessons pathway page/) do
+  visit("/") # While '/' is the default path for now
+  # expect(page).to have_current_path("/lesson-pathway")
 end
 
-When(/^I click on a lesson$/) do
-  click_on('View Lesson')
+When(/I click on a lesson/) do
+  lesson_button = find('button', text: /Lesson/)
+  click_button(lesson_button)
 end
 
-Then(/^I should see the basic lesson view$/) do
+Then(/I should see the lesson/) do
   # Implement code to verify the presence of the basic lesson view
   # Example: expect(page).to have_content("Basic Lesson View")
-  expect(page).to have_content('Lesson')
+  expect(page).to have_content(/Complete Lesson/)
 end
 
 # Scenario: Video viewing in lesson view
@@ -61,7 +64,7 @@ Given('that I am viewing lesson with lesson_id {string} and at page {int}') do |
 end
 
 When("I press on one of the embedded lesson videos") do
-  expect(page).to have_css('iframe[src^="https://www.youtube.com/embed/"]') 
+  expect(page).to have_css('iframe[src^="https://www.youtube.com/embed/"]')
 end
 
 Then("I should see the video play out within the website") do
