@@ -4,7 +4,7 @@ Interfaith LMS Project in collaboration with Being Bridges and Google
 
 ## Local Development
 
-It is highly recommended to install [`volta`](https://volta.sh/) for Node versioning.
+It is highly recommended to install [`volta`](https://volta.sh/) for Node and Yarn versioning.
 
 ### MacOS / Linux
 
@@ -12,9 +12,11 @@ It is highly recommended to install [`volta`](https://volta.sh/) for Node versio
 # Volta installation
 curl https://get.volta.sh | bash
 volta install node
+volta install yarn
 
 bundle install # Install gems
-npm i # Install node packages
+yarn # Install node packages
+rails assets:precompile
 ./bin/dev
 ```
 
@@ -24,7 +26,7 @@ Use your preferred Node version manager e.g Volta, nvm, etc.
 
 ```bat
 bundle install
-npm i
+yarn
 cd bin
 start.bat
 ```

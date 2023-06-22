@@ -39,6 +39,5 @@
 
 /node_modules
 
-# Yarn
-.yarn
-yarn.lock
+# We are using Yarn
+package-lock.json
