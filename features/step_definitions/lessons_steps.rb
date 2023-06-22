@@ -59,15 +59,15 @@ Then(/I should see the lesson/) do
 end
 
 # Scenario: Video viewing in lesson view
-Given('that I am viewing lesson with lesson_id {string} and at page {int}') do |lesson_id, page_number|
-  visit lesson_path(lesson_id, page: page_number)
+Given(/that I am viewing lesson with lesson_id (.*) and at page (.*)/) do |lesson_id, page_number|
+  visit lesson_path(lesson_id.to_i, page: page_number.to_i)
 end
 
-When("I press on one of the embedded lesson videos") do
+When(/I press on one of the embedded lesson videos/) do
   expect(page).to have_css('iframe[src^="https://www.youtube.com/embed/"]')
 end
 
-Then("I should see the video play out within the website") do
+Then(/I should see the video play out within the website/) do
   expect(page).to have_selector('video') # Ensure the video element is present
 
   # Get the video element using JavaScript
