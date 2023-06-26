@@ -1,6 +1,0 @@
-@echo off
-echo Precompiling Rails assets...
-call bundle exec rails assets:precompile
-
-echo Starting Rails server...
-call bundle exec rails s
