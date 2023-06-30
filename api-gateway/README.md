@@ -3,7 +3,7 @@
 ## Local Development
 
 ```sh
-bundle install
+bundle install --without production
 rails assets:precompile
 
 # Initialise db
@@ -12,6 +12,13 @@ rails db:migrate
 rails db:seed
 
 rails serve
+```
+
+## Deploying
+
+```sh
+# Deploying as production
+gcloud builds submit
 ```
 
 ## Linting

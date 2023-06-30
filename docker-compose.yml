@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    volumes:
+      - ./api-gateway:/api-gateway
+    ports:
+      - 3001:3000
+    depends_on:
+      - curriculum-service
+  curriculum-service:
+    build:
+      context: ./curriculum-service
+      dockerfile: Dockerfile
+    volumes:
+      - ./curriculum-service:/curriculum-service
+    ports:
+      - 3002:3000
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - 3000:3000

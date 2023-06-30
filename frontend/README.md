@@ -11,6 +11,8 @@ volta install node
 npm install
 ```
 
+`esbuild` is used for faster build times.
+
 ## Component Library
 
 This project uses [Chakra UI](https://chakra-ui.com/) for its components.

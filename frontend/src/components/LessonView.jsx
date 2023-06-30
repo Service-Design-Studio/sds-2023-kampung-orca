@@ -63,7 +63,7 @@ const Lesson = () => {
   const [pages, setPage] = useState({});
 
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/page/show/${params.lesson_id}`;
+    const url = `http://localhost:3002/api/v1/page/show/${params.lesson_id}`;
     fetch(url)
       .then((res) => {
         if (res.ok) {
