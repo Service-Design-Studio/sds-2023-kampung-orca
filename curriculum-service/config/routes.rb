@@ -26,8 +26,8 @@ Rails.application.routes.draw do
       get 'lessonlist/:id', to: 'lesson#lessonlist'
     end
   end
-  root 'homepage#index'
-  get '*path', to: 'homepage#index'
+  # root 'homepage#index'
+  # get '*path', to: 'homepage#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
