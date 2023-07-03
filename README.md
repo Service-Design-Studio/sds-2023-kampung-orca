@@ -38,3 +38,13 @@ To run each service with its own containers, run this command in the root direct
 ```sh
 docker compose up -d
 ```
+
+### Ports
+
+| Service        | Port |
+| -------------- | ---- |
+| React Frontend | 3000 |
+| API Gateway    | 3001 |
+| Curriculum     | 3002 |
+| Forum          | 3003 |
+| Users          | 3004 |
