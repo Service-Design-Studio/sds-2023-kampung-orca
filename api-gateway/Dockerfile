@@ -20,7 +20,14 @@ ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 # Redirect Rails log to STDOUT for Cloud Run to capture
 ENV RAILS_LOG_TO_STDOUT=true
-ENV SECRET_KEY_BASE=b1d43ba1f0d2ed9f4a44e7c9703fb3b416a658f37223aef4716e270539c7fca3a094865565662090d45c134503dcf9b463863a1ec1350d48781b14d0d6533620
+ARG MASTER_KEY
+ENV RAILS_MASTER_KEY=${MASTER_KEY}
 
-EXPOSE 3000
-CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+ENV PORT 3001
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE 3001
+CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3001"]
