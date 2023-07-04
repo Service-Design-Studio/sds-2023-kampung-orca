@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       #@comment.user_id = 1  # Placeholder user ID for now
   
       if @comment.save
-        render json: @comment, status: :created, location: post_comment_url(@comment.post, @comment)
+        render json: @comment, status: :created, location: lesson_post_comments_path(@comment.post)
       else
         render json: @comment.errors, status: :unprocessable_entity
       end

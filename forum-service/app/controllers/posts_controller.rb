@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     #@post.user_id = 1  # Placeholder user ID for now
 
     if @post.save
-      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created, location: @post
+      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created, location: @post.lesson
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -45,6 +45,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :lesson_id)
   end
 end

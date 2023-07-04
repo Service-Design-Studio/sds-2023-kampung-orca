@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-# REQUESTS IF YOU WANNA DEMO IN COMMAND LINE
+# REQUESTS IF YOU WANNA DEMO IN COMMAND LINE POSTS
 
 curl -X POST -H "Content-Type: application/json" -d "{\"post\":{\"title\":\"Jopping\", \"content\":\"Uh you think ya big boy throwing  3 stacks\"}}" http://localhost:3000/posts
 
@@ -45,7 +45,31 @@ curl -X PATCH -H "Content-Type: application/json" -d "{\"comment\":{\"content\":
 curl -X DELETE http://localhost:3000/posts/2/comments/3
 
 
+# REQUESTS IF YOU WANNA DEMO IN COMMAND LINE LESSONS
 
+Create: Create a new lesson.
+
+curl -X POST -H "Content-Type: application/json" -d '{ "lesson": { "title": "New Lesson Title" } }' http://localhost:3000/lessons
+
+
+Read (Index): Retrieve all lessons.
+
+curl http://localhost:3000/lessons
+
+
+Read (Show): Retrieve a specific lesson by its ID.
+
+curl http://localhost:3000/lessons/:id
+
+
+Update: Update an existing lesson with a specific ID.
+
+curl -X PATCH -H "Content-Type: application/json" -d '{ "lesson": { "title": "Updated Lesson Title" } }' http://localhost:3000/lessons/:id
+
+
+Delete: Delete a lesson with a specific ID.
+
+curl -X DELETE http://localhost:3000/lessons/:id
 
 
 
