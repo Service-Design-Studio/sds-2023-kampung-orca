@@ -13,7 +13,7 @@ npm install
 
 `esbuild` is used for faster build times.
 
-Copy `.env.example` into `.env` and edit **REACT_APP_GATEWAY_URL** with the base URL to the API Gateway.
+Edit **REACT_APP_GATEWAY_URL** in `.env` with the base URL to your deployment of the API Gateway e.g `http://localhost:3001`.
 
 ```sh
 # Dev server with file watching
