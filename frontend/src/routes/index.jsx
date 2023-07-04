@@ -1,22 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../components/Home";
-import LessonView from "../components/LessonView";
-import Pages from "../components/Page";
-import { LessonCompletion } from "../components/LessonCompletion";
-import { LessonPathway } from "../components/LessonPathway";
+import LessonView from "../components/Lessons/LessonView";
+import { LessonCompletion } from "../components/Lessons/LessonCompletion";
+import { LessonPathway } from "../components/Lessons/LessonPathway";
+import { LessonNodes } from "../components/Lessons/LessonNodes";
 import Chat from "../components/Chatbox/Chat";
-
 
 export default (
   <Router>
     <Routes>
       <Route path="/" element={<LessonPathway />} />
-      <Route path="/page" element={<Pages />} />
-      <Route path="/lesson-complete/:lesson_id" element ={<LessonCompletion/>} />
-      <Route path="/" element = {<LessonPathway/>} />
-      <Route path="/home" element = {<Home/>} />
-      <Route path="/lesson-view/:lesson_id" element={<LessonView/>} />
+      <Route path="/lesson-view/:lesson_id" element={<LessonView />} />
+      <Route path="/nodes" element={<LessonNodes />} />
       <Route
         path="/lesson-complete/:lesson_id"
         element={<LessonCompletion />}

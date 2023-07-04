@@ -6,7 +6,7 @@ const Pages = () => {
   const [pages, setPage] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:3002/api/v1/page/index";
+    const url = `${process.env.REACT_APP_GATEWAY_URL}/api/v1/page/index`;
     fetch(url)
       .then((res) => {
         if (res.ok) {

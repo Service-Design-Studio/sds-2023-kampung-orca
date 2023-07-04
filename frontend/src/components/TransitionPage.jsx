@@ -2,12 +2,17 @@
 
 import { ChakraProvider, ScaleFade } from "@chakra-ui/react";
 
-export default function TransitPage({ Component, pageProps, router }) {
+function TransitPage({ Component, pageProps, router }) {
   return (
     <ChakraProvider>
-      <ScaleFade key={router.route} initialScale={0.9} in="true">
+      <ScaleFade
+        key={router.route}
+        initialScale={0.9}
+        in="true"
+      >
         <Component {...pageProps} />
       </ScaleFade>
     </ChakraProvider>
   );
 }
+export default MyApp;
