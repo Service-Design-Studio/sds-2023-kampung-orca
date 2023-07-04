@@ -8,14 +8,6 @@ steps:
     name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"]
 
-  - id: "apply migrations"
-    name: "gcr.io/google-appengine/exec-wrapper"
-    entrypoint: "bash"
-    args:
-      [
-        "-c",
-        "/buildstep/execute.sh -i gcr.io/${PROJECT_ID}/${_SERVICE_NAME} -s ${PROJECT_ID}:${_REGION}:${_DB_INSTANCE_NAME} -- bundle exec rake db:migrate",
-      ]
   - id: "run deploy"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -30,12 +22,15 @@ steps:
         "${_REGION}",
         "--image",
         "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}",
+        "--port",
+        "${_PORT}",
+        "--allow-unauthenticated",
       ]
 
 substitutions:
   _REGION: asia-southeast1
-  _SERVICE_NAME: kampung-curriculum
-  _DB_INSTANCE_NAME: kampung-production
+  _SERVICE_NAME: kampung-frontend
+  _PORT: "80"
 
 images:
   - "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"
