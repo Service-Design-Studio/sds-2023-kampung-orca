@@ -1,66 +1,18 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  Stack,
-  Button,
-  Icon,
-  Text,
-  useDisclosure,
-  Slide,
-  Container,
-  Flex,
-} from "@chakra-ui/react";
+import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck, BsChatDots } from "react-icons/bs";
-import Chat from "../Chatbox/Chat";
-import Header from "../Chatbox/Header";
+import ChatButton from "../Chatbox/Chatbutton"
+import { Header } from '../Header'
 
-function SlideEx() {
-  //This is the chat function button duplicated from LessonView. I'll create a new jsx just for this later
-  const { isOpen, onToggle } = useDisclosure();
-  return (
-    <>
-      <Button
-        onClick={onToggle}
-        size="lg"
-        colorScheme="blue"
-        height="48px"
-        shadow="md"
-        leftIcon={<Icon as={BsChatDots} boxSize="7" />}
-      >
-        Chat with Students!
-      </Button>
-      <Slide direction="right" in={isOpen} position="right">
-        <Container
-          p="40px"
-          color="white"
-          mb="4"
-          mr="0"
-          mt="5"
-          rounded="md"
-          shadow="md"
-          height="700px"
-          width="500px"
-          bg="rgba(100, 150, 100, 0.92)"
-          overflow="visible"
-          borderRadius="20px 0 0 20px"
-        >
-          <Flex flexDirection="column" justify="center">
-            <Header onToggle={onToggle} />
-            <Chat my="0" />
-          </Flex>
-        </Container>
-      </Slide>
-    </>
-  );
-}
 
-//========================================================
+
 
 export const LessonCompletion = () => {
-  const params = useParams();
-  const pre = parseInt(params.lesson_id) - 1;
-  const next = parseInt(params.lesson_id) + 1;
+  // params = useParams();
+  // const pre = parseInt(params.lesson_id) - 1;
+  // const next = parseInt(params.lesson_id) + 1;
 
   return (
     <Stack
@@ -70,34 +22,10 @@ export const LessonCompletion = () => {
       height="800px"
       background="#FFFFFF"
     >
-      <Stack //header stack with back button
-        paddingX="91px"
-        paddingTop="30px"
-        paddingBottom="20px"
-        direction="row"
-        justify="flex-start"
-        align="center"
-        spacing="126px"
-        overflow="show"
-        width="100%"
-        height="90px"
-        maxWidth="100%"
-        background="green.200"
-        borderRadius="0 0 20px 20px"
-        shadow="md"
-      >
-        <Link to={"/"}>
-          <Button
-            size="lg"
-            colorScheme="green"
-            height="48px"
-            leftIcon={<Icon as={GoChevronLeft} />}
-          >
-            Back to lessons
-          </Button>
-        </Link>
-      </Stack>
-
+      
+      <Header buttontext="Back to Lessons"/>
+              
+      
       <Stack //main body stack with the 2 buttons and lesson complete box
         paddingX="91px"
         paddingY="50px"
@@ -108,8 +36,7 @@ export const LessonCompletion = () => {
         height="625px"
         maxWidth="100%"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
@@ -123,17 +50,14 @@ export const LessonCompletion = () => {
           align="center"
           spacing="70px"
         >
-          <Link to={`/lesson-view/${pre}`}>
-            <Button
-              shadow="lg"
-              leftIcon={<Icon as={GoChevronLeft} />}
-              size="lg"
-            >
+          <Link to={`/lesson-view/1`}>
+            <Button shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)" leftIcon={<Icon as={GoChevronLeft} />} size="lg">
               Previous Lesson
             </Button>
           </Link>
+                  
         </Stack>
-
+                  
         <Stack
           paddingX="90px"
           paddingTop="31px"
@@ -144,12 +68,13 @@ export const LessonCompletion = () => {
           align="center"
           spacing="10px"
           overflow="hidden"
-          background="green.100"
-          boxShadow="sm"
-          shadow="lg"
+          background="#FFFFFF"
+          shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+          
+          
         >
           <Stack justify="flex-start" align="center" spacing="17px">
-            <Icon as={BsPatchCheck} boxSize={200} />
+            <Icon as={BsPatchCheck} boxSize={200}/>
             <Text
               fontFamily="Arial"
               lineHeight="1.33"
@@ -165,6 +90,8 @@ export const LessonCompletion = () => {
             </Text>
           </Stack>
         </Stack>
+          
+
 
         <Stack
           mt="100px"
@@ -174,18 +101,17 @@ export const LessonCompletion = () => {
           height="100%"
           align="center"
           spacing="70px"
+  
         >
-          <Link to={`/lesson-view/${next}`}>
-            <Button
-              shadow="lg"
-              rightIcon={<Icon as={GoChevronRight} />}
-              size="lg"
-            >
+          <Link to={`/lesson-view/2`}>
+            <Button shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)" rightIcon={<Icon as={GoChevronRight} />} size="lg">
               Next Lesson
             </Button>
           </Link>
         </Stack>
-      </Stack>
+
+      </Stack> 
+
 
       <Stack //footer stack with chatbox button
         padding="20px"
@@ -196,8 +122,10 @@ export const LessonCompletion = () => {
         width="100%"
         maxWidth="100%"
       >
-        <SlideEx />
+        <ChatButton/>
       </Stack>
+
     </Stack>
+    
   );
 };

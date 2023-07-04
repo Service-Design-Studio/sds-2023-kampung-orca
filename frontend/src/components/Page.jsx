@@ -6,7 +6,7 @@ const Pages = () => {
   const [pages, setPage] = useState([]);
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_GATEWAY_URL}/api/v1/page/index`;
+    const url = "/api/v1/page/index";
     fetch(url)
       .then((res) => {
         if (res.ok) {
@@ -17,7 +17,7 @@ const Pages = () => {
       })
       .then((res) => setPage(res))
       .catch(() => navigate("/"));
-  }, [navigate]);
+  }, []);
 
   const allPages = pages.map((page, index) => (
     <div key={index} className="col-md-6 col-lg-4">
