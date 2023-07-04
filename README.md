@@ -29,6 +29,27 @@ The file structure is as follows.
 
 To deploy each service, run `gcloud builds submit` in each service folder.
 
+### Storing secrets
+
+[Detailed guide on GCP](https://cloud.google.com/ruby/rails/run#store_secret_values_in).
+
+Each Rails microservice uses GCP Secret Manager to store the `master.key` to decrypt `credentials.yml.enc`.
+
+```sh
+EDITOR=nano rails credentials:edit
+```
+
+After adding/editing the secrets, upload the value in `master.key` and save the secret as **SECRET_NAME**.
+
+When viewing the secret details, obtain the **PROJECT_ID** value in `projects/<PROJECT_ID>/secrets/<SECRET_NAME>`.
+
+Under `Permissions > Grant Access`, assign _Secret Manager Secret Accessor_ to the accounts:
+
+- `<PROJECT_ID>@cloudbuild.gserviceaccount.com`
+- `<PROJECT_ID>-compute@developer.gserviceaccount.com`
+
+Then in the service's corresponding `cloudbuild.yaml`, edit `substitutions:_SECRET_NAME` to **SECRET_NAME**.
+
 ## Local Development
 
 ### Docker Compose

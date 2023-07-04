@@ -6,16 +6,15 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Apiforum2
+key_file = File.join "config", "master.key"
+if File.exist? key_file
+  ENV["RAILS_MASTER_KEY"] = File.read key_file
+end
+
+module ForumService
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    #config.load_defaults 7.0
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'  # You can specify specific origins instead of '*'
-        resource '*', headers: :any, methods: [:get, :post, :patch, :put, :delete]
-      end
-    end
+    config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -24,5 +23,10 @@ module Apiforum2
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Only loads a smaller set of middleware suitable for API only apps.
+    # Middleware like session, flash, cookies can be added back manually.
+    # Skip views, helpers and assets when generating a new resource.
+    config.api_only = true
   end
 end

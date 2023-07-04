@@ -4,12 +4,6 @@
 
 ```sh
 bundle install --without production
-rails assets:precompile
-
-# Initialise db
-rails db:drop
-rails db:migrate
-rails db:seed
 
 rails serve
 ```

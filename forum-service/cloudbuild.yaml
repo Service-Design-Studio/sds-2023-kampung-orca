@@ -45,10 +45,10 @@ steps:
 
 substitutions:
   _REGION: asia-southeast1
-  _SERVICE_NAME: kampung-curriculum
+  _SERVICE_NAME: kampung-forum
   _DB_INSTANCE_NAME: kampung-production
-  _SECRET_NAME: curriculum-credentials
-  _PORT: "3002"
+  _SECRET_NAME: forum-credentials
+  _PORT: "3003"
 
 availableSecrets:
   secretManager:
