@@ -21,7 +21,7 @@ class Users::UserController < ApplicationController
   
     before_action :set_credentials
     #skip_before_action :verify_authenticity_token, only: [:google]
-    protect_from_forgery unless: -> { request.format.json? }
+    
 
     def authorization_code_exchange
       begin
@@ -29,7 +29,7 @@ class Users::UserController < ApplicationController
           code: @code,
           client_id: ENV['GOOGLE_CLIENT_ID'],
           client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          redirect_uri: 'http://localhost:3001',
+          redirect_uri: 'http://localhost:3000',
           grant_type: 'authorization_code'
         }
         response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query: query)
@@ -52,9 +52,9 @@ class Users::UserController < ApplicationController
           Token.create!(token:tokens_data[:token], refresh_token:tokens_data[:refresh_token], expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data["id"])
         end
         
-        render json: @token
+        render json: {token: @token, user_id: profile_data["id"]}
       rescue Exception
-        head 400
+        render json: {token: nil, user_id: nil}
       end
 
 
@@ -68,13 +68,13 @@ class Users::UserController < ApplicationController
 
     def verify_token
       token = Token.find_by(token: @token)
-      if token.blank? == true
-        head 401
+      if token == nil
+        render json: {token: nil, user_id: nil}
       else
         if token.expires_at < Time.now
           token.refresh!
         end
-        render json: token[:token]
+        render json: {token: token[:token], user_id: token[:user_id]}
       end
     end
 
