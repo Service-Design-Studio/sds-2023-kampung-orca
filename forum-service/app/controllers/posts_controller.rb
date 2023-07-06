@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_lesson, only: [:create]
 
   # GET /posts
   def index
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = @lesson.posts.build(post_params)
     #@post.user_id = 1  # Placeholder user ID for now
 
     if @post.save
@@ -44,7 +45,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def set_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
+
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :lesson_id)
+    params.require(:post).permit(:title, :content, :user_id)
   end
 end
