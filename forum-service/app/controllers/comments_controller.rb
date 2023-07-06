@@ -38,6 +38,7 @@ class CommentsController < ApplicationController
     # DELETE /comments/:id
     def destroy
       @comment.destroy
+      head :no_content
     end
   
     private
@@ -48,6 +49,8 @@ class CommentsController < ApplicationController
   
     def set_comment
       @comment = Comment.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Comment not found' }, status: :not_found
     end
   
     def comment_params

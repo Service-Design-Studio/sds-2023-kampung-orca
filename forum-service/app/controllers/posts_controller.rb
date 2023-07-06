@@ -37,12 +37,15 @@ class PostsController < ApplicationController
   # DELETE /posts/:id
   def destroy
     @post.destroy
+    head :no_content
   end
 
   private
 
   def set_post
     @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Post not found' }, status: :not_found
   end
 
   def set_lesson
