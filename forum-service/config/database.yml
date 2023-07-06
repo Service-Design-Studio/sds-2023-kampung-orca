@@ -24,9 +24,7 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV["PRODUCTION_DB_NAME"] %>
-  username: <%= ENV["PRODUCTION_DB_USERNAME"] %>
-  <% if Rails.application.credentials.gcp.present? %>
-    password: <%= Rails.application.credentials.gcp[:db_password] %>
-  <% end %>
-  host: "<%= ENV.fetch("DB_SOCKET_DIR") { '/cloudsql' } %>/<%= ENV["CLOUD_SQL_CONNECTION_NAME"] %>"
+  database: <%= Rails.application.credentials[:db_name] %>
+  username: <%= Rails.application.credentials[:db_username] %>
+  password: <%= Rails.application.credentials[:db_password] %>
+  host: "/cloudsql/<%= Rails.application.credentials[:db_connection] %>"

@@ -1,24 +1,30 @@
-# README
+# Kampung.SG Users Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Local Development
 
-Things you may want to cover:
+```sh
+bundle install --without production
 
-* Ruby version
+# Initialise db
+rails db:drop
+rails db:migrate
+rails db:seed
 
-* System dependencies
+rails s
+```
 
-* Configuration
+## Deploying
 
-* Database creation
+```sh
+# Deploying as production
+gcloud builds submit
+```
 
-* Database initialization
+## Linting
 
-* How to run the test suite
+This project uses Rubocop for its linting.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+gem install rubocop # Already included in Gemfile
+rubocop app
+```

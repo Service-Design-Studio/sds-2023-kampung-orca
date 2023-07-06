@@ -6,21 +6,15 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+key_file = File.join "config", "master.key"
+if File.exist? key_file
+  ENV["RAILS_MASTER_KEY"] = File.read key_file
+end
+
 module SocialLoginApi
   class Application < Rails::Application
-    Dotenv::Railtie.load
     # Initialize configuration defaults for originally generated Rails version.
-    
-    # config.middleware.insert_before 0, Rack::Cors do
-    #   allow do
-    #     origins 'http://localhost:3001'
-    #     resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-    #   end
-    # end
     config.load_defaults 7.0
-
-
-    
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -29,5 +23,6 @@ module SocialLoginApi
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.api_only = true
   end
 end
