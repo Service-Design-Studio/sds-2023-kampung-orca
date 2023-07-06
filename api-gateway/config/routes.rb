@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get '/posts', to: 'forum#forward'
-  post '/posts', to: 'forum#forward'
+  post '/lessons/1/posts', to: 'forum#forward' #posting to forum, with cookies
   get '/posts/*path', to: 'forum#forward'
   post '/posts/test_user', to: 'forum#testing'
   post '/users/signup', to: 'user#authorization_code_exchange'

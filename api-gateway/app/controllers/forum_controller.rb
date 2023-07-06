@@ -2,15 +2,14 @@ class ForumController < ApplicationController
   require 'net/http'
   before_action :authenticate_user
 
-
   def testing
     render json: @current_user
   end
   def forward
-      response = forward_request('http://localhost:3003', request)
-      render json: response.body, status: response.code
+      response = forward_request('http://localhost:3003', request) # just for testing, request should be dynamically generated
+      json_response = JSON.parse(response.body)
+      render json: json_response, status: response.code
   end
-
 
   private
 
