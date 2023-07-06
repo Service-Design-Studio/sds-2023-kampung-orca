@@ -5,7 +5,9 @@
 ```sh
 bundle install --without production
 
-rails serve
+cp .env.example .env # Copy sample env file
+nano .env # Edit the .env file accordingly
+rails s
 ```
 
 ## Deploying
