@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
-    before_action :set_post, only: [:show, :update, :create, :destroy]
+    before_action :set_post, only: [:show, :update, :create, :destroy, :index]
   
     # GET /comments
     def index
-      @post = Post.find(params[:post_id])
       @comments = @post.comments
       render json: @comments.to_json(include: { user: { only: [:id, :name] } })
     end
