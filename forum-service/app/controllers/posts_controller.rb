@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :set_lesson, only: [:create]
+  before_action :set_lesson, only: [:create, :index]
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = @lesson.posts.all
     render json: @posts.to_json(include: { user: { only: [:id, :name] } })
   end
 
