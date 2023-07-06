@@ -27,7 +27,6 @@ curl -X PATCH -H "Content-Type: application/json" -d "{\"comment\":{\"content\":
 
 curl -X DELETE http://localhost:3003/lessons/1/posts/2/comments/2
 ```
-
 #### Requests for Lessons
 
 ```sh
