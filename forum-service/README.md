@@ -7,23 +7,25 @@
 #### Requests for Posts
 
 ```sh
-curl -X POST -H "Content-Type: application/json" -d "{"post":{"title":"Jopping", "content":"Uh you think ya big boy throwing 3 stacks"}}" http://localhost:3003/posts
 
-curl -X GET http://localhost:3003/posts
+# must specify user_id (lesson_id inferred from URL, as posts belong strictly to lessons)
+curl -X POST -H "Content-Type: application/json" -d "{\"post\":{\"title\":\"Jopping\", \"content\":\"Uh you think ya big boy throwing 3 stacks\", \"user_id\": 1}}" http://localhost:3003/lessons/1/posts
 
-curl -X GET http://localhost:3003/posts/2
+curl -X GET http://localhost:3003/lessons/1/posts
 
-curl -X PATCH -H "Content-Type: application/json" -d "{"post":{"title":"Stan Loona", "content":"Jop like a butterfly"}}" http://localhost:3003/posts/2
+curl -X GET http://localhost:3003/lessons/1/posts/2
 
-curl -X DELETE http://localhost:3003/posts/1
+curl -X PATCH -H "Content-Type: application/json" -d "{\"post\":{\"title\":\"Stan Loona\", \"content\":\"Jop like a butterfly\"}}" http://localhost:3003/lessons/1/posts/2
 
-curl -X POST -H "Content-Type: application/json" -d "{"comment":{"content":"My kidney is pounding, "post_id":2}}" http://localhost:3003/posts/2/comments
+curl -X DELETE http://localhost:3003/lessons/1/posts/6
 
-curl -X GET http://localhost:3003/posts/2/comments
+curl -X POST -H "Content-Type: application/json" -d "{\"comment\":{\"content\":\"My kidney is pounding\", \"user_id\":2}}" http://localhost:3003/lessons/1/posts/2/comments
 
-curl -X PATCH -H "Content-Type: application/json" -d "{"comment":{"content":"Love is cruel like college entrance exams", "post_id",:2}}" http://localhost:3003/posts/2/comments/3
+curl -X GET http://localhost:3003/lessons/1/posts/2/comments
 
-curl -X DELETE http://localhost:3003/posts/2/comments/3
+curl -X PATCH -H "Content-Type: application/json" -d "{\"comment\":{\"content\":\"Love is cruel like college entrance exams\", \"user_id\":2}}" http://localhost:3003/lessons/1/posts/2/comments/2
+
+curl -X DELETE http://localhost:3003/lessons/1/posts/2/comments/2
 ```
 
 #### Requests for Lessons
@@ -39,7 +41,7 @@ curl http://localhost:3003/lessons
 curl http://localhost:3003/lessons/:id
 
 # Update: Update an existing lesson with a specific ID.
-curl -X PATCH -H "Content-Type: application/json" -d '{ "lesson": { "title": "Updated Lesson Title" } }' http://localhost:3003/lessons/:id
+curl -X PATCH -H "Content-Type: application/json" -d "{\"lesson\":{\"title\":\"Updated Lesson Title\"}}" http://localhost:3003/lessons/:id
 
 # Delete: Delete a lesson with a specific ID.
 curl -X DELETE http://localhost:3003/lessons/:id

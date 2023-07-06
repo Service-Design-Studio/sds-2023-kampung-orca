@@ -45,7 +45,10 @@ class LessonsController < ApplicationController
     #find lesson by id
     def set_lesson
       @lesson = Lesson.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Lesson not found' }, status: :not_found
     end
+    
   
     #only allow title parameter
     def lesson_params
