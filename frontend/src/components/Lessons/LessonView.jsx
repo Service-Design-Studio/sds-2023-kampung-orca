@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link,useNavigate,useParams } from "react-router-dom";
-import { BsChatDots } from "react-icons/bs"
-import { GoChevronLeft } from "react-icons/go";
-import { useDisclosure, Stack, Button, Text, Slide, Container, Flex, Icon } from '@chakra-ui/react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Stack, Button, Text } from '@chakra-ui/react'
 import ChatButton from "../Chatbox/Chatbutton"
 import { Header } from '../Header'
 
@@ -34,24 +32,22 @@ const Lesson = () => {
     <Stack
       justify="flex-start"
       align="flex-start"
-      spacing="13px"
-      height="800px"
+      height="100vh"
+      width="100vw"
       background="#FFFFFF"
     >
       
-      <Header buttontext="Back to Lessons"/>
+      <Header buttontext="Back to Lessons" path="/" showChat="true" showForum="true"/>
 
 
 
       <Stack //main body stack with left and right substack
-        paddingX="91px"
-        paddingY="50px"
+        
         direction="row"
-        justify="center"
+        justify="flex-start"
         align="flex-start"
-        spacing="50px"
         width="100%"
-        height="625px"
+        height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
         backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
@@ -61,27 +57,28 @@ const Lesson = () => {
       >
 
         <Stack //left stack with lesson word content
-          paddingX="37px"
-          paddingY="54px"
-          borderRadius="20px"
-          justify="center"
-          align="center"
-          spacing="5px"
+          paddingLeft="37px"
+          paddingRight="37px"
+          paddingTop="50px"
+          paddingBottom="50px"
+          marginRight="20px"
+          spacing="15px"
+          justify="flex-start"
+          align="flex-start"
           overflow="hidden"
-          width="60%"
-          height="545px"
-          maxWidth="100%"
+          width={{base:"400px", md:"500px", lg:"800px"}}
+          minWidth="400px"
+          height={`calc(100vh - 120px)`}
           background="#FFFFFF"
-          shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+          shadow="10px 0px 10px -5px rgba(0, 0, 0, 0.3)"
+          
         >
           <Stack
             justify="flex-start"
-            align="left"
+            align="flex-start"
             spacing="20px"
-            overflow="hidden"
             width="100%"
-            height="459px"
-            maxWidth="100%"
+            height="100vh"
             paddingRight="8"
             overflowY="auto"
             style={{ zIndex: 10 }}
@@ -97,7 +94,7 @@ const Lesson = () => {
                 backgroundColor: `rgba(237, 46, 56, 1)`,
               },
             }}
-            fontFamily="Arial"
+
             color="#000000"
           >
             
@@ -115,7 +112,7 @@ const Lesson = () => {
               fontSize="16px"
               textAlign="justify"
             >
-              Material from lesson content (unseeded). This text, and all of the text below, is hardcoded. There is no difference between lesson 1, 2, and 3 at the moment.
+              Material from lesson content.
             </Text>
 
             <Text
@@ -174,6 +171,21 @@ const Lesson = () => {
             posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas 
             condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
           </Text>
+          <Stack  width="100%" direction="row" justify="flex-end" align="flex-end">
+          <Link to={`/lesson-complete`} bg="#ed2e38">
+            <Button
+              size="lg"
+              bg="#ed2e38"
+              textColor="#FFFFFF"
+              _hover={{bg:"#7c191c"}}
+              height="48px"
+              fontSize="18px"
+              shadow="md"
+            >
+              Complete Lesson
+            </Button>
+          </Link>
+          </Stack>
           </Stack>
         </Stack>
 
@@ -181,22 +193,23 @@ const Lesson = () => {
           direction="column">
 
           <Stack //video stack
-            borderRadius="20px"
+            borderRadius="0px 0px 0px 0px"
             justify="flex-start"
             align="center"
-            spacing="0px"
+            marginTop="30px"
             overflow="hidden"
             background="#E0C825"
             shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-            
-            width="100%"
+            marginRight="20px"
+            width="650px"
+            height="450px"
           >
             <iframe
+              title="kampung"
               src="https://www.youtube.com/embed/n5xYb4TOaYs"
-              width="590"
-              height="400"
-              maxWidth="60%"
-              objectFit="cover"
+              width="100%"
+              height="100%"
+              objectFit="contain"
             />
           </Stack>
 
@@ -204,32 +217,16 @@ const Lesson = () => {
             height="130px"
             direction="row"
             justify="space-between"
-            align="flex-end"
+            align="center"
+            marginRight="20px"
+            spacing={"100px"}
 
           >
-            <Stack
-              
-              align="flex-end"
-            >
-            <Link to={`/lesson-complete/2`} bg="#ed2e38">
-              <Button
-                size="lg"
-                bg="#ed2e38"
-                textColor="#FFFFFF"
-                _hover={{bg:"#7c191c"}}
-                height="48px"
-                shadow="md"
-              >
-                Complete Lesson
-              </Button>
-            </Link>
-            </Stack>
+           
+            
+            
+      
 
-            <Stack
-              align="flex-end"
-            >
-              <ChatButton/>
-            </Stack>
             
           </Stack>
 

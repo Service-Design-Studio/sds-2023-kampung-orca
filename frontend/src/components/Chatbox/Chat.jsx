@@ -29,8 +29,8 @@ const Chat = () => {
   };
 
   return (
-	<Flex w="100%" h="90vh" justify="center" align="center">
-  	<Flex w="100%" h="100%" flexDir="column">
+	<Flex w="100%" h="80vh" justify="center" align="center">
+  	<Flex w="100%" h="80vh" flexDir="column">
 			<Divider />
     	<Messages messages={messages} />
     	<Divider />
