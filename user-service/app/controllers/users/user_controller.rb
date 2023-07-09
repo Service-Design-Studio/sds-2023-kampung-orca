@@ -78,15 +78,16 @@ class Users::UserController < ApplicationController
       end
     end
 
-    private 
-    def first_time_setup_google(tokens_data, profile_data)
-      Token.create!(token:tokens_data[:token], refresh_token:tokens_data[:refresh_token], expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data["id"])
-      User.create!(user_id: profile_data["id"], email: profile_data["email"], name: profile_data["name"])
+  private
 
-    end
-    def set_credentials
-      @token = params[:token]
-      @code = params[:code]
-    end
+  def first_time_setup_google(tokens_data, profile_data)
+    Token.create!(token: tokens_data[:token], refresh_token: tokens_data[:refresh_token],
+                  expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data['id'])
+    User.create!(user_id: profile_data['id'], email: profile_data['email'], name: profile_data['name'])
+  end
 
+  def set_credentials
+    @token = params[:token]
+    @code = params[:code]
+  end
 end

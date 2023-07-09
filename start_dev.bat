@@ -1,0 +1,5 @@
+start cmd.exe /k "cd api-gateway && rails s"
+start cmd.exe /k "cd curriculum-service && rails s"
+start cmd.exe /k "cd forum-service && rails s"
+start cmd.exe /k "cd user-service && rails s"
+start cmd.exe /k "cd frontend && npm start"
