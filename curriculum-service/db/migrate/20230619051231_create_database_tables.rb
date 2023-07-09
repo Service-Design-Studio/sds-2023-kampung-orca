@@ -29,7 +29,7 @@ class CreateDatabaseTables < ActiveRecord::Migration[6.1]
       t.string :words
     end
     create_table :users, id: false, primary_key: :user_id do |t|
-      t.integer :user_id, unique: true
+      t.string :user_id, unique: true
       t.string :lessons_access
       t.string :exercises_access
     end

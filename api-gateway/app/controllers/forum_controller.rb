@@ -7,7 +7,7 @@ class ForumController < ApplicationController
   end
   
   def forward
-      response = forward_request('http://localhost:3003', request) # just for testing, request should be dynamically generated
+      response = forward_request(ENV["FORUM_URL"], request) # just for testing, request should be dynamically generated
       json_response = JSON.parse(response.body)
       render json: json_response, status: response.code
   end

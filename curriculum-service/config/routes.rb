@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'page/create'
       get 'page/show/:id', to: 'page#show'
       get 'page/destroy/:id', to: 'page#destroy'
-      get 'topic=:topic_id/lesson=:lesson_id/view', to: "page#get_pages_by_lesson" #get pages for lesson viewing
+      post 'topic=:topic_id/lesson=:lesson_id/view', to: "page#get_pages_by_lesson" #get pages for lesson viewing
 
       get 'lesson/index'
       post 'lesson/create'

@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
   end
 
   create_table "users", id: false, force: :cascade do |t|
-    t.integer "user_id"
+    t.string "user_id"
     t.string "lessons_access"
     t.string "exercises_access"
   end

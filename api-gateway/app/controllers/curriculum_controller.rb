@@ -3,7 +3,7 @@ class CurriculumController < ApplicationController
 
   def forward_request
     modified_api = request.path.sub('/curriculum', '/api/v1')
-    url = 'http://localhost:3002' + modified_api # Replace with the URL of your backend
+    url = ENV["CURRICULUM_URL"] + modified_api # Replace with the URL of your backend
   
     #response = HTTParty.post(url, body: request.raw_post, headers: request.headers)
   

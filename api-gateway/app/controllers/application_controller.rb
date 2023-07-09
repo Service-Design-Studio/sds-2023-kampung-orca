@@ -19,32 +19,25 @@ class ApplicationController < ActionController::API
 
   def current_user
     if @code != nil
-      current_user = HTTParty.post("http://localhost:3004/user/authorization_code_exchange", {
+      current_user = HTTParty.post(ENV["USER_URL"] + "/user/authorization_code_exchange", {
         :body => {code: @code}.to_json,
         headers: {
           'Content-Type' => 'application/json',
           'charset' => 'utf-8'
         }
       }).parsed_response
-      @current_user = {token: current_user["token"], user_id: current_user["user_id"]}
-      response_curriculum = HTTParty.post("http://localhost:3002/user/create", {
-        body: {user_id: @current_user[:user_id]}.to_json,
-        headers: {
-          'Content-Type' => 'application/json',
-          'charset' => 'utf-8'
-        }
-      }).parsed_response
 
-      p response_curriculum
+
     else
-      current_user = HTTParty.post("http://localhost:3004/user/verify_token", {
+      current_user = HTTParty.post(ENV["USER_URL"] + "/user/verify_token", {
         body: {token: @token}.to_json,
         headers: {
           'Content-Type' => 'application/json',
           'charset' => 'utf-8'
         }
       }).parsed_response
-      @current_user = {token: current_user["token"], user_id: current_user["user_id"]}
+
+      @current_user = current_user.transform_keys(&:to_sym)
 
 
       

@@ -25,6 +25,7 @@ class Users::UserController < ApplicationController
 
     def authorization_code_exchange
       begin
+        p ENV['GOOGLE_CLIENT_ID']
         query = {
           code: @code,
           client_id: ENV['GOOGLE_CLIENT_ID'],
@@ -46,6 +47,10 @@ class Users::UserController < ApplicationController
           headers: headers
         )
         profile_data = JSON.parse(profile_response.body)
+        if profile_data["id"] == nil
+          head 400
+        end
+  
         if User.where(user_id: profile_data["id"]).blank? == true
           first_time_setup_google(tokens_data, profile_data)
         else
