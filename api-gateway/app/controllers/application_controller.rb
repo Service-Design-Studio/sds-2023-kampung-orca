@@ -7,10 +7,9 @@ require 'httparty'
 class ApplicationController < ActionController::API
   before_action :set_authentication
 
-
   private
   def authenticate_user
-    current_user
+    current_user #called to verify user
     # Add your authentication logic here
     # For example, you can check if the user is logged in and redirect to a login page if not
     if @current_user[:user_id] == nil
@@ -60,7 +59,6 @@ class ApplicationController < ActionController::API
 
 
     end
-
     # Implement the logic to retrieve the current user
     # This could involve checking session variables, cookies, or database queries
     # and return the currently authenticated user with access token if available

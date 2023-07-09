@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
+    before_action :set_post, only: [:show, :update, :create, :destroy]
   
     # GET /comments
     def index
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
   
     # POST /comments
     def create
-      @comment = Comment.new(comment_params)
+      @comment = @post.comments.build(comment_params)
       #@comment.user_id = 1  # Placeholder user ID for now
   
       if @comment.save
@@ -37,15 +38,22 @@ class CommentsController < ApplicationController
     # DELETE /comments/:id
     def destroy
       @comment.destroy
+      head :no_content
     end
   
     private
+
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
   
     def set_comment
       @comment = Comment.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Comment not found' }, status: :not_found
     end
   
     def comment_params
-      params.require(:comment).permit(:content, :post_id, :user_id)
+      params.require(:comment).permit(:content, :user_id)
     end
   end
