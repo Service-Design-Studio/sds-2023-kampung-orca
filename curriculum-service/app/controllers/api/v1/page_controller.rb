@@ -36,8 +36,13 @@ class Api::V1::PageController < ApplicationController
 
 
   def get_pages_by_lesson
-    pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
-    render json: pages
+    user = User.find(params[:user_id])
+    if user.lessons_access.include?(params[:lesson_id])
+      pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
+      render json: pages
+    else
+      render json: {error: "User not allowed"}
+    end
   end
   private
 
