@@ -33,16 +33,12 @@ class Api::V1::PageController < ApplicationController
     render json: { message: 'Page deleted!' }
   end
 
-  def next_page
-    page = Page.where(lesson_id: params[:lesson_id], order_index: params[:order_index] + 1)
-    render json: page
-  end
 
-  def pre_page
-    page = Page.where(lesson_id: params[:lesson_id], order_index: params[:order_index] - 1)
-    render json: page
-  end
 
+  def get_pages_by_lesson
+    pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
+    render json: pages
+  end
   private
 
   def page_params

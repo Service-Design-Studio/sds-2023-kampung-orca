@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get '/posts/*path', to: 'forum#forward'
   post '/posts/test_user', to: 'forum#testing'
   post '/users/signup', to: 'user#authorization_code_exchange'
+
+
+  post '/curriculum/*path', to: 'curriculum#forward_request'
 end

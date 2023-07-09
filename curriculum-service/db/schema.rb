@@ -40,4 +40,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
     t.integer "num_of_lessons"
   end
 
+  create_table "users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "lessons_access"
+    t.string "exercises_access"
+  end
+
 end

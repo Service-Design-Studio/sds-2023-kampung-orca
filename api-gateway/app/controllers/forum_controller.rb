@@ -6,6 +6,7 @@ class ForumController < ApplicationController
   def testing
     render json: @current_user
   end
+  
   def forward
       response = forward_request('http://localhost:3003', request)
       render json: response.body, status: response.code

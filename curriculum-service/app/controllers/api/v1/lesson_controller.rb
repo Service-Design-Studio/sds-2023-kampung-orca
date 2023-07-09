@@ -28,22 +28,21 @@ class Api::V1::LessonController < ApplicationController
     render json: @lesson
   end
 
-  def lessonlist
-    p params[:id]
-    lesson = Lesson.new
-    lessons = lesson.get_lessons_by_topic(params[:id])
-    render json: lessons
+
+
+  def lesson_list
+    user = User.find(params[:user_id])
+    lessons = Lesson.where(topic_id: params[:topic_id]).order(order_index: :asc)
+    lessons_access = lessons.where.not(lesson_id: user[:lessons_access]).order(order_index: :asc)
+    render json: {lessons: lessons, lessons_access: lessons_access} 
+  
   end
 
   def destroy
-    Lesson&.destroy(params[:id])
+    Lesson&.destroy(params[:lesson_id])
     render json: { message: 'Lesson deleted!' }
   end
 
-  def next_lesson
-    lesson = Lesson.where(lesson_id: params[:topic_id], order_index: params[:order_index] + 1)
-    render json: lesson
-  end
 
   private
 
@@ -52,6 +51,6 @@ class Api::V1::LessonController < ApplicationController
   end
 
   def set_lesson
-    @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.find(params[:lesson_id])
   end
 end
