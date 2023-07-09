@@ -33,7 +33,6 @@ class Api::V1::LessonController < ApplicationController
   def lesson_list
     user = User.find(params[:user_id])
     lessons = Lesson.where(topic_id: params[:topic_id]).order(order_index: :asc)
-    
     lessons_access = lessons.where(lesson_id: user[:lessons_access]).order(order_index: :asc)
     render json: {lessons: lessons, lessons_access: lessons_access} 
   
