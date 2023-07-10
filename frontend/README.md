@@ -25,6 +25,26 @@ npm i -g serve
 serve -s build
 ```
 
+## Testing
+
+Cypress does not work well in WSL. Use your default OS environments when running Cypress.
+
+```sh
+# Runs a development instance
+npm start
+# ... Run microservice instances
+
+# Open the Cypress instance
+npx cypress open
+```
+
+For each operating system, run the corresponding script found in the root directory.
+
+| Operating system | Script file       |
+| ---------------- | ----------------- |
+| WSL              | start_wsl_dev.bat |
+| Windows          | start_dev.bat     |
+
 ## Component Library
 
 This project uses [Chakra UI](https://chakra-ui.com/) for its components.

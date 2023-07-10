@@ -42,7 +42,11 @@
     ]
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@craco/craco": "^7.1.0",
-    "craco-esbuild": "^0.5.2"
+    "craco-esbuild": "^0.5.2",
+    "cypress": "^12.17.0",
+    "esbuild": "^0.18.11"
   }
 }
