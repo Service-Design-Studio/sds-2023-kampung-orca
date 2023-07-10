@@ -17,6 +17,12 @@ module.exports = defineConfig({
 
       return config;
     },
+    env: {
+      omitFiltered: true,
+      filterSpecs: true,
+      gatewayUrl: "http://localhost:3000",
+    },
+    fixturesFolder: false,
     specPattern: "cypress/e2e/features/*.feature",
     baseUrl: "http://localhost:3000/SnapShot#/SnapScout/",
     chromeWebSecurity: false,
