@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { Link } from "react-router-dom";
+import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import { BsCircle, BsStopCircle, BsEmojiSmile, BsCheckCircle } from 'react-icons/bs'
 import { Progress } from '@chakra-ui/react'
 import { Header } from '../Header'
@@ -11,10 +10,7 @@ import {
     PopoverContent,
     PopoverHeader,
     PopoverBody,
-    PopoverFooter,
     PopoverArrow,
-    PopoverCloseButton,
-    PopoverAnchor,
   } from '@chakra-ui/react'
 
 
@@ -22,11 +18,11 @@ import {
 const Line = () => {
     return (
       <Box
-        w="200px"
+        w="300px"
         h="8px"
         bg="black"
         my="4"
-        minWidth="200px"
+        minWidth="300px"
         shadow="lg"
         borderRadius="10px"
       />
@@ -96,13 +92,13 @@ export const LessonNodes = () => (
     justify="flex-start"
     align="center"
     spacing="13px"
-    height="800px"
+    height="100vh"
     background="#FFFFFF"
   >
     <Header buttontext="Back to Main"/>
 
     <Stack
-    width="1000px"
+     width={{base:"500px", md:"800px", lg:"1200px"}}
     justify="center"
     align="center"
     height="600px"
@@ -114,7 +110,7 @@ export const LessonNodes = () => (
     >
     <Stack
     height="550px"
-    width="1000px"
+    width={{base:"500px", md:"800px", lg:"1200px"}}
     justify="flex-start"
     align="center"
     overflowX="scroll"
@@ -144,6 +140,7 @@ export const LessonNodes = () => (
     overflowX="visible"
     direction="row"
     paddingLeft="20px"
+    paddingRight="20px"
     style={{
         backgroundImage: 'url("https://i.ibb.co/rQ80rXn/Untitled-design.png")',
         backgroundSize: "contain",
@@ -153,15 +150,15 @@ export const LessonNodes = () => (
     
     
     >
-        <Link to ={'/lesson-view/1'}>
+        <Link to ={'/lesson-view'}>
             <Node icon={BsCheckCircle} score="7/10" progress="100" status="Complete" title="Introduction to Interfaith" message="Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect."/>
         </Link>
         <Line />
-        <Link to ={'/lesson-view/2'}>
+        <Link to ={'/lesson-view'}>
             <Node icon={BsEmojiSmile}  score = "10/10" progress="100" status="Complete" title="Interfaith Ethics and Values" message="Delve into the ethical principles and moral values shared across different religious traditions. Learn how these teachings can guide individuals and communities towards compassionate action, social justice, and interfaith harmony."/> 
         </Link>
         <Line />
-        <Link to ={'/lesson-view/3'}>
+        <Link to ={'/lesson-view'}>
             <Node icon={BsStopCircle}  progress="64" status="In Progress" title="Interfaith Dialogue Techniques" message="Learn effective communication strategies and dialogue techniques for engaging in meaningful interfaith conversations. Develop skills to foster mutual understanding, empathy, and constructive discussions among people of different faiths."/>
         </Link>
         <Line />

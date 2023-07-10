@@ -29,11 +29,11 @@ const Messages = ({ messages }) => {
           	<Flex
             	bg="#ed2e38"
             	color="white"
-							borderRadius="20px"
+							borderRadius="10px"
             	minW="30px"
             	maxW="350px"
-            	my="1"
-            	p="3"
+            	my="3px"
+            	p="2"
 							
           	>
             	<Text>{item.text}</Text>
@@ -45,17 +45,17 @@ const Messages = ({ messages }) => {
         	<Flex key={index} w="100%">
           	<Avatar
             	name="Computer"
-            	src="https://preview.redd.it/duck-with-bread-v0-q8s19kkt0qo81.jpg?auto=webp&s=dfd1909a7ecb33a170554ef18a0bb997d6418235"
+            	src="https://media.discordapp.net/attachments/1110862017365016598/1115622873076342794/80_junior_college_student_Victoria_Junior_College_singaporean_c_8fc6c429-6625-4adb-bcc6-4db29e5a7d31.png?width=1072&height=1072"
             	bg="blue.300"
           	></Avatar>
           	<Flex
             	bg="#d8d9e3"
-							borderRadius="20px"
+							borderRadius="10px"
             	color="black"
             	minW="30px"
             	maxW="350px"
-            	my="1"
-            	p="3"
+            	my="3px"
+            	p="2"
 							overflowWrap="break-word"
           	>
             	<Text>{item.text}</Text>

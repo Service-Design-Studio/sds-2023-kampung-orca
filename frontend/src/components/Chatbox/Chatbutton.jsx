@@ -10,8 +10,19 @@ function ChatButton() {
   const { isOpen, onToggle } = useDisclosure()
   return (
     <>
-      <Button onClick={onToggle} size="lg" colorScheme="blue" height="48px" shadow="md" leftIcon={<Icon as={BsChatDots} boxSize="7"/>}>
-        Chat with Students!
+      <Button 
+        fontSize="18px"
+        bg="#FFFFFF" 
+        textColor="#000000"
+        _hover={{bg:"#d8d9e3"}}
+        onClick={onToggle}
+        style={{zIndex: 999}}
+        size="lg" 
+        height="48px"
+        shadow="md"
+        leftIcon={<Icon as={BsChatDots} boxSize="7"/>}
+        >
+          Chat with Students!
       </Button>
       <Slide
         direction='right'
@@ -22,19 +33,21 @@ function ChatButton() {
           p='40px'
           border="1px solid black"
           color='white'
-          mb='4'
+          mb='0'
           mr="0"
-          mt="5"
+          mt="100px"
           rounded='md'
           shadow='md'
-          height="700px"
+          height="650px"
           width="500px"
           bg="rgba(255, 255, 255, 0.92)"
           overflow="visible"
           borderRadius="20px 0 0 20px"
+          justify="flex-end" align="flex-end"
+          
           
         >
-          <Flex flexDirection="column" justify="center">
+          <Flex flexDirection="column" justify="flex-end" align="flex-end">
             <Header onToggle={onToggle} />
             <Chat my="0"/>
           </Flex>
