@@ -18,12 +18,11 @@ export const LessonCompletion = () => {
     <Stack
       justify="flex-start"
       align="flex-start"
-      spacing="13px"
-      height="800px"
+      height="100vh"
       background="#FFFFFF"
     >
       
-      <Header buttontext="Back to Lessons"/>
+      <Header buttontext="Back to Lessons" path="/" showForum="true"/>
               
       
       <Stack //main body stack with the 2 buttons and lesson complete box
@@ -33,12 +32,13 @@ export const LessonCompletion = () => {
         justify="center"
         spacing="50px"
         width="1440px"
-        height="625px"
+        height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
           backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
+          
         }}
       >
         <Stack
@@ -46,11 +46,10 @@ export const LessonCompletion = () => {
           borderRadius="50px"
           direction="row"
           justify="center"
-          height="100%"
+          height={`calc(100vh - 250px)`}
           align="center"
-          spacing="70px"
         >
-          <Link to={`/lesson-view/1`}>
+          <Link to={`/lesson-view`}>
             <Button shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)" leftIcon={<Icon as={GoChevronLeft} />} size="lg">
               Previous Lesson
             </Button>
@@ -98,12 +97,14 @@ export const LessonCompletion = () => {
           borderRadius="50px"
           direction="row"
           justify="center"
-          height="100%"
+          height={`calc(100vh - 250px)`}
           align="center"
-          spacing="70px"
+          
   
         >
-          <Link to={`/lesson-view/2`}>
+          
+          <Link to={`/lesson-view`}>
+            <Button style={{ zIndex: -1 }}> hi</Button>
             <Button shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)" rightIcon={<Icon as={GoChevronRight} />} size="lg">
               Next Lesson
             </Button>
@@ -111,19 +112,6 @@ export const LessonCompletion = () => {
         </Stack>
 
       </Stack> 
-
-
-      <Stack //footer stack with chatbox button
-        padding="20px"
-        justify="flex-end"
-        align="flex-end"
-        spacing="10px"
-        overflow="hidden"
-        width="100%"
-        maxWidth="100%"
-      >
-        <ChatButton/>
-      </Stack>
 
     </Stack>
     
