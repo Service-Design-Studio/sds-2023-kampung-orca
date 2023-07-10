@@ -6,6 +6,8 @@ import { LessonNodes } from "../components/Lessons/LessonNodes";
 import { ErrorPage } from "../components/Error"
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
+import HomePage from "../components/Logins/HomePage";
+import LearnMore from "../components/Logins/LearnMore";
 import { ForumMain } from "../components/Forum/ForumMain";
 import { ForumPost } from "../components/Forum/ForumPost";
 import { ForumView } from "../components/Forum/ForumView";
@@ -22,6 +24,8 @@ export default (
 
       <Route path="/cover" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/learnmore" element={<LearnMore />} />
 
       <Route path="/forum" element={<ForumMain />} />
       <Route path="/new" element={<ForumPost />} />
