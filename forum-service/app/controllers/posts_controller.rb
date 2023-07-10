@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   end
 
   def set_lesson
-    @lesson = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.find_by(id: 1)
   end
 
   def post_params
