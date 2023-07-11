@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :set_lesson, only: [:create, :index]
+  before_action :set_lesson, only: [:show, :update, :create, :destroy, :index]
 
   # GET /posts
   def index
@@ -50,7 +50,9 @@ class PostsController < ApplicationController
   end
 
   def set_lesson
-    @lesson = Lesson.find_by(id: 1)
+    @lesson = Lesson.find(params[:lesson_id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Lesson not found' }, status: :not_found
   end
 
   def post_params

@@ -6,8 +6,6 @@ import axios from "axios"
 import useAxios from "axios-hooks"
 import Cookies from "js-cookie"
 
-
-
 const Lesson = () => {
   // useEffect(() => {
   //   const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
@@ -62,7 +60,6 @@ const Lesson = () => {
   
   
         <Stack //main body stack with left and right substack
-          
           direction="row"
           justify="flex-start"
           align="flex-start"
@@ -70,10 +67,10 @@ const Lesson = () => {
           height={`calc(100vh - 120px)`}
           maxWidth="100%"
           style={{
-          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-        }}
+            backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+          }}
         >
   
           <Stack //left stack with lesson word content
@@ -240,19 +237,10 @@ const Lesson = () => {
               align="center"
               marginRight="20px"
               spacing={"100px"}
-  
             >
-              
-              
-        
-  
-              
             </Stack>
-  
           </Stack>
-  
-        </Stack>
-        
+        </Stack>        
       </Stack>
     );
   }
@@ -261,5 +249,3 @@ const Lesson = () => {
 
 };
 export default Lesson;
-
-          

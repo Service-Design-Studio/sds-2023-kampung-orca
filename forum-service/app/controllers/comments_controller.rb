@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
     def create
       @comment = @post.comments.build(comment_params)
       @comment.user = User.find_by(user_id: params[:user_id])
-      #@comment.user_id = 1  # Placeholder user ID for now
   
       if @comment.save
         render json: @comment, status: :created
@@ -49,7 +48,7 @@ class CommentsController < ApplicationController
   
     def set_comment
       @comment = Comment.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
+      rescue ActiveRecord::RecordNotFound
       render json: { error: 'Comment not found' }, status: :not_found
     end
   

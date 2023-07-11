@@ -52,6 +52,8 @@ Then in the service's corresponding `cloudbuild.yaml`, edit `substitutions:_SECR
 
 ## Local Development
 
+Always make sure to `git pull` before you `git commit` your changes.
+
 ### Docker Compose
 
 To run each service with its own containers, run this command in the root directory:
