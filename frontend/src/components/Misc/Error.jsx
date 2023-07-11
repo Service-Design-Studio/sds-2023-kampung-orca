@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { BsPatchCheck, BsEmojiFrown } from "react-icons/bs";
-import { Header } from './Header'
+import { Link } from "react-router-dom";
+import { Stack, Button, Icon, Text } from "@chakra-ui/react";
+import { BsEmojiFrown } from "react-icons/bs";
+import { Header } from '../Header'
 
 
 
@@ -15,18 +14,19 @@ export const ErrorPage = () => {
       justify="flex-start"
       align="flex-start"
       spacing="13px"
-      height="800px"
+      height="100vh"
       background="#FFFFFF"
     >
       
-      <Header buttontext="Back to Main"/>
+      <Header buttontext="Back to Main" path="/home" />
               
       
       <Stack
         paddingX="91px"
         paddingY="50px"
-        direction="row"
+        direction="column"
         justify="center"
+        align="center"
         spacing="50px"
         width="1440px"
         height="625px"
@@ -54,23 +54,36 @@ export const ErrorPage = () => {
           shadow="lg"
         >
           <Stack justify="flex-start" align="center" spacing="17px">
-            <Icon as={BsEmojiFrown} boxSize={180}/>
+            <Icon as={BsEmojiFrown} boxSize={150}/>
             <Text
-              fontFamily="Arial"
               lineHeight="1.33"
-              fontWeight="bold"
-              fontSize="24px"
               color="#000000"
               width="250px"
               height="64px"
               maxWidth="100%"
               textAlign="center"
-              mt="50px"
+              marginBottom="50px"
             >
-              Page not found.
+              <Text fontSize="30px" fontWeight="bold" padding="20px"> Sorry!</Text>
+              <Text fontSize="25px"> Page not found.</Text>
             </Text>
           </Stack>
-        </Stack>         
+        </Stack> 
+        
+        <Link to={`/home`}>
+                    <Button
+                      size="lg"
+                      variant="ghost"
+                      bg="#ed2e38"
+                      textColor="#FFFFFF"
+                      _hover={{bg:"#7c191c"}}
+                      height="48px"
+                      fontSize="18px"
+                      shadow="md"
+                    >
+                    Go to Home
+                    </Button>
+                  </Link>        
 
       </Stack> 
       

@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Stack, Button, Text, Box } from "@chakra-ui/react";
 import ForumChat from "../Chatbox/ForumChat"
 import { Header } from '../Header'
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
-import { StackDivider, Heading } from "@chakra-ui/react"
+import { Card } from '@chakra-ui/react'
+import { Heading } from "@chakra-ui/react"
 
 
 

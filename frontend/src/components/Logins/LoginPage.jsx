@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack, Text, Button, Image } from "@chakra-ui/react";
 import axios from "./api.jsx";
-import { useEffect } from 'react';
 import {useGoogleLogin} from '@react-oauth/google'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Cookies from 'js-cookie';

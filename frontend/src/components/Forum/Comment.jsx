@@ -1,5 +1,5 @@
-import React, { useEffect, useState} from "react";
-import { Stack, Heading, Text, Button, Icon, Box, StackDivider, Avatar, Input } from "@chakra-ui/react";
+import React from "react";
+import { Stack, Heading, Text, Avatar } from "@chakra-ui/react";
 
 
 export const Comment = ({ image, name, comment, time }) => {

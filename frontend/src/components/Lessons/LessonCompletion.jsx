@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useParams, useNavigate,redirect } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
+import { Link, useNavigate,redirect } from "react-router-dom";
+import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { BsPatchCheck, BsChatDots } from "react-icons/bs";
-import ChatButton from "../Chatbox/Chatbutton"
+import { BsPatchCheck } from "react-icons/bs";
 import { Header } from '../Header'
 import axios from "axios"
 import useAxios from "axios-hooks"

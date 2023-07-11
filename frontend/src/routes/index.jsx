@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LessonView from "../components/Lessons/LessonView";
 import { LessonCompletion } from "../components/Lessons/LessonCompletion";
 import { LessonNodes } from "../components/Lessons/LessonNodes";
-import { ErrorPage } from "../components/Error"
+import { ErrorPage } from "../components/Misc/Error"
+import { LoginError } from "../components/Misc/LoginError"
+
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
@@ -23,7 +25,9 @@ export default(
         <Route path="/curriculum/topic/:topic_id/lesson/:lesson_id/view" element={<LessonView />} />
         <Route path="/curriculum/topic/:topic_id/lesson/:lesson_id/lesson_completed" element={<LessonCompletion />} />
         <Route path="/curriculum/topics/view" element={<TopicPage />} />
-        <Route path="/error" element={<ErrorPage />} />
+  
+      <Route path="/error" element={<ErrorPage />} />
+      <Route path="/loginerror" element={<LoginError />} />
 
       <Route path="/cover" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
