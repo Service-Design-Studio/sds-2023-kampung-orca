@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  get 'lessons/1/posts', to: 'posts#index'
-
   get 'lessons', to: 'lessons#index'
   get 'lessons/:id', to: 'lessons#show'
   post 'lessons', to: 'lessons#create'
