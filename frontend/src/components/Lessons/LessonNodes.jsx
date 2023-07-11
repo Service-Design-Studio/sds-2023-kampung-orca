@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React ,{useState} from "react";
+import { Link, useParams} from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import { BsCircle, BsStopCircle, BsEmojiSmile, BsCheckCircle } from 'react-icons/bs'
 import { Progress } from '@chakra-ui/react'
 import { Header } from '../Header'
-import {
-    Popover,
+import axios from 'axios'
+import Cookies from 'js-cookie';
+import useAxios from "axios-hooks";
+import{    Popover,
     PopoverTrigger,
     PopoverContent,
     PopoverHeader,
@@ -87,7 +89,17 @@ const Line = () => {
     /*adjust the height of bar accordingly */
 
 
-export const LessonNodes = () => (
+export const LessonNodes = () => {
+
+  const cookieValue =  "ya29.a0AbVbY6NOLptcQ3y4pe2wNO4mtS1JQg7yL4pC1-_L9lo0QmaThzvpwzFotti0j6focO-sQ9axv02QlxSX2l3wnCSfH19MDfDyGTIIYh2C3Yy5XV4EL5GdtFabTzkHsa-fmhnnOv3uMhWusGJZpO_nhLYV0wD7aCgYKAU4SARISFQFWKvPlUfrNqFRTNxNrYR8wsoF6mg0163";//Cookies.get('token');
+  const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
+  const [{ data, loading }, refetch, cancelRequest] = useAxios({
+    url: url,
+    params: {token: cookieValue},
+    method: 'POST'
+  });
+
+  return(
     <Stack
     justify="flex-start"
     align="center"
@@ -173,4 +185,5 @@ export const LessonNodes = () => (
     </Stack>
     </Stack>
   </Stack>
-);
+  );
+}
