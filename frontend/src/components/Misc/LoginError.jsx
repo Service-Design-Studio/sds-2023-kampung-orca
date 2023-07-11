@@ -2,25 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { BsEmojiFrown } from "react-icons/bs";
-import { Header } from '../Header'
+import { Header } from "../Header";
 
-
-
-
-export const LoginError = () => {
-
+export const LoginErrorPage = () => {
   return (
     <Stack
       justify="flex-start"
       align="flex-start"
       spacing="13px"
-      height="100vh"      
+      height="100vh"
       background="#FFFFFF"
     >
-      
-      <Header/>
-              
-      
+      <Header />
+
       <Stack
         paddingX="91px"
         paddingY="50px"
@@ -32,12 +26,12 @@ export const LoginError = () => {
         maxWidth="100%"
         align="center"
         style={{
-          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       >
-                  
         <Stack
           paddingX="90px"
           paddingTop="31px"
@@ -54,7 +48,7 @@ export const LoginError = () => {
           shadow="lg"
         >
           <Stack justify="flex-start" align="center" spacing="17px">
-            <Icon as={BsEmojiFrown} boxSize={150}/>
+            <Icon as={BsEmojiFrown} boxSize={150} />
             <Text
               lineHeight="1.33"
               color="#000000"
@@ -64,34 +58,32 @@ export const LoginError = () => {
               textAlign="center"
               marginBottom="50px"
             >
-              <Text fontSize="30px" fontWeight="bold" padding="20px" >Sorry!</Text>
-              <Text fontSize="25px"> You need to be logged in to access this page!</Text>
+              <Text fontSize="30px" fontWeight="bold" padding="20px">
+                Sorry!
+              </Text>
+              <Text fontSize="25px">
+                {" "}
+                You need to be logged in to access this page!
+              </Text>
             </Text>
-
-          
-
           </Stack>
-
-        </Stack>  
+        </Stack>
 
         <Link to={`/login`}>
-                    <Button
-                      size="lg"
-                      variant="ghost"
-                      bg="#ed2e38"
-                      textColor="#FFFFFF"
-                      _hover={{bg:"#7c191c"}}
-                      height="48px"
-                      fontSize="18px"
-                      shadow="md"
-                    >
-                    Go to Login
-                    </Button>
-                  </Link>       
-
-      </Stack> 
-      
+          <Button
+            size="lg"
+            variant="ghost"
+            bg="#ed2e38"
+            textColor="#FFFFFF"
+            _hover={{ bg: "#7c191c" }}
+            height="48px"
+            fontSize="18px"
+            shadow="md"
+          >
+            Go to Login
+          </Button>
+        </Link>
       </Stack>
-    
+    </Stack>
   );
 };
