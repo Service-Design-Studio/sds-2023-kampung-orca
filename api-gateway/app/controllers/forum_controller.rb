@@ -22,12 +22,34 @@ class ForumController < ApplicationController
   private
 
   def forward_request(url, request, user_id)
-    full_path = request.fullpath
-    req = Net::HTTP.const_get(request.method.capitalize).new(full_path)
-    req.set_form_data(request.params.except(:controller, :action).merge(user_id: user_id))
-    uri = URI(url)
-    Net::HTTP.start(uri.host, uri.port) do |http|
+    full_path = request.original_fullpath + "?user_id=#{user_id}"
+  
+    uri = URI.join(url, full_path)
+  
+    req = Net::HTTP.const_get(request.method.capitalize).new(uri)
+    req.body = request.body.read if request.body
+    req.content_type = request.content_type if request.content_type
+  
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(req)
     end
-  end  
+  
+    response
+  end
+  
+  
+  
+  
+  
+  # def forward_request(url, request, user_id)
+  #   full_path = request.fullpath + "?user_id=#{user_id}"
+  #   req = Net::HTTP.const_get(request.method.capitalize).new(full_path)
+  #   req.body = request.body.read
+  #   req.content_type = request.content_type
+  #   req
+  #   uri = URI(url)
+  #   Net::HTTP.start(uri.host, uri.port) do |http|
+  #     http.request(req)
+  #   end
+  # end
 end

@@ -10,7 +10,6 @@ class CurriculumController < ApplicationController
     # Handle the response from the backend if needed
     # ...
     
-
     data = HTTParty.post(url, {
       :body => {user_id: @current_user[:user_id]}.to_json,
       headers: {

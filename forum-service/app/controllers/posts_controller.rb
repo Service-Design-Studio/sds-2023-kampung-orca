@@ -16,14 +16,15 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = @lesson.posts.build(post_params)
-    #@post.user_id = 1  # Placeholder user ID for now
-
+    @post.user = User.find_by(user_id: params[:user_id])
+    
     if @post.save
-      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created, location: @post.lesson
+      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
   end
+  
 
   # PATCH/PUT /posts/:id
   def update
@@ -53,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id.to_s)
   end
 end
