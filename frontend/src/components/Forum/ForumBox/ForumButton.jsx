@@ -1,7 +1,6 @@
 import React from "react";
-import Chat from "../Chatbox/Chat";
+import Chat from "../../Chatbox/Chat";
 import { Link } from "react-router-dom";
-import ForumBoxPost from "./BoxPost";
 import NewPost from "./NewPostButton";
 import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import {

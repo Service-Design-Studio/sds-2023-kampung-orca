@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import Chatbutton from "../Chatbox/Chatbutton";
 import LessonSection from "./LessonSection";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
-import ForumButton from "../Forum/ForumButton";
+import ForumButton from "../Forum/ForumBox/ForumButton";
 function UsechangePage(currentPage, containerRef) {
   useEffect(() => {
     if (containerRef.current) {
