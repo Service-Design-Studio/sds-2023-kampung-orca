@@ -80,6 +80,16 @@ Cypress.Commands.add("loginByGoogleApi", () => {
   });
 });
 
+Cypress.Commands.add("setDataToken", (dataToken) => {
+  const googleRefreshToken = Cypress.env("googleRefreshToken");
+  Cypress.env('googleRefreshToken', dataToken)
+});
+
+Cypress.Commands.add("getDataToken", () => {
+  return Cypress.env("googleRefreshToken");
+});
+
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
