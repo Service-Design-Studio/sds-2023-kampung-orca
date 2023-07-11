@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate,redirect } from "react-router-dom";
+import { Link, useNavigate,redirect,useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck } from "react-icons/bs";

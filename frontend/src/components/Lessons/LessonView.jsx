@@ -8,6 +8,13 @@ import Cookies from "js-cookie"
 import Chatbutton from "../Chatbox/Chatbutton"
 import LessonSection from "./LessonSection"
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+function UsechangePage(currentPage, containerRef) {
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+  }, [currentPage]);
+}
 
 const Lesson = () => {
   const cookieValue =  Cookies.get('token');
@@ -20,19 +27,20 @@ const Lesson = () => {
   
 //=========================================================
   const params = useParams();
-  const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
+  const back_to_lesson_pathway = `/curriculum/topic/${params["topic_id"]}/view`;
   const lesson_complete = `/curriculum/topic/${params["topic_id"]}/lesson/${params["lesson_id"]}/lesson_completed`;
+  const [currentPage, setCurrentPage] = useState(0);
+  const containerRef = useRef(null);
+  UsechangePage(currentPage, containerRef);
   if (loading === false){
     if (data === undefined){
       console.log("redirected");
       window.location.href = "/cover";
     }
     else{
-
-      const [currentPage, setCurrentPage] = useState(0);
       const totalPages = data.data.length;
       const pages = data.data;
-      const containerRef = useRef(null);
+      
     
       const nextPage = () => {
         setCurrentPage(currentPage + 1);
@@ -41,14 +49,8 @@ const Lesson = () => {
       const prevPage = () => {
         setCurrentPage(currentPage - 1);
       };
-    
-      const currentVideo = videos[currentPage - 1];
-    
-      useEffect(() => {
-        if (containerRef.current) {
-          containerRef.current.scrollTop = 0;
-        }
-      }, [currentPage]);
+      const currentVideo = pages[currentPage].video;
+      
       return (
         <Stack
           justify="flex-start"
@@ -58,7 +60,7 @@ const Lesson = () => {
           background="#FFFFFF"
         >
           
-          <Header buttontext="Back to Lessons" path="/" showForum="true"/>
+          <Header buttontext="Back to Lessons" path={back_to_lesson_pathway} showForum="true"/>
     
           <Stack //main body stack with left and right substack
             
@@ -117,11 +119,11 @@ const Lesson = () => {
                 }}
               >
     
-                {currentPage > 0 && (
+                {currentPage >= 0 && (
                   <>
                   <LessonSection 
                   title="Lesson" 
-                  content={[[currentPage]]} />
+                  content={[pages[currentPage].words]} />
     
                   <LessonSection
                   title="Introduction"
@@ -165,7 +167,7 @@ const Lesson = () => {
                   </Box>
     
                   <Box flex="1" textAlign="right">
-                    {currentPage < totalPages - 1 && (
+                    {currentPage < totalPages - 1  && (
                         <Button
                           size="lg"
                           variant="ghost"
@@ -178,8 +180,8 @@ const Lesson = () => {
                         />
                     )}
     
-                    {currentPage > 0 && (
-                      <Link to={`/lesson-complete`}>
+                    {currentPage == totalPages - 1 && (
+                      <Link to={lesson_complete}>
                         <Button
                           size="lg"
                           variant="ghost"
