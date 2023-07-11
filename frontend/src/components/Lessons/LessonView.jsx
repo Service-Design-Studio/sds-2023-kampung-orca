@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button, Icon, Box } from '@chakra-ui/react'
 import { Header } from '../Header'
-import Chatbutton from "../Chatbox/Chatbutton"
 import LessonSection from "./LessonSection"
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+import ForumButton from "../Forum/ForumButton";
 
 const videos = [
   "https://www.youtube.com/embed/n5xYb4TOaYs",
@@ -159,6 +159,7 @@ const Lesson = () => {
                       _hover={{ bg: "#ffaea8" }}
                       height="48px"
                       fontSize="18px"
+                      style={{zIndex: 999}}
                       leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
                       onClick={prevPage}
                     />
@@ -174,6 +175,7 @@ const Lesson = () => {
                       _hover={{ bg: "#ffaea8" }}
                       height="48px"
                       fontSize="18px"
+                      style={{zIndex: 999}}
                       rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
                       onClick={nextPage}
                     />
@@ -189,6 +191,7 @@ const Lesson = () => {
                       _hover={{bg:"#7c191c"}}
                       height="48px"
                       fontSize="18px"
+                      style={{zIndex: 999}}
                     >
                     Complete Lesson
                     </Button>
@@ -200,11 +203,15 @@ const Lesson = () => {
         </Stack>
 
         <Stack //right stack with video and 2 buttons
-          direction="column">
+          direction="column"
+          align="center"
+          justify="center"
+          height="550px"
+          >
 
           <Stack //video stack
             borderRadius="0px 0px 0px 0px"
-            justify="flex-start"
+            justify="center"
             align="center"
             marginTop="30px"
             overflow="hidden"
@@ -232,7 +239,7 @@ const Lesson = () => {
             align="center"
           >
 
-          <Chatbutton/>
+          <ForumButton/>
             
           </Stack>
 
