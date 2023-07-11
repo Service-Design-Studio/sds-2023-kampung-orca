@@ -48,7 +48,6 @@ class LessonsController < ApplicationController
       rescue ActiveRecord::RecordNotFound
       render json: { error: 'Lesson not found' }, status: :not_found
     end
-    
   
     #only allow title parameter
     def lesson_params

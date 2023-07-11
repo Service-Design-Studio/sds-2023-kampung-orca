@@ -1,8 +1,7 @@
 class Api::V1::TopicController < ApplicationController
   before_action :set_topic, only: %i[show destroy]
   def index
-    topics = Topic.all
-    puts Topic.to_json
+    topics = Topic.all.order(topic_id: :asc)
     render json: topics
   end
 
@@ -31,6 +30,7 @@ class Api::V1::TopicController < ApplicationController
     @topic&.destroy
     render json: { message: 'Topic deleted!' }
   end
+
 
   private
 

@@ -1,8 +1,67 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Stack, Text, Button, Image } from "@chakra-ui/react";
+import axios from "./api.jsx";
+import { useEffect } from 'react';
+import {useGoogleLogin} from '@react-oauth/google'
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import Cookies from 'js-cookie';
 
-const LoginPage = () => (
+
+const GoogleLoginButton = ({ onSuccess }) => {
+  const googleLogin = useGoogleLogin({
+    flow: 'auth-code',
+    onSuccess,
+    onError: errorResponse => console.log(errorResponse),
+  });
+
+  return (
+    <Button onClick={() => googleLogin()}
+        as="a"
+        display="flex"
+        width={["80%", "70%", "60%", "606.477px"]}
+        height="78px"
+        flexDirection="column"
+        justifyContent="center"
+        flexShrink="0"
+        color="#FFFFFF"
+        fontSize={["36px", "40px", "44px", "48px"]}
+        fontFamily="Outfit"
+        fontWeight="700"
+        lineHeight="normal"
+        bg="#ed2e38"
+        mt="4"
+        _hover={{ bg: "blue.600" }}
+        _active={{ bg: "blue.700" }}
+      >
+        <img
+          src="/path/to/google-icon.png" // Replace with the actual path to the Google icon image
+          alt=""
+          style={{ marginRight: "10px", width: "40px" }}
+        />
+        Sign in with Google
+      </Button>
+  );
+};
+const LoginPage = () => {
+  const navigate = useNavigate();
+  const onSuccess = async (codeResponse) => {
+    console.log(codeResponse);
+    try{
+      const tokens = await axios.post('users/signup', {
+        code: codeResponse.code,
+      });
+      console.log(tokens);
+      Cookies.set("token", tokens.data["token"]);
+      navigate("/home")
+    }
+    catch (error){
+      console.log(error.response.status);
+    }
+    
+  };
+
+  return (
   <Stack
     direction="row"
     justify="center"
@@ -48,34 +107,9 @@ const LoginPage = () => (
       >
         Login to Interfaith
       </Text>
-      
-      <Button
-        as="a"
-        href="https://accounts.google.com/your-authentication-url"
-        display="flex"
-        width={["80%", "70%", "60%", "606.477px"]}
-        height="78px"
-        flexDirection="column"
-        justifyContent="center"
-        flexShrink="0"
-        color="#FFFFFF"
-        fontSize={["36px", "40px", "44px", "48px"]}
-        fontFamily="Outfit"
-        fontWeight="700"
-        lineHeight="normal"
-        bg="#ed2e38"
-        mt="4"
-        _hover={{ bg: "blue.600" }}
-        _active={{ bg: "blue.700" }}
-      >
-        <img
-          src="/path/to/google-icon.png" // Replace with the actual path to the Google icon image
-          alt="Google Icon"
-          style={{ marginRight: "10px", width: "40px" }}
-        />
-        Sign in with Google
-      </Button>
-    
+      <GoogleOAuthProvider clientId="1034902269144-f5nebvgtvgl9me3lkubglrfkfo5fhpp7.apps.googleusercontent.com">
+      <GoogleLoginButton onSuccess={onSuccess} />
+      </GoogleOAuthProvider>
       <Button
         as={Link}
         to="/signin-facebook"
@@ -99,7 +133,8 @@ const LoginPage = () => (
       </Button>
     </Stack>
   </Stack>
+  
 );
-
+}
 export default LoginPage;
 

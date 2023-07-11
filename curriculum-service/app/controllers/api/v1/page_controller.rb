@@ -33,16 +33,21 @@ class Api::V1::PageController < ApplicationController
     render json: { message: 'Page deleted!' }
   end
 
-  def next_page
-    page = Page.where(lesson_id: params[:lesson_id], order_index: params[:order_index] + 1)
-    render json: page
-  end
 
-  def pre_page
-    page = Page.where(lesson_id: params[:lesson_id], order_index: params[:order_index] - 1)
-    render json: page
-  end
 
+  def get_pages_by_lesson
+    if Lesson.where(lesson_id: params[:lesson_id]).exists?
+      user = User.find(params[:user_id])
+      if user.lessons_access.include?(params[:lesson_id].to_i)
+        pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
+        render json: pages
+      else
+        render json: {message: "User unauthorized to see lesson"}
+    end
+  else
+    render json: []
+  end
+  end
   private
 
   def page_params
