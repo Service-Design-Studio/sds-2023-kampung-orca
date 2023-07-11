@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "axios-hooks": "^4.0.0",
+    "babel-eslint": "^10.1.0",
     "eslint-plugin-cypress": "^2.13.3",
     "framer-motion": "^10.12.17",
     "js-cookie": "^3.0.5",
