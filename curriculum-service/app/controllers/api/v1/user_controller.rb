@@ -42,7 +42,7 @@ class Api::V1::UserController < ApplicationController
       pre_lesson: pre_lesson&.id,
       this_exercise: this_exercise&.id
     }
-    
+  
     render json: response
   end
 
