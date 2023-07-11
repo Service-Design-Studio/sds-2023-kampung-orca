@@ -34,8 +34,15 @@ const Lesson = () => {
   UsechangePage(currentPage, containerRef);
   if (loading === false){
     if (data === undefined){
-      console.log("redirected");
-      window.location.href = "/cover";
+      window.location.href = "/loginerror";
+    }
+    
+    else if (data.data.message === "Lesson does not exist"){ 
+      window.location.href = "/error";
+    }
+
+    else if  (data.data.message === "User unauthorized to see lesson"){
+      window.location.href = `/curriculum/topic/${params["topic_id"]}/lesson/${params["lesson_id"]}/error`;
     }
     else{
       const totalPages = data.data.length;

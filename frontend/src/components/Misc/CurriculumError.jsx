@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { BsEmojiFrown } from "react-icons/bs";
 import { Header } from '../Header'
@@ -7,18 +7,19 @@ import { Header } from '../Header'
 
 
 
-export const LoginError = () => {
-
+export const CurriculumErrorPage = () => {
+  const params = useParams();
+  
   return (
     <Stack
       justify="flex-start"
       align="flex-start"
       spacing="13px"
-      height="100vh"      
+      height="100vh"
       background="#FFFFFF"
     >
       
-      <Header/>
+      <Header buttontext="Back to Lessons" path={`/curriculum/topic/${params.topic_id}/view`} />
               
       
       <Stack
@@ -26,11 +27,11 @@ export const LoginError = () => {
         paddingY="50px"
         direction="column"
         justify="center"
+        align="center"
         spacing="50px"
         width="1440px"
         height="625px"
         maxWidth="100%"
-        align="center"
         style={{
           backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
@@ -42,7 +43,7 @@ export const LoginError = () => {
           paddingX="90px"
           paddingTop="31px"
           borderRadius="50px"
-          width="700px"
+          width="600px"
           height="450px"
           direction="row"
           justify="center"
@@ -58,23 +59,19 @@ export const LoginError = () => {
             <Text
               lineHeight="1.33"
               color="#000000"
-              width="100%"
+              width="250px"
               height="64px"
               maxWidth="100%"
               textAlign="center"
               marginBottom="50px"
             >
-              <Text fontSize="30px" fontWeight="bold" padding="20px" >Sorry!</Text>
-              <Text fontSize="25px"> You need to be logged in to access this page!</Text>
+              <Text fontSize="30px" fontWeight="bold" padding="20px"> Sorry!</Text>
+              <Text fontSize="25px"> You have not completed previous lessons.</Text>
             </Text>
-
-          
-
           </Stack>
-
-        </Stack>  
-
-        <Link to={`/login`}>
+        </Stack> 
+        
+        <Link to={`/home`}>
                     <Button
                       size="lg"
                       variant="ghost"
@@ -85,9 +82,9 @@ export const LoginError = () => {
                       fontSize="18px"
                       shadow="md"
                     >
-                    Go to Login
+                    Go to Home
                     </Button>
-                  </Link>       
+                  </Link>        
 
       </Stack> 
       

@@ -24,7 +24,7 @@ export const LessonCompletion = () => {
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
   if (loading === false){
     if (data === undefined){
-      window.location.href = "/cover";
+      window.location.href = "/loginerror";
     }
     else{
     const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.data.pre_lesson}/view`;

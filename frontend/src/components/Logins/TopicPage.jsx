@@ -39,7 +39,7 @@ const TopicPage = () => {
   }); 
   if (loading === false){
     if (data === undefined){
-      window.location.href = "/cover";
+      window.location.href = "/loginerror";
     }
     else{
       const topics = data.data;

@@ -64,7 +64,7 @@ import{    Popover,
     if (loading === false){
       if (data === undefined){
         console.log(data);
-        window.location.href = "/cover";
+        window.location.href = "/loginerror";
       }
       else{
         return data.data.lessons.map((node, index) => (

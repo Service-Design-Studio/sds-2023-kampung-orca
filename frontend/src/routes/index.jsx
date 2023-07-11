@@ -5,6 +5,7 @@ import { LessonCompletion } from "../components/Lessons/LessonCompletion";
 import { LessonNodes } from "../components/Lessons/LessonNodes";
 import { ErrorPage } from "../components/Misc/Error"
 import { LoginError } from "../components/Misc/LoginError"
+import { CurriculumErrorPage } from "../components/Misc/CurriculumError"
 
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
@@ -25,6 +26,8 @@ export default(
         <Route path="/curriculum/topic/:topic_id/lesson/:lesson_id/view" element={<LessonView />} />
         <Route path="/curriculum/topic/:topic_id/lesson/:lesson_id/lesson_completed" element={<LessonCompletion />} />
         <Route path="/curriculum/topics/view" element={<TopicPage />} />
+        <Route path="/curriculum/topic/:topic_id/lesson/:lesson_id/error" element={<CurriculumErrorPage />} />
+
   
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/loginerror" element={<LoginError />} />
