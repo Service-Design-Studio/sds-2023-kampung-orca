@@ -1,10 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
+import useAxios from "axios-hooks"
+import Cookies from "js-cookie"
+
 
 const HomePage = () => {
   const navigate = useNavigate();
-
+  
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
@@ -49,10 +52,10 @@ const HomePage = () => {
       </Stack>
 
       <Stack direction="row" spacing="50px" paddingY="50px">
-        <Link to="/">
+        <Link to="curriculum/topics/view">
           <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
         </Link>
-        <Link to="/">
+        <Link to="curriculum/topic/1/view">
           <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
         </Link>
         <Link to="/">
