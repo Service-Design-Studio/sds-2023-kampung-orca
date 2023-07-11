@@ -53,7 +53,7 @@ const LoginPage = () => {
       });
       console.log(tokens);
       Cookies.set("token", tokens.data["token"]);
-      navigate("/home")
+      navigate("/curriculum/topics/view");
     }
     catch (error){
       console.log(error.response.status);
@@ -107,7 +107,7 @@ const LoginPage = () => {
       >
         Login to Interfaith
       </Text>
-      <GoogleOAuthProvider clientId="1034902269144-f5nebvgtvgl9me3lkubglrfkfo5fhpp7.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId = {process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <GoogleLoginButton onSuccess={onSuccess} />
       </GoogleOAuthProvider>
       <Button

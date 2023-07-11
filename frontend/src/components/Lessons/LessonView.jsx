@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link, useParams} from "react-router-dom";
+import { Link, useParams, useNavigate, redirect} from "react-router-dom";
 import { Stack, Button, Text } from '@chakra-ui/react'
 import { Header } from '../Header'
 import axios from "axios"
@@ -30,20 +30,23 @@ const Lesson = () => {
   // }, []);
   const cookieValue =  Cookies.get('token');
   const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
-  const [return_data, setReturnData] = useState({});
   const [{ data, loading }, refetch, cancelRequest] = useAxios({
     url: url,
     params: {token: cookieValue},
     method: 'POST'
   });
   
-    
 //=========================================================
   const params = useParams();
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
   const lesson_complete = `/curriculum/topic/${params["topic_id"]}/lesson/${params["lesson_id"]}/lesson_completed`;
   if (loading === false){
-    let words = data.data[0].words;
+    if (data === undefined){
+      console.log("redirected");
+      window.location.href = "/cover";
+    }
+    else{
+      let words = data.data[0].words;
     let video = data.data[0].video;
     return (
       <Stack
@@ -55,7 +58,7 @@ const Lesson = () => {
       >
         
         <Header buttontext="Back to Lessons" path={back_to_topic} showChat="true" showForum="true"/>
-  
+
   
   
         <Stack //main body stack with left and right substack
@@ -253,6 +256,8 @@ const Lesson = () => {
       </Stack>
     );
   }
+    }
+    
 
 };
 export default Lesson;

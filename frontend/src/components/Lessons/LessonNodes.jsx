@@ -1,5 +1,5 @@
 import React ,{useState} from "react";
-import { Link, useParams} from "react-router-dom";
+import { Link, useParams, useNavigate, redirect} from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import { BsCircle, BsStopCircle, BsEmojiSmile, BsCheckCircle } from 'react-icons/bs'
 import { Progress } from '@chakra-ui/react'
@@ -52,22 +52,39 @@ import{    Popover,
   ];
 
   
-  const DynamicNodes = ({ nodes }) => {
-    return nodes.map((node, index) => (
-      <React.Fragment key={index}>
-        {index !== 0 && <Line />} {/* Render the Line component only if index is not 0 */}
-        <Link to={`/lesson-view/${index + 1}`}>
-          <Node
-            icon={node.icon}
-            score={node.score}
-            progress={node.progress}
-            status={node.status}
-            title={node.title}
-            message={node.message}
-          />
-        </Link>
-      </React.Fragment>
-    ));
+  const DynamicNodes = () => {
+    const params = useParams();
+    const cookieValue =  Cookies.get('token');
+    const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
+    const [{ data, loading }, refetch, cancelRequest] = useAxios({
+      url: url,
+      params: {token: cookieValue},
+      method: 'POST'
+    });
+    if (loading === false){
+      if (data === undefined){
+        console.log(data);
+        window.location.href = "/cover";
+      }
+      else{
+        return data.data.lessons.map((node, index) => (
+          <React.Fragment key={index}>
+            {index !== 0 &&<Line />} {/* Render the Line component only if index is not 0 */}
+            <Link to={`/curriculum/topic/${params["topic_id"]}/lesson/${node.lesson_id}/view`}>
+              <Node
+                //icon={node.icon}
+                //score={node.score}
+                //progress={node.progress}
+                //status={node.status}
+                title={node.title}
+                message={node.lesson_id}
+              />
+            </Link>
+          </React.Fragment>
+        ));
+      }
+    }
+    
   };
   
   
@@ -86,7 +103,7 @@ const Line = () => {
   };
   
   export default Line;
-
+  
   const Node = ({ icon: IconComponent, color, title, message, progress, score }) => {
     const [isHovered, setIsHovered] = React.useState(false);
 
@@ -151,20 +168,9 @@ const Line = () => {
   };
 
 
-export const LessonNodes = () => {
-
-  return(
-
 
 export const LessonNodes = () => {
 
-  const cookieValue =  Cookies.get('token');
-  const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
-  const [{ data, loading }, refetch, cancelRequest] = useAxios({
-    url: url,
-    params: {token: cookieValue},
-    method: 'POST'
-  });
 
   return(
     <Stack
@@ -174,7 +180,7 @@ export const LessonNodes = () => {
     height="100vh"
     background="#FFFFFF"
   >
-    <Header buttontext="Back to Main"/>
+    <Header buttontext="Back to Main" path={'/curriculum/topics/view'}/>
 
     <Stack
      width={{base:"500px", md:"800px", lg:"1200px"}}
@@ -236,4 +242,4 @@ export const LessonNodes = () => {
     </Stack>
   </Stack>
   );
-}
+};

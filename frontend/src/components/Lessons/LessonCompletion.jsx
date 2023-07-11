@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate,redirect } from "react-router-dom";
 import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck, BsChatDots } from "react-icons/bs";
@@ -21,10 +21,13 @@ export const LessonCompletion = () => {
     method: 'POST'
   });
     
-
   const params = useParams();
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
   if (loading === false){
+    if (data === undefined){
+      window.location.href = "/cover";
+    }
+    else{
     const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.data.pre_lesson}/view`;
     const next_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.data.next_lesson}/view`;
     if (pre_lesson === null){
@@ -138,7 +141,6 @@ export const LessonCompletion = () => {
     );
   }
   
-
-
-  
+}
+    
 };
