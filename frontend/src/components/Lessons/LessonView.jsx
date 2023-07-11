@@ -1,32 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button, Text } from '@chakra-ui/react'
-import ChatButton from "../Chatbox/Chatbutton"
 import { Header } from '../Header'
 
 
 
-
-
 const Lesson = () => {
-//   params = useParams();
-//   const navigate = useNavigate();
-//   const [pages, setPage] = useState({});
-
-//   useEffect(() => {
-//     const url = `/api/v1/page/show/${params.lesson_id}`;
-//     fetch(url)
-//       .then((res) => {
-//         if (res.ok) {
-//           return res.json();
-//         }
-//         throw new Error("Network response was not ok.");
-//       })
-//       .then((res) => setPage(res))
-//       .catch(() => navigate("/"));
-//   }, []);
-
-//=========================================================
 
   return (
     <Stack
@@ -38,8 +17,6 @@ const Lesson = () => {
     >
       
       <Header buttontext="Back to Lessons" path="/" showChat="true" showForum="true"/>
-
-
 
       <Stack //main body stack with left and right substack
         
@@ -81,6 +58,7 @@ const Lesson = () => {
             height="100vh"
             paddingRight="8"
             overflowY="auto"
+            color="#000000"
             style={{ zIndex: 10 }}
             sx={{
               '&::-webkit-scrollbar': {
@@ -94,8 +72,6 @@ const Lesson = () => {
                 backgroundColor: `rgba(237, 46, 56, 1)`,
               },
             }}
-
-            color="#000000"
           >
             
             <Text
@@ -171,6 +147,8 @@ const Lesson = () => {
             posuere interdum et et tortor. Vivamus mollis libero ac interdum tempus. Maecenas 
             condimentum nunc quis justo euismod condimentum. Quisque a auctor eros.
           </Text>
+
+
           <Stack  width="100%" direction="row" justify="flex-end" align="flex-end">
           <Link to={`/lesson-complete`} bg="#ed2e38">
             <Button

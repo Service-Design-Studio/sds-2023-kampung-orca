@@ -18,6 +18,7 @@ export default (
   <Router>
     <Routes>
       <Route path="/" element={<LessonNodes />} />
+      <Route path="/lesson-view/:lessonId" element={<LessonView/>} />
       <Route path="/lesson-view" element={<LessonView/>} />
       <Route path="/lesson-complete" element={<LessonCompletion/>}/>
       <Route path="/error" element={<ErrorPage />} />
