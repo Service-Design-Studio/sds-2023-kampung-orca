@@ -18,7 +18,7 @@ export const ErrorPage = () => {
       background="#FFFFFF"
     >
       
-      <Header buttontext="Back to Main" path="/home" />
+      <Header buttontext="Back to Main" path="/curriculum/topics/view" />
               
       
       <Stack
@@ -70,7 +70,7 @@ export const ErrorPage = () => {
           </Stack>
         </Stack> 
         
-        <Link to={`/home`}>
+        <Link to={`/curriculum/topics/view`}>
                     <Button
                       size="lg"
                       variant="ghost"

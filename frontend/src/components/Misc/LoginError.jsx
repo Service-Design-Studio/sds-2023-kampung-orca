@@ -18,7 +18,7 @@ export const LoginError = () => {
       background="#FFFFFF"
     >
       
-      <Header buttontext="Back to Main" path="/home"/>
+      <Header/>
               
       
       <Stack

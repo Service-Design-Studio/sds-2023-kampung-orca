@@ -18,58 +18,70 @@ require 'json'
 require 'googleauth'
 
 class Users::UserController < ApplicationController
-  before_action :set_credentials
-  # skip_before_action :verify_authenticity_token, only: [:google]
-  protect_from_forgery unless: -> { request.format.json? }
+  
+    before_action :set_credentials
+    #skip_before_action :verify_authenticity_token, only: [:google]
+    
 
-  def authorization_code_exchange
-    query = {
-      code: @code,
-      client_id: ENV['GOOGLE_CLIENT_ID'],
-      client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-      redirect_uri: 'http://localhost:3001',
-      grant_type: 'authorization_code'
-    }
-    response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query:)
-    tokens_data = { token: response['access_token'], refresh_token: response['refresh_token'],
-                    expires_at: response['expires_in'] }
-    @token = response['access_token']
-    headers = {
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer #{response['access_token']}"
-    }
+    def authorization_code_exchange
+      begin
+        p ENV['GOOGLE_CLIENT_ID']
+        query = {
+          code: @code,
+          client_id: ENV['GOOGLE_CLIENT_ID'],
+          client_secret: ENV['GOOGLE_CLIENT_SECRET'],
+          redirect_uri: 'http://localhost:3000',
+          grant_type: 'authorization_code'
+        }
+        response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query: query)
+        tokens_data =  {token: response['access_token'], refresh_token: response['refresh_token'], expires_at: response["expires_in"]}
+        @token = response['access_token']
+        headers = {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer #{response['access_token']}"
+        }
 
-    # Get user profile information
-    profile_response = HTTParty.get(
-      'https://www.googleapis.com/oauth2/v2/userinfo',
-      headers:
-    )
-    profile_data = JSON.parse(profile_response.body)
-    if User.where(user_id: profile_data['id']).blank? == true
-      first_time_setup_google(tokens_data, profile_data)
-    else
-      Token.create!(token: tokens_data[:token], refresh_token: tokens_data[:refresh_token],
-                    expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data['id'])
+        # Get user profile information
+        profile_response = HTTParty.get(
+          'https://www.googleapis.com/oauth2/v2/userinfo',
+          headers: headers
+        )
+        profile_data = JSON.parse(profile_response.body)
+        if profile_data["id"] == nil
+          head 400
+        end
+  
+        if User.where(user_id: profile_data["id"]).blank? == true
+          first_time_setup_google(tokens_data, profile_data)
+        else
+          Token.create!(token:tokens_data[:token], refresh_token:tokens_data[:refresh_token], expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data["id"])
+        end
+        
+        render json: {token: @token, user_id: profile_data["id"]}
+      rescue Exception
+        render json: {token: nil, user_id: nil}
+      end
+
+
+      #if profile_data[:id] not in database
+        #first_time_setup()
+      #end
+
+      
     end
 
-    render json: @token
-  rescue Exception
-    head 400
 
-    # if profile_data[:id] not in database
-    # first_time_setup()
-    # end
-  end
-
-  def verify_token
-    token = Token.find_by(token: @token)
-    if token.blank? == true
-      head 401
-    else
-      token.refresh! if token.expires_at < Time.now
-      render json: token[:token]
+    def verify_token
+      token = Token.find_by(token: @token)
+      if token == nil
+        render json: {token: nil, user_id: nil}
+      else
+        if token.expires_at < Time.now
+          token.refresh!
+        end
+        render json: {token: token[:token], user_id: token[:user_id]}
+      end
     end
-  end
 
   private
 

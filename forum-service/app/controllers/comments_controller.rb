@@ -16,10 +16,10 @@ class CommentsController < ApplicationController
     # POST /comments
     def create
       @comment = @post.comments.build(comment_params)
-      #@comment.user_id = 1  # Placeholder user ID for now
+      @comment.user = User.find_by(user_id: params[:user_id])
   
       if @comment.save
-        render json: @comment, status: :created, location: lesson_post_comments_path(@comment.post)
+        render json: @comment, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
       end
@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
     # DELETE /comments/:id
     def destroy
       @comment.destroy
+      head :no_content
     end
   
     private
@@ -47,6 +48,8 @@ class CommentsController < ApplicationController
   
     def set_comment
       @comment = Comment.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Comment not found' }, status: :not_found
     end
   
     def comment_params
