@@ -88,6 +88,7 @@ export const ForumView = () => {
               },
             }}>
               <Text whiteSpace="pre-line">{"This is a sample post. As it is currently not linked up to any API, the contents of this post, and everything on this page, are hardcoded and unrelated to any of the other pages. To make it longer, here are some random text. \n\n"} {textContents}</Text>
+            
             </Stack>
           </CardBody>
         </Card> 

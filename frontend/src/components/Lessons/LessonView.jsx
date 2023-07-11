@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link, useParams} from "react-router-dom";
 import { Stack, Button, Text } from '@chakra-ui/react'
-import ChatButton from "../Chatbox/Chatbutton"
 import { Header } from '../Header'
 import axios from "axios"
 import useAxios from "axios-hooks"
