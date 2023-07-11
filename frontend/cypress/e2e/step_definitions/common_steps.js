@@ -8,6 +8,6 @@ Then("I should go to the {} page", (pageName) => {
   cy.matchRoute(pageName);
 });
 
-When("I click on the {} button", (buttonName) => {});
+When("I click on the {} button", cy.clickButton);
 
 Then("I should see a {} error with a {} button", (errorName, buttonName) => {});

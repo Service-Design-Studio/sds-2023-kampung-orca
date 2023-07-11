@@ -1,6 +1,7 @@
 const pageRouteMap = {
   "lessons pathway": "",
   "lesson view": "lesson-view",
+  "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",
   "second content": "",
@@ -14,6 +15,7 @@ const errorRouteMap = {
 const buttonComponentMap = {
   redirect: "",
   "Google login": "",
+  Complete: "#lesson-complete",
 };
 
 Cypress.Commands.add("visitRoute", (pageName) => {
@@ -21,7 +23,14 @@ Cypress.Commands.add("visitRoute", (pageName) => {
 });
 
 Cypress.Commands.add("matchRoute", (pageName) => {
-  cy.visit(`${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`);
+  cy.url().should(
+    "match",
+    new RegExp(`^${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`)
+  );
+});
+
+Cypress.Commands.add("clickButton", (buttonName) => {
+  cy.get(buttonComponentMap[buttonName]).click();
 });
 
 //
