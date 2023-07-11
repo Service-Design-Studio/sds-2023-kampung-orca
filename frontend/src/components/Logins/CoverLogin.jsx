@@ -44,6 +44,7 @@ const CoverLogin = () => {
             height="56px"
             shadow="md"
             className="transition-all duration-300 transform-gpu hover:scale-110"
+            id="login-button"
           >
             Login
           </Button>

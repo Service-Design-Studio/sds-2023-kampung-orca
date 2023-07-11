@@ -1,15 +1,22 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
+import {
+  Stack,
+  Button,
+  Icon,
+  Text,
+  useDisclosure,
+  Slide,
+  Box,
+  Container,
+  CloseButton,
+  Flex,
+} from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck, BsEmojiFrown } from "react-icons/bs";
-import { Header } from './Header'
-
-
-
+import { Header } from "./Header";
 
 export const ErrorPage = () => {
-
   return (
     <Stack
       justify="flex-start"
@@ -18,10 +25,8 @@ export const ErrorPage = () => {
       height="800px"
       background="#FFFFFF"
     >
-      
-      <Header buttontext="Back to Main"/>
-              
-      
+      <Header buttontext="Back to Main" />
+
       <Stack
         paddingX="91px"
         paddingY="50px"
@@ -32,12 +37,12 @@ export const ErrorPage = () => {
         height="625px"
         maxWidth="100%"
         style={{
-          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       >
-                  
         <Stack
           paddingX="90px"
           paddingTop="31px"
@@ -54,7 +59,7 @@ export const ErrorPage = () => {
           shadow="lg"
         >
           <Stack justify="flex-start" align="center" spacing="17px">
-            <Icon as={BsEmojiFrown} boxSize={180}/>
+            <Icon as={BsEmojiFrown} boxSize={180} />
             <Text
               fontFamily="Arial"
               lineHeight="1.33"
@@ -70,11 +75,8 @@ export const ErrorPage = () => {
               Page not found.
             </Text>
           </Stack>
-        </Stack>         
-
-      </Stack> 
-      
+        </Stack>
       </Stack>
-    
+    </Stack>
   );
 };

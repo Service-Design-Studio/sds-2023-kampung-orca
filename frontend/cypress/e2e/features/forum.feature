@@ -7,19 +7,24 @@ Feature: Forum
     Given I am at the lesson view page
     When I click on the Forum button
     Then I should see the forum view
+
+  Background:
+    Given the forum box is open
   
   Scenario: Posting new thread
-    Given I have the forum box open
     When I click on the New Post button
-    And I enter 
-    And another user posts a question in the chatroom
-    When I click on the ‘reply’ on user post, and I type in my answer
-    Then the answer should be posted on the question’s discussion page
+    Then I should see the New Post inputs
+    When I enter new post details
+    And I click on the Send button
+    Then I should see the new post 
+
+  Examples:
+    | title       | content         |
+    | Test        | Testing 1 2 3!  |
 
   Scenario: Editing post
-    Given I am at the chatroom page
-    When I click on ‘edit’ on my own post
-    Then I should see the interface that I was at when I created the post
+    When I click on the Edit button on the new post
+    Then I should see the Edit Post inputs
     When I have edited the post to my liking
     And click on the button that says ‘done editing’
     Then my post should be updated and reflected publicly as an edited post

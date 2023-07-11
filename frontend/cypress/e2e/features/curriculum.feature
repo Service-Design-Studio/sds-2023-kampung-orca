@@ -3,6 +3,9 @@ Feature: Display lesson content
   As Aloysius, a student learner, I want to be able to see my lesson notes
   so that I will be able to continue learning by myself and go to physical lessons prepared with the content
 
+  Background:
+    Given I am logged in
+
   Scenario: Basic lesson view
     Given I am at the lessons pathway page
     When I click on a lesson node
