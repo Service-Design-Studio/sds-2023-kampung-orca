@@ -16,10 +16,11 @@ class CommentsController < ApplicationController
     # POST /comments
     def create
       @comment = @post.comments.build(comment_params)
+      @comment.user = User.find_by(user_id: params[:user_id])
       #@comment.user_id = 1  # Placeholder user ID for now
   
       if @comment.save
-        render json: @comment, status: :created, location: lesson_post_comments_path(@comment.post)
+        render json: @comment, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
       end

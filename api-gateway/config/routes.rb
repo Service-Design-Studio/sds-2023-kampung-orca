@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   get 'lessons', to: 'forum#forward'
   post 'lessons', to: 'forum#forward'
+  patch 'lessons', to: 'forum#forward'
+  delete 'lessons', to: 'forum#forward'
 
   get '/lessons/*path', to: 'forum#forward' #posting to forum, with cookies
   post '/lessons/*path', to: 'forum#forward' #posting to forum, with cookies
