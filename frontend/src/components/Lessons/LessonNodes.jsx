@@ -49,11 +49,11 @@ import {
     }
   ];
 
-  
+
   const DynamicNodes = ({ nodes }) => {
     return nodes.map((node, index) => (
       <React.Fragment key={index}>
-        {index !== 0 && <Line />} {/* Render the Line component only if index is not 0 */}
+        {index !== 0 && <Line />}
         <Link to={`/lesson-view/${index + 1}`}>
           <Node
             icon={node.icon}
