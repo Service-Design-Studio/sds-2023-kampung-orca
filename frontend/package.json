@@ -47,6 +47,7 @@
     "@craco/craco": "^7.1.0",
     "craco-esbuild": "^0.5.2",
     "cypress": "^12.17.0",
-    "esbuild": "^0.18.11"
+    "esbuild": "^0.18.11",
+    "eslint-plugin-cypress": "^2.13.3"
   }
 }

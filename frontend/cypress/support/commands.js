@@ -1,9 +1,14 @@
 const pageRouteMap = {
   "lessons pathway": "",
+  "lesson view": "lesson-view",
   chatroom: "chat",
 };
 
 Cypress.Commands.add("visitRoute", (pageName) => {
+  cy.visit(`${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`);
+});
+
+Cypress.Commands.add("matchRoute", (pageName) => {
   cy.visit(`${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`);
 });
 
