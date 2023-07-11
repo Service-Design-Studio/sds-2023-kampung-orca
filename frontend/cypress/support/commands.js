@@ -2,6 +2,18 @@ const pageRouteMap = {
   "lessons pathway": "",
   "lesson view": "lesson-view",
   chatroom: "chat",
+  "first content": "",
+  "second content": "",
+};
+
+const errorRouteMap = {
+  "Page Not Found": "",
+  "Not Authenticated": "",
+};
+
+const buttonComponentMap = {
+  redirect: "",
+  "Google login": "",
 };
 
 Cypress.Commands.add("visitRoute", (pageName) => {
