@@ -7,12 +7,13 @@ import ChatButton from "../Chatbox/Chatbutton"
 import { Header } from '../Header'
 import axios from "axios"
 import useAxios from "axios-hooks"
+import Cookies from "js-cookie"
 
 
 
 
 export const LessonCompletion = () => {
-  const cookieValue =  "ya29.a0AbVbY6NOLptcQ3y4pe2wNO4mtS1JQg7yL4pC1-_L9lo0QmaThzvpwzFotti0j6focO-sQ9axv02QlxSX2l3wnCSfH19MDfDyGTIIYh2C3Yy5XV4EL5GdtFabTzkHsa-fmhnnOv3uMhWusGJZpO_nhLYV0wD7aCgYKAU4SARISFQFWKvPlUfrNqFRTNxNrYR8wsoF6mg0163";//Cookies.get('token');
+  const cookieValue =  Cookies.get('token');
   const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
   const [{ data, loading }, refetch, cancelRequest] = useAxios({
     url: url,
