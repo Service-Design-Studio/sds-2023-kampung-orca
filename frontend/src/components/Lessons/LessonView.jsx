@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Stack, Button, Text, Icon, Box } from '@chakra-ui/react'
+import { Stack, Button, Icon, Box } from '@chakra-ui/react'
 import { Header } from '../Header'
 import Chatbutton from "../Chatbox/Chatbutton"
 import LessonSection from "./LessonSection"
@@ -186,7 +186,7 @@ const Lesson = () => {
                       variant="ghost"
                       bg="#ed2e38"
                       textColor="#FFFFFF"
-                      _hover={{ bg: "##7c191c" }}
+                      _hover={{bg:"#7c191c"}}
                       height="48px"
                       fontSize="18px"
                     >

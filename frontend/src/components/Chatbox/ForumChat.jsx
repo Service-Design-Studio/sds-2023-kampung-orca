@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Chat from "./Chat"
 import Header from "./ForumChatHeader"
-import { BsChatDots } from "react-icons/bs"
-import { useDisclosure, Card, Flex, Icon } from '@chakra-ui/react'
+import { useDisclosure, Card, Flex } from '@chakra-ui/react'
 
 
 function ForumChat() {

@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { BsCircle, BsStopCircle, BsEmojiSmile, BsCheckCircle, BsFillPeopleFill } from 'react-icons/bs'
-import { Progress } from '@chakra-ui/react'
+import { Link } from "react-router-dom";
+import { Stack, Button, Icon } from "@chakra-ui/react";
+import { GoChevronLeft } from "react-icons/go";
+import { BsFillPeopleFill } from 'react-icons/bs'
 import ChatButton from "./Chatbox/Chatbutton"
 
 
@@ -57,6 +56,7 @@ background="#ed2e38"
           height="48px"
           fontSize="18px"
           shadow="md"
+          style={{zIndex: 999}}
           leftIcon={<Icon as={BsFillPeopleFill} />}
         >
           Visit the Forums

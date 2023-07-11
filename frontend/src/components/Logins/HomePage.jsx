@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
+import { Stack, Text, Button, Square } from "@chakra-ui/react";
 
 const HomePage = () => {
   const navigate = useNavigate();

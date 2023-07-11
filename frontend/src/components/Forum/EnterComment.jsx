@@ -1,5 +1,5 @@
-import React, { useEffect, useState} from "react";
-import { Stack, Heading, Text, Button, Icon, Box, StackDivider, Avatar, Textarea } from "@chakra-ui/react";
+import React from "react";
+import { Stack, Heading, Button, Avatar, Textarea } from "@chakra-ui/react";
 
 
 export const EnterComment = ({ image, name }) => {

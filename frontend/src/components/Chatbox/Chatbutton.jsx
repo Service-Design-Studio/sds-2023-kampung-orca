@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link,useNavigate,useParams } from "react-router-dom";
+import React from "react";
 import Chat from "./Chat"
 import Header from "./ChatHeader"
 import { BsChatDots } from "react-icons/bs"
-import { useDisclosure, Stack, Button, Text, Slide, Container, Flex, Icon } from '@chakra-ui/react'
+import { useDisclosure, Button, Slide, Container, Flex, Icon } from '@chakra-ui/react'
 
 
 function ChatButton() {

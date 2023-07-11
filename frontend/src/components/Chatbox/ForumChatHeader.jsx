@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Avatar, AvatarBadge, Text, CloseButton } from "@chakra-ui/react";
+import { Flex, Avatar, AvatarBadge, Text } from "@chakra-ui/react";
 
 const Header = ({ onToggle }) => {
   return (

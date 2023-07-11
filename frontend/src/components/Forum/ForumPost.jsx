@@ -1,19 +1,16 @@
 import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { Stack, Button, Icon, Text, useDisclosure, Slide, Box, Container, CloseButton, Flex, } from "@chakra-ui/react";
+import { Stack, Button } from "@chakra-ui/react";
 import ForumChat from "../Chatbox/ForumChat"
 import { Header } from '../Header'
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
-import { StackDivider, Heading } from "@chakra-ui/react"
+import { Card, CardHeader, CardBody} from '@chakra-ui/react'
+import { Heading } from "@chakra-ui/react"
 import { Textarea } from '@chakra-ui/react'
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
 } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 
 

@@ -1,13 +1,11 @@
 import React, { useEffect, useState} from "react";
-import { Link, useParams } from "react-router-dom";
-import { Stack, Heading, Text, Button, Icon, Box, StackDivider, Avatar } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { Stack, Heading, Text, Box, StackDivider, Avatar } from "@chakra-ui/react";
 import ForumChat from "../Chatbox/ForumChat"
 import { Header } from '../Header'
 import { Card, CardHeader, CardBody } from '@chakra-ui/react'
 import { Comment } from "./Comment.jsx"
 import { EnterComment } from "./EnterComment.jsx"
-import LoremIpsum from "./LoremIpsum.txt"
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import {
   Accordion,
   AccordionItem,
