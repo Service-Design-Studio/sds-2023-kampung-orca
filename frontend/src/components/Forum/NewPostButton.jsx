@@ -19,18 +19,42 @@ import {
   Heading,
   Avatar,
 } from "@chakra-ui/react";
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function NewPostButton() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [activePostId, setActivePostId] = useState(null);
+
+  
+
+  
 
   const handleButtonClick = () => {
     setFormOpen(true);
   };
 
   const handlePostButtonClick = () => {
+    CreatePost();
     setFormOpen(false);
   };
+
+  const CreatePost = async () => {
+    const cookieValue = Cookies.get('token');
+    console.log(cookieValue);
+    try {
+      const response = await axios.post('http://localhost:3003/lessons/1/posts', {
+        token: cookieValue,
+        post: { title: "New UI", content: "New Me" }
+      });
+      console.log(response);
+    } catch (error) {
+      
+        console.log("Error occurred:", error);
+      
+    }
+  };
+  
 
   const handlePostClick = (postId) => {
     setActivePostId(postId);
