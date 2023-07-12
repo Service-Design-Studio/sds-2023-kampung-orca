@@ -6,22 +6,21 @@ import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { Header } from "../Header";
 import Chatbutton from "../Chatbox/Chatbutton";
 import LessonSection from "./LessonSection";
+import useGateway from "../../hooks/useGateway";
 
 export const LessonView = () => {
   const params = useParams();
   const back_to_lesson_pathway = `/curriculum/topic/${params["topic_id"]}/view`;
   const lesson_complete = `/curriculum/topic/${params["topic_id"]}/lesson/${params["lesson_id"]}/lesson_completed`;
   const [currentPage, setCurrentPage] = useState(0);
+  const [pages] = useGateway(window.location.pathname);
   const containerRef = useRef(null);
+
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = 0;
     }
   }, [currentPage]);
-
-  const [pages] = useOutletContext();
-
-  const totalPages = pages.length;
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -30,7 +29,8 @@ export const LessonView = () => {
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
   };
-  const currentVideo = pages[currentPage].video;
+
+  if (!pages) return;
 
   return (
     <Stack
@@ -154,7 +154,7 @@ export const LessonView = () => {
             </Box>
 
             <Box flex="1" textAlign="right">
-              {currentPage < totalPages - 1 && (
+              {currentPage < pages.length - 1 && (
                 <Button
                   size="lg"
                   variant="ghost"
@@ -167,7 +167,7 @@ export const LessonView = () => {
                 />
               )}
 
-              {currentPage == totalPages - 1 && (
+              {currentPage === pages.length - 1 && (
                 <Link to={lesson_complete}>
                   <Button
                     size="lg"
@@ -201,12 +201,14 @@ export const LessonView = () => {
             width="650px"
             height="450px"
           >
-            <iframe
-              title="kampung"
-              src={currentVideo}
-              width="100%"
-              height="100%"
-            />
+            {pages && (
+              <iframe
+                title="kampung"
+                src={pages[currentPage].video}
+                width="100%"
+                height="100%"
+              />
+            )}
           </Stack>
 
           <Stack //buttons stack

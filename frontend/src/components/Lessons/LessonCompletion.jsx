@@ -4,9 +4,12 @@ import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck } from "react-icons/bs";
 import { Header } from "../Header";
+import useGateway from "../../hooks/useGateway";
 
-export const LessonCompletion = ({ data }) => {
+export const LessonCompletion = () => {
   const params = useParams();
+  const [data] = useGateway(window.location.pathname);
+  if (!data) return;
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
 
   const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.pre_lesson}/view`;

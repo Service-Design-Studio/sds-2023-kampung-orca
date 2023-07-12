@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Header } from "../Header";
+import useGateway from "../../hooks/useGateway";
 
 const nodesData = [
   //test data for the dynamic nodes. will be taken out once backend is successfully linked
@@ -64,8 +65,8 @@ const nodesData = [
 
 const DynamicNodes = () => {
   const params = useParams();
-  const [data] = useOutletContext();
-  if (!data.lessons) return;
+  const [data] = useGateway(window.location.pathname);
+  if (!data || !data.lessons) return;
   return data.lessons.map((node, index) => (
     <React.Fragment key={index}>
       {index !== 0 && <Line />}{" "}

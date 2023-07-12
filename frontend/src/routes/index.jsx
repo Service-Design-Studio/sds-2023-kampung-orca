@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Outlet,
-  useNavigate,
+  Navigate,
 } from "react-router-dom";
-import useAxios from "axios-hooks";
-import Cookies from "js-cookie";
 
 import {
   LessonNodes,
@@ -34,26 +32,8 @@ import { DiscussionView } from "../components/Forum/DiscussionView";
 import useCookie from "../hooks/useCookie";
 
 const AuthWrapper = () => {
-  const navigate = useNavigate();
   const [cookie] = useCookie("token");
-
-  const url = `${process.env.REACT_APP_GATEWAY_URL}${window.location.pathname}`;
-  const [{ data, loading }] = useAxios({
-    url: url,
-    params: { token: cookie },
-    method: "POST",
-  });
-
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (!cookie) return navigate("/loginerror", { replace: true });
-    if (!loading && data && data.data) {
-      setReady(true);
-    }
-  }, [cookie, data, loading, navigate]);
-
-  if (ready) return <Outlet context={[data.data]} />;
+  return cookie ? <Outlet /> : <Navigate to="/loginerror" replace />;
 };
 
 export default (

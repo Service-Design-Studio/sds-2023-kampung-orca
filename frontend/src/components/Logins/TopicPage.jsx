@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
 import Cookies from "js-cookie";
+import useGateway from "../../hooks/useGateway";
 
 function NavigationButton({ to, children, hideButton }) {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ function NavigationButton({ to, children, hideButton }) {
 }
 
 const TopicPage = () => {
-  const [topics] = useOutletContext();
-  if (!topics) return;
+  // TODO: CHANGE THIS!
+  const [topics] = useGateway(window.location.pathname);
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
@@ -69,15 +70,16 @@ const TopicPage = () => {
       </Stack>
 
       <Stack direction="row" spacing="50px" paddingY="50px">
-        {topics.map((topic) => (
-          <NavigationButton
-            key={topic.topic_id}
-            to={`/curriculum/topic/${topic.topic_id}/view`}
-            hideButton={false}
-          >
-            <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
-          </NavigationButton>
-        ))}
+        {topics &&
+          topics.map((topic) => (
+            <NavigationButton
+              key={topic.topic_id}
+              to={`/curriculum/topic/${topic.topic_id}/view`}
+              hideButton={false}
+            >
+              <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
+            </NavigationButton>
+          ))}
       </Stack>
     </Stack>
   );

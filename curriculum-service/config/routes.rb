@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'exercise/index'
-      get 'exercise/create'
-      get 'topic/:topic_id/lesson=:lesson_id/exercise/:exercise_id/view', to: 'exercise#show' #show exercise
-      get 'exercise/destroy', to: 'exercise#destroy'
-
+      # Topics
       get "topics", to: 'topic/index' 
       post 'topics/view', to: 'topic#index' #show topics
       get 'topic/create'
       get 'topic/show/:id', to: 'topic#show'
       get 'topic/destroy', to: 'topic#destroy'
+      get 'topic/:topic_id/lesson=:lesson_id/exercise/:exercise_id/view', to: 'exercise#show' #show exercise
+
+      get 'exercise/index'
+      get 'exercise/create'
+      get 'exercise/destroy', to: 'exercise#destroy'
 
       get 'page/index'
       post 'page/create'

@@ -111,8 +111,8 @@ export const ForumMain = () => {
                 <Text noOfLines={2} pt="2" fontSize="md">
                   Just trying out different formats for the forum, but mostly
                   just messing around with the code design. This one could be
-                  good for multiple comments and discussions and replies, but
-                  it's quite messy at the moment. What do you guys think?
+                  good for multiple comments and discussions and replies, but it
+                  is quite messy at the moment. What do you guys think?
                 </Text>
               </Link>
             </Card>
