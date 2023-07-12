@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useOutletContext, useParams } from "react-router-dom";
-import { Stack, Button, Icon, Box } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
+import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 
 import { Header } from "../Header";
-import Chatbutton from "../Chatbox/Chatbutton";
 import LessonSection from "./LessonSection";
 import useGateway from "../../hooks/useGateway";
+import ForumButton from "../Forum/ForumBox/ForumButton";
 
 export const LessonView = () => {
   const params = useParams();
@@ -136,53 +136,62 @@ export const LessonView = () => {
             width="100%"
             direction="row"
             justify="space-between"
-            align="flex-end"
+            align="center"
+            textAlign="center"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            <Box flex="1" justify="space-between">
-              {currentPage > 0 && (
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  textColor="#ed2e38"
-                  _hover={{ bg: "#ffaea8" }}
-                  height="48px"
-                  fontSize="18px"
-                  leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
-                  onClick={prevPage}
-                />
-              )}
-            </Box>
-
-            <Box flex="1" textAlign="right">
-              {currentPage < pages.length - 1 && (
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  textColor="#ed2e38"
-                  _hover={{ bg: "#ffaea8" }}
-                  height="48px"
-                  fontSize="18px"
-                  rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
-                  onClick={nextPage}
-                />
-              )}
-
-              {currentPage === pages.length - 1 && (
-                <Link to={lesson_complete}>
+            <Stack width="100%" direction="row" justify="space-between">
+              <Stack flex="1">
+                {currentPage > 0 && (
                   <Button
                     size="lg"
                     variant="ghost"
-                    bg="#ed2e38"
-                    textColor="#FFFFFF"
-                    _hover={{ bg: "#7c191c" }}
+                    textColor="#ed2e38"
+                    _hover={{ bg: "#ffaea8" }}
                     height="48px"
                     fontSize="18px"
-                  >
-                    Complete Lesson
-                  </Button>
-                </Link>
-              )}
-            </Box>
+                    leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
+                    onClick={prevPage}
+                  />
+                )}
+              </Stack>
+              <Stack flex="1" align="center" justify="center">
+                <Text fontSize="16px">{currentPage + 1}</Text>
+              </Stack>
+
+              <Stack flex="1">
+                {currentPage < pages.length - 1 && (
+                  <Button
+                    size="lg"
+                    variant="ghost"
+                    textColor="#ed2e38"
+                    _hover={{ bg: "#ffaea8" }}
+                    height="48px"
+                    fontSize="18px"
+                    rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
+                    onClick={nextPage}
+                  />
+                )}
+
+                {currentPage === pages.length - 1 && (
+                  <Link to={lesson_complete}>
+                    <Button
+                      size="lg"
+                      variant="ghost"
+                      bg="#ed2e38"
+                      textColor="#FFFFFF"
+                      _hover={{ bg: "#7c191c" }}
+                      height="48px"
+                      fontSize="18px"
+                    >
+                      Complete Lesson
+                    </Button>
+                  </Link>
+                )}
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
 
@@ -201,14 +210,12 @@ export const LessonView = () => {
             width="650px"
             height="450px"
           >
-            {pages && (
-              <iframe
-                title="kampung"
-                src={pages[currentPage].video}
-                width="100%"
-                height="100%"
-              />
-            )}
+            <iframe
+              title="kampung"
+              src={pages[currentPage].video}
+              width="100%"
+              height="100%"
+            />
           </Stack>
 
           <Stack //buttons stack
@@ -219,10 +226,11 @@ export const LessonView = () => {
             justify="space-between"
             align="center"
           >
-            <Chatbutton />
+            <ForumButton />
           </Stack>
         </Stack>
       </Stack>
     </Stack>
   );
 };
+export default LessonView;
