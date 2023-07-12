@@ -138,11 +138,6 @@ const ForumApp = () => {
     }
   };
 
-  const createPost = (newPost) => {
-    console.log("New post:", newPost);
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-  };
-
   return (
     <div>
       {selectedPost ? (
