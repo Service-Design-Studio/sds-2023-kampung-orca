@@ -1,6 +1,8 @@
 const pageRouteMap = {
+  home: "cover",
+  login: "login",
   "lessons pathway": "",
-  "lesson view": "lesson-view",
+  "lesson view": "curriculum/topics/view",
   "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",
@@ -14,7 +16,8 @@ const errorRouteMap = {
 
 const buttonComponentMap = {
   redirect: "",
-  "Google login": "",
+  Login: "#login-button",
+  "Google login": "#google-login",
   Complete: "#lesson-complete",
 };
 
@@ -32,6 +35,60 @@ Cypress.Commands.add("matchRoute", (pageName) => {
 Cypress.Commands.add("clickButton", (buttonName) => {
   cy.get(buttonComponentMap[buttonName]).click();
 });
+
+Cypress.Commands.add("loginByGoogleApi", () => {
+  cy.log("Logging in to Google");
+  cy.log({
+    grant_type: "refresh_token",
+    client_id: Cypress.env("googleClientId"),
+    client_secret: Cypress.env("googleClientSecret"),
+    refresh_token: Cypress.env("googleRefreshToken"),
+  });
+  cy.request({
+    method: "POST",
+    url: "https://oauth2.googleapis.com/token",
+    body: {
+      grant_type: "refresh_token",
+      client_id: Cypress.env("googleClientId"),
+      client_secret: Cypress.env("googleClientSecret"),
+      refresh_token: Cypress.env("googleRefreshToken"),
+    },
+    form: true,
+  }).then(({ body }) => {
+    const { access_token, id_token } = body;
+
+    cy.request({
+      method: "GET",
+      url: "https://www.googleapis.com/oauth2/v3/userinfo",
+      headers: { Authorization: `Bearer ${access_token}` },
+    }).then(({ body }) => {
+      cy.log(body);
+      const userItem = {
+        token: id_token,
+        user: {
+          googleId: body.sub,
+          email: body.email,
+          givenName: body.given_name,
+          familyName: body.family_name,
+          imageUrl: body.picture,
+        },
+      };
+
+      window.localStorage.setItem("googleCypress", JSON.stringify(userItem));
+      cy.visit("/");
+    });
+  });
+});
+
+Cypress.Commands.add("setDataToken", (dataToken) => {
+  const googleRefreshToken = Cypress.env("googleRefreshToken");
+  Cypress.env('googleRefreshToken', dataToken)
+});
+
+Cypress.Commands.add("getDataToken", () => {
+  return Cypress.env("googleRefreshToken");
+});
+
 
 //
 // -- This is a child command --

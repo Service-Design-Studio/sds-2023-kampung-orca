@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Stack, Text, Button, Fade } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Stack, Text, Button, ScaleFade } from "@chakra-ui/react";
 
 const CoverLogin = () => {
   const [showContent, setShowContent] = useState(false);
@@ -10,18 +10,19 @@ const CoverLogin = () => {
   }, []);
 
   return (
-    <Fade in={showContent}>
-      <Stack
-        direction="column"
-        justify="center"
-        align="center"
-        spacing="0"
-        width="100%"
-        height="100vh"
-        color="#000"
-        textAlign="center"
-        fontFamily="Arial"
-      >
+    <Stack
+      direction="column"
+      justify="center"
+      align="center"
+      spacing="0"
+      width="100%"
+      height="100vh"
+      color="#000"
+      textAlign="center"
+      fontFamily="Arial"
+      position="relative" // Add position relative to contain the DrawImageAnimation component
+    >
+      <ScaleFade initialScale={0.9} in={showContent} transitionDuration={1000}>
         <Text
           fontSize={["32px", "48px", "64px", "96px"]}
           fontWeight="700"
@@ -30,7 +31,13 @@ const CoverLogin = () => {
         >
           Welcome to Interfaith
         </Text>
-        <Link to="/login">
+      </ScaleFade>
+      <Link to="/login">
+        <ScaleFade
+          initialScale={0.9}
+          in={showContent}
+          transitionDuration={2000}
+        >
           <Button
             fontSize={["24px", "32px", "48px"]}
             fontWeight="700"
@@ -47,8 +54,14 @@ const CoverLogin = () => {
           >
             Login
           </Button>
-        </Link>
-        <Link to="/learnmore">
+        </ScaleFade>
+      </Link>
+      <Link to="/learnmore">
+        <ScaleFade
+          initialScale={0.9}
+          in={showContent}
+          transitionDuration={3000}
+        >
           <Button
             fontSize={["24px", "32px", "48px"]}
             fontWeight="700"
@@ -65,9 +78,9 @@ const CoverLogin = () => {
           >
             Learn more
           </Button>
-        </Link>
-      </Stack>
-    </Fade>
+        </ScaleFade>
+      </Link>
+    </Stack>
   );
 };
 

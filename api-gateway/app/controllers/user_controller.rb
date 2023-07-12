@@ -9,7 +9,7 @@ class UserController < ApplicationController
       }
     }).parsed_response.transform_keys(&:to_sym)
 
-    response_curriculum = HTTParty.post(ENV["CURRICULUM_URL"] + "/api/v1/user/create", {
+    response_curriculum = HTTParty.post(ENV["CURRICULUM_URL"] + "/user", {
       body: {user_id: current_user[:user_id]}.to_json,
       headers: {
         'Content-Type' => 'application/json',
