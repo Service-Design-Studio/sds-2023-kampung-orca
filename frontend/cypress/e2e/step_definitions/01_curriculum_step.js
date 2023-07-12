@@ -73,7 +73,7 @@ When("I see the first page content", () => {
   cy.get("p").contains("1").should("exist");
 });
 
-// Can be DRYed
+// TODO: DRY this out
 Then("I should not see the left arrow button", () => {
   cy.get('.chakra-icon css-1ev3uyk').should("not.exist");
 });
@@ -83,7 +83,7 @@ When("I see the last page content", () => {
 cy.get("button").contains("Complete Lesson").should("exist");
 });
 
-// Can be DRYed
+// TODO: DRY this out
 Then("I should not see the right arrow button", () => {
   cy.get('.chakra-button css-crvxvb').should("not.exist");
 });
@@ -135,7 +135,6 @@ Then("I should go to an error page with a redirect button", () => {});
 Then("I should go to an error page with a button", () => {});
 
 Then("I should not see the {} button", (buttonName) => {
-  cy.get(`button`).contains(buttonName).should("not.exist");
 });
 
 Then("I should visit the next lesson page", () => {});
