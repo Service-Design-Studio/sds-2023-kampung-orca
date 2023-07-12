@@ -2,6 +2,8 @@
 
 ## Local Development
 
+**LINT BEFORE PUSHING YOUR CODE!**
+
 It is highly recommended to install [`volta`](https://volta.sh/) for Node versioning.
 
 ```sh
