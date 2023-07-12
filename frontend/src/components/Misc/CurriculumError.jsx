@@ -2,14 +2,11 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { BsEmojiFrown } from "react-icons/bs";
-import { Header } from '../Header'
-
-
-
+import { Header } from "../Header";
 
 export const CurriculumErrorPage = () => {
   const params = useParams();
-  
+
   return (
     <Stack
       justify="flex-start"
@@ -18,10 +15,11 @@ export const CurriculumErrorPage = () => {
       height="100vh"
       background="#FFFFFF"
     >
-      
-      <Header buttontext="Back to Lessons" path={`/curriculum/topic/${params.topic_id}/view`} />
-              
-      
+      <Header
+        buttontext="Back to Lessons"
+        path={`/curriculum/topic/${params.topic_id}/view`}
+      />
+
       <Stack
         paddingX="91px"
         paddingY="50px"
@@ -33,12 +31,12 @@ export const CurriculumErrorPage = () => {
         height="625px"
         maxWidth="100%"
         style={{
-          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       >
-                  
         <Stack
           paddingX="90px"
           paddingTop="31px"
@@ -55,7 +53,7 @@ export const CurriculumErrorPage = () => {
           shadow="lg"
         >
           <Stack justify="flex-start" align="center" spacing="17px">
-            <Icon as={BsEmojiFrown} boxSize={150}/>
+            <Icon as={BsEmojiFrown} boxSize={150} />
             <Text
               lineHeight="1.33"
               color="#000000"
@@ -65,30 +63,33 @@ export const CurriculumErrorPage = () => {
               textAlign="center"
               marginBottom="50px"
             >
-              <Text fontSize="30px" fontWeight="bold" padding="20px"> Sorry!</Text>
-              <Text fontSize="25px"> You have not completed previous lessons.</Text>
+              <Text fontSize="30px" fontWeight="bold" padding="20px">
+                {" "}
+                Sorry!
+              </Text>
+              <Text fontSize="25px">
+                {" "}
+                You have not completed previous lessons.
+              </Text>
             </Text>
           </Stack>
-        </Stack> 
-        
-        <Link to={`/home`}>
-                    <Button
-                      size="lg"
-                      variant="ghost"
-                      bg="#ed2e38"
-                      textColor="#FFFFFF"
-                      _hover={{bg:"#7c191c"}}
-                      height="48px"
-                      fontSize="18px"
-                      shadow="md"
-                    >
-                    Go to Home
-                    </Button>
-                  </Link>        
+        </Stack>
 
-      </Stack> 
-      
+        <Link to={`/home`}>
+          <Button
+            size="lg"
+            variant="ghost"
+            bg="#ed2e38"
+            textColor="#FFFFFF"
+            _hover={{ bg: "#7c191c" }}
+            height="48px"
+            fontSize="18px"
+            shadow="md"
+          >
+            Go to Home
+          </Button>
+        </Link>
       </Stack>
-    
+    </Stack>
   );
 };

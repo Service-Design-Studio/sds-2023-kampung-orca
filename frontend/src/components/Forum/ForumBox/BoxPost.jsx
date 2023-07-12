@@ -9,10 +9,9 @@ import {
   Button,
   Icon,
 } from "@chakra-ui/react";
-import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import { DiscussionBox } from "./DiscussionBox";
 
-function BoxPost({ id, isActive, onClick }) {
+function BoxPost({ id, isActive }) {
   const { isOpen, onToggle } = useDisclosure();
   const [activePostId, setActivePostId] = useState(null);
 
@@ -61,8 +60,8 @@ function BoxPost({ id, isActive, onClick }) {
               <Text noOfLines={2} pt="1" fontSize="sm">
                 Just trying out different formats for the forum, but mostly just
                 messing around with the code design. This one could be good for
-                multiple comments and discussions and replies, but it's quite
-                messy at the moment. What do you guys think?
+                multiple comments and discussions and replies, but it looks
+                quite messy at the moment. What do you guys think?
               </Text>
             </Stack>
           </Stack>
