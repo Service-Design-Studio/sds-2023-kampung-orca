@@ -13,13 +13,25 @@ import { EnterComment } from "./EnterComment";
 //import CommentForm from "./CommentForm";
 import Cookies from 'js-cookie';
 
-function BoxPost({ post, isActive, onClick }) {
+function BoxPost({ post, isActive, onClick, updatePost }) {
   const { isOpen, onToggle } = useDisclosure();
 
   const handleClick = () => {
     onClick(post);
     onToggle();
   };
+
+  const handleEditClick = (event) => {
+    event.stopPropagation(); // Prevent the click event from bubbling up to the parent Box
+    // Implement the logic to open an edit form or prompt the user for updated data
+    // Once you have the updated data, call the updatePost function
+    const updatedData = {
+      title: "updated title",
+      content: "this is updated post content",
+    };
+    updatePost(post.id, updatedData);
+  };
+
 
   return (
     <Box
@@ -60,6 +72,8 @@ function BoxPost({ post, isActive, onClick }) {
           </Text>
         </Stack>
       </Stack>
+
+      <Button onClick={handleEditClick}>Edit</Button>
     </Box>
   );
 }
@@ -158,6 +172,21 @@ const ForumApp = () => {
     }
   };
 
+  const updatePost = async (postId, updatedData) => {
+    const cookieValue = Cookies.get('token');
+    try {
+      const response = await axios.patch(
+        `http://localhost:3003/lessons/1/posts/${postId}`,
+        {
+          token: cookieValue,
+          post: updatedData,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  };
 
   return (
     <div>
@@ -243,6 +272,7 @@ const ForumApp = () => {
               post={post}
               isActive={selectedPost && selectedPost.id === post.id}
               onClick={handlePostClick}
+              updatePost={updatePost}
             />
             
             

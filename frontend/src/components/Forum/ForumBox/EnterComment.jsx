@@ -10,6 +10,7 @@ export const EnterComment = ({ image, name }) => {
   const handleButtonClick = () => {
     CreateComment(valueContent);
   };
+  
 
   
   const CreateComment = async (con) => {
