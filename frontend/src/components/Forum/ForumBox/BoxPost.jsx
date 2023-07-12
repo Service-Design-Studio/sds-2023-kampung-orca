@@ -1,35 +1,34 @@
-import React from "react";
-import Chat from "../../Chatbox/Chat";
-import { Link } from "react-router-dom";
-import { DiscussionBox } from "./DiscussionBox";
-import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
+import React, { useState } from "react";
 import {
   useDisclosure,
-  ScaleFade,
-  Slide,
-  Container,
-  Flex,
-  Icon,
-  Box,
-  CloseButton,
-  Text,
   Card,
   Stack,
   Heading,
+  Text,
   Avatar,
+  Button,
+  Icon,
 } from "@chakra-ui/react";
+import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
+import { DiscussionBox } from "./DiscussionBox";
 
 function BoxPost({ id, isActive, onClick }) {
   const { isOpen, onToggle } = useDisclosure();
+  const [activePostId, setActivePostId] = useState(null);
 
   const handleClick = () => {
-    onClick(id);
+    setActivePostId(id);
+    onToggle();
+  };
+
+  const handleBack = () => {
+    setActivePostId(null);
     onToggle();
   };
 
   return (
     <>
-      {!isActive && (
+      {!isActive && activePostId !== id && (
         <Card
           onClick={handleClick}
           mb="10px"
@@ -49,8 +48,7 @@ function BoxPost({ id, isActive, onClick }) {
             <Stack direction="column">
               <Stack direction="row" align="center">
                 <Heading size="sm" textTransform="uppercase">
-                  {" "}
-                  Sample Post{" "}
+                  Sample Post
                 </Heading>
                 <Text fontSize="sm" fontStyle="italic">
                   by{" "}
@@ -60,7 +58,6 @@ function BoxPost({ id, isActive, onClick }) {
                   , 12h ago.
                 </Text>
               </Stack>
-
               <Text noOfLines={2} pt="1" fontSize="sm">
                 Just trying out different formats for the forum, but mostly just
                 messing around with the code design. This one could be good for
@@ -72,7 +69,9 @@ function BoxPost({ id, isActive, onClick }) {
         </Card>
       )}
 
-      {isActive && <DiscussionBox onBack={onToggle} />}
+      {(isActive || activePostId === id) && (
+        <DiscussionBox onBack={handleBack} />
+      )}
     </>
   );
 }

@@ -26,6 +26,10 @@ export const DiscussionBox = ({ onBack }) => {
   const { postId } = useParams();
   const [textContents, setTextContents] = useState("");
 
+  const handleBack = () => {
+    onBack();
+  };
+
   useEffect(() => {
     fetch("/static/media/LoremIpsum.8cb1b43778b8db26179a.txt")
       .then((response) => response.text())
@@ -63,7 +67,7 @@ export const DiscussionBox = ({ onBack }) => {
             variant="ghost"
             leftIcon={<Icon as={GoChevronLeft} />}
             size="sm"
-            onClick={onBack}
+            onClick={handleBack}
           >
             back
           </Button>
