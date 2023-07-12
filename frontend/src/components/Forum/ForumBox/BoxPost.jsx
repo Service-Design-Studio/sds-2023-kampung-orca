@@ -134,6 +134,31 @@ const ForumApp = () => {
     }
   };
 
+  const DeleteComment = async (postId, commentId) => {
+    const cookieValue = Cookies.get('token');
+    try {
+      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${postId}/comments/${commentId}`, {
+        params: {
+          token: cookieValue,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  };
+
+  const handleCommentDelete = async (postId, commentId) => {
+    try {
+      await DeleteComment(postId, commentId);
+      // After successful deletion, fetch the comments again
+      await fetchComments(postId);
+    } catch (error) {
+      console.error(`Error deleting comment ${commentId}:`, error);
+    }
+  };
+
+
   return (
     <div>
       {selectedPost ? (
@@ -179,6 +204,16 @@ const ForumApp = () => {
                   <Text color="#555">
                     Commented by: {comment.user && comment.user.name}
                   </Text>
+                  <Button
+                    onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
+                    colorScheme="blue"
+                    bg="#ed2e38"
+                    _hover={{ bg: '#f66873' }}
+                    size="sm"
+                    mt={2}
+                  >
+                    Delete Comment -_-
+                  </Button>
                 </Box>
               ))}
               
