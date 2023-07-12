@@ -52,7 +52,7 @@ const LoginPage = () => {
       });
       console.log(tokens);
       Cookies.set("token", tokens.data["token"]);
-      navigate("/curriculum/topics/view");
+      navigate("/curriculum/topic");
     } catch (error) {
       console.log(error.response.status);
     }

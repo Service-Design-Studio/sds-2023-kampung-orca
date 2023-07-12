@@ -1,6 +1,6 @@
 const pageRouteMap = {
   "lessons pathway": "",
-  "lesson view": "lesson-view",
+  "lesson view": "curriculum/topics/view",
   "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",

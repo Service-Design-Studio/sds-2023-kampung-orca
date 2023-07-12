@@ -4,6 +4,4 @@ class Lesson < ActiveRecord::Base
   has_many :pages
   has_many :exercies
   self.primary_key = :lesson_id
-
-
 end

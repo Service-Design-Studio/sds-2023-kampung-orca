@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
   get 'lessons', to: 'forum#forward'
   post 'lessons', to: 'forum#forward'
   patch 'lessons', to: 'forum#forward'
@@ -17,5 +13,6 @@ Rails.application.routes.draw do
   get '/posts/*path', to: 'forum#forward'
   post '/posts/test_user', to: 'forum#testing'
   post '/users/signup', to: 'user#authorization_code_exchange'
+  get '/curriculum/*path', to: 'curriculum#forward_request'
   post '/curriculum/*path', to: 'curriculum#forward_request'
 end
