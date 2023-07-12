@@ -24,11 +24,13 @@ class Api::V1::UserController < ApplicationController
     next_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index + 1)
     pre_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index - 1)
     user = User.find(params[:user_id])
+    
     if next_lesson != nil
       unless user.lessons_access.include?(next_lesson.lesson_id)
         user.lessons_access << next_lesson.lesson_id if next_lesson
       end
     end
+    
     
     this_exercise = Exercise.find_by(params[current_lesson.lesson_id]) if current_lesson
     unless user.exercises_access.include?(this_exercise.exercise_id)

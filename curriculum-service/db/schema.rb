@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
   create_table "exercises", id: false, force: :cascade do |t|
     t.integer "exercise_id", null: false
     t.integer "topic_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
     t.integer "topic_id"
     t.string "title"
     t.integer "order_index"
+    t.string "message"
     t.index ["lesson_id"], name: "index_lessons_on_lesson_id", unique: true
   end
 
@@ -34,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_051231) do
     t.integer "order_index"
     t.string "video"
     t.string "words"
+    t.json "sections"
     t.index ["page_id"], name: "index_pages_on_page_id", unique: true
   end
 

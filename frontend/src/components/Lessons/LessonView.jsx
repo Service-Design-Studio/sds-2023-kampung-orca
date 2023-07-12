@@ -16,6 +16,11 @@ export const LessonView = () => {
   const [pages] = useGateway(window.location.pathname);
   const containerRef = useRef(null);
 
+  let progress = 50;
+  if (pages && pages.length > 1) {
+    progress = Math.floor((currentPage / pages.length) * 100) + 1;
+  }
+
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = 0;
@@ -100,36 +105,15 @@ export const LessonView = () => {
               },
             }}
           >
-            {currentPage >= 0 && (
-              <>
-                <LessonSection
-                  title="Lesson"
-                  content={[pages[currentPage].words]}
-                />
-
-                <LessonSection
-                  title="Introduction"
-                  content={[
-                    "Christianity and Hinduism are two of the world's major religions. While both religions share some similarities, there are also many differences between them. This article will discuss the main differences between Christianity and Hinduism.",
-                  ]}
-                />
-
-                <LessonSection
-                  title="Beliefs"
-                  content={[
-                    "One of the main differences between Christianity and Hinduism is the belief in one God. Christians believe in the Holy Trinity, which is one God in three persons: the Father, the Son, and the Holy Spirit. In contrast, Hinduism believes in multiple gods and goddesses. Hinduism believes that there are many paths to reach God, whereas Christianity believes that Jesus Christ is the only way to reach God.",
-                  ]}
-                />
-
-                <LessonSection
-                  title="Lorem Ipsum"
-                  content={[
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam magna nec dolor consequat euismod. Curabitur fermentum, elit ut tempus hendrerit, ex magna varius leo, ut pulvinar mi ligula vel diam. Sed nisl velit, sagittis sed leo et, placerat lobortis risus. Suspendisse eleifend maximus rutrum. Pellentesque euismod nibh feugiat libero aliquam, at rhoncus metus scelerisque. Ut sodales, arcu ut molestie pulvinar, lacus erat accumsan nunc, non ullamcorper ligula ipsum in ex. Praesent luctus non dui id tincidunt. Nunc lobortis tempus nulla porttitor vestibulum. Nulla vitae aliquet sem. Nulla augue urna, iaculis eu arcu ut, lacinia pharetra mauris.",
-                    "Fusce molestie massa ac lacus volutpat mattis. Fusce et consectetur ante. Curabitur dolor tortor, commodo non odio vitae, fermentum finibus risus. Duis sed nulla a erat venenatis scelerisque at id neque. Curabitur fringilla risus magna, ut tempor risus iaculis quis. Suspendisse nibh augue, gravida eu tortor ut, euismod ullamcorper nibh. Curabitur lectus sem, fringilla eget interdum porttitor, pharetra sed quam. Vestibulum porta eu tellus quis sodales.",
-                  ]}
-                />
-              </>
-            )}
+            <Text>Progress: {progress}%</Text>
+            {/* Render the LessonSection component for each section */}
+            {pages[currentPage]?.sections?.map((section, index) => (
+              <LessonSection
+                key={index}
+                title={section.title}
+                content={section.content}
+              />
+            ))}
           </Stack>
 
           <Stack
@@ -198,25 +182,27 @@ export const LessonView = () => {
         <Stack //right stack with video and 2 buttons
           direction="column"
         >
-          <Stack //video stack
-            borderRadius="0px 0px 0px 0px"
-            justify="flex-start"
-            align="center"
-            marginTop="30px"
-            overflow="hidden"
-            background="#E0C825"
-            shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-            marginRight="20px"
-            width="650px"
-            height="450px"
-          >
-            <iframe
-              title="kampung"
-              src={pages[currentPage].video}
-              width="100%"
-              height="100%"
-            />
-          </Stack>
+          {pages[currentPage]?.video && (
+            <Stack //video stack
+              borderRadius="0px 0px 0px 0px"
+              justify="flex-start"
+              align="center"
+              marginTop="30px"
+              overflow="hidden"
+              background="#E0C825"
+              shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+              marginRight="20px"
+              width="650px"
+              height="450px"
+            >
+              <iframe
+                title="kampung"
+                src={pages[currentPage].video}
+                width="100%"
+                height="100%"
+              />
+            </Stack>
+          )}
 
           <Stack //buttons stack
             position="fixed"

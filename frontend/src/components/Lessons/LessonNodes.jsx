@@ -10,6 +10,7 @@ import {
 import { Progress } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useAxios from "axios-hooks";
+import LessonView from "./LessonView";
 import {
   Popover,
   PopoverTrigger,
@@ -22,48 +23,7 @@ import {
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
 
-const nodesData = [
-  //test data for the dynamic nodes. will be taken out once backend is successfully linked
-  {
-    icon: BsCheckCircle,
-    score: "7/10",
-    progress: "100",
-    title: "Introduction to Interfaith",
-    message:
-      "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.",
-  },
-  {
-    icon: BsEmojiSmile,
-    score: "10/10",
-    progress: "100",
-    title: "Interfaith Ethics and Values",
-    message:
-      "Delve into the ethical principles and moral values shared across different religious traditions. Learn how these teachings can guide individuals and communities towards compassionate action, social justice, and interfaith harmony.",
-  },
-  {
-    icon: BsStopCircle,
-    progress: "64",
-    title: "Interfaith Dialogue Techniques",
-    message:
-      "Learn effective communication strategies and dialogue techniques for engaging in meaningful interfaith conversations. Develop skills to foster mutual understanding, empathy, and constructive discussions among people of different faiths.",
-  },
-  {
-    icon: BsCircle,
-    progress: "0",
-    title: "Interfaith Festivals and Celebrations",
-    message:
-      "Discover the vibrant tapestry of interfaith festivals and celebrations from around the world. Explore the cultural expressions, rituals, and symbolism that promote interfaith unity, inclusivity, and shared joy.",
-  },
-  {
-    icon: BsCircle,
-    progress: "0",
-    title: "Interfaith Peacebuilding and Reconciliation",
-    message:
-      "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.",
-  },
-];
-
-const DynamicNodes = () => {
+const DynamicNodes = ({ lessonProgress }) => {
   const params = useParams();
   const [data] = useGateway(window.location.pathname);
   if (!data || !data.lessons) return;
@@ -77,10 +37,10 @@ const DynamicNodes = () => {
         <Node
           //icon={node.icon}
           //score={node.score}
-          //progress={node.progress}
+          progress="70"
           //status={node.status}
           title={node.title}
-          message={node.lesson_id}
+          message={node.message}
         />
       </Link>
     </React.Fragment>
@@ -177,7 +137,7 @@ const Node = ({
   );
 };
 
-export const LessonNodes = () => {
+export const LessonNodes = ({ lessonProgress }) => {
   return (
     <Stack
       justify="flex-start"
@@ -224,6 +184,7 @@ export const LessonNodes = () => {
           <Stack
             height="500px"
             width="fit-content"
+            minWidth={{ base: "500px", md: "800px", lg: "1200px" }}
             justify="flex-start"
             align="center"
             overflowX="visible"
@@ -238,7 +199,7 @@ export const LessonNodes = () => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             }}
           >
-            <DynamicNodes nodes={nodesData} />
+            <DynamicNodes lessonProgress={lessonProgress} />
           </Stack>
         </Stack>
       </Stack>
