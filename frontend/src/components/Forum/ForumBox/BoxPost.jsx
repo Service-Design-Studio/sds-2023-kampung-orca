@@ -9,7 +9,9 @@ import {
   Avatar,
   Button,
 } from "@chakra-ui/react";
+import { EnterComment } from "./EnterComment";
 //import CommentForm from "./CommentForm";
+import Cookies from 'js-cookie';
 
 function BoxPost({ post, isActive, onClick }) {
   const { isOpen, onToggle } = useDisclosure();
@@ -117,29 +119,19 @@ const ForumApp = () => {
     setSelectedPost(null);
   };
 
-  const createComment = async (postId, commentContent) => {
+  const DeletePost = async (id) => {
+    const cookieValue = Cookies.get('token');
+    const post_id = id;
     try {
-      const response = await axios.post(
-        `http://localhost:3003/lessons/1/posts/${postId}/comments`,
-        {
-          content: commentContent,
-        }
-      );
-      console.log("Comment created:", response.data);
-      const updatedComments = { ...comments };
-      updatedComments[postId] = [
-        ...(updatedComments[postId] || []),
-        response.data,
-      ];
-      setComments(updatedComments);
+      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${post_id}`, {
+        params: {
+          token: cookieValue,
+        },
+      });
+      console.log(response);
     } catch (error) {
-      console.error("Error creating comment:", error);
+      console.log(error.response.status);
     }
-  };
-
-  const createPost = (newPost) => {
-    console.log("New post:", newPost);
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
   };
 
   return (
@@ -168,6 +160,11 @@ const ForumApp = () => {
               <Heading as="h3" mt={4} mb={2} color="#555">
                 Comments
               </Heading>
+
+              <Stack mb="20px">
+                <EnterComment />
+              </Stack>
+
               {comments[selectedPost.id].map((comment) => (
                 <Box
                   key={comment.id}
@@ -187,20 +184,36 @@ const ForumApp = () => {
               
             </div>
           )}
+          
+          
 
-          <Button onClick={goBack} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
-            Go Back
+
+          <Stack mt="20px">
+            <Button onClick={goBack} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+              Go Back
+            </Button>
+          </Stack>
+
+          <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+              Delete Post :O
           </Button>
+          
         </div>
       ) : (
         <div>
           {posts.map((post) => (
+            <>
             <BoxPost
               key={post.id}
               post={post}
               isActive={selectedPost && selectedPost.id === post.id}
               onClick={handlePostClick}
             />
+            
+            
+
+            </>
+
           ))}
         </div>
       )}
