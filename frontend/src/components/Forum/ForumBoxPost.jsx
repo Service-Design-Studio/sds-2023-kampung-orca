@@ -34,7 +34,13 @@ function ForumBoxPost() {
         isActive={activePostId === 1}
         onClick={() => handlePostClick(1)}
       />
-      <BoxPost
+      
+    </>
+  );
+}
+
+export default ForumBoxPost;
+/*<BoxPost
         id={2}
         isActive={activePostId === 2}
         onClick={() => handlePostClick(2)}
@@ -49,8 +55,4 @@ function ForumBoxPost() {
         isActive={activePostId === 4}
         onClick={() => handlePostClick(4)}
       />
-    </>
-  );
-}
-
-export default ForumBoxPost;
+      */
