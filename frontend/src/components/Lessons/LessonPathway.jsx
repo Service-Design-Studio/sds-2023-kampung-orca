@@ -1,33 +1,11 @@
-import {React, useEffect, useParams, useState} from "react";
-import { Stack, Button, Icon, Text} from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { React } from "react";
+import { Stack, Button, Icon, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { BiDonateHeart, BiGroup, BiSpa } from "react-icons/bi";
 import { GoChevronLeft } from "react-icons/go";
-function getCurrentURL () {
-  return window.location.href
-}
+
 export const LessonPathway = () => {
-  const params = useParams();
-  const navigate = useNavigate();
-  const [lessons, setLessons] = useState({});
-  const url = getCurrentURL();
-  
-
-  // useEffect(() => {
-    
-  //   fetch(url)
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //       throw new Error("Network response was not ok.");
-  //     })
-  //     .then((res) => setLessons(res))
-  //     .catch(() => navigate("/"));
-  // }, []);
-  
-
-  return(
+  return (
     <Stack
       justify="flex-start"
       align="flex-start"
@@ -35,7 +13,7 @@ export const LessonPathway = () => {
       height="800px"
       background="#FFFFFF"
     >
-      <Stack  //header stack with back button
+      <Stack //header stack with back button
         paddingX="91px"
         paddingTop="30px"
         paddingBottom="20px"
@@ -49,15 +27,19 @@ export const LessonPathway = () => {
         maxWidth="100%"
         background="green.200"
         borderRadius="0 0 20px 20px"
-        shadow='md'
+        shadow="md"
       >
-        <Link to ={'/'}>
-          <Button size="lg" colorScheme="green" height="48px" leftIcon={<Icon as={GoChevronLeft} />}>
+        <Link to={"/"}>
+          <Button
+            size="lg"
+            colorScheme="green"
+            height="48px"
+            leftIcon={<Icon as={GoChevronLeft} />}
+          >
             Back to main
           </Button>
         </Link>
       </Stack>
-
 
       <Stack //main body stack with buttons
         direction="row"
@@ -67,46 +49,12 @@ export const LessonPathway = () => {
         spacing="100px"
         width="1440px"
         style={{
-          backgroundImage: 'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       >
-
-        <Stack 
-          paddingX="37px"
-          paddingY="54px"
-          borderRadius="20px"
-          justify="center"
-          align="center"
-          spacing="5px"
-          overflow="hidden"
-          width="300px"
-          height="350px"
-          maxWidth="100%"
-          background="green.200"
-          shadow='lg'
-          _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
-          >
-          <Text
-            fontFamily="Arial"
-            fontWeight="bold"
-            fontSize="22px"
-            color="#000000"
-            mb="15px"
-          >
-            Introduction
-          </Text>
-          <Icon as={BiDonateHeart} boxSize={100}/>
-          <Link to={"/lesson-view/1"}>
-            <Button size="lg" variant="outline" colorScheme="black" mt="20px"
-            _hover = { { bg: '#ebedf0' } }
-            >
-              Lesson 1
-            </Button>
-          </Link>
-        </Stack>
-        
         <Stack
           paddingX="37px"
           paddingY="54px"
@@ -119,8 +67,46 @@ export const LessonPathway = () => {
           height="350px"
           maxWidth="100%"
           background="green.200"
-          shadow='lg'
-          _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
+          shadow="lg"
+          _hover={{ transform: "scale(1.05)", boxShadow: "xl" }}
+        >
+          <Text
+            fontFamily="Arial"
+            fontWeight="bold"
+            fontSize="22px"
+            color="#000000"
+            mb="15px"
+          >
+            Introduction
+          </Text>
+          <Icon as={BiDonateHeart} boxSize={100} />
+          <Link to={"/lesson-view/1"}>
+            <Button
+              size="lg"
+              variant="outline"
+              colorScheme="black"
+              mt="20px"
+              _hover={{ bg: "#ebedf0" }}
+            >
+              Lesson 1
+            </Button>
+          </Link>
+        </Stack>
+
+        <Stack
+          paddingX="37px"
+          paddingY="54px"
+          borderRadius="20px"
+          justify="center"
+          align="center"
+          spacing="5px"
+          overflow="hidden"
+          width="300px"
+          height="350px"
+          maxWidth="100%"
+          background="green.200"
+          shadow="lg"
+          _hover={{ transform: "scale(1.05)", boxShadow: "xl" }}
         >
           <Text
             fontFamily="Arial"
@@ -131,14 +117,20 @@ export const LessonPathway = () => {
           >
             Theory
           </Text>
-          <Icon as={BiGroup} boxSize={100}/>
+          <Icon as={BiGroup} boxSize={100} />
           <Link to={"/lesson-view/2"}>
-            <Button size="lg" variant="outline" colorScheme="black" mt="20px" _hover = { { bg: '#ebedf0' } }>
+            <Button
+              size="lg"
+              variant="outline"
+              colorScheme="black"
+              mt="20px"
+              _hover={{ bg: "#ebedf0" }}
+            >
               Lesson 2
             </Button>
           </Link>
         </Stack>
-        
+
         <Stack
           paddingX="37px"
           paddingY="54px"
@@ -151,8 +143,8 @@ export const LessonPathway = () => {
           height="350px"
           maxWidth="100%"
           background="green.200"
-          shadow='lg'
-          _hover = { { transform: "scale(1.05)", boxShadow:"xl" } }
+          shadow="lg"
+          _hover={{ transform: "scale(1.05)", boxShadow: "xl" }}
         >
           <Text
             fontFamily="Arial"
@@ -163,15 +155,20 @@ export const LessonPathway = () => {
           >
             Conclusion
           </Text>
-          <Icon as={BiSpa} boxSize={100}/>
+          <Icon as={BiSpa} boxSize={100} />
           <Link to={"/lesson-view/3"}>
-            <Button size="lg" variant="outline" colorScheme="black" mt="20px" _hover = { { bg: '#ebedf0' } }>
+            <Button
+              size="lg"
+              variant="outline"
+              colorScheme="black"
+              mt="20px"
+              _hover={{ bg: "#ebedf0" }}
+            >
               Lesson 3
             </Button>
           </Link>
         </Stack>
-
       </Stack>
     </Stack>
-    )
-      };
+  );
+};

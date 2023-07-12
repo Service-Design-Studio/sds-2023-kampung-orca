@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import {
   BsCircle,
@@ -8,8 +8,6 @@ import {
   BsCheckCircle,
 } from "react-icons/bs";
 import { Progress } from "@chakra-ui/react";
-import { Header } from "../Header";
-import axios from "axios";
 import Cookies from "js-cookie";
 import useAxios from "axios-hooks";
 import {
@@ -20,6 +18,9 @@ import {
   PopoverBody,
   PopoverArrow,
 } from "@chakra-ui/react";
+
+import { Header } from "../Header";
+import useGateway from "../../hooks/useGateway";
 
 const nodesData = [
   //test data for the dynamic nodes. will be taken out once backend is successfully linked
@@ -62,19 +63,24 @@ const nodesData = [
   },
 ];
 
-const DynamicNodes = ({ nodes }) => {
-  return nodes.map((node, index) => (
+const DynamicNodes = () => {
+  const params = useParams();
+  const [data] = useGateway(window.location.pathname);
+  if (!data || !data.lessons) return;
+  return data.lessons.map((node, index) => (
     <React.Fragment key={index}>
       {index !== 0 && <Line />}{" "}
       {/* Render the Line component only if index is not 0 */}
-      <Link to={`/lesson-view/${index + 1}`}>
+      <Link
+        to={`/curriculum/topic/${params["topic_id"]}/lesson/${node.lesson_id}/view`}
+      >
         <Node
-          icon={node.icon}
-          score={node.score}
-          progress={node.progress}
-          status={node.status}
+          //icon={node.icon}
+          //score={node.score}
+          //progress={node.progress}
+          //status={node.status}
           title={node.title}
-          message={node.message}
+          message={node.lesson_id}
         />
       </Link>
     </React.Fragment>
@@ -172,14 +178,6 @@ const Node = ({
 };
 
 export const LessonNodes = () => {
-  const cookieValue = Cookies.get("token");
-  const url = process.env.REACT_APP_GATEWAY_URL + window.location.pathname;
-  const [{ data, loading }, refetch, cancelRequest] = useAxios({
-    url: url,
-    params: { token: cookieValue },
-    method: "POST",
-  });
-
   return (
     <Stack
       justify="flex-start"
@@ -188,7 +186,7 @@ export const LessonNodes = () => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Main" />
+      <Header buttontext="Back to Main" path={"/curriculum/topics/view"} />
 
       <Stack
         width={{ base: "500px", md: "800px", lg: "1200px" }}

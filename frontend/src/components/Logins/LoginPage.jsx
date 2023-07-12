@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack, Text, Button, Image } from "@chakra-ui/react";
 import axios from "./api.jsx";
-import { useEffect } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Cookies from "js-cookie";
@@ -33,7 +32,6 @@ const GoogleLoginButton = ({ onSuccess }) => {
       mt="4"
       _hover={{ bg: "blue.600" }}
       _active={{ bg: "blue.700" }}
-      id="google-login"
     >
       <img
         src="/path/to/google-icon.png" // Replace with the actual path to the Google icon image
@@ -54,7 +52,7 @@ const LoginPage = () => {
       });
       console.log(tokens);
       Cookies.set("token", tokens.data["token"]);
-      navigate("/home");
+      navigate("/curriculum/topics/view");
     } catch (error) {
       console.log(error.response.status);
     }
@@ -106,7 +104,7 @@ const LoginPage = () => {
         >
           Login to Interfaith
         </Text>
-        <GoogleOAuthProvider clientId="1034902269144-f5nebvgtvgl9me3lkubglrfkfo5fhpp7.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
           <GoogleLoginButton onSuccess={onSuccess} />
         </GoogleOAuthProvider>
         <Button

@@ -36,6 +36,7 @@ class Api::V1::PageController < ApplicationController
 
 
   def get_pages_by_lesson
+    p Lesson.where(lesson_id: params[:lesson_id]).exists?
     if Lesson.where(lesson_id: params[:lesson_id]).exists?
       user = User.find(params[:user_id])
       if user.lessons_access.include?(params[:lesson_id].to_i)
@@ -45,7 +46,7 @@ class Api::V1::PageController < ApplicationController
         render json: {message: "User unauthorized to see lesson"}
     end
   else
-    render json: []
+    render json: {message: "Lesson does not exist"}
   end
   end
   private
