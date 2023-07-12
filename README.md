@@ -54,6 +54,23 @@ Then in the service's corresponding `cloudbuild.yaml`, edit `substitutions:_SECR
 
 Always make sure to `git pull` before you `git commit` your changes.
 
+### Running the app
+
+#### Mac (Silicon)
+In order to run all the microservices, please make sure that the stock terminal app is turned off before you do the following while `kampung` is your current working directory
+
+```shell
+sh start_dev.sh
+```
+  This will launch the web app running on local host and will also turn on cypress for testing
+
+  ##### Troubleshooting on Mac (Silicon)
+
+```shell
+sh restart_dev.sh
+```
+  Use this to troubleshoot your local installation as it re-downloads all the dependencies in each microservice.
+
 ### Docker Compose
 
 To run each service with its own containers, run this command in the root directory:
