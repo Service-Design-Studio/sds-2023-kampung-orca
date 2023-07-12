@@ -105,7 +105,6 @@ export const LessonView = () => {
               },
             }}
           >
-            <Text>Progress: {progress}%</Text>
             {/* Render the LessonSection component for each section */}
             {pages[currentPage]?.sections?.map((section, index) => (
               <LessonSection
