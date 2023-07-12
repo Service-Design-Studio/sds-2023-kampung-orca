@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "axios-hooks": "^4.0.0",
     "framer-motion": "^10.12.17",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
@@ -26,12 +27,6 @@
     "test": "craco test",
     "eject": "craco eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -45,7 +40,14 @@
     ]
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@craco/craco": "^7.1.0",
-    "craco-esbuild": "^0.5.2"
+    "craco-esbuild": "^0.5.2",
+    "cypress": "^12.17.0",
+    "esbuild": "^0.18.11",
+    "eslint": "^8.44.0",
+    "eslint-plugin-cypress": "^2.13.3",
+    "eslint-plugin-react": "^7.32.2"
   }
 }

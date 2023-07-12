@@ -6,12 +6,19 @@ import { motion } from "framer-motion";
 
 const HomePage = () => {
   const navigate = useNavigate();
-
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
     navigate("/cover");
   };
+
+  const navigateToMain = () => {
+    navigate('curriculum/topic/1/view', { replace: true });
+  }
+
+  const navigateToLesson = () => {
+    navigate('curriculum/topic/1/lesson/1/view', { replace: true });
+  }
 
   return (
     <Stack
@@ -69,7 +76,6 @@ const HomePage = () => {
         </motion.div>
       </Stack> 
       /* animation */
-
 
       <Stack direction="row" spacing="50px" paddingY="50px"> 
       /* first layer stack */

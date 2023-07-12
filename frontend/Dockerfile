@@ -6,6 +6,8 @@ RUN npm install
 RUN mkdir /app-ui
 RUN mv ./node_modules ./app-ui
 WORKDIR /app-ui
+ARG ENV_FILE
+COPY $ENV_FILE .env
 COPY . .
 # in this step the static React files are created. For more info see package.json
 RUN npm run build

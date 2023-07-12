@@ -13,8 +13,7 @@ class Token < ActiveRecord::Base
 
   def refresh!
     data = JSON.parse(request_token_from_google.body)
-    p data
-    update_attributes(
+    update(
       token: data['access_token'],
       expires_at: Time.now + data['expires_in'].to_i.seconds
     )

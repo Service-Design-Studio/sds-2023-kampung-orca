@@ -40,6 +40,6 @@ class Api::V1::ExerciseController < ApplicationController
   end
 
   def set_page
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find(params[:exercise_id])
   end
 end
