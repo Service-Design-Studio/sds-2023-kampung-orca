@@ -32,6 +32,15 @@ When("I click on the embedded lesson video", () => {
     }).click();
 });
 
+Then("I should see the video play", () => {
+  cy.get(`iframe[title="kampung"]`)
+    .should("be.visible")
+    .then(($iframe) => {
+      const $video = $iframe.contents().find("video");
+      cy.wrap($video).should("have.class", "video-playing-mode");
+    });
+});
+
 
 
 Then("I should see the video play", () => {
