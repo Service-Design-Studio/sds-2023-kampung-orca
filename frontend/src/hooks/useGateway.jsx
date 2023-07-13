@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import useAxios from "axios-hooks";
 import { useNavigate } from "react-router";
 import useCookie from "./useCookie";
@@ -11,18 +11,15 @@ const useGateway = (endpoint) => {
   const [{ data, loading, error }] = useAxios({
     url: url,
     params: { token: cookie },
-    method: "POST",
+    method: "GET",
   });
-  useEffect(() => {
-    if (error) {
-      return navigate("/error");
-    }
+  useMemo(() => {
     if (!loading) {
       if (!cookie) return navigate("/loginerror", { replace: true });
-      if (data) setCache(data.data);
+      if (data && data.data) setCache(data.data);
     }
-  }, [cookie, data, error, loading, navigate]);
-  return [cache, setCache];
+  }, [data, cookie, loading, navigate]);
+  return [cache, setCache, error];
 };
 
 export default useGateway;

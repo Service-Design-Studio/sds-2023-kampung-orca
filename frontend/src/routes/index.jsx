@@ -39,26 +39,21 @@ const AuthWrapper = () => {
 export default (
   <Router>
     <Routes>
+      {/* TODO: Tidy up forum routes */}
       <Route element={<AuthWrapper />}>
+        <Route path="/curriculum/topic/:topic_id" element={<LessonNodes />} />
+        <Route path="/curriculum/lesson/:lesson_id" element={<LessonView />} />
         <Route
-          path="/curriculum/topic/:topic_id/view"
-          element={<LessonNodes />}
-        />
-        <Route
-          path="/curriculum/topic/:topic_id/lesson/:lesson_id/view"
-          element={<LessonView />}
-        />
-        <Route
-          path="/curriculum/topic/:topic_id/lesson/:lesson_id/lesson_completed"
+          path="/curriculum/lesson/:lesson_id/lesson_completed"
           element={<LessonCompletion />}
         />
-        <Route path="/curriculum/topics/view" element={<TopicPage />} />
+        <Route path="/curriculum/topic" element={<TopicPage />} />
         <Route path="/forum" element={<ForumMain />} />
         <Route path="/new" element={<ForumPost />} />
         <Route path="/posts/1" element={<ForumView />} />
         <Route path="/posts/2" element={<DiscussionView />} />
         <Route
-          path="/curriculum/topic/:topic_id/lesson/:lesson_id/error"
+          path="/curriculum/lesson/:lesson_id/error"
           element={<CurriculumErrorPage />}
         />
       </Route>
@@ -66,10 +61,11 @@ export default (
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/loginerror" element={<LoginErrorPage />} />
 
-      <Route path="/cover" element={<CoverLogin />} />
+      <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/learnmore" element={<LearnMore />} />
+      <Route path="*" element={<Navigate to="/error" />} />
     </Routes>
   </Router>
 );

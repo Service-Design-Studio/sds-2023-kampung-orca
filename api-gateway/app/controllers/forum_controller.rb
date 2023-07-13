@@ -3,6 +3,10 @@ class ForumController < ApplicationController
   before_action :authenticate_user
 
   #access user id with this! @current_user[:user_id]
+
+  def testing
+    render json: @current_user
+  end
   
   def forward
     response = forward_request(ENV["FORUM_URL"], request, @current_user[:user_id])

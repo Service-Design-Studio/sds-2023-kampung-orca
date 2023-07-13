@@ -23,10 +23,9 @@ Lesson.create!(lesson_id: "00004", topic_id: "00001", order_index: 3, title: "In
 Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "Interfaith Peacebuilding and Reconciliation", message: "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.")
 
 qns = ["sample_qn 1","sample_qn 2"]
-Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
+Exercise.create!(exercise_id: "1", topic_id: "1", lesson_id: "1", title: "Sample Exercise 1", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")
-
 
 Page.create!(
   page_id: "00001",

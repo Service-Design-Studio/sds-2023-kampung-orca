@@ -51,7 +51,7 @@ class LessonsController < ApplicationController
   
     #only allow title parameter
     def lesson_params
-      params.require(:lesson).permit(:title)
+      params.require(:lesson).permit(:title, :lesson_id)
     end
   end
   

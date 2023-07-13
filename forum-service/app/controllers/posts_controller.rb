@@ -7,12 +7,13 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = @lesson.posts.all
-    render json: @posts.to_json(include: { user: { only: [:id, :name] } })
+    p @lesson
+    render json: @posts.to_json(include: { user: { only: [:id, :username] } })
   end
 
   # GET /posts/:id
   def show
-    render json: @post.to_json(include: { user: { only: [:id, :name] } })
+    render json: @post.to_json(include: { user: { only: [:id, :username] } })
   end
 
   # POST /posts
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
     @post.user = User.find_by(user_id: params[:user_id])
     
     if @post.save
-      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created
+      render json: @post.to_json(include: { user: { only: [:id, :username] } }), status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end

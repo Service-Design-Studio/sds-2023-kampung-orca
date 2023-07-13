@@ -1,13 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Stack, Text, Button, Box, Flex, HStack, Image, IconButton } from "@chakra-ui/react";
+import {
+  Stack,
+  Text,
+  Button,
+  Box,
+  Flex,
+  HStack,
+  Image,
+  IconButton,
+} from "@chakra-ui/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const LearnMore = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/cover"); // Route back to "/home" when the button is clicked
+    navigate("/"); // Route back to "/home" when the button is clicked
   };
 
   return (
@@ -163,4 +172,3 @@ const LearnMore = () => {
 };
 
 export default LearnMore;
-

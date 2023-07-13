@@ -17,7 +17,8 @@ export const CurriculumErrorPage = () => {
     >
       <Header
         buttontext="Back to Lessons"
-        path={`/curriculum/topic/${params.topic_id}/view`}
+        // TODO: Fix redirect
+        path={`/curriculum/topic/${params.topic_id}`}
       />
 
       <Stack

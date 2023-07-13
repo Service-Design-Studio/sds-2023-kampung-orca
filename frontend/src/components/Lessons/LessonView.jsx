@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 
@@ -10,10 +10,11 @@ import ForumButton from "../Forum/ForumBox/ForumButton";
 
 export const LessonView = () => {
   const params = useParams();
-  const back_to_lesson_pathway = `/curriculum/topic/${params["topic_id"]}/view`;
-  const lesson_complete = `/curriculum/topic/${params["topic_id"]}/lesson/${params["lesson_id"]}/lesson_completed`;
+  // TODO: Fix pathway redirects
+  const back_to_lesson_pathway = `/curriculum/topic/${params["topic_id"]}`;
+  const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
   const [currentPage, setCurrentPage] = useState(0);
-  const [pages] = useGateway(window.location.pathname);
+  const [pages] = useGateway(window.location.pathname + "/page");
   const containerRef = useRef(null);
 
   let progress = 50;
@@ -36,6 +37,8 @@ export const LessonView = () => {
   };
 
   if (!pages) return;
+  console.log(pages);
+  if (pages.message) return <Navigate to="/error" />;
 
   return (
     <Stack
@@ -47,6 +50,7 @@ export const LessonView = () => {
     >
       <Header
         buttontext="Back to Lessons"
+        // PANIC TODO: Fix redirect
         path={back_to_lesson_pathway}
         showForum="true"
       />
