@@ -4,8 +4,6 @@ class ForumController < ApplicationController
 
   #access user id with this! @current_user[:user_id]
 
-  # TODO: Needs a rewrite
-
   def testing
     render json: @current_user
   end
@@ -23,6 +21,7 @@ class ForumController < ApplicationController
 
   private
 
+  
   def forward_request(url, request, user_id)
     full_path = request.original_fullpath + "?user_id=#{user_id}"
   
@@ -39,10 +38,7 @@ class ForumController < ApplicationController
     response
   end
   
-  
-  
-  
-  
+
   # def forward_request(url, request, user_id)
   #   full_path = request.fullpath + "?user_id=#{user_id}"
   #   req = Net::HTTP.const_get(request.method.capitalize).new(full_path)
