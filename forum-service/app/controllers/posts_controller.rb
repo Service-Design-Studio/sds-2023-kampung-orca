@@ -61,15 +61,15 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :user_id.to_s)
   end
 
-  def check_author
-    unless @post.user.user_id == params[:user_id]
-      render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
-    end
-  end
-
   def validate_fields
     if post_params[:title].blank? || post_params[:content].blank?
       render json: { error: 'Title and content fields cannot be empty' }, status: :unprocessable_entity
+    end
+  end
+
+  def check_author
+    unless @post.user.user_id == params[:user_id]
+      render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
     end
   end
 
