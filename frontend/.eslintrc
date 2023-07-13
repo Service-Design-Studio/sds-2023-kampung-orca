@@ -1,0 +1,20 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:cypress/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "no-unused-vars": "off"
+  }
+}

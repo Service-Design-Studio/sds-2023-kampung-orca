@@ -6,40 +6,41 @@ import Messages from "./Messages";
 
 const Chat = () => {
   const [messages, setMessages] = useState([
-
-		
-	{ from: "me", text: "i wanna test this cool chatbox out!!!" },
-	{ from: "computer", text: "you can send a message here and i'll reply you with the same message :D" },
+    { from: "me", text: "i wanna test this cool chatbox out!!!" },
+    {
+      from: "computer",
+      text: "you can send a message here and i'll reply you with the same message :D",
+    },
   ]);
   const [inputMessage, setInputMessage] = useState("");
 
   const handleSendMessage = () => {
-	if (!inputMessage.trim().length) {
-  	return;
-	}
-	const data = inputMessage;
+    if (!inputMessage.trim().length) {
+      return;
+    }
+    const data = inputMessage;
 
-	setMessages((old) => [...old, { from: "me", text: data }]);
-	setInputMessage("");
+    setMessages((old) => [...old, { from: "me", text: data }]);
+    setInputMessage("");
 
-	setTimeout(() => {
-  	setMessages((old) => [...old, { from: "computer", text: data }]);
-	}, 1000);
+    setTimeout(() => {
+      setMessages((old) => [...old, { from: "computer", text: data }]);
+    }, 1000);
   };
 
   return (
-	<Flex w="100%" h="80vh" justify="center" align="center">
-  	<Flex w="100%" h="80vh" flexDir="column">
-			<Divider />
-    	<Messages messages={messages} />
-    	<Divider />
-    	<Footer
-      	inputMessage={inputMessage}
-      	setInputMessage={setInputMessage}
-      	handleSendMessage={handleSendMessage}
-    	/>
-  	</Flex>
-	</Flex>
+    <Flex w="100%" h="80vh" justify="center" align="center">
+      <Flex w="100%" h="80vh" flexDir="column">
+        <Divider />
+        <Messages messages={messages} />
+        <Divider />
+        <Footer
+          inputMessage={inputMessage}
+          setInputMessage={setInputMessage}
+          handleSendMessage={handleSendMessage}
+        />
+      </Flex>
+    </Flex>
   );
 };
 

@@ -3,7 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import Routes from "./routes";
 
-export default function App(props) {
+export default function App() {
   return (
     <ChakraProvider>
       <>{Routes}</>

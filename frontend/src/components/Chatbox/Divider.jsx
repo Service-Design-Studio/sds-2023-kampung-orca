@@ -3,7 +3,13 @@ import { Divider as ChakraDivider } from "@chakra-ui/react";
 
 const Divider = () => {
   return (
-    <ChakraDivider w="100%" borderBottomWidth="3px" borderColor="black" mt="5" mb="3" />
+    <ChakraDivider
+      w="100%"
+      borderBottomWidth="3px"
+      borderColor="black"
+      mt="5"
+      mb="3"
+    />
   );
 };
 
