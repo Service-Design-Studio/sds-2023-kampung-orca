@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :set_lesson, only: [:show, :update, :create, :destroy, :index]
+  before_action :check_author, only: [:update, :destroy]
 
   # GET /posts
   def index
@@ -57,5 +58,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :user_id.to_s)
+  end
+
+  def check_author
+    unless @post.user.user_id == params[:user_id]
+      render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+    end
   end
 end
