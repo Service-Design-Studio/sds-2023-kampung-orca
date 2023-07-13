@@ -126,7 +126,7 @@ const ForumApp = () => {
     const cookieValue = Cookies.get("token");
     const post_id = id;
     try {
-      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${postId}`, {
+      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${post_id}`, {
         params: {
           token: cookieValue,
         },

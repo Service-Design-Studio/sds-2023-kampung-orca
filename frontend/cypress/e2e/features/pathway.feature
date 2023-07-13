@@ -25,7 +25,7 @@ Scenario: Lesson Infobox appears
   Given that I am at the topic list page
   When I mouse hover on a lesson node on the lessons pathway
   Then I will see an info box for the lesson
-  And I will see the progress bar in the info box
+  Then I will see the progress bar in the info box
 
 
 Scenario: Icons on the lessons pathway

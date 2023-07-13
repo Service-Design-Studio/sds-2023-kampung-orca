@@ -1,4 +1,4 @@
-import { Given, When, Then, Before, And } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then, Before } from "@badeball/cypress-cucumber-preprocessor";
 import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
@@ -18,7 +18,6 @@ Before(() => {
 });
 
 When("I click on a topic", () => {
-  // check for a button that has a div with the following class: css-1omwhl
   cy.get('button').contains('div.css-1omwhlw').should('exist');
 });
 
@@ -42,7 +41,7 @@ Then("I will see an info box for the lesson", () => {
   cy.get('div.chakra-popover__body css-rfb739').should('exist');
 });
 
-And("I will see the progress bar in the info box", () => {
+Then("I will see the progress bar in the info box", () => {
   cy.get('div[role="progressbar"]').should('exist');
 });
 
