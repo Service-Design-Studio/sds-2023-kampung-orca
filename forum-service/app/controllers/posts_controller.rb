@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :set_lesson, only: [:show, :update, :create, :destroy, :index]
   before_action :check_author, only: [:update, :destroy]
+  before_action :validate_fields, only: [:create]
 
   # GET /posts
   def index
@@ -65,4 +66,11 @@ class PostsController < ApplicationController
       render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
     end
   end
+
+  def validate_fields
+    if post_params[:title].blank? || post_params[:content].blank?
+      render json: { error: 'Title and content fields cannot be empty' }, status: :unprocessable_entity
+    end
+  end
+
 end
