@@ -1,4 +1,4 @@
-import { Given, When, Then, Before } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then, Before, And } from "@badeball/cypress-cucumber-preprocessor";
 import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
@@ -19,8 +19,6 @@ Before(() => {
 
 When("I click on a lesson node", () => {
   cy.get(`a[href="/lesson-view"]`).first().click({ force: true });
-  //q: explain the href
-  //a:
 });
 
 When("I click on the embedded lesson video", () => {
