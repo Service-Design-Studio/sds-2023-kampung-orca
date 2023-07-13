@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
     before_action :set_post, only: [:show, :update, :create, :destroy, :index]
+    before_action :check_author, only: [:update, :destroy]
+    before_action :validate_fields, only: [:create]
   
     # GET /comments
     def index
@@ -54,5 +56,17 @@ class CommentsController < ApplicationController
   
     def comment_params
       params.require(:comment).permit(:content, :user_id)
+    end
+
+    def validate_fields
+      if comment_params[:content].blank?
+        render json: { error: 'Content fields cannot be empty' }, status: :unprocessable_entity
+      end
+    end
+
+    def check_author
+      unless @comment.user.user_id == params[:user_id]
+        render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+      end
     end
   end
