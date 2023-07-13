@@ -1,12 +1,13 @@
 const pageRouteMap = {
   home: "cover",
   login: "login",
-  "lessons pathway": "",
-  "lesson view": "curriculum/topics/view",
+  "lessons pathway": "curriculum/topic/:topic_id",
+  "lesson view": "curriculum/topic/:topic_id/lessons/view",
   "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",
   "second content": "",
+  "topic list" : "curriculum/topics/view",
 };
 
 const errorRouteMap = {
