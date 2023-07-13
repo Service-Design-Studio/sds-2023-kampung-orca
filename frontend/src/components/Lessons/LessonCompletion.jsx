@@ -10,10 +10,11 @@ export const LessonCompletion = () => {
   const params = useParams();
   const [data] = useGateway(window.location.pathname);
   if (!data) return;
-  const back_to_topic = `/curriculum/topic/${params["topic_id"]}/view`;
+  const back_to_topic = `/curriculum/topic/${params["topic_id"]}`;
 
-  const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.pre_lesson}/view`;
-  const next_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.next_lesson}/view`;
+  const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.pre_lesson}`;
+  const next_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.next_lesson}`;
+  // PANIC TODO: Lesson completion next lessons are incomplete!`
   if (pre_lesson === null) {
     //TODO: handle no pre lesson
   }

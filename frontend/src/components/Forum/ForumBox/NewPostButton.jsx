@@ -25,33 +25,33 @@ import axios from 'axios';
 function NewPostButton() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [activePostId, setActivePostId] = useState(null);
-
-  
-
-  
+  const [valueTitle, setValueTitle] = React.useState('')
+  const handleTitleChange = (event) => setValueTitle(event.target.value)
+  const [valueContent, setValueContent] = React.useState('')
+  const handleContentChange = (event) => setValueContent(event.target.value)
 
   const handleButtonClick = () => {
     setFormOpen(true);
   };
 
   const handlePostButtonClick = () => {
-    CreatePost();
+    CreatePost(valueTitle, valueContent);
     setFormOpen(false);
   };
 
-  const CreatePost = async () => {
+  const CreatePost = async (tit, con) => {
     const cookieValue = Cookies.get('token');
-    console.log(cookieValue);
+    const title = tit; 
+    const content = con; 
+  
     try {
-      const response = await axios.post('http://localhost:3003/lessons/1/posts', {
+      const response = await axios.post('http://localhost:3001/lessons/1/posts', {
         token: cookieValue,
-        post: { title: "New UI", content: "New Me" }
+        post: { title, content }
       });
       console.log(response);
     } catch (error) {
-      
-        console.log("Error occurred:", error);
-      
+      console.log("Error occurred:", error);
     }
   };
   
@@ -117,6 +117,8 @@ function NewPostButton() {
                 variant="flushed"
                 borderColor="grey"
                 placeholder="Title"
+                value={valueTitle}
+                onChange={handleTitleChange}
               />
               <Textarea
                 resize="none"
@@ -124,6 +126,8 @@ function NewPostButton() {
                 width="460px"
                 variant="unstyled"
                 placeholder="Enter your post content here..."
+                value={valueContent}
+                onChange={handleContentChange}
               />
             </Stack>
             <Button

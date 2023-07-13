@@ -1,5 +1,5 @@
 require 'json'
-class Api::V1::ExerciseController < ApplicationController
+class ExerciseController < ApplicationController
   before_action :set_exercise, only: %i[show destroy]
   def index
     exercises = Exercise.all

@@ -26,11 +26,13 @@ function NavigationButton({ to, children, hideButton }) {
 const TopicPage = () => {
   // TODO: CHANGE THIS!
   const [topics] = useGateway(window.location.pathname);
+  console.log(topics);
+  if (!topics) return;
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
     Cookies.remove("token");
-    window.location.href = "/cover";
+    window.location.href = "/";
   };
   return (
     <Stack
@@ -70,16 +72,15 @@ const TopicPage = () => {
       </Stack>
 
       <Stack direction="row" spacing="50px" paddingY="50px">
-        {topics &&
-          topics.map((topic) => (
-            <NavigationButton
-              key={topic.topic_id}
-              to={`/curriculum/topic/${topic.topic_id}/view`}
-              hideButton={false}
-            >
-              <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
-            </NavigationButton>
-          ))}
+        {topics.map((topic) => (
+          <NavigationButton
+            key={topic.topic_id}
+            to={`/curriculum/topic/${topic.topic_id}`}
+            hideButton={false}
+          >
+            <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
+          </NavigationButton>
+        ))}
       </Stack>
     </Stack>
   );

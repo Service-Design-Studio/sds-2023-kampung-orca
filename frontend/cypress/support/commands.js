@@ -2,7 +2,7 @@ const pageRouteMap = {
   home: "cover",
   login: "login",
   "lessons pathway": "",
-  "lesson view": "lesson-view",
+  "lesson view": "curriculum/topics/view",
   "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",

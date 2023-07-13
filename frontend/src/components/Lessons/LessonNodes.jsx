@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import {
   BsCircle,
@@ -8,8 +8,6 @@ import {
   BsCheckCircle,
 } from "react-icons/bs";
 import { Progress } from "@chakra-ui/react";
-import Cookies from "js-cookie";
-import useAxios from "axios-hooks";
 import {
   Popover,
   PopoverTrigger,
@@ -64,23 +62,20 @@ const nodesData = [
 ];
 
 const DynamicNodes = () => {
-  const params = useParams();
-  const [data] = useGateway(window.location.pathname);
-  if (!data || !data.lessons) return;
-  return data.lessons.map((node, index) => (
+  const [data] = useGateway(window.location.pathname + "/lesson");
+  if (!data) return;
+  return data.map((node, index) => (
     <React.Fragment key={index}>
       {index !== 0 && <Line />}{" "}
       {/* Render the Line component only if index is not 0 */}
-      <Link
-        to={`/curriculum/topic/${params["topic_id"]}/lesson/${node.lesson_id}/view`}
-      >
+      <Link to={`/curriculum/lesson/${node.lesson_id}`}>
         <Node
           //icon={node.icon}
           //score={node.score}
-          //progress={node.progress}
+          progress="70"
           //status={node.status}
           title={node.title}
-          message={node.lesson_id}
+          message={node.message}
         />
       </Link>
     </React.Fragment>
@@ -177,7 +172,7 @@ const Node = ({
   );
 };
 
-export const LessonNodes = () => {
+export const LessonNodes = ({ lessonProgress }) => {
   return (
     <Stack
       justify="flex-start"
@@ -186,7 +181,7 @@ export const LessonNodes = () => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Main" path={"/curriculum/topics/view"} />
+      <Header buttontext="Back to Main" path={"/curriculum/topic"} />
 
       <Stack
         width={{ base: "500px", md: "800px", lg: "1200px" }}
@@ -224,6 +219,7 @@ export const LessonNodes = () => {
           <Stack
             height="500px"
             width="fit-content"
+            minWidth={{ base: "500px", md: "800px", lg: "1200px" }}
             justify="flex-start"
             align="center"
             overflowX="visible"
@@ -238,7 +234,7 @@ export const LessonNodes = () => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             }}
           >
-            <DynamicNodes nodes={nodesData} />
+            <DynamicNodes lessonProgress={lessonProgress} />
           </Stack>
         </Stack>
       </Stack>
