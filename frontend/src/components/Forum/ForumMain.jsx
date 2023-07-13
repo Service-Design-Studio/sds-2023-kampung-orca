@@ -14,7 +14,8 @@ export const ForumMain = () => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Lessons" path="/lesson-view" />
+      {/* TODO: Fix redirect */}
+      <Header buttontext="Back to Lessons" path="/curriculum/topic" />
 
       <Stack
         paddingX="30px"

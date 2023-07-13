@@ -1,6 +1,11 @@
 class CurriculumController < ApplicationController
   before_action :authenticate_user
 
+  # TODO: /curriculum should NOT be forwarding requests
+  # Instead, when lessons are created for e.g
+  # It needs to update all services that use it i.e FORUM!!
+
+  # TODO: Needs a rewrite
   def forward_request
     modified_api = request.path.sub('/curriculum', '/')
     url = ENV["CURRICULUM_URL"] + modified_api # Replace with the URL of your backend

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import {
   BsCircle,
@@ -72,10 +72,10 @@ const DynamicNodes = () => {
         <Node
           //icon={node.icon}
           //score={node.score}
-          //progress={node.progress}
+          progress="70"
           //status={node.status}
           title={node.title}
-          message={node.lesson_id}
+          message={node.message}
         />
       </Link>
     </React.Fragment>
@@ -172,7 +172,7 @@ const Node = ({
   );
 };
 
-export const LessonNodes = () => {
+export const LessonNodes = ({ lessonProgress }) => {
   return (
     <Stack
       justify="flex-start"
@@ -219,6 +219,7 @@ export const LessonNodes = () => {
           <Stack
             height="500px"
             width="fit-content"
+            minWidth={{ base: "500px", md: "800px", lg: "1200px" }}
             justify="flex-start"
             align="center"
             overflowX="visible"
@@ -233,7 +234,7 @@ export const LessonNodes = () => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             }}
           >
-            <DynamicNodes nodes={nodesData} />
+            <DynamicNodes lessonProgress={lessonProgress} />
           </Stack>
         </Stack>
       </Stack>

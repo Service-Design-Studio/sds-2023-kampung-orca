@@ -1,16 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :set_lesson, only: [:show, :update, :create, :destroy, :index]
+  before_action :check_author, only: [:update, :destroy]
+  before_action :validate_fields, only: [:create]
 
   # GET /posts
   def index
     @posts = @lesson.posts.all
-    render json: @posts.to_json(include: { user: { only: [:id, :name] } })
+    p @lesson
+    render json: @posts.to_json(include: { user: { only: [:id, :username] } })
   end
 
   # GET /posts/:id
   def show
-    render json: @post.to_json(include: { user: { only: [:id, :name] } })
+    render json: @post.to_json(include: { user: { only: [:id, :username] } })
   end
 
   # POST /posts
@@ -19,7 +22,7 @@ class PostsController < ApplicationController
     @post.user = User.find_by(user_id: params[:user_id])
     
     if @post.save
-      render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created
+      render json: @post.to_json(include: { user: { only: [:id, :username] } }), status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -58,4 +61,17 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :user_id.to_s)
   end
+
+  def validate_fields
+    if post_params[:title].blank? || post_params[:content].blank?
+      render json: { error: 'Title and content fields cannot be empty' }, status: :unprocessable_entity
+    end
+  end
+
+  def check_author
+    unless @post.user.user_id == params[:user_id]
+      render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+    end
+  end
+
 end

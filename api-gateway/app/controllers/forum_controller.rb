@@ -4,6 +4,8 @@ class ForumController < ApplicationController
 
   #access user id with this! @current_user[:user_id]
 
+  # TODO: Needs a rewrite
+
   def testing
     render json: @current_user
   end

@@ -39,6 +39,7 @@ const AuthWrapper = () => {
 export default (
   <Router>
     <Routes>
+      {/* TODO: Tidy up forum routes */}
       <Route element={<AuthWrapper />}>
         <Route path="/curriculum/topic/:topic_id" element={<LessonNodes />} />
         <Route path="/curriculum/lesson/:lesson_id" element={<LessonView />} />
