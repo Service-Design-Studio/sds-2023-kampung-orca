@@ -1,38 +1,17 @@
-# Be sure to restart your server when you modify this file.
-
-# Avoid CORS issues when API is called from the frontend app.
-# Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
-
-# Read more: https://github.com/cyu/rack-cors
-
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins ENV["FRONTEND_URL"]
+  [
+    ENV["FRONTEND_URL"],
+    ENV["CURRICULUM_URL"],
+    ENV["FORUM_URL"],
+    ENV["USER_URL"]
+  ].each do |origin|
+    allow do
+      origins origin
 
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
+      resource "*",
+        headers: :any,
+        methods: [:get, :post, :put, :patch, :delete, :options, :head],
+        credentials: true
+    end
   end
-  allow do
-    origins ENV["CURRICULUM_URL"]
-
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-  end
-  allow do
-    origins ENV["FORUM_URL"]
-
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-  end
-  allow do
-    origins ENV["USER_URL"]
-
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-  end
-
 end

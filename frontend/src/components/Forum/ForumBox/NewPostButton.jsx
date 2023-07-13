@@ -19,16 +19,16 @@ import {
   Heading,
   Avatar,
 } from "@chakra-ui/react";
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import Cookies from "js-cookie";
+import axios from "axios";
 
 function NewPostButton() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [activePostId, setActivePostId] = useState(null);
-  const [valueTitle, setValueTitle] = React.useState('')
-  const handleTitleChange = (event) => setValueTitle(event.target.value)
-  const [valueContent, setValueContent] = React.useState('')
-  const handleContentChange = (event) => setValueContent(event.target.value)
+  const [valueTitle, setValueTitle] = React.useState("");
+  const handleTitleChange = (event) => setValueTitle(event.target.value);
+  const [valueContent, setValueContent] = React.useState("");
+  const handleContentChange = (event) => setValueContent(event.target.value);
 
   const handleButtonClick = () => {
     setFormOpen(true);
@@ -40,21 +40,23 @@ function NewPostButton() {
   };
 
   const CreatePost = async (tit, con) => {
-    const cookieValue = Cookies.get('token');
-    const title = tit; 
-    const content = con; 
-  
+    const cookieValue = Cookies.get("token");
+    const title = tit;
+    const content = con;
+
     try {
-      const response = await axios.post('http://localhost:3001/lessons/1/posts', {
-        token: cookieValue,
-        post: { title, content }
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts`,
+        {
+          token: cookieValue,
+          post: { title, content },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log("Error occurred:", error);
     }
   };
-  
 
   const handlePostClick = (postId) => {
     setActivePostId(postId);

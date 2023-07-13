@@ -1,5 +1,5 @@
 const pageRouteMap = {
-  home: "cover",
+  home: "/",
   login: "login",
   "lessons pathway": "curriculum/topic/:topic_id",
   "lesson view": "curriculum/topic/:topic_id/lessons/view",
@@ -7,7 +7,7 @@ const pageRouteMap = {
   chatroom: "chat",
   "first content": "",
   "second content": "",
-  "topic list" : "curriculum/topics/view",
+  "topic list": "curriculum/topics/view",
 };
 
 const errorRouteMap = {
@@ -83,13 +83,12 @@ Cypress.Commands.add("loginByGoogleApi", () => {
 
 Cypress.Commands.add("setDataToken", (dataToken) => {
   const googleRefreshToken = Cypress.env("googleRefreshToken");
-  Cypress.env('googleRefreshToken', dataToken)
+  Cypress.env("googleRefreshToken", dataToken);
 });
 
 Cypress.Commands.add("getDataToken", () => {
   return Cypress.env("googleRefreshToken");
 });
-
 
 //
 // -- This is a child command --

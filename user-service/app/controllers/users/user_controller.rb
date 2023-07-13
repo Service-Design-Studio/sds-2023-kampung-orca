@@ -30,7 +30,7 @@ class Users::UserController < ApplicationController
           code: @code,
           client_id: ENV['GOOGLE_CLIENT_ID'],
           client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          redirect_uri: 'http://localhost:3000',
+          redirect_uri: ENV['FRONTEND_URL'],
           grant_type: 'authorization_code'
         }
         response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query: query)

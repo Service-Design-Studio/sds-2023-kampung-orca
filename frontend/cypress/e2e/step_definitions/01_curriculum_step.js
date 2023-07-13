@@ -1,19 +1,24 @@
-import { Given, When, Then, Before, And } from "@badeball/cypress-cucumber-preprocessor";
-import { data } from "cypress/types/jquery";
+import {
+  Given,
+  When,
+  Then,
+  Before,
+  And,
+} from "@badeb/cypress-cucumber-preprocessor";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
-const tokenInCache = false;
-const dataToken = null;
+let tokenInCache = false;
+let dataToken = null;
 
 Before(() => {
-  console.log('test')
-  if (!tokenInCache){
-    cy.getDataToken().then((dataToken)=> {
+  console.log("test");
+  if (!tokenInCache) {
+    cy.getDataToken().then((dataToken) => {
       cy.setDataToken(dataToken);
       tokenInCache = true;
-      console.log("token cached")
-    })
+      console.log("token cached");
+    });
   }
 });
 
@@ -27,7 +32,8 @@ When("I click on the embedded lesson video", () => {
     .then(($iframe) => {
       const $video = $iframe.contents().find("video");
       $video;
-    }).click();
+    })
+    .click();
 });
 
 Then("I should see the video play", () => {
@@ -38,8 +44,6 @@ Then("I should see the video play", () => {
       cy.wrap($video).should("have.class", "video-playing-mode");
     });
 });
-
-
 
 Then("I should see the video play", () => {
   cy.get(`iframe[title="kampung"]`)
@@ -65,7 +69,7 @@ And("I see the first page content", () => {
 });
 
 When("I click on the right arrow button", () => {
-  cy.get('.chakra-button css-crvxvb').click();
+  cy.get(".chakra-button css-crvxvb").click();
 });
 
 And("I see the second page content", () => {
@@ -73,7 +77,7 @@ And("I see the second page content", () => {
 });
 
 When("I click on the left arrow button", () => {
-  cy.get('.chakra-icon css-1ev3uyk').click();
+  cy.get(".chakra-icon css-1ev3uyk").click();
 });
 
 When("I see the first page content", () => {
@@ -82,17 +86,17 @@ When("I see the first page content", () => {
 
 // TODO: DRY this out
 Then("I should not see the left arrow button", () => {
-  cy.get('.chakra-icon css-1ev3uyk').should("not.exist");
+  cy.get(".chakra-icon css-1ev3uyk").should("not.exist");
 });
 
 When("I see the last page content", () => {
-// check for complete lesson text in the page
-cy.get("button").contains("Complete Lesson").should("exist");
+  // check for complete lesson text in the page
+  cy.get("button").contains("Complete Lesson").should("exist");
 });
 
 // TODO: DRY this out
 Then("I should not see the right arrow button", () => {
-  cy.get('.chakra-button css-crvxvb').should("not.exist");
+  cy.get(".chakra-button css-crvxvb").should("not.exist");
 });
 
 When("I enter a lesson with a bogus link", () => {
@@ -113,7 +117,7 @@ Then("I should go to the lessons pathway page", () => {
   // TODO: check the route in commands.js
 });
 
-  //TODO: check the route in commands.js for redirect button
+//TODO: check the route in commands.js for redirect button
 
 Then("I should go to the lesson completed page", () => {
   cy.get("p").contains("Lesson Completed!").should("exist");
@@ -133,18 +137,14 @@ Then("I should visit the next lesson page", () => {
   cy.get("button").contains("Back to Lessons").should("exist");
 });
 
-
-
 When("I enter a lesson with a bogus link", () => {});
 
 Then("I should go to an error page with a redirect button", () => {});
 
 Then("I should go to an error page with a button", () => {});
 
-Then("I should not see the {} button", (buttonName) => {
-});
+Then("I should not see the {} button", (buttonName) => {});
 
 Then("I should visit the next lesson page", () => {});
 
 Given("I have completed the lesson", () => {});
-

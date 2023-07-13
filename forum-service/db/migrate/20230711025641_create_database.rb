@@ -31,6 +31,7 @@ class CreateDatabase < ActiveRecord::Migration[7.0]
       t.datetime :updated_at, null: false
     end
 
+    add_index :lessons, :lesson_id
     add_index :users, :user_id, unique: true
     add_index :posts, :user_id
     add_index :posts, :lesson_id

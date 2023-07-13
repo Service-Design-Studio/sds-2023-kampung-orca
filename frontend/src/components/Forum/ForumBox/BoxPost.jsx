@@ -79,8 +79,12 @@ const ForumApp = () => {
   }, []);
 
   const fetchPosts = async () => {
+    const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.get("http://localhost:3003/lessons/1/posts");
+      const response = await axios.get(
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts`,
+        { params: { token: cookieValue } }
+      );
       const uniquePosts = response.data.filter(
         (post, index, self) => self.findIndex((p) => p.id === post.id) === index
       );
@@ -91,9 +95,11 @@ const ForumApp = () => {
   };
 
   const fetchComments = async (postId) => {
+    const cookieValue = Cookies.get("token");
     try {
       const response = await axios.get(
-        `http://localhost:3003/lessons/1/posts/${postId}/comments`
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}/comments`,
+        { params: { token: cookieValue } }
       );
       setComments((prevComments) => ({
         ...prevComments,
@@ -122,15 +128,17 @@ const ForumApp = () => {
     setSelectedPost(null);
   };
 
-  const DeletePost = async (id) => {
+  const DeletePost = async (postId) => {
     const cookieValue = Cookies.get("token");
-    const post_id = id;
     try {
-      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${postId}`, {
-        params: {
-          token: cookieValue,
-        },
-      });
+      const response = await axios.delete(
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}`,
+        {
+          params: {
+            token: cookieValue,
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error.response.status);
@@ -141,7 +149,7 @@ const ForumApp = () => {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.delete(
-        `http://localhost:3003/lessons/1/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}/comments/${commentId}`,
         {
           params: {
             token: cookieValue,
@@ -168,7 +176,7 @@ const ForumApp = () => {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.patch(
-        `http://localhost:3001/lessons/1/posts/${postId}`, //this works now for editing
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}`, //this works now for editing
         {
           token: cookieValue,
           post: updatedData,

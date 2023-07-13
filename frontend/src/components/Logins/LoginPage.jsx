@@ -32,6 +32,7 @@ const GoogleLoginButton = ({ onSuccess }) => {
       mt="4"
       _hover={{ bg: "blue.600" }}
       _active={{ bg: "blue.700" }}
+      id="google-login"
     >
       <img
         src="/path/to/google-icon.png" // Replace with the actual path to the Google icon image
