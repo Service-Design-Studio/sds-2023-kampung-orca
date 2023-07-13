@@ -7,28 +7,28 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:3000"
+    origins ENV["FRONTEND_URL"]
 
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
   allow do
-    origins "http://localhost:3002"
+    origins ENV["CURRICULUM_URL"]
 
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
   allow do
-    origins "http://localhost:3003"
+    origins ENV["FORUM_URL"]
 
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
   allow do
-    origins "http://localhost:3004"
+    origins ENV["USER_URL"]
 
     resource "*",
       headers: :any,
