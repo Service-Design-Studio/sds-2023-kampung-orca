@@ -176,7 +176,7 @@ const ForumApp = () => {
     const cookieValue = Cookies.get('token');
     try {
       const response = await axios.patch(
-        `http://localhost:3003/lessons/1/posts/${postId}`,
+        `http://localhost:3001/lessons/1/posts/${postId}`, //this works now for editing
         {
           token: cookieValue,
           post: updatedData,
