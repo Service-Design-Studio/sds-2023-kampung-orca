@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { EnterComment } from "./EnterComment";
 //import CommentForm from "./CommentForm";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 function BoxPost({ post, isActive, onClick, updatePost }) {
   const { isOpen, onToggle } = useDisclosure();
@@ -32,7 +32,6 @@ function BoxPost({ post, isActive, onClick, updatePost }) {
     updatePost(post.id, updatedData);
   };
 
-
   return (
     <Box
       onClick={handleClick}
@@ -44,19 +43,10 @@ function BoxPost({ post, isActive, onClick, updatePost }) {
       _hover={{ bg: "#ffbabc" }}
     >
       <Stack direction="row" align="center" spacing={4}>
-        <Avatar
-          shadow="lg"
-          size="lg"
-          src={post.user && post.user.avatar}
-        />
+        <Avatar shadow="lg" size="lg" src={post.user && post.user.avatar} />
         <Stack direction="column">
           <Stack direction="row" align="center">
-            <Heading
-              as="h3"
-              size="md"
-              textTransform="uppercase"
-              color="#333"
-            >
+            <Heading as="h3" size="md" textTransform="uppercase" color="#333">
               {post.title}
             </Heading>
             <Text fontSize="sm" fontStyle="italic" color="#555">
@@ -92,8 +82,7 @@ const ForumApp = () => {
     try {
       const response = await axios.get("http://localhost:3003/lessons/1/posts");
       const uniquePosts = response.data.filter(
-        (post, index, self) =>
-          self.findIndex((p) => p.id === post.id) === index
+        (post, index, self) => self.findIndex((p) => p.id === post.id) === index
       );
       setPosts(uniquePosts);
     } catch (error) {
@@ -134,14 +123,17 @@ const ForumApp = () => {
   };
 
   const DeletePost = async (id) => {
-    const cookieValue = Cookies.get('token');
+    const cookieValue = Cookies.get("token");
     const post_id = id;
     try {
-      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${post_id}`, {
-        params: {
-          token: cookieValue,
-        },
-      });
+      const response = await axios.delete(
+        `http://localhost:3003/lessons/1/posts/${post_id}`,
+        {
+          params: {
+            token: cookieValue,
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error.response.status);
@@ -149,13 +141,16 @@ const ForumApp = () => {
   };
 
   const DeleteComment = async (postId, commentId) => {
-    const cookieValue = Cookies.get('token');
+    const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.delete(`http://localhost:3003/lessons/1/posts/${postId}/comments/${commentId}`, {
-        params: {
-          token: cookieValue,
-        },
-      });
+      const response = await axios.delete(
+        `http://localhost:3003/lessons/1/posts/${postId}/comments/${commentId}`,
+        {
+          params: {
+            token: cookieValue,
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error.response.status);
@@ -173,7 +168,7 @@ const ForumApp = () => {
   };
 
   const updatePost = async (postId, updatedData) => {
-    const cookieValue = Cookies.get('token');
+    const cookieValue = Cookies.get("token");
     try {
       const response = await axios.patch(
         `http://localhost:3001/lessons/1/posts/${postId}`, //this works now for editing
@@ -192,7 +187,6 @@ const ForumApp = () => {
     <div>
       {selectedPost ? (
         <div>
-          
           <Box
             bg="rgba(237, 242, 247, 0.9)"
             padding="20px"
@@ -234,10 +228,12 @@ const ForumApp = () => {
                     Commented by: {comment.user && comment.user.name}
                   </Text>
                   <Button
-                    onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
+                    onClick={() =>
+                      handleCommentDelete(selectedPost.id, comment.id)
+                    }
                     colorScheme="blue"
                     bg="#ed2e38"
-                    _hover={{ bg: '#f66873' }}
+                    _hover={{ bg: "#f66873" }}
                     size="sm"
                     mt={2}
                   >
@@ -245,40 +241,44 @@ const ForumApp = () => {
                   </Button>
                 </Box>
               ))}
-              
             </div>
           )}
-          
-          
-
 
           <Stack mt="20px">
-            <Button onClick={goBack} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+            <Button
+              onClick={goBack}
+              mb={4}
+              colorScheme="blue"
+              bg="#ed2e38"
+              _hover={{ bg: "#f66873" }}
+            >
               Go Back
             </Button>
           </Stack>
 
-          <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
-              Delete Post :O
+          <Button
+            onClick={() => DeletePost(selectedPost.id)}
+            mb={4}
+            colorScheme="blue"
+            bg="#ed2e38"
+            _hover={{ bg: "#f66873" }}
+          >
+            {/* TODO: Add confirmation window on post deletion */}
+            Delete Post
           </Button>
-          
         </div>
       ) : (
         <div>
           {posts.map((post) => (
             <>
-            <BoxPost
-              key={post.id}
-              post={post}
-              isActive={selectedPost && selectedPost.id === post.id}
-              onClick={handlePostClick}
-              updatePost={updatePost}
-            />
-            
-            
-
+              <BoxPost
+                key={post.id}
+                post={post}
+                isActive={selectedPost && selectedPost.id === post.id}
+                onClick={handlePostClick}
+                updatePost={updatePost}
+              />
             </>
-
           ))}
         </div>
       )}

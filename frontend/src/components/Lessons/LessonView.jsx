@@ -10,6 +10,7 @@ import ForumButton from "../Forum/ForumBox/ForumButton";
 
 export const LessonView = () => {
   const params = useParams();
+  // TODO: Fix pathway redirects
   const back_to_lesson_pathway = `/curriculum/topic/${params["topic_id"]}`;
   const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,6 +37,7 @@ export const LessonView = () => {
   };
 
   if (!pages) return;
+  console.log(pages);
   if (pages.message) return <Navigate to="/error" />;
 
   return (
@@ -48,6 +50,7 @@ export const LessonView = () => {
     >
       <Header
         buttontext="Back to Lessons"
+        // PANIC TODO: Fix redirect
         path={back_to_lesson_pathway}
         showForum="true"
       />
