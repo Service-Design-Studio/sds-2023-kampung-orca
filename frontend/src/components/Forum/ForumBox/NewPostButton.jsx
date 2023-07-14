@@ -1,60 +1,18 @@
 import React, { useState } from "react";
-import Chat from "../../Chatbox/Chat";
-import { Link } from "react-router-dom";
 import BoxPost from "./BoxPost";
-import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
-import {
-  Input,
-  Textarea,
-  Button,
-  Slide,
-  Container,
-  Flex,
-  Icon,
-  Box,
-  CloseButton,
-  Text,
-  Card,
-  Stack,
-  Heading,
-  Avatar,
-} from "@chakra-ui/react";
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import PostInput from "../ForumMethods/PostInput";
+import { Stack } from "@chakra-ui/react";
 
 function NewPostButton() {
   const [isFormOpen, setFormOpen] = useState(false);
-  const [activePostId, setActivePostId] = useState(null);
-  const [valueTitle, setValueTitle] = React.useState('')
-  const handleTitleChange = (event) => setValueTitle(event.target.value)
-  const [valueContent, setValueContent] = React.useState('')
-  const handleContentChange = (event) => setValueContent(event.target.value)
-
-  const handleButtonClick = () => {
-    setFormOpen(true);
-  };
+  const [refreshPosts, setRefreshPosts] = useState(false);
 
   const handlePostButtonClick = () => {
-    CreatePost(valueTitle, valueContent);
     setFormOpen(false);
+    setRefreshPosts(true);
   };
 
-  const CreatePost = async (tit, con) => {
-    const cookieValue = Cookies.get('token');
-    const pitle = tit; 
-    const pontent = con; 
-  
-    try {
-      const response = await axios.post('http://localhost:3001/lessons/1/posts', {
-        token: cookieValue,
-        post: { title: pitle, content: pontent }
-      });
-      console.log(response);
-    } catch (error) {
-      console.log("Error occurred:", error);
-    }
-  };
-  
+  const [activePostId, setActivePostId] = useState(null);
 
   const handlePostClick = (postId) => {
     setActivePostId(postId);
@@ -63,7 +21,7 @@ function NewPostButton() {
   return (
     <>
       <Stack
-        height={isFormOpen ? "430px" : "520px"}
+        height={isFormOpen ? "430px" : "520px"} // set to 520 when done
         mb="20px"
         padding="10px"
         overflowY="scroll"
@@ -81,75 +39,19 @@ function NewPostButton() {
         }}
       >
         <BoxPost
-        id={1}
-        isActive={activePostId === 1}
-        onClick={() => handlePostClick(1)}
-      />
+          id={1}
+          isActive={activePostId === 1}
+          onClick={() => handlePostClick(1)}
+          refreshPosts={refreshPosts}
+        />
       </Stack>
 
-      <Stack width="600px" justify="center" align="center">
-        {!isFormOpen ? (
-          <Button
-            shadow="md"
-            variant="outline"
-            width="180px"
-            size="md"
-            bg="#ed2e38"
-            textColor="#FFFFFF"
-            _hover={{ bg: "#7c191c" }}
-            leftIcon={<Icon as={BsFillPlusCircleFill} />}
-            onClick={handleButtonClick}
-          >
-            Create New Post
-          </Button>
-        ) : (
-          <Stack
-            direction="row"
-            align="flex-start"
-            justify="flex-start"
-            mr="30px"
-          >
-            <Stack
-              bg="#FFFFFF"
-              borderRadius="5px"
-              border="1px solid grey"
-              paddingX="20px"
-            >
-              <Input
-                textColor="black"
-                width="460px"
-                variant="flushed"
-                borderColor="grey"
-                placeholder="Title"
-                value={valueTitle}
-                onChange={handleTitleChange}
-              />
-              <Textarea
-                resize="none"
-                textColor="black"
-                width="460px"
-                variant="unstyled"
-                placeholder="Enter your post content here..."
-                value={valueContent}
-                onChange={handleContentChange}
-              />
-            </Stack>
-            <Button
-              width="50px"
-              height="130px"
-              variant="ghost"
-              bg="#ed2e38"
-              textColor="#FFFFFF"
-              _hover={{ bg: "#7c191c" }}
-              fontSize="18px"
-              style={{ zIndex: 999 }}
-              onClick={handlePostButtonClick}
-            >
-              Post
-            </Button>
-          </Stack>
-        )}
-      </Stack>
+      <PostInput
+        isFormOpen={isFormOpen}
+        setFormOpen={setFormOpen}
+        handlePostButtonClick={handlePostButtonClick}
+        //fetchPosts={fetchPosts}
+      />
     </>
   );
 }

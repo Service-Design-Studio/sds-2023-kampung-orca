@@ -34,25 +34,8 @@ function ForumBoxPost() {
         isActive={activePostId === 1}
         onClick={() => handlePostClick(1)}
       />
-      
     </>
   );
 }
 
 export default ForumBoxPost;
-/*<BoxPost
-        id={2}
-        isActive={activePostId === 2}
-        onClick={() => handlePostClick(2)}
-      />
-      <BoxPost
-        id={3}
-        isActive={activePostId === 3}
-        onClick={() => handlePostClick(3)}
-      />
-      <BoxPost
-        id={4}
-        isActive={activePostId === 4}
-        onClick={() => handlePostClick(4)}
-      />
-      */
