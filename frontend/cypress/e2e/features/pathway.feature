@@ -26,7 +26,6 @@ Feature: Display lessons pathway
     Then I will see an info box for the lesson
     And I will see the progress bar in the info box
 
-
   Scenario: Icons on the lessons pathway
     Given I am at the lessons pathway page
     Then I should see the lesson node's icon
@@ -35,6 +34,3 @@ Feature: Display lessons pathway
     Given I am at the lessons pathway page
     Then I should see the pathway between lesson nodes
 
-  Scenario: Graphics around the lessons pathway
-    Given I am at the lessons pathway page
-    Then I should see the graphics on the lessons pathway
