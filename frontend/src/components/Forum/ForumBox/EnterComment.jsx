@@ -25,6 +25,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
       }
       );
       console.log(response);
+      setValueContent("");
       await fetchComments(postId);
     } catch (error) {
       console.log(error.response.status);
