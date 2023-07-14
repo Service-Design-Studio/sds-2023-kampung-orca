@@ -50,7 +50,6 @@ function NewPostButton() {
         isFormOpen={isFormOpen}
         setFormOpen={setFormOpen}
         handlePostButtonClick={handlePostButtonClick}
-        fetchPosts={fetchPosts}
       />
     </>
   );
