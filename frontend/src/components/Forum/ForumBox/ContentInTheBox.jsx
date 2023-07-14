@@ -3,7 +3,7 @@ import BoxPost from "./BoxPost";
 import PostInput from "../ForumMethods/PostInput";
 import { Stack } from "@chakra-ui/react";
 
-function NewPostButton() {
+function ContentInTheBox() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [refreshPosts, setRefreshPosts] = useState(false);
 
@@ -56,4 +56,4 @@ function NewPostButton() {
   );
 }
 
-export default NewPostButton;
+export default ContentInTheBox;

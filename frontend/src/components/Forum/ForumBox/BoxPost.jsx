@@ -83,7 +83,7 @@ function ForumApp() {
   const deleteComment = async (postId, commentId) => {
     const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.delete(`http://localhost:3001/lessons/1/posts/${postId}`, {
+      const response = await axios.delete(`http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`, {
         params: {
           token: cookieValue,
         },
@@ -91,8 +91,7 @@ function ForumApp() {
       console.log(response);
       //updates the list of post displayed i feel damn dumb
       await fetchPosts();
-      //go back
-      setSelectedPost(null);
+
     } catch (error) {
       console.log(error.response.status);
     }
@@ -125,6 +124,14 @@ function ForumApp() {
     updatePost(postId, updatedData);
   };
 
+  const handleCommentEdit = async(postId, commentId) => {
+    const updatedData = {
+      content: "this is updated comment content",
+    };
+    updateComment(postId, commentId, updatedData);
+    await fetchComments(postId);
+  };
+
   const updatePost = async (postId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
@@ -136,7 +143,22 @@ function ForumApp() {
       await fetchPosts();
       const temp = selectedPost;
       setSelectedPost(null);
-      setSelectedPost(temp);
+
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  };
+
+  const updateComment = async (postId, commentId, updatedData) => {
+    const cookieValue = Cookies.get("token");
+    try {
+      await axios.patch(`http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`, {
+        token: cookieValue,
+        comment: updatedData,
+      });
+      await fetchPosts();
+
+      
 
     } catch (error) {
       console.log(error.response.status);
@@ -173,7 +195,7 @@ function ForumApp() {
                 Comments
               </Heading>
               <Stack mb="20px">
-                <EnterComment postId={selectedPost.id} />
+                <EnterComment postId={selectedPost.id} fetchComments={fetchComments}/>
               </Stack>
 
               {comments[selectedPost.id].map((comment) => (
@@ -191,7 +213,6 @@ function ForumApp() {
                     Commented by: {comment.user && comment.user.name}
                   </Text>
 
-                  
                   {comment.user_id === current_user_id && 
                   (
 
@@ -208,7 +229,7 @@ function ForumApp() {
                     </Button>
 
                     <Button
-                    onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
+                    onClick={() => handleCommentEdit(selectedPost.id, comment.id)}
                     colorScheme="blue"
                     bg="#ed2e38"
                     _hover={{ bg: '#f66873' }}
@@ -219,9 +240,7 @@ function ForumApp() {
                     </Button>
                   </Stack>
                   
-                  
                   )}
-
                   
                 </Box>
               ))}

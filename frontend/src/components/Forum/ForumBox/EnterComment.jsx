@@ -3,7 +3,7 @@ import { Stack, Heading, Button, Avatar, Textarea } from "@chakra-ui/react";
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-export const EnterComment = ({ image, name, postId }) => {
+export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const [valueContent, setValueContent] = React.useState('')
   const handleContentChange = (event) => setValueContent(event.target.value)
 
@@ -25,6 +25,7 @@ export const EnterComment = ({ image, name, postId }) => {
       }
       );
       console.log(response);
+      await fetchComments(postId);
     } catch (error) {
       console.log(error.response.status);
     }
