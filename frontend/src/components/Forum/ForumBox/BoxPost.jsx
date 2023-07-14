@@ -21,16 +21,7 @@ function BoxPost({ post, isActive, onClick, updatePost }) {
     onToggle();
   };
 
-  const handleEditClick = (event) => {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the parent Box
-    // Implement the logic to open an edit form or prompt the user for updated data
-    // Once you have the updated data, call the updatePost function
-    const updatedData = {
-      title: "updated title",
-      content: "this is updated post content",
-    };
-    updatePost(post.id, updatedData);
-  };
+  
 
 
   return (
@@ -73,16 +64,16 @@ function BoxPost({ post, isActive, onClick, updatePost }) {
         </Stack>
       </Stack>
 
-      <Button onClick={handleEditClick}>Edit</Button>
+      
     </Box>
   );
 }
 
 const ForumApp = () => {
-  const [current_user_id, current_user_name] = [8, "Thomas"];
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
+  const current_user_id = "104304955930256288402";
 
   useEffect(() => {
     fetchPosts();
@@ -182,6 +173,14 @@ const ForumApp = () => {
     }
   };
 
+  const handleEditClick = (postId) => {
+    const updatedData = {
+      title: "updated title",
+      content: "this is updated post content",
+    };
+    updatePost(postId, updatedData);
+  };
+
   const updatePost = async (postId, updatedData) => {
     const cookieValue = Cookies.get('token');
     try {
@@ -202,6 +201,7 @@ const ForumApp = () => {
     <div>
       {selectedPost ? (
         <div>
+          
           
           <Box
             bg="rgba(237, 242, 247, 0.9)"
@@ -243,6 +243,10 @@ const ForumApp = () => {
                   <Text color="#555">
                     Commented by: {comment.user && comment.user.name}
                   </Text>
+
+                  
+                  {comment.user_id === current_user_id && 
+                  (
                   <Button
                     onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
                     colorScheme="blue"
@@ -253,6 +257,10 @@ const ForumApp = () => {
                   >
                     Delete Comment -_-
                   </Button>
+
+                  
+                  )}
+                  
                 </Box>
               ))}
               
@@ -268,9 +276,27 @@ const ForumApp = () => {
             </Button>
           </Stack>
 
-          <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
-              Delete Post :O
+          {selectedPost.user_id === current_user_id && 
+          (
+          <Button onClick={() => handleEditClick(selectedPost.id)} mb={4} >
+            Edit Post :D
           </Button>
+          )}
+          
+          <Stack mr={10}/>
+          
+
+          {selectedPost.user_id === current_user_id && 
+          (
+            <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+              Delete Post :O
+            </Button>
+            
+          )}
+
+          
+
+
           
         </div>
       ) : (
@@ -282,6 +308,7 @@ const ForumApp = () => {
               post={post}
               isActive={selectedPost && selectedPost.id === post.id}
               onClick={handlePostClick}
+              
               updatePost={updatePost}
             />
             

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Chat from "../../Chatbox/Chat";
 import { Link } from "react-router-dom";
-import ForumBoxPost from "./ForumBoxPost";
+import BoxPost from "./BoxPost";
 import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import {
   Input,
@@ -41,13 +41,13 @@ function NewPostButton() {
 
   const CreatePost = async (tit, con) => {
     const cookieValue = Cookies.get('token');
-    const title = tit; 
-    const content = con; 
+    const pitle = tit; 
+    const pontent = con; 
   
     try {
       const response = await axios.post('http://localhost:3001/lessons/1/posts', {
         token: cookieValue,
-        post: { title, content }
+        post: { title: pitle, content: pontent }
       });
       console.log(response);
     } catch (error) {
@@ -80,7 +80,11 @@ function NewPostButton() {
           },
         }}
       >
-        <ForumBoxPost />
+        <BoxPost
+        id={1}
+        isActive={activePostId === 1}
+        onClick={() => handlePostClick(1)}
+      />
       </Stack>
 
       <Stack width="600px" justify="center" align="center">
