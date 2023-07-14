@@ -11,6 +11,7 @@ function ForumApp() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
+  const current_user_id = "104304955930256288402";
 
   useEffect(() => {
     fetchPosts();
