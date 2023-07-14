@@ -73,7 +73,7 @@ const ForumApp = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
-  const current_user_id = "104304955930256288402";
+  const current_user_id = "104304955930256288402"; //TODO: Actually get the userid instead of using placeholder
 
   useEffect(() => {
     fetchPosts();
@@ -144,6 +144,10 @@ const ForumApp = () => {
         },
       });
       console.log(response);
+      //updates the list of post displayed i feel damn dumb
+      await fetchPosts();
+      //go back
+      setSelectedPost(null);
     } catch (error) {
       console.log(error.response.status);
     }
@@ -247,19 +251,34 @@ const ForumApp = () => {
                   
                   {comment.user_id === current_user_id && 
                   (
-                  <Button
+
+                    <Stack direction="row" spacing={2}>
+                      <Button
+                      onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
+                      colorScheme="blue"
+                      bg="#ed2e38"
+                      _hover={{ bg: '#f66873' }}
+                      size="sm"
+                      mt={2}
+                    >
+                      Delete Comment -_-
+                    </Button>
+
+                    <Button
                     onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
                     colorScheme="blue"
                     bg="#ed2e38"
                     _hover={{ bg: '#f66873' }}
                     size="sm"
                     mt={2}
-                  >
-                    Delete Comment -_-
-                  </Button>
-
+                    >
+                      Edit Comment 0_0
+                    </Button>
+                  </Stack>
+                  
                   
                   )}
+
                   
                 </Box>
               ))}
@@ -278,21 +297,18 @@ const ForumApp = () => {
 
           {selectedPost.user_id === current_user_id && 
           (
-          <Button onClick={() => handleEditClick(selectedPost.id)} mb={4} >
-            Edit Post :D
-          </Button>
-          )}
-          
-          <Stack mr={10}/>
-          
+            <Stack direction="row" spacing={2}>
+              <Button onClick={() => handleEditClick(selectedPost.id)} mb={4} >
+                Edit Post :D
+              </Button>
 
-          {selectedPost.user_id === current_user_id && 
-          (
-            <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
-              Delete Post :O
-            </Button>
-            
+              <Button onClick={() => DeletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+                Delete Post :O
+              </Button>
+          </Stack>
+          
           )}
+          
 
           
 
