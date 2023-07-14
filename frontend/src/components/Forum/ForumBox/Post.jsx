@@ -49,8 +49,7 @@ function Post({ post, onClick, onDelete, onUpdate }) {
           </Text>
         </Stack>
       </Stack>
-      <Button onClick={handleEditClick}>Edit</Button>
-      <Button onClick={handleDeleteClick}>Delete</Button>
+      
     </Box>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Chat from "../../Chatbox/Chat";
 import { Link } from "react-router-dom";
-import NewPost from "./NewPostButton";
+import NewPost from "./ContentInTheBox";
 import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import {
   useDisclosure,
