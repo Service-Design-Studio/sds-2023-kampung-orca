@@ -1,4 +1,4 @@
-import { Given, When, Then, Before, And } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then, Before, And } from "@badeb/cypress-cucumber-preprocessor";
 import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");

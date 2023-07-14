@@ -1,5 +1,5 @@
 const pageRouteMap = {
-  home: "cover",
+  home: "/",
   login: "login",
   "lessons pathway": "curriculum/topic/:topic_id",
   "lesson view": "curriculum/topic/:topic_id/lessons/view",
