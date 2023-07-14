@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button, Text, Box } from "@chakra-ui/react";
-import ForumChat from "../Chatbox/ForumChat";
-import { Header } from "../Header";
+import ForumChat from "../../Chatbox/ForumChat";
+import { Header } from "../../Header";
 import { Card } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 

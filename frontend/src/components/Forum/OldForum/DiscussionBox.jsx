@@ -12,8 +12,8 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Card, CardHeader, CardBody } from "@chakra-ui/react";
-import { Comment } from "../Comment.jsx";
-import { EnterComment } from "../EnterComment.jsx";
+import { Comment } from "./Comment.jsx";
+import { EnterComment } from "./EnterComment.jsx";
 import {
   Accordion,
   AccordionItem,

@@ -6,7 +6,7 @@ import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { Header } from "../Header";
 import LessonSection from "./LessonSection";
 import useGateway from "../../hooks/useGateway";
-import ForumButton from "../Forum/ForumBox/ForumButton";
+import ForumButton from "../Forum/ForumBox/Main";
 
 export const LessonView = () => {
   const params = useParams();

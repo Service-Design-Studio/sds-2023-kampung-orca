@@ -20,6 +20,12 @@ function PostInput({ isFormOpen, setFormOpen }) {
     setValueContent("");
   };
 
+  const handleBackButtonClick = async () => {
+    setFormOpen(false);
+    setValueTitle("");
+    setValueContent("");
+  };
+
   const handleTitleChange = (event) => {
     setValueTitle(event.target.value);
   };
@@ -93,19 +99,34 @@ function PostInput({ isFormOpen, setFormOpen }) {
               onChange={handleContentChange}
             />
           </Stack>
-          <Button
-            width="50px"
-            height="130px"
-            variant="ghost"
-            bg="#ed2e38"
-            textColor="#FFFFFF"
-            _hover={{ bg: "#7c191c" }}
-            fontSize="18px"
-            style={{ zIndex: 999 }}
-            onClick={handlePostButtonClick}
-          >
-            Post
-          </Button>
+          <Stack direction="column">
+            <Button
+              width="50px"
+              height="30px"
+              variant="ghost"
+              bg="#ed2e38"
+              textColor="#FFFFFF"
+              _hover={{ bg: "#7c191c" }}
+              fontSize="18px"
+              style={{ zIndex: 999 }}
+              onClick={handleBackButtonClick}
+            >
+              Back
+            </Button>
+            <Button
+              width="50px"
+              height="100px"
+              variant="ghost"
+              bg="#ed2e38"
+              textColor="#FFFFFF"
+              _hover={{ bg: "#7c191c" }}
+              fontSize="18px"
+              style={{ zIndex: 999 }}
+              onClick={handlePostButtonClick}
+            >
+              Post
+            </Button>
+          </Stack>
         </Stack>
       )}
     </Stack>

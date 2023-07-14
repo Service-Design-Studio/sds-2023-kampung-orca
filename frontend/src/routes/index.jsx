@@ -24,10 +24,10 @@ import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
 import TopicPage from "../components/Logins/TopicPage";
 import LearnMore from "../components/Logins/LearnMore";
-import { ForumMain } from "../components/Forum/ForumMain";
-import { ForumPost } from "../components/Forum/ForumPost";
-import { ForumView } from "../components/Forum/ForumView";
-import { DiscussionView } from "../components/Forum/DiscussionView";
+import { ForumMain } from "../components/Forum/OldForum/ForumMain";
+import { ForumPost } from "../components/Forum/OldForum/ForumPost";
+import { ForumView } from "../components/Forum/OldForum/ForumView";
+import { DiscussionView } from "../components/Forum/OldForum/DiscussionView";
 
 import useCookie from "../hooks/useCookie";
 
