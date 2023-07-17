@@ -12,15 +12,16 @@ export const LessonCompletion = () => {
   if (!data) return;
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}`;
 
-  const pre_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.pre_lesson}`;
-  const next_lesson = `/curriculum/topic/${params["topic_id"]}/lesson/${data.next_lesson}`;
+  const pre_lesson = `/curriculum/lesson/${data.pre_lesson}`;
+  const next_lesson = `/curriculum/lesson/${data.next_lesson}`;
+  let show_previous_lesson = true;
+  let show_next_lesson = true;
   // PANIC TODO: Lesson completion next lessons are incomplete!`
-  if (pre_lesson === null) {
-    //TODO: handle no pre lesson
+  if (pre_lesson === `/curriculum/lesson/null`) {
+    show_previous_lesson = false;
   }
-
-  if (next_lesson === null) {
-    //TODO: handle no next lesson
+  if (next_lesson === `/curriculum/lesson/null`) {
+    show_next_lesson = false;
   }
   return (
     <Stack
@@ -59,6 +60,7 @@ export const LessonCompletion = () => {
           height={`calc(100vh - 250px)`}
           align="center"
         >
+          {show_previous_lesson && (
           <Link to={pre_lesson}>
             <Button
               shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
@@ -68,6 +70,7 @@ export const LessonCompletion = () => {
               Previous Lesson
             </Button>
           </Link>
+          )}
         </Stack>
 
         <Stack
@@ -109,6 +112,7 @@ export const LessonCompletion = () => {
           height={`calc(100vh - 250px)`}
           align="center"
         >
+          {show_next_lesson && (
           <Link to={next_lesson}>
             <Button style={{ zIndex: -1 }}> hi</Button>
             <Button
@@ -119,6 +123,7 @@ export const LessonCompletion = () => {
               Next Lesson
             </Button>
           </Link>
+          )}
         </Stack>
       </Stack>
     </Stack>
