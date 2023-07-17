@@ -3,19 +3,8 @@ import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
-const tokenInCache = false;
-const dataToken = null;
 
-Before(() => {
-  console.log('test')
-  if (!tokenInCache){
-    cy.getDataToken().then((dataToken)=> {
-      cy.setDataToken(dataToken);
-      tokenInCache = true;
-      console.log("token cached")
-    })
-  }
-});
+
 
 When("I click on a topic", () => {
   cy.get('button').contains('div.css-1omwhlw').should('exist');
