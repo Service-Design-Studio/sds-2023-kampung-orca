@@ -63,6 +63,7 @@ const nodesData = [
 
 const DynamicNodes = () => {
   const [data] = useGateway(window.location.pathname + "/lesson");
+  console.log(data)
   if (!data) return;
   return data.map((node, index) => (
     <React.Fragment key={index}>
