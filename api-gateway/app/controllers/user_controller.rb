@@ -33,4 +33,8 @@ class UserController < ApplicationController
     #p response_forum
     render json: {token: current_user[:token]}
   end
+
+  def test
+    p @token
+  end
 end

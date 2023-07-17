@@ -62,9 +62,9 @@ const nodesData = [
 ];
 
 const DynamicNodes = () => {
-  const [data] = useGateway(window.location.pathname + "/lesson");
+  const [data] = useGateway(window.location.pathname + "/lesson", "GET");
   if (!data) return;
-  return data.map((node, index) => (
+  return data.lessons.map((node, index) => (
     <React.Fragment key={index}>
       {index !== 0 && <Line />}{" "}
       {/* Render the Line component only if index is not 0 */}
