@@ -11,38 +11,31 @@ import useCookie from "../../hooks/useCookie";
 
 export const LessonView = () => {
   const params = useParams();
-  const endpoint = window.location.pathname + "/page/show_pages";
-  
-
-  axios.request({url: `${process.env.REACT_APP_GATEWAY_URL}${endpoint}`, params: {"token": useCookie("token")}, method: "Get"})
-  .then(response => {
-    // The response data will be available here
-    const responseData = response.data;
-    console.log(responseData);
-  })
-  .catch(error => {
-    // Handle any errors that occurred during the request
-    console.error(error);
-  });
-  const data ="";
-  // TODO: Fix pathway redirects
-  const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
+  const endpoint = window.location.pathname + "/page";
+  console.log(endpoint);
+  const [data] = useGateway(endpoint, "Get");
   const [currentPage, setCurrentPage] = useState(0);
+  const containerRef = useRef(null);
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+  }, [currentPage]);
+  if (!data) return;
+
+  const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
+  
   const pages = data.pages;
   const topic_id = data.topic_id;
   const back_to_lesson_pathway = `/curriculum/topic/${topic_id}`;
-  const containerRef = useRef(null);
+  
 
   let progress = 50;
   if (pages && pages.length > 1) {
     progress = Math.floor((currentPage / pages.length) * 100) + 1;
   }
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = 0;
-    }
-  }, [currentPage]);
+  
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -53,7 +46,6 @@ export const LessonView = () => {
   };
 
   if (!pages) return;
-  console.log(pages);
   if (pages.message) return <Navigate to="/error" />;
 
   return (

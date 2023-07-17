@@ -8,7 +8,7 @@ import useGateway from "../../hooks/useGateway";
 
 export const LessonCompletion = () => {
   const params = useParams();
-  const [data] = useGateway(window.location.pathname);
+  const [data] = useGateway(window.location.pathname, "Post");
   if (!data) return;
   const back_to_topic = `/curriculum/topic/${params["topic_id"]}`;
 

@@ -15,6 +15,7 @@ const useGateway = (endpoint, method) => {
   });
   useMemo(() => {
     if (!loading) {
+      console.log(loading);
       if (!cookie) return navigate("/loginerror", { replace: true });
       if (data && data.data) setCache(data.data);
     }
