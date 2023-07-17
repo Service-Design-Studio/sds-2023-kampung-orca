@@ -1,5 +1,7 @@
+
+
 const pageRouteMap = {
-  home: "/",
+  home: "",
   login: "login",
   "lessons pathway": "curriculum/topic/:topic_id",
   "lesson view": "curriculum/topic/:topic_id/lessons/view",
@@ -7,7 +9,7 @@ const pageRouteMap = {
   chatroom: "chat",
   "first content": "",
   "second content": "",
-  "topic list" : "curriculum/topics/view",
+  "topic list" : "curriculum/topics",
 };
 
 const errorRouteMap = {
@@ -76,6 +78,7 @@ Cypress.Commands.add("loginByGoogleApi", () => {
       };
 
       window.localStorage.setItem("googleCypress", JSON.stringify(userItem));
+      cy.setCookie("token", access_token);
       cy.visit("/");
     });
   });
@@ -88,6 +91,12 @@ Cypress.Commands.add("setDataToken", (dataToken) => {
 
 Cypress.Commands.add("getDataToken", () => {
   return Cypress.env("googleRefreshToken");
+});
+
+Cypress.Commands.add("login_to_google_backend", ()=>{
+  cy.visit(`${Cypress.env("gatewayUrl")}/${"login"}`);
+  cy.contains("Sign in with Google").click();
+  cy.get('[id="login_field"]').type("test98@gmail.com")
 });
 
 
