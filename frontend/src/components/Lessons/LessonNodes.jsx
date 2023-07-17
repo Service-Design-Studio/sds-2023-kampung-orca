@@ -86,7 +86,6 @@ const Node = ({
   lessonsAccess
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
-
   const isEnabled = lessonsAccess.find((lesson) =>
     lesson.lesson_id === lessonId
   );
@@ -104,12 +103,15 @@ const Node = ({
   }
 
   if (lessonsAccess.find((lesson)=>
-    lesson.lesson_id === lessonId && lesson.lesson_id === lessonsAccess[lessonsAccess.length - 1].lesson_id
+    lesson.lesson_id === lessonId &&
+     lesson.lesson_id === lessonsAccess[lessonsAccess.length - 1].lesson_id
   )){
     iconComponent = FaCircleExclamation;
     status = "In Progress"
     statusColour = "darkorange";
   }
+
+  //TODO: Fully completed lesson pathway should show that all lessons are now completed
 
   return (
     <Popover trigger="hover" placement="top">
