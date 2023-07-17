@@ -6,6 +6,15 @@ import {
   BsStopCircle,
   BsEmojiSmile,
   BsCheckCircle,
+  Bs1CircleFill,
+  BsActivity,
+  BsHouse,
+  BsHeartPulse,
+  BsInfoCircle,
+  BsAppIndicator,
+  BsCircleFill,
+  BsJoystick,
+  BsAirplane,
 } from "react-icons/bs";
 import { Progress } from "@chakra-ui/react";
 import {
@@ -19,10 +28,13 @@ import {
 
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
+import { BiSolidCheckCircle } from "react-icons/bi";
+import { FaBookJournalWhills, FaCircleExclamation, FaPersonCircleExclamation, FaPersonCircleQuestion, FaPersonWalking, FaSquarePersonConfined } from "react-icons/fa6";
 
-
-
-
+let status;
+let statusColour;
+let cursorStyle;
+let iconComponent;
 
 
 const DynamicNodes = () => {
@@ -66,8 +78,6 @@ const Line = () => {
 
 export default Line;
 
-
-
 const Node = ({
   color,
   title,
@@ -77,15 +87,12 @@ const Node = ({
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
+  const isEnabled = lessonsAccess.find((lesson) =>
+    lesson.lesson_id === lessonId
+  );
 
-
-  const isEnabled = lessonsAccess.find((lesson) => lesson.lesson_id === lessonId);
-  let status;
-  let statusColour;
-  let cursorStyle;
-  let iconComponent;
   if (isEnabled) {
-    status = "Unlocked";
+    status = "Completed";
     statusColour = "green";
     cursorStyle = "pointer";
     iconComponent = BsCheckCircle;
@@ -96,10 +103,13 @@ const Node = ({
     iconComponent = BsStopCircle;
   }
 
-
-
-
-
+  if (lessonsAccess.find((lesson)=>
+    lesson.lesson_id === lessonId && lesson.lesson_id === lessonsAccess[lessonsAccess.length - 1].lesson_id
+  )){
+    iconComponent = FaCircleExclamation;
+    status = "In Progress"
+    statusColour = "darkorange";
+  }
 
   return (
     <Popover trigger="hover" placement="top">
@@ -109,6 +119,7 @@ const Node = ({
           cursor={cursorStyle}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+
         >
           <Icon as={iconComponent} color={color} boxSize="80px" />
         </Stack>
