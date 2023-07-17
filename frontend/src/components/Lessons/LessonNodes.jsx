@@ -22,6 +22,9 @@ import useGateway from "../../hooks/useGateway";
 
 
 
+
+
+
 const DynamicNodes = () => {
   const [data] = useGateway(window.location.pathname + "/lesson", "GET");
   console.log(data);
@@ -45,6 +48,8 @@ const DynamicNodes = () => {
   ));
 };
 
+
+
 const Line = () => {
   return (
     <Box
@@ -61,8 +66,9 @@ const Line = () => {
 
 export default Line;
 
+
+
 const Node = ({
-  icon: IconComponent,
   color,
   title,
   message,
@@ -76,16 +82,23 @@ const Node = ({
   const isEnabled = lessonsAccess.find((lesson) => lesson.lesson_id === lessonId);
   let status;
   let statusColour;
-  let cursorStyle
+  let cursorStyle;
+  let iconComponent;
   if (isEnabled) {
     status = "Unlocked";
     statusColour = "green";
     cursorStyle = "pointer";
+    iconComponent = BsCheckCircle;
   } else{
     status = "Locked";
     statusColour = "red";
     cursorStyle = "not-allowed";
+    iconComponent = BsStopCircle;
   }
+
+
+
+
 
 
   return (
@@ -97,7 +110,7 @@ const Node = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <Icon as={IconComponent} color={color} boxSize="80px" />
+          <Icon as={iconComponent} color={color} boxSize="80px" />
         </Stack>
       </PopoverTrigger>
       <PopoverContent>
