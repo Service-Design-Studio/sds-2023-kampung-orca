@@ -11,7 +11,9 @@ function ForumApp() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
-  const current_user_id = "104304955930256288402"; //TODO: Actually get the userid instead of using placeholder
+  const current_user_id = Cookies.get("user_id"); //TODO: Actually get the userid instead of using placeholder
+
+  console.log(current_user_id);
 
   useEffect(() => {
     fetchPosts();
@@ -159,7 +161,6 @@ function ForumApp() {
       await fetchPosts();
 
       
-
     } catch (error) {
       console.log(error.response.status);
     }
@@ -217,7 +218,7 @@ function ForumApp() {
                   (
 
                     <Stack direction="row" spacing={2}>
-                      <Button
+                    <Button
                       onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
                       colorScheme="blue"
                       bg="#ed2e38"
@@ -273,10 +274,6 @@ function ForumApp() {
           
           )}
           
-
-          
-
-
           
         </div>
       ) : (

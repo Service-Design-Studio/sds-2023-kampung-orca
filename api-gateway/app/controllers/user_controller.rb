@@ -29,6 +29,6 @@ class UserController < ApplicationController
 
 
     #p response_forum
-    render json: {token: current_user[:token]}
+    render json: {token: current_user[:token], user_id: current_user[:user_id]}
   end
 end

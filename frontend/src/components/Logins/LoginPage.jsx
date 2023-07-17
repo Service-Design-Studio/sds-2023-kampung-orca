@@ -52,6 +52,9 @@ const LoginPage = () => {
       });
       console.log(tokens);
       Cookies.set("token", tokens.data["token"]);
+      Cookies.set("user_id", tokens.data["user_id"]); // Save user_id in cookies
+      console.log(Cookies.get("token"));
+      console.log(Cookies.get("user_id"));
       navigate("/curriculum/topics/view");
     } catch (error) {
       console.log(error.response.status);
