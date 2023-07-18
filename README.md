@@ -57,19 +57,22 @@ Always make sure to `git pull` before you `git commit` your changes.
 ### Running the app
 
 #### Mac (Silicon)
+
 In order to run all the microservices, please make sure that the stock terminal app is turned off before you do the following while `kampung` is your current working directory
 
 ```shell
 sh start_dev.sh
 ```
-  This will launch the web app running on local host and will also turn on cypress for testing
 
-  ##### Troubleshooting on Mac (Silicon)
+This will launch the web app running on local host and will also turn on Cypress for testing.
+
+##### Troubleshooting on Mac (Silicon)
 
 ```shell
 sh restart_dev.sh
 ```
-  Use this to troubleshoot your local installation as it re-downloads all the dependencies in each microservice.
+
+Use this to troubleshoot your local installation as it re-downloads all the dependencies in each microservice.
 
 ### Docker Compose
 

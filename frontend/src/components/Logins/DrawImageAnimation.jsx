@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import "./DrawImageAnimation.css";;
+import "./DrawImageAnimation.css";
 
 const DrawImageAnimation = () => {
   return (

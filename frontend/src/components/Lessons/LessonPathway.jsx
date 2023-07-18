@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BiDonateHeart, BiGroup, BiSpa } from "react-icons/bi";

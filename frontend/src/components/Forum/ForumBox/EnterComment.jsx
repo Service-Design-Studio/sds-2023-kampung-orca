@@ -1,26 +1,25 @@
 import React from "react";
 import { Stack, Heading, Button, Avatar, Textarea } from "@chakra-ui/react";
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import Cookies from "js-cookie";
+import axios from "axios";
 
 export const EnterComment = ({ image, name }) => {
-  const [valueContent, setValueContent] = React.useState('')
-  const handleContentChange = (event) => setValueContent(event.target.value)
+  const [valueContent, setValueContent] = React.useState("");
+  const handleContentChange = (event) => setValueContent(event.target.value);
 
   const handleButtonClick = () => {
     CreateComment(valueContent);
   };
-  
 
-  
   const CreateComment = async (con) => {
-    const cookieValue = Cookies.get('token');
+    const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.post('http://localhost:3001/lessons/1/posts/2/comments',
-      { 
-        token: cookieValue, 
-        comment: {content: con} 
-      }
+      const response = await axios.post(
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/2/comments`,
+        {
+          token: cookieValue,
+          comment: { content: con },
+        }
       );
       console.log(response);
     } catch (error) {
@@ -38,6 +37,7 @@ export const EnterComment = ({ image, name }) => {
             <Textarea
               resize="none"
               fontSize="sm"
+              textColor="#000000"
               placeholder="Write your comment here..."
               value={valueContent}
               onChange={handleContentChange}
@@ -61,5 +61,3 @@ export const EnterComment = ({ image, name }) => {
     </>
   );
 };
-
-

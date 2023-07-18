@@ -1,7 +1,6 @@
 /* eslint-disable cypress/unsafe-to-chain-command */
 /* eslint-disable cypress/no-unnecessary-waiting */
 
-
 const pageRouteMap = {
   home: "",
   login: "login",
@@ -11,7 +10,7 @@ const pageRouteMap = {
   chatroom: "chat",
   "first content": "",
   "second content": "",
-  "topic list" : "curriculum/topic",
+  "topic list": "curriculum/topic",
 };
 
 const errorRouteMap = {
@@ -37,13 +36,14 @@ Cypress.Commands.add("visitRoute", (pageName) => {
 //   );
 // });
 
-  Cypress.Commands.add("matchRoute", (pageName) => {
-    // eslint-disable-next-line no-useless-escape
-    const urlPattern = `^${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`.replace(/:topic_id|:lesson_id/g, "\\d+");
-    const regexPattern = new RegExp(urlPattern);  
-    cy.url().should("match", regexPattern);
-  });
-
+Cypress.Commands.add("matchRoute", (pageName) => {
+  // eslint-disable-next-line no-useless-escape
+  const urlPattern = `^${Cypress.env("gatewayUrl")}/${
+    pageRouteMap[pageName]
+  }`.replace(/:topic_id|:lesson_id/g, "\\d+");
+  const regexPattern = new RegExp(urlPattern);
+  cy.url().should("match", regexPattern);
+});
 
 Cypress.Commands.add("clickButton", (buttonName) => {
   cy.get(buttonComponentMap[buttonName]).click();
@@ -96,18 +96,16 @@ Cypress.Commands.add("clickButton", (buttonName) => {
 
 Cypress.Commands.add("setDataToken", (dataToken) => {
   const googleRefreshToken = Cypress.env("googleRefreshToken");
-  Cypress.env('googleRefreshToken', dataToken)
+  Cypress.env("googleRefreshToken", dataToken);
 });
 
 Cypress.Commands.add("getDataToken", () => {
   return Cypress.env("googleRefreshToken");
 });
 
-Cypress.Commands.add("loginByGoogleApi", ()=>{
+Cypress.Commands.add("loginByGoogleApi", () => {
   cy.setCookie("token", "admin");
-  });
-  
-
+});
 
 //
 // -- This is a child command --

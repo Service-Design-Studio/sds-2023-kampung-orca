@@ -29,13 +29,14 @@ import {
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
 import { BiSolidCheckCircle } from "react-icons/bi";
-import { FaBookJournalWhills, FaCircleExclamation, FaPersonCircleExclamation, FaPersonCircleQuestion, FaPersonWalking, FaSquarePersonConfined } from "react-icons/fa6";
-
-let status;
-let statusColour;
-let cursorStyle;
-let iconComponent;
-
+import {
+  FaBookJournalWhills,
+  FaCircleExclamation,
+  FaPersonCircleExclamation,
+  FaPersonCircleQuestion,
+  FaPersonWalking,
+  FaSquarePersonConfined,
+} from "react-icons/fa6";
 
 const DynamicNodes = () => {
   const [data] = useGateway(window.location.pathname + "/lesson", "GET");
@@ -44,24 +45,39 @@ const DynamicNodes = () => {
 
   const lessonsAccess = data.lessons_access;
 
-  return data.lessons.map((node, index) => (
-    <React.Fragment key={index}>
-      {index !== 0 && <Line />}{" "}
-      {/* Render the Line component only if index is not 0 */}
-      <Link to={`/curriculum/lesson/${node.lesson_id}`}>
-        <Node
-          title={node.title}
-          message={node.message}
-          lessonId={node.lesson_id}
-          lessonsAccess={lessonsAccess}
+  return data.lessons.map((node, index) => {
+    const isEnabled = lessonsAccess.find(
+      (lesson) => lesson.lesson_id === node.lesson_id
+    );
+
+    return (
+      <React.Fragment key={index}>
+        {index !== 0 && <Line />}
+        {/* Render the Line component only if index is not 0 */}
+        {isEnabled ? (
+          <Link to={`/curriculum/lesson/${node.lesson_id}`}>
+            <Node
+              title={node.title}
+              message={node.message}
+              lessonId={node.lesson_id}
+              lessonsAccess={lessonsAccess}
           data-cy= {`node: + ${node.lesson_id}`}
-        />
-      </Link>
-    </React.Fragment>
-  ));
+            />
+          </Link>
+        ) : (
+          <Node
+            title={node.title}
+            message={node.message}
+            lessonId={node.lesson_id}
+            lessonsAccess={lessonsAccess}
+            isDisabled
+          />
+        )}
+      </React.Fragment>
+    );
+  });
+
 };
-
-
 
 const Line = () => {
   return (
@@ -77,54 +93,65 @@ const Line = () => {
   );
 };
 
-export default Line;
-
 const Node = ({
   color,
   title,
   message,
   lessonId,
-  lessonsAccess
+  lessonsAccess,
+  isDisabled,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
-  const isEnabled = lessonsAccess.find((lesson) =>
-    lesson.lesson_id === lessonId
-  );
 
-  if (isEnabled) {
-    status = "Completed";
-    statusColour = "green";
-    cursorStyle = "pointer";
-    iconComponent = BsCheckCircle;
-  } else{
+  let status;
+  let statusColour;
+  let cursorStyle;
+  let iconComponent;
+
+  if (isDisabled) {
     status = "Locked";
     statusColour = "red";
     cursorStyle = "not-allowed";
     iconComponent = BsStopCircle;
+  } else {
+    const isEnabled = lessonsAccess.find(
+      (lesson) => lesson.lesson_id === lessonId
+    );
+
+    if (isEnabled) {
+      status = "Completed";
+      statusColour = "green";
+      cursorStyle = "pointer";
+      iconComponent = BsCheckCircle;
+    } else {
+      status = "Locked";
+      statusColour = "red";
+      cursorStyle = "not-allowed";
+      iconComponent = BsStopCircle;
+    }
+
+    if (
+      lessonsAccess.find(
+        (lesson) =>
+          lesson.lesson_id === lessonId &&
+          lesson.lesson_id ===
+            lessonsAccess[lessonsAccess.length - 1].lesson_id
+      )
+    ) {
+      iconComponent = FaCircleExclamation;
+      status = "In Progress";
+      statusColour = "darkorange";
+    }
   }
-
-  if (lessonsAccess.find((lesson)=>
-    lesson.lesson_id === lessonId &&
-     lesson.lesson_id === lessonsAccess[lessonsAccess.length - 1].lesson_id
-  )){
-    iconComponent = FaCircleExclamation;
-    status = "In Progress"
-    statusColour = "darkorange";
-  }
-
-  //TODO: Fully completed lesson pathway should show that all lessons are now completed
-
-  // TODO: Get rid of requirement to refresh page to see changes on the lesson nodes after lesson complete
 
   return (
     <Popover trigger="hover" placement="top" data-cy = {`popup:${lessonId}`} >
       <PopoverTrigger>
         <Stack
-          opacity={isEnabled ? 1 : 0.5}
+          opacity={isDisabled ? 0.5 : 1}
           cursor={cursorStyle}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-
         >
           <Icon as={iconComponent} color={color} boxSize="80px"  data-cy = {`icon:${lessonId}`}/>
         </Stack>
@@ -135,7 +162,12 @@ const Node = ({
         <PopoverBody fontSize="14px" textAlign="justify"data-cy = {`popup:${lessonId}`}>
           {message}
         </PopoverBody>
-        <PopoverBody fontSize="14px" fontWeight="semibold" color={statusColour} textAlign="justify">
+        <PopoverBody
+          fontSize="14px"
+          fontWeight="semibold"
+          color={statusColour}
+          textAlign="justify"
+        >
           <Stack direction="row" justifyContent="space-between">
             <Text>{status}</Text>
           </Stack>
@@ -144,7 +176,6 @@ const Node = ({
     </Popover>
   );
 };
-
 
 export const LessonNodes = ({ lessonProgress }) => {
   return (

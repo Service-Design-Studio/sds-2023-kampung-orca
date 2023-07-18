@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Stack, Text, Button, ScaleFade } from "@chakra-ui/react";
+import DrawImageAnimation from "./DrawImageAnimation";
 
 const CoverLogin = () => {
   const [showContent, setShowContent] = useState(false);
@@ -20,8 +21,9 @@ const CoverLogin = () => {
       color="#000"
       textAlign="center"
       fontFamily="Arial"
-      position="relative" // Add position relative to contain the DrawImageAnimation component
+      position="relative"
     >
+      <DrawImageAnimation />
       <ScaleFade initialScale={0.9} in={showContent} transitionDuration={1000}>
         <Text
           fontSize={["32px", "48px", "64px", "96px"]}

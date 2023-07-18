@@ -3,6 +3,7 @@ class UserController < ApplicationController
   # TODO: Needs a rewrite
 
   def authorization_code_exchange
+    p ENV["USER_URL"]
     current_user = HTTParty.post(ENV["USER_URL"] + "/user/authorization_code_exchange", {
       :body => {code: @code}.to_json,
       headers: {
