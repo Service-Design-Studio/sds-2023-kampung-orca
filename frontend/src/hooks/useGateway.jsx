@@ -3,6 +3,8 @@ import useAxios from "axios-hooks";
 import { useNavigate } from "react-router";
 import useCookie from "./useCookie";
 
+
+
 const useGateway = (endpoint, method) => {
   const url = `${process.env.REACT_APP_GATEWAY_URL}${endpoint}`;
   const navigate = useNavigate();

@@ -22,18 +22,21 @@ class Users::UserController < ApplicationController
     before_action :set_credentials
     #skip_before_action :verify_authenticity_token, only: [:google]
     
-
+    def google
+      render json: {}
+    end
+  
     def authorization_code_exchange
       begin
-        p ENV['GOOGLE_CLIENT_ID']
         query = {
           code: @code,
           client_id: ENV['GOOGLE_CLIENT_ID'],
           client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          redirect_uri: 'http://localhost:3000',
+          redirect_uri: 'http://localhost:3000/oauth/google',
           grant_type: 'authorization_code'
         }
         response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query: query)
+        p "Exchanged Tokens: #{response}"
         tokens_data =  {token: response['access_token'], refresh_token: response['refresh_token'], expires_at: response["expires_in"]}
         @token = response['access_token']
         headers = {
@@ -47,6 +50,8 @@ class Users::UserController < ApplicationController
           headers: headers
         )
         profile_data = JSON.parse(profile_response.body)
+        p "Exchanged profile: #{profile_data}"
+
         if profile_data["id"] == nil
           head 400
         end

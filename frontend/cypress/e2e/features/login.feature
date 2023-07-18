@@ -4,6 +4,7 @@ Feature: Google login
     Given I am at the home page
     When I click on the Login button
     Then I should go to the login page
+    And I should see Sign in with Google Button
 
   Scenario: Route to main page after login
     Given I am at the login page

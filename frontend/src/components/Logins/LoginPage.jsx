@@ -6,11 +6,15 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Cookies from "js-cookie";
 
-const GoogleLoginButton = ({ onSuccess }) => {
+const GoogleLoginButton = () => {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
-    onSuccess,
+    ux_mode: "redirect",
+    redirect_uri: "http://localhost:3000/oauth/google",
+    onSuccess: (errorResponse) => console.log(errorResponse),
     onError: (errorResponse) => console.log(errorResponse),
+    onNonOAuthError: (errorResponse) => console.log(errorResponse),
+    state: "http://localhost:3000/curriculum/topic"
   });
 
   return (
@@ -43,20 +47,6 @@ const GoogleLoginButton = ({ onSuccess }) => {
   );
 };
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const onSuccess = async (codeResponse) => {
-    console.log(codeResponse);
-    try {
-      const tokens = await axios.post("users/signup", {
-        code: codeResponse.code,
-      });
-      console.log(tokens);
-      Cookies.set("token", tokens.data["token"]);
-      navigate("/curriculum/topic");
-    } catch (error) {
-      console.log(error.response.status);
-    }
-  };
 
   return (
     <Stack
@@ -105,7 +95,7 @@ const LoginPage = () => {
           Login to Interfaith
         </Text>
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-          <GoogleLoginButton onSuccess={onSuccess} />
+          <GoogleLoginButton />
         </GoogleOAuthProvider>
         <Button
           as={Link}

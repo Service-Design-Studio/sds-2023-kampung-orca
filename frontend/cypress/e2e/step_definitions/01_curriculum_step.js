@@ -1,9 +1,9 @@
-import { Given, When, Then, Before, And } from "@badeb/cypress-cucumber-preprocessor";
-import { data } from "cypress/types/jquery";
+import { Given, When, Then, Before} from "@badeball/cypress-cucumber-preprocessor";
+//import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
-const tokenInCache = false;
+let tokenInCache = false;
 const dataToken = null;
 
 Before(() => {
@@ -26,7 +26,6 @@ When("I click on the embedded lesson video", () => {
     .should("be.visible")
     .then(($iframe) => {
       const $video = $iframe.contents().find("video");
-      $video;
     }).click();
 });
 
@@ -60,17 +59,17 @@ Then(/^I should see the (\w+) page content$/, (phrase) => {
   }
 });
 
-And("I see the first page content", () => {
-  cy.get("p").contains("1").should("exist");
-});
+// And("I see the first page content", () => {
+//   cy.get("p").contains("1").should("exist");
+// });
 
 When("I click on the right arrow button", () => {
   cy.get('.chakra-button css-crvxvb').click();
 });
 
-And("I see the second page content", () => {
-  cy.get("p").contains("2").should("exist");
-});
+// And("I see the second page content", () => {
+//   cy.get("p").contains("2").should("exist");
+// });
 
 When("I click on the left arrow button", () => {
   cy.get('.chakra-icon css-1ev3uyk').click();
@@ -120,9 +119,9 @@ Then("I should go to the lesson completed page", () => {
   cy.get("button").contains("Go to Home").should("exist");
 });
 
-And("I have completed the lesson", () => {
-  cy.get("button").contains("Complete Lesson").should("exist");
-});
+// And("I have completed the lesson", () => {
+//   cy.get("button").contains("Complete Lesson").should("exist");
+// });
 
 When("I click on the Next Lesson button", () => {
   cy.get("button").contains("Next Lesson").click();

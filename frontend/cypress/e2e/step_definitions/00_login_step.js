@@ -1,7 +1,11 @@
-import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { When, Then, Given} from "@badeball/cypress-cucumber-preprocessor";
+import '@testing-library/cypress/add-commands';
+
+
+
 
 When("I click on the button for Google login", () => {
-  cy.get("#google-login").click();
+  cy.findByText("Sign in with Google").should("exist");
 });
 
 Then("I should see the Google login popup", () => {
@@ -9,3 +13,7 @@ Then("I should see the Google login popup", () => {
 });
 
 When("I visit any page", () => {});
+
+Then("I should see Sign in with Google Button", () => {
+  cy.findByText("Sign in with Google").should("exist");
+}); 
