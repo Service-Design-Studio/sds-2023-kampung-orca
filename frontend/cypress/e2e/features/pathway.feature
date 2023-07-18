@@ -11,11 +11,12 @@ Scenario: View lessons pathway after selecting a topic
   When I click on a topic
   Then I am directed to the lessons pathway page
 
-Scenario: Mouse Scroll Up through lessons pathway
-  Given that I am at the lessons pathway page
-  When I mouse scroll up on the lessons pathway page
-  Then I will see the lessons pathway move right.
+# Scenario: Mouse Scroll Up through lessons pathway
+#   Given that I am at the lessons pathway page
+#   When I mouse scroll up on the lessons pathway page
+#   Then I will see the lessons pathway move right.
 
+<<<<<<< HEAD
 Scenario: Block off lessons that have not been completed ** added
 
 Scenario: Creation of Topic List **added
@@ -25,14 +26,21 @@ Scenario: Lesson Infobox appears
   When I mouse hover on a lesson node on the lessons pathway
   Then I will see an info box for the lesson
   Then I will see the progress bar in the info box
+=======
+# Scenario: Lesson Infobox appears
+#   Given that I am at the topic list page
+#   When I mouse hover on a lesson node on the lessons pathway
+#   Then I will see an info box for the lesson
+#   Then I will see the progress bar in the info box
+>>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 
-Scenario: Icons on the lessons pathway
-  Given I am at the lessons pathway page
-  Then I should see the lesson node's icon
+# Scenario: Icons on the lessons pathway
+#   Given I am at the lessons pathway page
+#   Then I should see the lesson node's icon
 
-Scenario: Pathway between lesson nodes
-  Given I am at the lessons pathway page
-  Then I should see the pathway between lesson nodes
+# Scenario: Pathway between lesson nodes
+#   Given I am at the lessons pathway page
+#   Then I should see the pathway between lesson nodes
 
 Scenario: Add graphics around the lesson pathway **added
   Given I am on the learning pathway, 

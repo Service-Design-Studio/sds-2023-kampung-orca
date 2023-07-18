@@ -4,7 +4,7 @@ import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
 
-function NavigationButton({ to, children, hideButton }) {
+function NavigationButton({ data, to, children, hideButton}) {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -15,9 +15,8 @@ function NavigationButton({ to, children, hideButton }) {
     width: "200px", // Adjust the width as per your requirement
     height: "30px", // Adjust the height as per your requirement
   };
-
   return (
-    <button onClick={handleClick} style={buttonStyle}>
+    <button onClick={handleClick} style={buttonStyle} data-cy = {data} >
       {children}
     </button>
   );
@@ -73,10 +72,11 @@ const TopicPage = () => {
 
       <Stack direction="row" spacing="50px" paddingY="50px">
         {topics.map((topic) => (
-          <NavigationButton
+          <NavigationButton 
             key={topic.topic_id}
             to={`/curriculum/topic/${topic.topic_id}`}
             hideButton={false}
+            data = {topic.topic_id}
           >
             <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
           </NavigationButton>

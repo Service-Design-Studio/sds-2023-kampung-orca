@@ -9,12 +9,9 @@ Given("that I am at the topic list page", () => {
 });
 
 When("I click on a topic", () => {
-  cy.get('button').contains('div.css-1omwhlw').should('exist');
+  cy.get('[data-cy="00001"]').click();
 });
 
-Then("I should go to the lessons pathway page", () => {
-  cy.matchRoute('lessons-pathway');
-});
 
 // When("I mouse scroll up on the lessons pathway page", () => {
 //   cy.get('a[href="/curriculum/lesson/4"]').scrollIntoView().should('be.visible');

@@ -9,7 +9,7 @@ Feature: Google login
   Scenario: Route to main page after login
     Given I am at the login page
     When I click on the button for Google login
-    Then I should see the Google login popup
+    Then I should see the Google login page
 
   #Scenario: Unauthenticated users should not access any route
   #  When I visit any page

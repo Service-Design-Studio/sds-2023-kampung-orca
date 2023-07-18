@@ -30,5 +30,7 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/features/*.feature",
     baseUrl: "http://localhost:3000/SnapShot#/SnapScout/",
     chromeWebSecurity: false,
+    experimentalSessionAndOrigin: true,
+    experimentalModifyObstructiveThirdPartyCode: true
   },
 });

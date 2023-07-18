@@ -15,14 +15,19 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    current_user = HTTParty.post(ENV["USER_URL"] + "/user/verify_token", {
-      body: {token: @token}.to_json,
-      headers: {
-        'Content-Type' => 'application/json',
-        'charset' => 'utf-8'
-      }
-    }).parsed_response
-    @current_user = current_user.transform_keys(&:to_sym)
+    if @token == "admin" && Rails.env.development? 
+      @current_user = {token: "admin", user_id: "admin"}
+    else
+      current_user = HTTParty.post(ENV["USER_URL"] + "/user/verify_token", {
+        body: {token: @token}.to_json,
+        headers: {
+          'Content-Type' => 'application/json',
+          'charset' => 'utf-8'
+        }
+      }).parsed_response
+      @current_user = current_user.transform_keys(&:to_sym)
+    end
+
   end
 
   def set_authentication

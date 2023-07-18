@@ -10,7 +10,9 @@ Topic.destroy_all
 Lesson.destroy_all
 Page.destroy_all
 Exercise.destroy_all
+User.destroy_all
 
+User.create(user_id: "admin", lessons_access: ["00001"], exercises_access:[])
 Topic.create!(topic_id: "00001", title: "Sample Topic 1", num_of_lessons: 3)
 Topic.create!(topic_id: "00002", title: "Sample Topic 2", num_of_lessons: 3)
 Topic.create!(topic_id: "00003", title: "Sample Topic 2", num_of_lessons: 3)
