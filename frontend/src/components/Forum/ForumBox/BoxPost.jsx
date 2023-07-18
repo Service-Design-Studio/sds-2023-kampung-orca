@@ -268,16 +268,6 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
 
           {selectedPost.user_id === current_user_id && (
             <Stack direction="row" spacing={5}>
-              <Button
-                onClick={() => deletePost(selectedPost.id)}
-                mb={4}
-                colorScheme="blue"
-                bg="#ed2e38"
-                _hover={{ bg: "#f66873" }}
-              >
-                Delete Post :O
-              </Button>{" "}
-              */}
               <DeleteButton onDelete={() => deletePost(selectedPost.id)} />
             </Stack>
           )}

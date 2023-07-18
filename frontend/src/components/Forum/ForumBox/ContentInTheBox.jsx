@@ -20,11 +20,6 @@ function ContentInTheBox() {
     setActivePostId(postId);
   };
 
-  const handlePostButtonClick = () => {
-    setFormOpen(false);
-    setRefreshPosts(true);
-  };
-
   return (
     <>
       <Stack
