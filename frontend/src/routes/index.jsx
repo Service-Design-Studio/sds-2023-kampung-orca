@@ -19,29 +19,12 @@ import {
   LoginErrorPage,
 } from "../components/Misc";
 
-import {
-  LessonNodes,
-  LessonView,
-  LessonCompletion,
-} from "../components/Lessons";
-
-import {
-  CurriculumErrorPage,
-  ErrorPage,
-  LoginErrorPage,
-} from "../components/Misc";
-
 import GoogleCallback from "../components/Logins/GoogleCallback";
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
 import TopicPage from "../components/Logins/TopicPage";
 import LearnMore from "../components/Logins/LearnMore";
-import { ForumMain } from "../components/Forum/OldForum/ForumMain";
-import { ForumPost } from "../components/Forum/OldForum/ForumPost";
-import { ForumView } from "../components/Forum/OldForum/ForumView";
-import { DiscussionView } from "../components/Forum/OldForum/DiscussionView";
-import Test from "../components/Forum/ForumBox/Test";
 
 import useCookie from "../hooks/useCookie";
 

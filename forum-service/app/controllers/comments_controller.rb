@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
     # GET /comments
     def index
       @comments = @post.comments
-      render json: @comments.to_json(include: { user: { only: [:id, :username] } })
+      render json: @comments.to_json(include: { user: { only: [:id, :name] } })
     end
   
     # GET /comments/:id
     def show
-      render json: @comments.to_json(include: { user: { only: [:id, :username] } })
+      render json: @comments.to_json(include: { user: { only: [:id, :name] } })
     end
   
     # POST /comments

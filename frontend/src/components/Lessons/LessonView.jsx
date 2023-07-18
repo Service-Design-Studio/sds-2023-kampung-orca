@@ -34,12 +34,6 @@ export const LessonView = () => {
     progress = Math.floor((currentPage / pages.length) * 100) + 1;
   }
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = 0;
-    }
-  }, [currentPage]);
-
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };

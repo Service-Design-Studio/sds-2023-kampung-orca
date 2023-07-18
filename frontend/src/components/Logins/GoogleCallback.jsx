@@ -25,7 +25,7 @@ const useGateway_oauth = (endpoint, method, code) => {
 
   useMemo(() => {
     if (!loading && data && data.token) {
-      setCache(data.token);
+      setCache(data);
     }
   }, [loading, data]);
 
@@ -52,7 +52,8 @@ const GoogleCallback = () => {
   const [data] = useGateway_oauth("/users/signup", "Post", code);
   useEffect(() => {
     if (data) {
-      Cookies.set("token", data);
+      Cookies.set("token", data.token);
+      Cookies.set("user_id", data.user_id);
       console.log(data);
       console.log(link);
       navigate(link);

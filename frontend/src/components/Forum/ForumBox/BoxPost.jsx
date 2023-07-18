@@ -153,6 +153,8 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     setSelectedPost(null);
   };
 
+  // const handleShit = () => console.log(comments);
+  console.log(current_user_id);
   return (
     <div>
       {selectedPost ? (
