@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import { Link, useParams, useEffect } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
@@ -61,15 +61,15 @@ export const LessonCompletion = () => {
           align="center"
         >
           {show_previous_lesson && (
-          <Link to={pre_lesson}>
-            <Button
-              shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-              leftIcon={<Icon as={GoChevronLeft} />}
-              size="lg"
-            >
-              Previous Lesson
-            </Button>
-          </Link>
+            <Link to={pre_lesson}>
+              <Button
+                shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+                leftIcon={<Icon as={GoChevronLeft} />}
+                size="lg"
+              >
+                Previous Lesson
+              </Button>
+            </Link>
           )}
         </Stack>
 
@@ -113,16 +113,16 @@ export const LessonCompletion = () => {
           align="center"
         >
           {show_next_lesson && (
-          <Link to={next_lesson}>
-            <Button style={{ zIndex: -1 }}> hi</Button>
-            <Button
-              shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-              rightIcon={<Icon as={GoChevronRight} />}
-              size="lg"
-            >
-              Next Lesson
-            </Button>
-          </Link>
+            <Link to={next_lesson}>
+              <Button style={{ zIndex: -1 }}> hi</Button>
+              <Button
+                shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+                rightIcon={<Icon as={GoChevronRight} />}
+                size="lg"
+              >
+                Next Lesson
+              </Button>
+            </Link>
           )}
         </Stack>
       </Stack>

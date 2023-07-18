@@ -2,9 +2,6 @@
 import { When, Then, Given} from "@badeball/cypress-cucumber-preprocessor";
 import '@testing-library/cypress/add-commands';
 
-
-
-
 When("I click on the button for Google login", () => {
   cy.findByText("Sign in with Google").click({ force: true });
   cy.wait(1000);

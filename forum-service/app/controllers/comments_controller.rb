@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
     before_action :set_post, only: [:show, :update, :create, :destroy, :index]
-    before_action :check_author, only: [:update, :destroy]
+    before_action :check_author, only: [:update]
     before_action :validate_fields, only: [:create]
   
     # GET /comments
@@ -38,6 +38,9 @@ class CommentsController < ApplicationController
   
     # DELETE /comments/:id
     def destroy
+      unless @comment.user_id == params[:user_id]
+        render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+      end
       @comment.destroy
       head :no_content
     end

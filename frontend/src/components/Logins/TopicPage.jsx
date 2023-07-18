@@ -25,7 +25,6 @@ function NavigationButton({ data, to, children, hideButton }) {
 const TopicPage = () => {
   // TODO: CHANGE THIS!
   const [topics] = useGateway(window.location.pathname);
-  console.log(topics);
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page

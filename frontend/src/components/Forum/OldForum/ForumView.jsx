@@ -8,8 +8,8 @@ import {
   StackDivider,
   Avatar,
 } from "@chakra-ui/react";
-import ForumChat from "../Chatbox/ForumChat";
-import { Header } from "../Header";
+import ForumChat from "../../Chatbox/ForumChat";
+import { Header } from "../../Header";
 import { Card, CardHeader, CardBody } from "@chakra-ui/react";
 import { Comment } from "./Comment.jsx";
 import { EnterComment } from "./EnterComment.jsx";
