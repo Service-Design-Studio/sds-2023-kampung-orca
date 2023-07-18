@@ -7,6 +7,8 @@ const createEsbuildPlugin =
 require("dotenv").config();
 
 module.exports = defineConfig({
+  viewportWidth: 1440,
+  viewportHeight: 900,
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({

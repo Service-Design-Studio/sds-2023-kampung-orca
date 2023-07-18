@@ -54,6 +54,7 @@ const DynamicNodes = () => {
           message={node.message}
           lessonId={node.lesson_id}
           lessonsAccess={lessonsAccess}
+          data-cy= {`node: + ${node.lesson_id}`}
         />
       </Link>
     </React.Fragment>
@@ -115,10 +116,8 @@ const Node = ({
 
   // TODO: Get rid of requirement to refresh page to see changes on the lesson nodes after lesson complete
 
-  
-
   return (
-    <Popover trigger="hover" placement="top">
+    <Popover trigger="hover" placement="top" data-cy = {`popup:${lessonId}`} >
       <PopoverTrigger>
         <Stack
           opacity={isEnabled ? 1 : 0.5}
@@ -127,13 +126,13 @@ const Node = ({
           onMouseLeave={() => setIsHovered(false)}
 
         >
-          <Icon as={iconComponent} color={color} boxSize="80px" />
+          <Icon as={iconComponent} color={color} boxSize="80px"  data-cy = {`icon:${lessonId}`}/>
         </Stack>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
         <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
-        <PopoverBody fontSize="14px" textAlign="justify">
+        <PopoverBody fontSize="14px" textAlign="justify"data-cy = {`popup:${lessonId}`}>
           {message}
         </PopoverBody>
         <PopoverBody fontSize="14px" fontWeight="semibold" color={statusColour} textAlign="justify">
