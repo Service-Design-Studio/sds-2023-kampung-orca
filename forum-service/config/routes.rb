@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   put 'lessons/:lesson_id/posts/:post_id/comments/:id', to: 'comments#update'
   delete 'lessons/:lesson_id/posts/:post_id/comments/:id', to: 'comments#destroy'
 
+  post 'user/create', to: 'users#create'
+
 end
   # Defines the root path route ("/")
   # root "articles#index"

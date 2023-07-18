@@ -5,12 +5,13 @@ import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-function PostInput({ isFormOpen, setFormOpen }) {
+function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
   const [valueTitle, setValueTitle] = useState("");
   const [valueContent, setValueContent] = useState("");
 
   const handleButtonClick = () => {
     setFormOpen(true);
+    console.log(setRefreshPosts);
   };
 
   const handlePostButtonClick = async () => {
@@ -45,6 +46,11 @@ function PostInput({ isFormOpen, setFormOpen }) {
           post: { title, content },
         }
       );
+      setRefreshPosts(true);
+      setTimeout(() => {
+        setRefreshPosts(false);
+        console.log("reser");
+      }, 2000);
       console.log(response);
     } catch (error) {
       console.log("Error occurred:", error);

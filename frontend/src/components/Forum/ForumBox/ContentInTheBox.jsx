@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import BoxPost from "./BoxPost";
 import PostInput from "../ForumMethods/PostInput";
 import { Stack } from "@chakra-ui/react";
+import ForumApp from "./BoxPost";
 
 function ContentInTheBox() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [refreshPosts, setRefreshPosts] = useState(false);
-
-  const handlePostButtonClick = () => {
-    setFormOpen(false);
-    setRefreshPosts(true);
-  };
 
   const [activePostId, setActivePostId] = useState(null);
 
@@ -43,6 +39,7 @@ function ContentInTheBox() {
           isActive={activePostId === 1}
           onClick={() => handlePostClick(1)}
           refreshPosts={refreshPosts}
+          setRefreshPosts={setRefreshPosts}
         />
       </Stack>
 
@@ -51,6 +48,8 @@ function ContentInTheBox() {
         setFormOpen={setFormOpen}
         handlePostButtonClick={handlePostButtonClick}
         //fetchPosts={fetchPosts}
+        refreshPosts={refreshPosts}
+        setRefreshPosts={setRefreshPosts}
       />
     </>
   );
