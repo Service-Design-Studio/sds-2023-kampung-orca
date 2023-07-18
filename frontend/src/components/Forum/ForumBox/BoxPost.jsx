@@ -1,82 +1,37 @@
+// ForumApp.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  useDisclosure,
-  Box,
-  Text,
-  Stack,
-  Heading,
-  Avatar,
-  Button,
-} from "@chakra-ui/react";
-import { EnterComment } from "./EnterComment";
-//import CommentForm from "./CommentForm";
 import Cookies from "js-cookie";
+import { Box, Heading, Text, Button, Stack } from "@chakra-ui/react";
+import PostList from "./PostList";
+import CommentList from "./CommentList";
+import { EnterComment } from "./EnterComment";
+import EditField from "../ForumMethods/EditField";
+import DeleteButton from "../ForumMethods/DeleteButton";
 
-function BoxPost({ post, isActive, onClick, updatePost }) {
-  const { isOpen, onToggle } = useDisclosure();
+import {
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
+} from "@chakra-ui/react";
 
-  const handleClick = () => {
-    onClick(post);
-    onToggle();
-  };
-
-  const handleEditClick = (event) => {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the parent Box
-    // Implement the logic to open an edit form or prompt the user for updated data
-    // Once you have the updated data, call the updatePost function
-    const updatedData = {
-      title: "updated title",
-      content: "this is updated post content",
-    };
-    updatePost(post.id, updatedData);
-  };
-
-  return (
-    <Box
-      onClick={handleClick}
-      mb="10px"
-      padding="20px"
-      shadow="0 0 5px 1px rgba(0, 0, 0, 0.3)"
-      bg="rgba(237, 242, 247, 0.9)"
-      transition="background-color 0.3s ease"
-      _hover={{ bg: "#ffbabc" }}
-    >
-      <Stack direction="row" align="center" spacing={4}>
-        <Avatar shadow="lg" size="lg" src={post.user && post.user.avatar} />
-        <Stack direction="column">
-          <Stack direction="row" align="center">
-            <Heading as="h3" size="md" textTransform="uppercase" color="#333">
-              {post.title}
-            </Heading>
-            <Text fontSize="sm" fontStyle="italic" color="#555">
-              by{" "}
-              <span style={{ fontWeight: "bold" }}>
-                {post.user && post.user.name}
-              </span>
-            </Text>
-          </Stack>
-
-          <Text noOfLines={2} pt="1" fontSize="sm" color="#555">
-            {post.content}
-          </Text>
-        </Stack>
-      </Stack>
-
-      <Button onClick={handleEditClick}>Edit</Button>
-    </Box>
-  );
-}
-
-const ForumApp = () => {
-  const [current_user_id, current_user_name] = [8, "Thomas"];
+function ForumApp({ refreshPosts, setRefreshPosts }) {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
+  const current_user_id = Cookies.get("user_id"); //TODO: Actually get the userid instead of using placeholder
+
+  //console.log(current_user_id);
 
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    fetchPosts(); // Fetch posts when refreshPosts is true
+    //setRefreshPosts(false);
+  }, [refreshPosts]);
 
   const fetchPosts = async () => {
     const cookieValue = Cookies.get("token");
@@ -124,70 +79,82 @@ const ForumApp = () => {
     }
   };
 
-  const goBack = () => {
-    setSelectedPost(null);
-  };
-
-  const DeletePost = async (postId) => {
-    const cookieValue = Cookies.get("token");
-    try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}`,
-        {
-          params: {
-            token: cookieValue,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error.response.status);
-    }
-  };
-
-  const DeleteComment = async (postId, commentId) => {
-    const cookieValue = Cookies.get("token");
-    try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}/comments/${commentId}`,
-        {
-          params: {
-            token: cookieValue,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error.response.status);
-    }
-  };
-
   const handleCommentDelete = async (postId, commentId) => {
     try {
-      await DeleteComment(postId, commentId);
-      // After successful deletion, fetch the comments again
+      await deleteComment(postId, commentId);
       await fetchComments(postId);
     } catch (error) {
       console.error(`Error deleting comment ${commentId}:`, error);
     }
   };
 
-  const updatePost = async (postId, updatedData) => {
+  const deleteComment = async (postId, commentId) => {
     const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}`, //this works now for editing
+      const response = await axios.delete(
+        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
         {
-          token: cookieValue,
-          post: updatedData,
+          params: {
+            token: cookieValue,
+          },
         }
       );
       console.log(response);
+      //updates the list of post displayed i feel damn dumb
+      await fetchPosts();
     } catch (error) {
       console.log(error.response.status);
     }
   };
 
+  const deletePost = async (postId) => {
+    const cookieValue = Cookies.get("token");
+    try {
+      await axios.delete(`http://localhost:3001/lessons/1/posts/${postId}`, {
+        params: {
+          token: cookieValue,
+        },
+      });
+
+      //updates the list of post displayed
+      await fetchPosts();
+      //go back
+      setSelectedPost(null);
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  };
+
+  const handleCommentEdit = async (postId, commentId) => {
+    const updatedData = {
+      content: "this is updated comment content",
+    };
+    updateComment(postId, commentId, updatedData);
+    await fetchComments(postId);
+  };
+
+  const updateComment = async (postId, commentId, updatedData) => {
+    const cookieValue = Cookies.get("token");
+    try {
+      await axios.patch(
+        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        {
+          token: cookieValue,
+          comment: updatedData,
+        }
+      );
+      await fetchPosts();
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  };
+
+  const goBack = () => {
+    setSelectedPost(null);
+  };
+
+  // const handleShit = () => console.log(comments);
+  console.log(current_user_id);
   return (
     <div>
       {selectedPost ? (
@@ -202,7 +169,22 @@ const ForumApp = () => {
               {selectedPost.title}
             </Heading>
             <Text fontSize="lg" fontStyle="italic" mb={4} color="#555">
-              {selectedPost.content}
+              {selectedPost.user_id === current_user_id ? (
+                // JSX to render if the condition is true
+                // Place your JSX here
+                <EditField
+                  postId={selectedPost.id}
+                  commentId={null}
+                  defaultValue={selectedPost.content}
+                  fetchPosts={fetchPosts}
+                  fetchComments={fetchComments}
+                  type="post"
+                />
+              ) : (
+                // JSX to render if the condition is false
+                // Place your JSX here
+                <>{selectedPost.content}</>
+              )}
             </Text>
             <Text color="#555">
               Posted by: {selectedPost.user && selectedPost.user.name}
@@ -213,9 +195,11 @@ const ForumApp = () => {
               <Heading as="h3" mt={4} mb={2} color="#555">
                 Comments
               </Heading>
-
               <Stack mb="20px">
-                <EnterComment />
+                <EnterComment
+                  postId={selectedPost.id}
+                  fetchComments={fetchComments}
+                />
               </Stack>
 
               {comments[selectedPost.id].map((comment) => (
@@ -227,28 +211,43 @@ const ForumApp = () => {
                   mb={2}
                 >
                   <Text fontSize="lg" mb={1} color="#555">
-                    {comment.content}
+                    {selectedPost.user_id === current_user_id ? (
+                      // JSX to render if the condition is true
+                      // Place your JSX here
+                      <EditField
+                        postId={selectedPost.id}
+                        commentId={comment.id}
+                        defaultValue={comment.content}
+                        fetchPosts={fetchPosts}
+                        fetchComments={fetchComments}
+                        type="comment"
+                      />
+                    ) : (
+                      // JSX to render if the condition is false
+                      // Place your JSX here
+                      <>{comment.content}</>
+                    )}
                   </Text>
+
                   <Text color="#555">
                     Commented by: {comment.user && comment.user.name}
                   </Text>
-                  <Button
-                    onClick={() =>
-                      handleCommentDelete(selectedPost.id, comment.id)
-                    }
-                    colorScheme="blue"
-                    bg="#ed2e38"
-                    _hover={{ bg: "#f66873" }}
-                    size="sm"
-                    mt={2}
-                  >
-                    Delete Comment -_-
-                  </Button>
+
+                  {comment.user_id === current_user_id && (
+                    <Stack direction="row" spacing={2}>
+                      <DeleteButton
+                        size="sm"
+                        mt={2}
+                        onDelete={() =>
+                          handleCommentDelete(selectedPost.id, comment.id)
+                        }
+                      />
+                    </Stack>
+                  )}
                 </Box>
               ))}
             </div>
           )}
-
           <Stack mt="20px">
             <Button
               onClick={goBack}
@@ -261,34 +260,24 @@ const ForumApp = () => {
             </Button>
           </Stack>
 
-          <Button
-            onClick={() => DeletePost(selectedPost.id)}
-            mb={4}
-            colorScheme="blue"
-            bg="#ed2e38"
-            _hover={{ bg: "#f66873" }}
-          >
-            {/* TODO: Add confirmation window on post deletion */}
-            Delete Post
-          </Button>
+          {selectedPost.user_id === current_user_id && (
+            <Stack direction="row" spacing={5}>
+              <DeleteButton onDelete={() => deletePost(selectedPost.id)} />
+            </Stack>
+          )}
         </div>
       ) : (
         <div>
-          {posts.map((post) => (
-            <>
-              <BoxPost
-                key={post.id}
-                post={post}
-                isActive={selectedPost && selectedPost.id === post.id}
-                onClick={handlePostClick}
-                updatePost={updatePost}
-              />
-            </>
-          ))}
+          <PostList
+            posts={posts}
+            onPostClick={handlePostClick}
+            //onPostDelete={deletePost}
+            //onPostUpdate={updatePost}
+          />
         </div>
       )}
     </div>
   );
-};
+}
 
 export default ForumApp;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 import {
   BsCircle,

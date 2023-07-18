@@ -1,9 +1,6 @@
 class UserController < ApplicationController
 
-  # TODO: Needs a rewrite
-
   def authorization_code_exchange
-    p ENV["USER_URL"]
     current_user = HTTParty.post(ENV["USER_URL"] + "/user/authorization_code_exchange", {
       :body => {code: @code}.to_json,
       headers: {
@@ -19,21 +16,21 @@ class UserController < ApplicationController
         'charset' => 'utf-8'
       }
     })
-    p "Status Code: #{current_user}"
     p "Status Code: #{response_curriculum.code}, Status Message: #{response_curriculum.message}"
 
     
-    # response_forum = HTTParty.post(ENV["FORUM_URL"] + "/user/create", {
-    #   body: {user_id: current_user[:user_id]}.to_json,
-    #   headers: {
-    #     'Content-Type' => 'application/json',
-    #     'charset' => 'utf-8'
-    #   }
-    # }).parsed_response
+    response_forum = HTTParty.post(ENV["FORUM_URL"] + "/user/create", {
+      body: {user_id: current_user[:user_id],name: current_user[:name], email: current_user[:email]}.to_json,
+      headers: {
+        'Content-Type' => 'application/json',
+        'charset' => 'utf-8'
+      }
+    }).parsed_response
+
+    p "Status Code: #{response_curriculum.code}, Status Message: #{response_curriculum.message}"
 
 
     #p response_forum
-    render json: {token: current_user[:token]}
+    render json: {token: current_user[:token], user_id: current_user[:user_id]}
   end
-
 end

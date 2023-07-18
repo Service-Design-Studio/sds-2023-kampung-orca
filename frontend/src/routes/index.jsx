@@ -25,10 +25,6 @@ import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
 import TopicPage from "../components/Logins/TopicPage";
 import LearnMore from "../components/Logins/LearnMore";
-import { ForumMain } from "../components/Forum/ForumMain";
-import { ForumPost } from "../components/Forum/ForumPost";
-import { ForumView } from "../components/Forum/ForumView";
-import { DiscussionView } from "../components/Forum/DiscussionView";
 
 import useCookie from "../hooks/useCookie";
 
@@ -49,10 +45,6 @@ export default (
           element={<LessonCompletion />}
         />
         <Route path="/curriculum/topic" element={<TopicPage />} />
-        <Route path="/forum" element={<ForumMain />} />
-        <Route path="/new" element={<ForumPost />} />
-        <Route path="/posts/1" element={<ForumView />} />
-        <Route path="/posts/2" element={<DiscussionView />} />
         <Route
           path="/curriculum/lesson/:lesson_id/error"
           element={<CurriculumErrorPage />}
@@ -61,7 +53,7 @@ export default (
 
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/loginerror" element={<LoginErrorPage />} />
-      <Route path="/oauth/google" element={<GoogleCallback/>}/>
+      <Route path="/oauth/google" element={<GoogleCallback />} />
       <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />

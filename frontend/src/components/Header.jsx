@@ -64,7 +64,7 @@ export const Header = ({
     <Stack direction="row">
       {showChat && <ChatButton />}
 
-      {false && (
+      {showForum && (
         <Link to={`/forum`} bg="#ed2e38">
           <Button
             size="lg"

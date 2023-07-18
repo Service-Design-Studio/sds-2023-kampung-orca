@@ -1,13 +1,22 @@
 import React from "react";
-import NewPost from "./NewPostButton";
-import { BsChatDots } from "react-icons/bs";
+import Chat from "../../Chatbox/Chat";
+import { Link } from "react-router-dom";
+import NewPost from "./ContentInTheBox";
+import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import {
   useDisclosure,
   Button,
   Slide,
+  Container,
+  Flex,
   Icon,
   Box,
   CloseButton,
+  Text,
+  Card,
+  Stack,
+  Heading,
+  Avatar,
 } from "@chakra-ui/react";
 
 function ForumButton() {

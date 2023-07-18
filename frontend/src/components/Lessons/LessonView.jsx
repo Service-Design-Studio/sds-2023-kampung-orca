@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
-import axios from "axios"
+import axios from "axios";
 import { Header } from "../Header";
 import LessonSection from "./LessonSection";
 import useGateway from "../../hooks/useGateway";
@@ -24,18 +24,15 @@ export const LessonView = () => {
   if (!data) return;
 
   const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
-  
+
   const pages = data.pages;
   const topic_id = data.topic_id;
   const back_to_lesson_pathway = `/curriculum/topic/${topic_id}`;
-  
 
   let progress = 50;
   if (pages && pages.length > 1) {
     progress = Math.floor((currentPage / pages.length) * 100) + 1;
   }
-
-  
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -49,7 +46,6 @@ export const LessonView = () => {
   if (pages.message) return <Navigate to="/error" />;
 
   return (
-    
     <Stack
       justify="flex-start"
       align="flex-start"

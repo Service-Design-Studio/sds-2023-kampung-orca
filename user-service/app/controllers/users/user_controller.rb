@@ -62,7 +62,7 @@ class Users::UserController < ApplicationController
           Token.create!(token:tokens_data[:token], refresh_token:tokens_data[:refresh_token], expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data["id"])
         end
         
-        render json: {token: @token, user_id: profile_data["id"]}
+        render json: {token: @token, user_id: profile_data["id"],name: profile_data["name"], email: profile_data["email"]}
       rescue Exception
         render json: {token: nil, user_id: nil}
       end

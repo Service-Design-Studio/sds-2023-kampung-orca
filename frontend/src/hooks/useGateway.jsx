@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import useAxios from "axios-hooks";
 import { useNavigate } from "react-router";
 import useCookie from "./useCookie";

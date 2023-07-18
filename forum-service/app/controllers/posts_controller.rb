@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :set_lesson, only: [:show, :update, :create, :destroy, :index]
-  before_action :check_author, only: [:update, :destroy]
+  before_action :check_author, only: [:update]
   before_action :validate_fields, only: [:create]
 
   # GET /posts
@@ -39,6 +39,9 @@ class PostsController < ApplicationController
 
   # DELETE /posts/:id
   def destroy
+    unless @post.user_id == params[:user_id]
+      render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+    end
     @post.destroy
     head :no_content
   end

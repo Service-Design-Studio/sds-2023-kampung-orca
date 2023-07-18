@@ -12,7 +12,6 @@ export const EnterComment = ({ image, name }) => {
             <Textarea
               resize="none"
               fontSize="sm"
-              textColor="#000000"
               placeholder="Write your comment here..."
             />
             <Button

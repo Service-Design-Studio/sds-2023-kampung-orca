@@ -31,7 +31,7 @@ class ForumController < ApplicationController
     req = Net::HTTP.const_get(request.method.capitalize).new(uri)
     req.body = request.body.read if request.body
     req.content_type = request.content_type if request.content_type
-  
+    req.add_field("user_id",user_id)
     response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(req)
     end

@@ -31,6 +31,7 @@ class TopicController < ApplicationController
     render json: { message: 'Topic deleted!' }
   end
 
+
   private
 
   def topic_params
