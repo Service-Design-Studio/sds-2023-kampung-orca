@@ -8,6 +8,12 @@ function ContentInTheBox() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [refreshPosts, setRefreshPosts] = useState(false);
 
+  const handlePostButtonClick = () => {
+    setFormOpen(false);
+    setRefreshPosts(true);
+    console.log("reset");
+  };
+
   const [activePostId, setActivePostId] = useState(null);
 
   const handlePostClick = (postId) => {
@@ -17,7 +23,7 @@ function ContentInTheBox() {
   return (
     <>
       <Stack
-        height={isFormOpen ? "430px" : "520px"}
+        height={isFormOpen ? "430px" : "520px"} // set to 520 when done
         mb="20px"
         padding="10px"
         overflowY="scroll"
@@ -48,7 +54,6 @@ function ContentInTheBox() {
         setFormOpen={setFormOpen}
         handlePostButtonClick={handlePostButtonClick}
         //fetchPosts={fetchPosts}
-        refreshPosts={refreshPosts}
         setRefreshPosts={setRefreshPosts}
       />
     </>
