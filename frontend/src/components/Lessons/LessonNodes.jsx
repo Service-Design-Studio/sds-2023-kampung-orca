@@ -113,6 +113,10 @@ const Node = ({
 
   //TODO: Fully completed lesson pathway should show that all lessons are now completed
 
+  // TODO: Get rid of requirement to refresh page to see changes on the lesson nodes after lesson complete
+
+  
+
   return (
     <Popover trigger="hover" placement="top">
       <PopoverTrigger>
