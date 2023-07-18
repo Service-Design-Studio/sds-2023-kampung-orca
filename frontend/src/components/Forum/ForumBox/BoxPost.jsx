@@ -7,6 +7,7 @@ import PostList from "./PostList";
 import CommentList from "./CommentList";
 import { EnterComment } from "./EnterComment";
 import EditField from "../ForumMethods/EditField";
+import DeleteButton from "../ForumMethods/DeleteButton";
 
 import {
   Editable,
@@ -233,18 +234,13 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
 
                   {comment.user_id === current_user_id && (
                     <Stack direction="row" spacing={2}>
-                      <Button
-                        onClick={() =>
-                          handleCommentDelete(selectedPost.id, comment.id)
-                        }
-                        colorScheme="blue"
-                        bg="#ed2e38"
-                        _hover={{ bg: "#f66873" }}
+                      <DeleteButton
                         size="sm"
                         mt={2}
-                      >
-                        Delete Comment -_-
-                      </Button>
+                        onDelete={() =>
+                          handleCommentDelete(selectedPost.id, comment.id)
+                        }
+                      />
 
                       <Button
                         onClick={() =>
@@ -282,7 +278,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                 Edit Post :D
               </Button>
 
-              <Button
+              {/* <Button
                 onClick={() => deletePost(selectedPost.id)}
                 mb={4}
                 colorScheme="blue"
@@ -290,7 +286,8 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                 _hover={{ bg: "#f66873" }}
               >
                 Delete Post :O
-              </Button>
+              </Button> */}
+              <DeleteButton onDelete={() => deletePost(selectedPost.id)} />
             </Stack>
           )}
         </div>

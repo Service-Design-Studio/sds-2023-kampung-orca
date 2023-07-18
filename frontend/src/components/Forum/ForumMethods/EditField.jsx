@@ -41,12 +41,26 @@ function EditField({ defaultValue }) {
     );
   }
 
+  const [inputValue, setInputValue] = useState(defaultValue);
+
+  const handleInputChange = (event) => {
+    const updatedValue = event.target.value;
+    setInputValue(updatedValue);
+  };
+
+  const handleUpdate = () => {
+    // Perform the necessary logic with the updated input value
+    console.log("Updated input value:", inputValue);
+  };
+
   return (
     <Editable
       textAlign="center"
       fontSize="2xl"
       isPreviewFocusable={false}
       defaultValue={defaultValue}
+      onChange={handleInputChange}
+      onSubmit={handleUpdate}
     >
       <EditablePreview />
       <EditableInput />
