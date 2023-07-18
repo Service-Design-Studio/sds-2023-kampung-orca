@@ -49,7 +49,6 @@ function Post({ post, onClick, onDelete, onUpdate }) {
           </Text>
         </Stack>
       </Stack>
-      
     </Box>
   );
 }

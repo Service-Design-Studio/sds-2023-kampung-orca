@@ -21,7 +21,7 @@ function ContentInTheBox() {
   return (
     <>
       <Stack
-        height={isFormOpen ? "430px" : "520px"} // set to 520 when done
+        height={isFormOpen ? "430px" : "520px"}
         mb="20px"
         padding="10px"
         overflowY="scroll"

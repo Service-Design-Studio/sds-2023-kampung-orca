@@ -28,6 +28,7 @@ import { ForumMain } from "../components/Forum/OldForum/ForumMain";
 import { ForumPost } from "../components/Forum/OldForum/ForumPost";
 import { ForumView } from "../components/Forum/OldForum/ForumView";
 import { DiscussionView } from "../components/Forum/OldForum/DiscussionView";
+import Test from "../components/Forum/ForumBox/Test";
 
 import useCookie from "../hooks/useCookie";
 
@@ -65,6 +66,8 @@ export default (
 
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/loginerror" element={<LoginErrorPage />} />
+
+      <Route path="/test" element={<Test />} />
 
       <Route path="/cover" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />

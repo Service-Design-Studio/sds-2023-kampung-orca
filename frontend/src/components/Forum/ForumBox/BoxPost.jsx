@@ -6,6 +6,14 @@ import { Box, Heading, Text, Button, Stack } from "@chakra-ui/react";
 import PostList from "./PostList";
 import CommentList from "./CommentList";
 import { EnterComment } from "./EnterComment";
+import EditField from "../ForumMethods/EditField";
+
+import {
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
+} from "@chakra-ui/react";
 
 function ForumApp() {
   const [posts, setPosts] = useState([]);
@@ -85,15 +93,17 @@ function ForumApp() {
   const deleteComment = async (postId, commentId) => {
     const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.delete(`http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`, {
-        params: {
-          token: cookieValue,
-        },
-      });
+      const response = await axios.delete(
+        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        {
+          params: {
+            token: cookieValue,
+          },
+        }
+      );
       console.log(response);
       //updates the list of post displayed i feel damn dumb
       await fetchPosts();
-
     } catch (error) {
       console.log(error.response.status);
     }
@@ -108,11 +118,10 @@ function ForumApp() {
         },
       });
 
-      //updates the list of post displayed 
+      //updates the list of post displayed
       await fetchPosts();
       //go back
       setSelectedPost(null);
-
     } catch (error) {
       console.log(error.response.status);
     }
@@ -126,7 +135,7 @@ function ForumApp() {
     updatePost(postId, updatedData);
   };
 
-  const handleCommentEdit = async(postId, commentId) => {
+  const handleCommentEdit = async (postId, commentId) => {
     const updatedData = {
       content: "this is updated comment content",
     };
@@ -145,7 +154,6 @@ function ForumApp() {
       await fetchPosts();
       const temp = selectedPost;
       setSelectedPost(null);
-
     } catch (error) {
       console.log(error.response.status);
     }
@@ -154,13 +162,14 @@ function ForumApp() {
   const updateComment = async (postId, commentId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(`http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`, {
-        token: cookieValue,
-        comment: updatedData,
-      });
+      await axios.patch(
+        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        {
+          token: cookieValue,
+          comment: updatedData,
+        }
+      );
       await fetchPosts();
-
-      
     } catch (error) {
       console.log(error.response.status);
     }
@@ -181,7 +190,7 @@ function ForumApp() {
             mb={4}
           >
             <Heading as="h2" mb={2} color="#333">
-              {selectedPost.title}
+              <EditField defaultValue={selectedPost.title} />
             </Heading>
             <Text fontSize="lg" fontStyle="italic" mb={4} color="#555">
               {selectedPost.content}
@@ -196,7 +205,10 @@ function ForumApp() {
                 Comments
               </Heading>
               <Stack mb="20px">
-                <EnterComment postId={selectedPost.id} fetchComments={fetchComments}/>
+                <EnterComment
+                  postId={selectedPost.id}
+                  fetchComments={fetchComments}
+                />
               </Stack>
 
               {comments[selectedPost.id].map((comment) => (
@@ -214,38 +226,37 @@ function ForumApp() {
                     Commented by: {comment.user && comment.user.name}
                   </Text>
 
-                  {comment.user_id === current_user_id && 
-                  (
-
+                  {comment.user_id === current_user_id && (
                     <Stack direction="row" spacing={2}>
-                    <Button
-                      onClick={() => handleCommentDelete(selectedPost.id, comment.id)}
-                      colorScheme="blue"
-                      bg="#ed2e38"
-                      _hover={{ bg: '#f66873' }}
-                      size="sm"
-                      mt={2}
-                    >
-                      Delete Comment -_-
-                    </Button>
+                      <Button
+                        onClick={() =>
+                          handleCommentDelete(selectedPost.id, comment.id)
+                        }
+                        colorScheme="blue"
+                        bg="#ed2e38"
+                        _hover={{ bg: "#f66873" }}
+                        size="sm"
+                        mt={2}
+                      >
+                        Delete Comment -_-
+                      </Button>
 
-                    <Button
-                    onClick={() => handleCommentEdit(selectedPost.id, comment.id)}
-                    colorScheme="blue"
-                    bg="#ed2e38"
-                    _hover={{ bg: '#f66873' }}
-                    size="sm"
-                    mt={2}
-                    >
-                      Edit Comment 0_0
-                    </Button>
-                  </Stack>
-                  
+                      <Button
+                        onClick={() =>
+                          handleCommentEdit(selectedPost.id, comment.id)
+                        }
+                        colorScheme="blue"
+                        bg="#ed2e38"
+                        _hover={{ bg: "#f66873" }}
+                        size="sm"
+                        mt={2}
+                      >
+                        Edit Comment 0_0
+                      </Button>
+                    </Stack>
                   )}
-                  
                 </Box>
               ))}
-              
             </div>
           )}
           <Stack mt="20px">
@@ -260,21 +271,23 @@ function ForumApp() {
             </Button>
           </Stack>
 
-          {selectedPost.user_id === current_user_id && 
-          (
+          {selectedPost.user_id === current_user_id && (
             <Stack direction="row" spacing={5}>
-              <Button onClick={() => handleEditClick(selectedPost.id)} mb={4} >
+              <Button onClick={() => handleEditClick(selectedPost.id)} mb={4}>
                 Edit Post :D
               </Button>
 
-              <Button onClick={() => deletePost(selectedPost.id)} mb={4} colorScheme="blue" bg="#ed2e38" _hover={{ bg: '#f66873' }}>
+              <Button
+                onClick={() => deletePost(selectedPost.id)}
+                mb={4}
+                colorScheme="blue"
+                bg="#ed2e38"
+                _hover={{ bg: "#f66873" }}
+              >
                 Delete Post :O
               </Button>
-          </Stack>
-          
+            </Stack>
           )}
-          
-          
         </div>
       ) : (
         <div>
