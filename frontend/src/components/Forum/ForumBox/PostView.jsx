@@ -50,6 +50,8 @@ function NewPostButton() {
         isFormOpen={isFormOpen}
         setFormOpen={setFormOpen}
         handlePostButtonClick={handlePostButtonClick}
+        refreshPosts={refreshPosts}
+        setRefreshPosts={setRefreshPosts}
       />
     </>
   );

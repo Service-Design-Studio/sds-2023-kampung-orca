@@ -7,17 +7,22 @@ import PostList from "./PostList";
 import CommentList from "./CommentList";
 import { EnterComment } from "./EnterComment";
 
-function ForumApp() {
+function ForumApp({ refreshPosts, setRefreshPosts }) {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [selectedPost, setSelectedPost] = useState(null);
   const current_user_id = Cookies.get("user_id"); //TODO: Actually get the userid instead of using placeholder
 
-  console.log(current_user_id);
+  //console.log(current_user_id);
 
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    fetchPosts(); // Fetch posts when refreshPosts is true
+    //setRefreshPosts(false);
+  }, [refreshPosts]);
 
   const fetchPosts = async () => {
     const cookieValue = Cookies.get("token");
