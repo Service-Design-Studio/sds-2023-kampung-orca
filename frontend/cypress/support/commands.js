@@ -23,7 +23,15 @@ const buttonComponentMap = {
   Login: "#login-button",
   "Google login": "#google-login",
   Complete: "#lesson-complete",
+  "right arrow" : '[data-cy="next-page"]',
+  "left arrow" : '[data-cy="previous-page"]',
 };
+
+const pages = {
+  "first page": "1",
+  "second page": "2",
+  "third page": "3",
+}
 
 Cypress.Commands.add("visitRoute", (pageName) => {
   cy.visit(`${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`);
@@ -105,6 +113,11 @@ Cypress.Commands.add("getDataToken", () => {
 
 Cypress.Commands.add("loginByGoogleApi", () => {
   cy.setCookie("token", "admin");
+});
+
+
+Cypress.Commands.add("checkPage", (page) => {
+  cy.get("p").contains(pages[page]).should("exist");
 });
 
 //

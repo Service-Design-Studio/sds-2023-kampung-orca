@@ -2,9 +2,7 @@ import {
   Given,
   When,
   Then,
-  And,
 } from "@badeball/cypress-cucumber-preprocessor";
-import { buildRoute, descriptionToRouteMap } from "./steps_helper.cy";
 
 // ----------- helper  ------------------
 
@@ -17,7 +15,7 @@ Then("I go to the {string} page", (pageDescription) => {
   cy.visit(buildRoute(pageDescription));
 });
 
-And("I should be on the {string} page", (pageDescription) => {
+Then("I should be on the {string} page", (pageDescription) => {
   // cy.url().should('eq', buildRoute(pageDescription));
   const startingMatcher = new RegExp("^" + buildRoute(pageDescription));
   cy.url().should("match", startingMatcher);

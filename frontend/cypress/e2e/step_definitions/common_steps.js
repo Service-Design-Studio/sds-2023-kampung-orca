@@ -13,7 +13,11 @@ Then("I should go to the {} page", (pageName) => {
 });
 
 When("I click on the {} button", (buttonName)=>{
-  cy.contains(buttonName).click();
+  cy.clickButton(buttonName);
 });
 
 Then("I should see a {} error with a {} button", (errorName, buttonName) => {});
+
+When("I see the {} content", (pageNumber) => {
+  cy.checkPage(pageNumber);
+});

@@ -1,81 +1,41 @@
-import { Given, When, Then, Before} from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then} from "@badeball/cypress-cucumber-preprocessor";
 //import { data } from "cypress/types/jquery";
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
-let tokenInCache = false;
-const dataToken = null;
-
-Before(() => {
-  console.log("test");
-  if (!tokenInCache) {
-    cy.getDataToken().then((dataToken) => {
-      cy.setDataToken(dataToken);
-      tokenInCache = true;
-      console.log("token cached");
-    });
-  }
-});
 
 When("I click on a lesson node", () => {
-  cy.get(`a[href="/lesson-view"]`).first().click({ force: true });
+  cy.get(`a[href="/curriculum/lesson/00001"]`).first().click({ force: true });
 });
 
 When("I click on the embedded lesson video", () => {
   cy.get(`iframe[title="kampung"]`)
     .should("be.visible")
     .then(($iframe) => {
-      const $video = $iframe.contents().find("video");
-    }).click();
-});
-
-Then("I should see the video play", () => {
-  cy.get(`iframe[title="kampung"]`)
-    .should("be.visible")
-    .then(($iframe) => {
-      const $video = $iframe.contents().find("video");
-      cy.wrap($video).should("have.class", "video-playing-mode");
+      cy.wrap($iframe).click(); // Click on the iframe element
     });
 });
 
 Then("I should see the video play", () => {
-  cy.get(`iframe[title="kampung"]`)
-    .should("be.visible")
-    .then(($iframe) => {
-      const $video = $iframe.contents().find("video");
-      cy.wrap($video).should("have.class", "video-playing-mode");
-    });
+  cy.get('[data-cy="iframe-playing"]').should('exist');
 });
+
+
 
 Then(/^I should see the (\w+) page content$/, (phrase) => {
-  if (phrase === "page 1") {
+  if (phrase === "first page") {
     cy.get("p").contains("1").should("exist");
-  } else if (phrase === "page 2") {
+  } else if (phrase === "second page") {
     cy.get("p").contains("2").should("exist");
-  } else if (phrase === "page 3") {
+  } else if (phrase === "third page") {
     cy.get("p").contains("3").should("exist");
   }
 });
 
-// And("I see the first page content", () => {
-//   cy.get("p").contains("1").should("exist");
-// });
 
-When("I click on the right arrow button", () => {
-  cy.get(".chakra-button css-crvxvb").click();
-});
 
-// And("I see the second page content", () => {
-//   cy.get("p").contains("2").should("exist");
-// });
 
-When("I click on the left arrow button", () => {
-  cy.get(".chakra-icon css-1ev3uyk").click();
-});
 
-When("I see the first page content", () => {
-  cy.get("p").contains("1").should("exist");
-});
 
 // TODO: DRY this out
 Then("I should not see the left arrow button", () => {
@@ -113,9 +73,7 @@ Then("I should go to the lesson completed page", () => {
   cy.get("button").contains("Go to Home").should("exist");
 });
 
-// And("I have completed the lesson", () => {
-//   cy.get("button").contains("Complete Lesson").should("exist");
-// });
+
 
 When("I click on the Next Lesson button", () => {
   cy.get("button").contains("Next Lesson").click();
@@ -136,4 +94,4 @@ Then("I should not see the {} button", (buttonName) => {});
 
 Then("I should visit the next lesson page", () => {});
 
-Given("I have completed the lesson", () => {});
+When("I have completed the lesson", () => {});

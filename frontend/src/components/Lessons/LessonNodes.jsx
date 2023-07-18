@@ -61,7 +61,6 @@ const DynamicNodes = () => {
               message={node.message}
               lessonId={node.lesson_id}
               lessonsAccess={lessonsAccess}
-          data-cy= {`node: + ${node.lesson_id}`}
             />
           </Link>
         ) : (
@@ -145,7 +144,7 @@ const Node = ({
   }
 
   return (
-    <Popover trigger="hover" placement="top" data-cy = {`popup:${lessonId}`} >
+    <Popover trigger="hover" placement="top">
       <PopoverTrigger>
         <Stack
           opacity={isDisabled ? 0.5 : 1}
@@ -153,13 +152,13 @@ const Node = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <Icon as={iconComponent} color={color} boxSize="80px"  data-cy = {`icon:${lessonId}`}/>
+          <Icon as={iconComponent} color={color} boxSize="80px" />
         </Stack>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
         <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
-        <PopoverBody fontSize="14px" textAlign="justify"data-cy = {`popup:${lessonId}`}>
+        <PopoverBody fontSize="14px" textAlign="justify">
           {message}
         </PopoverBody>
         <PopoverBody

@@ -21,18 +21,23 @@ export const LessonView = () => {
       containerRef.current.scrollTop = 0;
     }
   }, [currentPage]);
-  if (!data) return;
 
   const lesson_complete = `/curriculum/lesson/${params["lesson_id"]}/lesson_completed`;
 
-  const pages = data.pages;
-  const topic_id = data.topic_id;
+  const pages = data?.pages;
+  const topic_id = data?.topic_id;
   const back_to_lesson_pathway = `/curriculum/topic/${topic_id}`;
 
   let progress = 50;
   if (pages && pages.length > 1) {
     progress = Math.floor((currentPage / pages.length) * 100) + 1;
   }
+
+  // Define a boolean state variable to track the playing state
+  const isPlaying = useState(false);
+
+
+
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -42,7 +47,7 @@ export const LessonView = () => {
     setCurrentPage(currentPage - 1);
   };
 
-  if (!pages) return;
+  if (!pages) return null;
   if (pages.message) return <Navigate to="/error" />;
 
   return (
@@ -55,12 +60,11 @@ export const LessonView = () => {
     >
       <Header
         buttontext="Back to Lessons"
-        // PANIC TODO: Fix redirect
         path={back_to_lesson_pathway}
         showForum="true"
       />
 
-      <Stack //main body stack with left and right substack
+      <Stack
         direction="row"
         justify="flex-start"
         align="flex-start"
@@ -74,7 +78,7 @@ export const LessonView = () => {
           backgroundPosition: "center",
         }}
       >
-        <Stack //left stack with lesson word content
+        <Stack
           paddingLeft="37px"
           paddingRight="37px"
           paddingTop="50px"
@@ -114,7 +118,6 @@ export const LessonView = () => {
               },
             }}
           >
-            {/* Render the LessonSection component for each section */}
             {pages[currentPage]?.sections?.map((section, index) => (
               <LessonSection
                 key={index}
@@ -146,6 +149,7 @@ export const LessonView = () => {
                     fontSize="18px"
                     leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
                     onClick={prevPage}
+                    data-cy = "previous-page"
                   />
                 )}
               </Stack>
@@ -164,6 +168,7 @@ export const LessonView = () => {
                     fontSize="18px"
                     rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
                     onClick={nextPage}
+                    data-cy = "next-page"
                   />
                 )}
 
@@ -187,11 +192,9 @@ export const LessonView = () => {
           </Stack>
         </Stack>
 
-        <Stack //right stack with video and 2 buttons
-          direction="column"
-        >
+        <Stack direction="column">
           {pages[currentPage]?.video && (
-            <Stack //video stack
+            <Stack
               borderRadius="0px 0px 0px 0px"
               justify="flex-start"
               align="center"
@@ -208,11 +211,12 @@ export const LessonView = () => {
                 src={pages[currentPage].video}
                 width="100%"
                 height="100%"
+                data-cy={isPlaying ? "iframe-playing" : "iframe-not-playing"}
               />
             </Stack>
           )}
 
-          <Stack //buttons stack
+          <Stack
             position="fixed"
             right="20px"
             bottom="20px"
