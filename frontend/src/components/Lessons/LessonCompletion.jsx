@@ -17,7 +17,6 @@ export const LessonCompletion = () => {
   let next_lesson = `/curriculum/lesson/${data.next_lesson}`;
   let show_previous_lesson = true;
   let show_next_lesson = true;
-  // PANIC TODO: Lesson completion next lessons are incomplete!`
   if (pre_lesson === `/curriculum/lesson/null`) {
     show_previous_lesson = false;
   }
