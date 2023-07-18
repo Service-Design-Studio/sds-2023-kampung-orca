@@ -10,11 +10,11 @@ const GoogleLoginButton = () => {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:3000/oauth/google",
+    redirect_uri: `${process.env.REACT_APP_FRONTEND_URL}/oauth/google`,
     onSuccess: (errorResponse) => console.log(errorResponse),
     onError: (errorResponse) => console.log(errorResponse),
     onNonOAuthError: (errorResponse) => console.log(errorResponse),
-    state: "http://localhost:3000/curriculum/topic"
+    state: `${process.env.REACT_APP_FRONTEND_URL}/curriculum/topic`,
   });
 
   return (
@@ -48,7 +48,6 @@ const GoogleLoginButton = () => {
   );
 };
 const LoginPage = () => {
-
   return (
     <Stack
       direction="row"
