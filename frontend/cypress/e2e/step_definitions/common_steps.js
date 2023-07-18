@@ -12,6 +12,8 @@ Then("I should go to the {} page", (pageName) => {
   cy.matchRoute(pageName);
 });
 
-When("I click on the {} button", cy.clickButton);
+When("I click on the {} button", (buttonName)=>{
+  cy.contains(buttonName).click();
+});
 
 Then("I should see a {} error with a {} button", (errorName, buttonName) => {});

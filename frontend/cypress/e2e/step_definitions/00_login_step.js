@@ -1,11 +1,23 @@
-import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+/* eslint-disable cypress/no-unnecessary-waiting */
+import { When, Then, Given} from "@badeball/cypress-cucumber-preprocessor";
+import '@testing-library/cypress/add-commands';
+
+
+
 
 When("I click on the button for Google login", () => {
-  cy.get("#google-login").click();
+  cy.findByText("Sign in with Google").click({ force: true });
+  cy.wait(2500);
 });
 
-Then("I should see the Google login popup", () => {
-  cy.window().then((win) => win.close());
+Then("I should see the Google login page", () => {
+  cy.origin('https://accounts.google.com', () => {
+  cy.get('input[type="email"]').should("exist");
+  });
 });
 
 When("I visit any page", () => {});
+
+Then("I should see Sign in with Google Button", () => {
+  cy.findByText("Sign in with Google").should("exist");
+}); 

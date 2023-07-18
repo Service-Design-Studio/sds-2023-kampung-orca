@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
   create_table "exercises", id: false, force: :cascade do |t|
-    t.integer "exercise_id", null: false
-    t.integer "topic_id"
-    t.integer "lesson_id"
+    t.text "exercise_id", null: false
+    t.text "topic_id"
+    t.text "lesson_id"
     t.string "title"
     t.string "qns"
     t.index ["exercise_id"], name: "index_exercises_on_exercise_id", unique: true
   end
 
   create_table "lessons", id: false, force: :cascade do |t|
-    t.integer "lesson_id", null: false
-    t.integer "topic_id"
+    t.text "lesson_id", null: false
+    t.text "topic_id"
     t.string "title"
     t.integer "order_index"
     t.string "message"
@@ -30,8 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
   end
 
   create_table "pages", id: false, force: :cascade do |t|
-    t.integer "page_id", null: false
-    t.integer "lesson_id"
+    t.text "page_id", null: false
+    t.text "lesson_id"
     t.integer "order_index"
     t.string "video"
     t.string "words"
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
   end
 
   create_table "topics", id: false, force: :cascade do |t|
-    t.integer "topic_id", null: false
+    t.text "topic_id", null: false
     t.string "title"
     t.integer "num_of_lessons"
     t.index ["topic_id"], name: "index_topics_on_topic_id", unique: true

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Given,
   When,
@@ -6,11 +7,19 @@ import {
   And,
 } from "@badeb/cypress-cucumber-preprocessor";
 import { data } from "cypress/types/jquery";
+=======
+import { Given, When, Then, Before} from "@badeball/cypress-cucumber-preprocessor";
+//import { data } from "cypress/types/jquery";
+>>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
 let tokenInCache = false;
+<<<<<<< HEAD
 let dataToken = null;
+=======
+const dataToken = null;
+>>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 
 Before(() => {
   console.log("test");
@@ -32,9 +41,13 @@ When("I click on the embedded lesson video", () => {
     .should("be.visible")
     .then(($iframe) => {
       const $video = $iframe.contents().find("video");
+<<<<<<< HEAD
       $video;
     })
     .click();
+=======
+    }).click();
+>>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 });
 
 Then("I should see the video play", () => {
@@ -65,17 +78,17 @@ Then(/^I should see the (\w+) page content$/, (phrase) => {
   }
 });
 
-And("I see the first page content", () => {
-  cy.get("p").contains("1").should("exist");
-});
+// And("I see the first page content", () => {
+//   cy.get("p").contains("1").should("exist");
+// });
 
 When("I click on the right arrow button", () => {
   cy.get(".chakra-button css-crvxvb").click();
 });
 
-And("I see the second page content", () => {
-  cy.get("p").contains("2").should("exist");
-});
+// And("I see the second page content", () => {
+//   cy.get("p").contains("2").should("exist");
+// });
 
 When("I click on the left arrow button", () => {
   cy.get(".chakra-icon css-1ev3uyk").click();
@@ -113,10 +126,6 @@ When("I click on the redirect button", () => {
   cy.get("button").contains("Go to Home").click();
 });
 
-Then("I should go to the lessons pathway page", () => {
-  // check this route:http://localhost:3000/curriculum/topics/view
-  // TODO: check the route in commands.js
-});
 
 //TODO: check the route in commands.js for redirect button
 
@@ -125,9 +134,9 @@ Then("I should go to the lesson completed page", () => {
   cy.get("button").contains("Go to Home").should("exist");
 });
 
-And("I have completed the lesson", () => {
-  cy.get("button").contains("Complete Lesson").should("exist");
-});
+// And("I have completed the lesson", () => {
+//   cy.get("button").contains("Complete Lesson").should("exist");
+// });
 
 When("I click on the Next Lesson button", () => {
   cy.get("button").contains("Next Lesson").click();

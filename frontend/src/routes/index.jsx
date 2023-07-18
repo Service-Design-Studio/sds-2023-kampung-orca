@@ -19,6 +19,7 @@ import {
   LoginErrorPage,
 } from "../components/Misc";
 
+import GoogleCallback from "../components/Logins/GoogleCallback";
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
@@ -60,7 +61,7 @@ export default (
 
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/loginerror" element={<LoginErrorPage />} />
-
+      <Route path="/oauth/google" element={<GoogleCallback/>}/>
       <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />

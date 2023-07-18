@@ -34,12 +34,11 @@ class PageController < ApplicationController
   end
 
   def index
-    p Lesson.where(lesson_id: params[:lesson_id]).exists?
     if Lesson.where(lesson_id: params[:lesson_id]).exists?
       user = User.find(params[:user_id])
-      if user.lessons_access.include?(params[:lesson_id].to_i)
+      if user.lessons_access.include?(params[:lesson_id])
         pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
-        render json: pages
+        render json: {pages: pages, topic_id: Lesson.where(lesson_id: params[:lesson_id]).first.topic_id}
       else
         render json: { message: 'User unauthorized to see lesson' }
       end
@@ -48,10 +47,11 @@ class PageController < ApplicationController
     end
   end
 
+  
   private
 
   def page_params
-    params.permit(:page_id, :lesson_id, :order_index, :video, :words)
+    params.permit(:page_id, :lesson_id, :order_index, :video, :words, :lesson_id)
   end
 
   def set_page

@@ -19,6 +19,7 @@ class UserController < ApplicationController
         'charset' => 'utf-8'
       }
     })
+    p "Status Code: #{current_user}"
     p "Status Code: #{response_curriculum.code}, Status Message: #{response_curriculum.message}"
 
     
@@ -34,4 +35,5 @@ class UserController < ApplicationController
     #p response_forum
     render json: {token: current_user[:token]}
   end
+
 end

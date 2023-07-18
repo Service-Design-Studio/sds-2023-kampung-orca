@@ -10,7 +10,9 @@ Topic.destroy_all
 Lesson.destroy_all
 Page.destroy_all
 Exercise.destroy_all
+User.destroy_all
 
+User.create(user_id: "admin", lessons_access: ["00001"], exercises_access:[])
 Topic.create!(topic_id: "00001", title: "Sample Topic 1", num_of_lessons: 3)
 Topic.create!(topic_id: "00002", title: "Sample Topic 2", num_of_lessons: 3)
 Topic.create!(topic_id: "00003", title: "Sample Topic 2", num_of_lessons: 3)
@@ -23,7 +25,7 @@ Lesson.create!(lesson_id: "00004", topic_id: "00001", order_index: 3, title: "In
 Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "Interfaith Peacebuilding and Reconciliation", message: "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.")
 
 qns = ["sample_qn 1","sample_qn 2"]
-Exercise.create!(exercise_id: "1", topic_id: "1", lesson_id: "1", title: "Sample Exercise 1", qns: qns)
+Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")
 
