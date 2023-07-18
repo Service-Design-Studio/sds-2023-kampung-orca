@@ -133,36 +133,12 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     }
   };
 
-  const handleEditClick = (postId) => {
-    const updatedData = {
-      title: "updated title",
-      content: "this is updated post content",
-    };
-    updatePost(postId, updatedData);
-  };
-
   const handleCommentEdit = async (postId, commentId) => {
     const updatedData = {
       content: "this is updated comment content",
     };
     updateComment(postId, commentId, updatedData);
     await fetchComments(postId);
-  };
-
-  const updatePost = async (postId, updatedData) => {
-    const cookieValue = Cookies.get("token");
-    try {
-      await axios.patch(`http://localhost:3001/lessons/1/posts/${postId}`, {
-        token: cookieValue,
-        post: updatedData,
-      });
-
-      await fetchPosts();
-      const temp = selectedPost;
-      setSelectedPost(null);
-    } catch (error) {
-      console.log(error.response.status);
-    }
   };
 
   const updateComment = async (postId, commentId, updatedData) => {
@@ -196,10 +172,25 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
             mb={4}
           >
             <Heading as="h2" mb={2} color="#333">
-              <EditField defaultValue={selectedPost.title} />
+              {selectedPost.title}
             </Heading>
             <Text fontSize="lg" fontStyle="italic" mb={4} color="#555">
-              {selectedPost.content}
+              {selectedPost.user_id === current_user_id ? (
+                // JSX to render if the condition is true
+                // Place your JSX here
+                <EditField
+                  postId={selectedPost.id}
+                  commentId={null}
+                  defaultValue={selectedPost.content}
+                  fetchPosts={fetchPosts}
+                  fetchComments={fetchComments}
+                  type="post"
+                />
+              ) : (
+                // JSX to render if the condition is false
+                // Place your JSX here
+                <>{selectedPost.content}</>
+              )}
             </Text>
             <Text color="#555">
               Posted by: {selectedPost.user && selectedPost.user.name}
@@ -226,8 +217,24 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                   mb={2}
                 >
                   <Text fontSize="lg" mb={1} color="#555">
-                    {comment.content}
+                    {selectedPost.user_id === current_user_id ? (
+                      // JSX to render if the condition is true
+                      // Place your JSX here
+                      <EditField
+                        postId={selectedPost.id}
+                        commentId={comment.id}
+                        defaultValue={comment.content}
+                        fetchPosts={fetchPosts}
+                        fetchComments={fetchComments}
+                        type="comment"
+                      />
+                    ) : (
+                      // JSX to render if the condition is false
+                      // Place your JSX here
+                      <>{comment.content}</>
+                    )}
                   </Text>
+
                   <Text color="#555">
                     Commented by: {comment.user && comment.user.name}
                   </Text>
@@ -241,19 +248,6 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                           handleCommentDelete(selectedPost.id, comment.id)
                         }
                       />
-
-                      <Button
-                        onClick={() =>
-                          handleCommentEdit(selectedPost.id, comment.id)
-                        }
-                        colorScheme="blue"
-                        bg="#ed2e38"
-                        _hover={{ bg: "#f66873" }}
-                        size="sm"
-                        mt={2}
-                      >
-                        Edit Comment 0_0
-                      </Button>
                     </Stack>
                   )}
                 </Box>
@@ -274,11 +268,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
 
           {selectedPost.user_id === current_user_id && (
             <Stack direction="row" spacing={5}>
-              <Button onClick={() => handleEditClick(selectedPost.id)} mb={4}>
-                Edit Post :D
-              </Button>
-
-              {/* <Button
+              <Button
                 onClick={() => deletePost(selectedPost.id)}
                 mb={4}
                 colorScheme="blue"
@@ -286,7 +276,8 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                 _hover={{ bg: "#f66873" }}
               >
                 Delete Post :O
-              </Button> */}
+              </Button>{" "}
+              */}
               <DeleteButton onDelete={() => deletePost(selectedPost.id)} />
             </Stack>
           )}
