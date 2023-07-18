@@ -9,12 +9,16 @@ Background:
 Scenario: View lessons pathway after selecting a topic
   Given that I am at the topic list page
   When I click on a topic
-  Then I should go to the lessons pathway page
+  Then I am directed to the lessons pathway page
 
 Scenario: Mouse Scroll Up through lessons pathway
   Given that I am at the lessons pathway page
   When I mouse scroll up on the lessons pathway page
   Then I will see the lessons pathway move right.
+
+Scenario: Block off lessons that have not been completed ** added
+
+Scenario: Creation of Topic List **added
 
 Scenario: Lesson Infobox appears
   Given that I am at the topic list page
@@ -30,3 +34,19 @@ Scenario: Pathway between lesson nodes
   Given I am at the lessons pathway page
   Then I should see the pathway between lesson nodes
 
+Scenario: Add graphics around the lesson pathway **added
+  Given I am on the learning pathway, 
+  Then I should be able to see the graphics on the lessons pathway
+
+Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
+
+  Given that I am at the lessons list page, 
+  When I make a GET request to the "something something havent figure out yet" URL, # require deployment
+  Then I should see an error page with a button that redirects me back to the main screen.
+
+Scenario: Start a Lesson
+
+Given that I am viewing the list of topics,
+And I am viewing the info box of a lesson,
+When I click on Start,
+Then I will see the lesson page containing text and videos corresponding to the lesson.
