@@ -16,8 +16,15 @@ When("I click on the {} button", (buttonName)=>{
   cy.clickButton(buttonName);
 });
 
-Then("I should see a {} error with a {} button", (errorName, buttonName) => {});
+Then("I should see a {} error", (errorName) => {
+  cy.checkErrorMessage(errorName);
+});
 
-When("I see the {} content", (pageNumber) => {
-  cy.checkPage(pageNumber);
+
+Then("I should not see the {} button", (buttonName) => {
+  cy.checkNoButton(buttonName);
+});
+
+Then("I should see the {} button", (buttonName) => {
+  cy.checkButton(buttonName);
 });

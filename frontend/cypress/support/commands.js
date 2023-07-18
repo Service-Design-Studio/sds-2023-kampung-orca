@@ -6,15 +6,17 @@ const pageRouteMap = {
   login: "login",
   "lessons pathway": "curriculum/topic/00001",
   "lesson view": "curriculum/lesson/00001",
-  "lesson completed": "lesson-complete",
+  "lesson completion": "curriculum/lesson/00001/lesson_completed",
   chatroom: "chat",
   "first content": "",
   "second content": "",
   "topic list": "curriculum/topic",
+  "bogus link": "curriculum/12345",
+  "next lesson": "curriculum/lesson/00002",
 };
 
 const errorRouteMap = {
-  "Page Not Found": "",
+  "Page Not Found": "Page not found.",
   "Not Authenticated": "",
 };
 
@@ -25,6 +27,9 @@ const buttonComponentMap = {
   Complete: "#lesson-complete",
   "right arrow" : '[data-cy="next-page"]',
   "left arrow" : '[data-cy="previous-page"]',
+  "Go to Home" : '[data-cy="go-to-home"]',
+  "Complete Lesson" : '[data-cy="complete-lesson"]',
+  "next lesson" : '[data-cy="completion-next-lesson"]', // todo: add data-cy to the button
 };
 
 const pages = {
@@ -32,6 +37,10 @@ const pages = {
   "second page": "2",
   "third page": "3",
 }
+
+Cypress.Commands.add("checkErrorMessage", (errorName) => {
+  cy.contains(errorRouteMap[errorName]).should("exist");
+});
 
 Cypress.Commands.add("visitRoute", (pageName) => {
   cy.visit(`${Cypress.env("gatewayUrl")}/${pageRouteMap[pageName]}`);
@@ -55,6 +64,14 @@ Cypress.Commands.add("matchRoute", (pageName) => {
 
 Cypress.Commands.add("clickButton", (buttonName) => {
   cy.get(buttonComponentMap[buttonName]).click();
+});
+
+Cypress.Commands.add("checkNoButton", (buttonName) => {
+  cy.get(buttonComponentMap[buttonName]).should("not.exist");
+});
+
+Cypress.Commands.add("checkButton", (buttonName) => {
+  cy.get(buttonComponentMap[buttonName]).should("exist");
 });
 
 // Cypress.Commands.add("loginByGoogleApi", () => {

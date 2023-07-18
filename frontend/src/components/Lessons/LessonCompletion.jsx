@@ -113,16 +113,17 @@ export const LessonCompletion = () => {
           align="center"
         >
           {show_next_lesson && (
-            <Link to={next_lesson}>
-              <Button style={{ zIndex: -1 }}> hi</Button>
-              <Button
-                shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-                rightIcon={<Icon as={GoChevronRight} />}
-                size="lg"
-              >
-                Next Lesson
-              </Button>
-            </Link>
+          <Link to={next_lesson}>
+            <Button style={{ zIndex: -1 }}> hi</Button>
+            <Button
+              shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+              rightIcon={<Icon as={GoChevronRight} />}
+              size="lg"
+              data-cy = "completion-next-lesson"
+            >
+              Next Lesson
+            </Button>
+          </Link>
           )}
         </Stack>
       </Stack>

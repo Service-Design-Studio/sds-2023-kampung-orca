@@ -182,6 +182,7 @@ export const LessonView = () => {
                       _hover={{ bg: "#7c191c" }}
                       height="48px"
                       fontSize="18px"
+                      data-cy = "complete-lesson"
                     >
                       Complete Lesson
                     </Button>

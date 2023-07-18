@@ -18,37 +18,48 @@ Feature: Display lesson content
 
   Scenario: Next page in lesson view
     Given I am at the lesson view page
-    And I see the first page content
+    When I see the first page content
     When I click on the right arrow button
     Then I should see the second page content
 
   Scenario: Previous page in lesson view
     Given I am at the lesson view page
-    And I see the second page content
+    When I click on the right arrow button
+    When I see the second page content
     When I click on the left arrow button
     Then I should see the first page content
 
-  Scenario: No respective arrows in lesson view
+  Scenario: No left arrow in first page
     Given I am at the lesson view page
     When I see the first page content
     Then I should not see the left arrow button
-    When I see the last page content
+
+  # Scenario is for three pages
+  Scenario: No right arrow in last page
+    Given I am at the lesson view page
+    When I click on the right arrow button
+    When I see the second page content
+    When I click on the right arrow button
+    When I see the third page content
     Then I should not see the right arrow button
 
   Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
     Given I am at the lessons pathway page
     When I enter a lesson with a bogus link
-    Then I should see a Page Not Found error with a redirect button
-    When I click on the redirect button
-    Then I should go to the lessons pathway page
+    Then I should see a Page Not Found error
+    Then I should see the Go to Home button
 
+  # Scenario is for three pages
   Scenario: Display of lesson completion screen
     Given I am at the lesson view page
-    When I click on the Complete button
-    Then I should go to the lesson completed page
+    When I click on the right arrow button
+    When I see the second page content
+    When I click on the right arrow button
+    When I see the third page content
+    When I click on the Complete Lesson button
+    Then I should see the lesson completed page
 
   Scenario: Next Lesson button upon lesson completion
-    Given I am at the lesson view page
-    And I have completed the lesson
-    When I click on the Next Lesson button
-    Then I should visit the next lesson page
+    Given I am at the lesson completion page
+    When I click on the next lesson button
+    Then I should go to the next lesson page

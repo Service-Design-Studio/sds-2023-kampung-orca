@@ -77,6 +77,7 @@ export const ErrorPage = () => {
             height="48px"
             fontSize="18px"
             shadow="md"
+            data-cy = "go-to-home"
           >
             Go to Home
           </Button>

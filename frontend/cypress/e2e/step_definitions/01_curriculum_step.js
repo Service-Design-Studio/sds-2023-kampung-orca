@@ -21,7 +21,6 @@ Then("I should see the video play", () => {
 });
 
 
-
 Then(/^I should see the (\w+) page content$/, (phrase) => {
   if (phrase === "first page") {
     cy.get("p").contains("1").should("exist");
@@ -32,34 +31,12 @@ Then(/^I should see the (\w+) page content$/, (phrase) => {
   }
 });
 
-
-
-
-
-
-// TODO: DRY this out
-Then("I should not see the left arrow button", () => {
-  cy.get(".chakra-icon css-1ev3uyk").should("not.exist");
-});
-
 When("I see the last page content", () => {
   // check for complete lesson text in the page
   cy.get("button").contains("Complete Lesson").should("exist");
 });
 
-// TODO: DRY this out
-Then("I should not see the right arrow button", () => {
-  cy.get(".chakra-button css-crvxvb").should("not.exist");
-});
 
-When("I enter a lesson with a bogus link", () => {
-  cy.visit(`${gatewayUrl}/lesson-view?lessonId=1234567890`);
-});
-
-Then("I should see a Page Not Found error with a redirect button", () => {
-  cy.get("p").contains("Page Not Found").should("exist");
-  cy.get("button").contains("Go to Home").should("exist");
-});
 
 When("I click on the redirect button", () => {
   cy.get("button").contains("Go to Home").click();
@@ -68,10 +45,6 @@ When("I click on the redirect button", () => {
 
 //TODO: check the route in commands.js for redirect button
 
-Then("I should go to the lesson completed page", () => {
-  cy.get("p").contains("Lesson Completed!").should("exist");
-  cy.get("button").contains("Go to Home").should("exist");
-});
 
 
 
@@ -84,13 +57,21 @@ Then("I should visit the next lesson page", () => {
   cy.get("button").contains("Back to Lessons").should("exist");
 });
 
-When("I enter a lesson with a bogus link", () => {});
+When("I see the {} content", (pageNumber) => {
+  cy.checkPage(pageNumber);
+});
+
+When("I enter a lesson with a bogus link", () => {
+  cy.visitRoute("bogus link");
+});
+
+Then("I should see the lesson completed page", () => {
+  cy.get("p").contains("Lesson Completed!").should("exist");
+})
 
 Then("I should go to an error page with a redirect button", () => {});
 
 Then("I should go to an error page with a button", () => {});
-
-Then("I should not see the {} button", (buttonName) => {});
 
 Then("I should visit the next lesson page", () => {});
 
