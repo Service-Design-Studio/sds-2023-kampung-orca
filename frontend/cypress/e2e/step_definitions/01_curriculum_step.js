@@ -1,25 +1,10 @@
-<<<<<<< HEAD
-import {
-  Given,
-  When,
-  Then,
-  Before,
-  And,
-} from "@badeb/cypress-cucumber-preprocessor";
-import { data } from "cypress/types/jquery";
-=======
 import { Given, When, Then, Before} from "@badeball/cypress-cucumber-preprocessor";
 //import { data } from "cypress/types/jquery";
->>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 
 const gatewayUrl = Cypress.env("gatewayUrl");
 
 let tokenInCache = false;
-<<<<<<< HEAD
-let dataToken = null;
-=======
 const dataToken = null;
->>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 
 Before(() => {
   console.log("test");
@@ -41,13 +26,7 @@ When("I click on the embedded lesson video", () => {
     .should("be.visible")
     .then(($iframe) => {
       const $video = $iframe.contents().find("video");
-<<<<<<< HEAD
-      $video;
-    })
-    .click();
-=======
     }).click();
->>>>>>> 27c0f353d6a23853800b27fd28fc7777fe7b8a28
 });
 
 Then("I should see the video play", () => {
