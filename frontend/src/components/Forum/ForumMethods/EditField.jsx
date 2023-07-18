@@ -100,18 +100,6 @@ function EditField({
     );
   }
 
-  const [inputValue, setInputValue] = useState(defaultValue);
-
-  const handleInputChange = (event) => {
-    const updatedValue = event.target.value;
-    setInputValue(updatedValue);
-  };
-
-  const handleUpdate = () => {
-    // Perform the necessary logic with the updated input value
-    console.log("Updated input value:", inputValue);
-  };
-
   return (
     <Editable
       textAlign="left"
