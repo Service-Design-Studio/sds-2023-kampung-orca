@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React ,{useState} from "react";
+import { Link, useParams, useEffect } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { BsPatchCheck } from "react-icons/bs";
@@ -10,10 +10,11 @@ export const LessonCompletion = () => {
   const params = useParams();
   const [data] = useGateway(window.location.pathname, "Post");
   if (!data) return;
-  const back_to_topic = `/curriculum/topic/${params["topic_id"]}`;
 
-  const pre_lesson = `/curriculum/lesson/${data.pre_lesson}`;
-  const next_lesson = `/curriculum/lesson/${data.next_lesson}`;
+  let back_to_topic = `/curriculum/topic/${data.topic}`;
+  console.log(back_to_topic);
+  let pre_lesson = `/curriculum/lesson/${data.pre_lesson}`;
+  let next_lesson = `/curriculum/lesson/${data.next_lesson}`;
   let show_previous_lesson = true;
   let show_next_lesson = true;
   // PANIC TODO: Lesson completion next lessons are incomplete!`

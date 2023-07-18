@@ -1,7 +1,7 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("I am logged in", () => {
-  cy.login_to_google_backend();
+  cy.loginByGoogleApi();
 });
 
 Given("I am at the {} page", (pageName) => {

@@ -107,10 +107,6 @@ When("I click on the redirect button", () => {
   cy.get("button").contains("Go to Home").click();
 });
 
-Then("I should go to the lessons pathway page", () => {
-  // check this route:http://localhost:3000/curriculum/topics/view
-  // TODO: check the route in commands.js
-});
 
   //TODO: check the route in commands.js for redirect button
 
