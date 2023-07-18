@@ -7,14 +7,14 @@ Background:
   Given I am logged in
 
 Scenario: View lessons pathway after selecting a topic
-  Given that I am at the topic list page
-  When I click on a topic
+  Given I am at the topic list page
+  When I click on topic 00001
   Then I should go to the lessons pathway page
 
-# Scenario: Mouse Scroll Up through lessons pathway
-#   Given that I am at the lessons pathway page
-#   When I mouse scroll up on the lessons pathway page
-#   Then I will see the lessons pathway move right.
+Scenario: Mouse Scroll Up through lessons pathway
+  Given I am at the lessons pathway page
+  When I mouse scroll up on the lessons pathway page
+  Then I will see the lessons pathway move right.
 
 # Scenario: Lesson Infobox appears
 #   Given that I am at the topic list page

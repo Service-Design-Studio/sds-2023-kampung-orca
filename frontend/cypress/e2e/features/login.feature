@@ -6,7 +6,7 @@ Feature: Google login
     Then I should go to the login page
     And I should see Sign in with Google Button
 
-  Scenario: Route to main page after login
+  Scenario: Google Login Page
     Given I am at the login page
     When I click on the button for Google login
     Then I should see the Google login page

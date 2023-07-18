@@ -5,8 +5,8 @@
 const pageRouteMap = {
   home: "",
   login: "login",
-  "lessons pathway": "curriculum/topic/:topic_id",
-  "lesson view": "curriculum/lesson/:lesson_id",
+  "lessons pathway": "curriculum/topic/00001",
+  "lesson view": "curriculum/lesson/00001",
   "lesson completed": "lesson-complete",
   chatroom: "chat",
   "first content": "",

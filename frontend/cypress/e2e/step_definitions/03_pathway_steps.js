@@ -8,21 +8,21 @@ Given("that I am at the topic list page", () => {
   cy.visitRoute("topic list");
 });
 
-When("I click on a topic", () => {
-  cy.get('[data-cy="00001"]').click();
+When("I click on topic {}", (topic_id) => {
+  cy.get(`[data-cy="${topic_id}"]`).click();
 });
 
 
-// When("I mouse scroll up on the lessons pathway page", () => {
-//   cy.get('a[href="/curriculum/lesson/4"]').scrollIntoView().should('be.visible');
-// });
+When("I mouse scroll up on the lessons pathway page", () => {
+  cy.get('a[href="/curriculum/lesson/00004"]').scrollIntoView().should('be.visible');
+});
 
 Then("I will see the lessons pathway move right", () => {
-  cy.get('a[href="/curriculum/lesson/4"]').should('be.visible');
+  cy.get('a[href="/curriculum/lesson/00004"]').should('be.visible');
 });
 
 When("I mouse hover on a lesson node on the lessons pathway page", () => {
-  cy.get('a[href="/curriculum/lesson/1"]').trigger('mouseover');
+  cy.get('a[href="/curriculum/lesson/00001"]').trigger('mouseover');
 });
 
 Then("I will see an info box for the lesson", () => {

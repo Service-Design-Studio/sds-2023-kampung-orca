@@ -7,12 +7,13 @@ import '@testing-library/cypress/add-commands';
 
 When("I click on the button for Google login", () => {
   cy.findByText("Sign in with Google").click({ force: true });
-  cy.wait(2500);
+  cy.wait(1000);
 });
 
 Then("I should see the Google login page", () => {
   cy.origin('https://accounts.google.com', () => {
   cy.get('input[type="email"]').should("exist");
+  cy.contains('Sign in with Google').should("exist");
   });
 });
 
