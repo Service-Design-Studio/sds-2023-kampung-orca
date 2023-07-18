@@ -32,30 +32,9 @@ Then(/^I should see the (\w+) page content$/, (phrase) => {
 });
 
 When("I see the last page content", () => {
-  // check for complete lesson text in the page
   cy.get("button").contains("Complete Lesson").should("exist");
 });
 
-
-
-When("I click on the redirect button", () => {
-  cy.get("button").contains("Go to Home").click();
-});
-
-
-//TODO: check the route in commands.js for redirect button
-
-
-
-
-When("I click on the Next Lesson button", () => {
-  cy.get("button").contains("Next Lesson").click();
-});
-
-Then("I should visit the next lesson page", () => {
-  // check for "Back to Lessons" text within the button class
-  cy.get("button").contains("Back to Lessons").should("exist");
-});
 
 When("I see the {} content", (pageNumber) => {
   cy.checkPage(pageNumber);

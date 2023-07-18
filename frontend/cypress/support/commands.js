@@ -29,7 +29,8 @@ const buttonComponentMap = {
   "left arrow" : '[data-cy="previous-page"]',
   "Go to Home" : '[data-cy="go-to-home"]',
   "Complete Lesson" : '[data-cy="complete-lesson"]',
-  "next lesson" : '[data-cy="completion-next-lesson"]', // todo: add data-cy to the button
+  "next lesson" : '[data-cy="completion-next-lesson"]',
+  "redirect" : '[data-cy="go-to-home"]',
 };
 
 const pages = {

@@ -28,3 +28,5 @@ Then("I should not see the {} button", (buttonName) => {
 Then("I should see the {} button", (buttonName) => {
   cy.checkButton(buttonName);
 });
+
+
