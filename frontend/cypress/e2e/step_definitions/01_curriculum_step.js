@@ -48,10 +48,3 @@ Then("I should see the lesson completed page", () => {
   cy.get("p").contains("Lesson Completed!").should("exist");
 })
 
-Then("I should go to an error page with a redirect button", () => {});
-
-Then("I should go to an error page with a button", () => {});
-
-Then("I should visit the next lesson page", () => {});
-
-When("I have completed the lesson", () => {});
