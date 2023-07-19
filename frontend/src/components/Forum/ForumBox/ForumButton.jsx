@@ -33,6 +33,7 @@ function ForumButton() {
         height="48px"
         shadow="md"
         leftIcon={<Icon as={BsChatDots} boxSize="7" />}
+        data-cy = "forum-button"
       >
         Forum
       </Button>
