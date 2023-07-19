@@ -3,33 +3,33 @@ Feature: Forum
   I want to be able to engage with the learning community on the platform regarding interfaith,
   so that I can practice engaging in interfaith discussion.
 
-  Scenario: Viewing forum box 
+  Scenario: Viewing forum box
     Given I am at the lesson view page
-    When I click on the Forum button
+    When I click on the forum button
     Then I should see the forum view
 
   Background:
-    Given the forum box is open 
-  
-  Scenario: Posting new thread 
+    Given the forum box is open
+
+  Scenario: Posting new thread
     When I click on the New Post button
     Then I should see the New Post inputs
     When I enter new post details
     And I click on the Send button
-    Then I should see the new post 
+    Then I should see the new post
 
   Examples:
     | title       | content         |
     | Test        | Testing 1 2 3!  |
 
-  Scenario: Editing post 
+  Scenario: Editing post
     When I click on the Edit button on the new post
     Then I should see the Edit Post inputs
     When I have edited the post to my liking
     And click on the button that says ‘done editing’
     Then my post should be updated and reflected publicly as an edited post
 
-  Scenario: Deleting post 
+  Scenario: Deleting post
     Given that I want to delete my post
     When I click on delete on my own post
     Then I should see a confirmation message to confirm if I wish to delete
@@ -73,11 +73,11 @@ Feature: Forum
   Scenario: Commenting on a Deleted Post
     Given that I am halfway through commenting on a post and it got deleted
     When I click on ‘comment
-    Then I should be informed that the post got deleted 
+    Then I should be informed that the post got deleted
     And redirected to the lesson page with the remaining posts
 
   Scenario: Editing a Comment on a Deleted Post
   Given that I am midway trying to edit my comment on a post and it gets deleted
   When I click on ‘done editing’
-  Then I should be informed that the post got deleted 
+  Then I should be informed that the post got deleted
   And redirected to the lesson page with the remaining posts
