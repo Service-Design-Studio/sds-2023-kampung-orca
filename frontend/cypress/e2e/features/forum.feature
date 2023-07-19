@@ -1,26 +1,19 @@
 Feature: Forum
+
   As Thomas, a working adult,
   I want to be able to engage with the learning community on the platform regarding interfaith,
   so that I can practice engaging in interfaith discussion.
 
-  Scenario: Viewing forum box
-    Given I am at the lesson view page
-    When I click on the forum button
-    Then I should see the forum view
-
   Background:
+    Given I am logged in
     Given the forum box is open
 
   Scenario: Posting new thread
     When I click on the New Post button
     Then I should see the New Post inputs
     When I enter new post details
-    And I click on the Send button
+    When I click on the Post button
     Then I should see the new post
-
-  Examples:
-    | title       | content         |
-    | Test        | Testing 1 2 3!  |
 
   Scenario: Editing post
     When I click on the Edit button on the new post

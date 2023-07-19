@@ -32,6 +32,8 @@ const buttonComponentMap = {
   "next lesson" : '[data-cy="completion-next-lesson"]',
   "redirect" : '[data-cy="go-to-home"]',
   "forum" : '[data-cy="forum-button"]',
+  "New Post" : '[data-cy="new-post-button"]',
+  "Post" : '[data-cy="post-button"]',
 };
 
 const pages = {

@@ -142,7 +142,7 @@ const ForumApp = () => {
     <div>
       {selectedPost ? (
         <div>
-          
+
           <Box
             bg="rgba(237, 242, 247, 0.9)"
             padding="20px"
@@ -180,7 +180,7 @@ const ForumApp = () => {
                   </Text>
                 </Box>
               ))}
-              
+
             </div>
           )}
 

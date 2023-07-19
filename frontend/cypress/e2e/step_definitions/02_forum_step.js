@@ -1,10 +1,23 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import '@testing-library/cypress/add-commands';
 
-When("I click on the forum button", () => {
-  cy.clickButton("Forum");
+Given("the forum box is open", () => {
+  cy.visitRoute("lesson view");
+  cy.clickButton("forum");
 });
 
-Then("I should see the forum page", () => {
-  cy.findByText("Create Post").should("exist");
+Then("I should see the New Post inputs", () => {
+  cy.get('button').contains('Post').should('exist');
 });
+
+//TODO - Scenario: Posting new thread
+When("I enter new post details",() => {
+
+});
+
+//TODO - Posting new thread
+Then("I should see the new post", () => {
+
+});
+
+

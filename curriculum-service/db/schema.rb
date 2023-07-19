@@ -53,10 +53,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
-  create_table "users", id: false, force: :cascade do |t|
-    t.string "user_id"
-    t.string "lessons_access"
-    t.string "exercises_access"
-  end
-
 end
