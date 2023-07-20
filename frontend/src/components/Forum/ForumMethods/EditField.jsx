@@ -31,7 +31,6 @@ function EditField({
 }) {
   const [inputValue, setInputValue] = useState(defaultValue);
 
-
   const url = window.location.href;
   const parts = url.split("/");
   const lessonnum = parts[parts.length - 1];
@@ -55,10 +54,13 @@ function EditField({
   const updatePost = async (postId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(`http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`, {
-        token: cookieValue,
-        content: updatedData,
-      });
+      await axios.patch(
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        {
+          token: cookieValue,
+          content: updatedData,
+        }
+      );
 
       await fetchPosts();
       //const temp = selectedPost;
@@ -139,15 +141,21 @@ function EditField({
         align="flex-start"
         position="relative"
       >
-        <EditablePreview textAlign="justify" />
-        <EditableTextarea minH={type === "post" ? "200px" : "80px"} />
+        <EditablePreview
+          textAlign="justify"
+          maxW={type === "post" ? "480px" : "470px"}
+        />
+        <EditableTextarea
+          minH={type === "post" ? "200px" : "80px"}
+          width="480px"
+        />
 
         <Flex direction="row" justify="flex-end" width="100%">
           <Stack
             direction="row"
             position="absolute"
             bottom="-35px"
-            right="-10px"
+            right={type === "post" ? "-75px" : "0px"}
           >
             <EditableControls />
             {type === "post" && (
