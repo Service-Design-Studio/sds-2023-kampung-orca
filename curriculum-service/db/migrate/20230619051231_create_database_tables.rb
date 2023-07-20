@@ -18,7 +18,6 @@ class CreateDatabaseTables < ActiveRecord::Migration[6.1]
     create_table :topics, id: false, primary_key: :topic_id do |t|
       t.text :topic_id, null: false, index: { unique: true }
       t.string :title
-      t.integer :num_of_lessons
     end
 
     create_table :pages, id: false, primary_key: :page_id do |t|

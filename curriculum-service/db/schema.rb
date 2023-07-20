@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_061946) do
   create_table "exercises", id: false, force: :cascade do |t|
     t.text "exercise_id", null: false
     t.text "topic_id"
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_174931) do
   create_table "topics", id: false, force: :cascade do |t|
     t.text "topic_id", null: false
     t.string "title"
-    t.integer "num_of_lessons"
+    t.integer "lessons_count"
     t.index ["topic_id"], name: "index_topics_on_topic_id", unique: true
   end
 

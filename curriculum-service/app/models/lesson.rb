@@ -1,6 +1,6 @@
 # app/models/lesson.rb
-class Lesson < ActiveRecord::Base
-  belongs_to :topic
+class Lesson < ApplicationRecord
+  belongs_to :topic, counter_cache: true
   has_many :pages
   has_many :exercies
   # TODO: ID should be a string not integer!!

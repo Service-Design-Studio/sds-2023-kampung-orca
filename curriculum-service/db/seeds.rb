@@ -13,11 +13,11 @@ Exercise.destroy_all
 User.destroy_all
 
 User.create(user_id: "admin", lessons_access: ["00001"], exercises_access:[])
-Topic.create!(topic_id: "00001", title: "Sample Topic 1", num_of_lessons: 3)
-Topic.create!(topic_id: "00002", title: "Sample Topic 2", num_of_lessons: 3)
-Topic.create!(topic_id: "00003", title: "Sample Topic 2", num_of_lessons: 3)
-Topic.create!(topic_id: "00004", title: "Sample Topic 4", num_of_lessons: 3)
-Topic.create!(topic_id: "00005", title: "Sample Topic 5", num_of_lessons: 3)
+Topic.create!(topic_id: "00001", title: "Sample Topic 1")
+Topic.create!(topic_id: "00002", title: "Sample Topic 2")
+Topic.create!(topic_id: "00003", title: "Sample Topic 2")
+Topic.create!(topic_id: "00004", title: "Sample Topic 4")
+Topic.create!(topic_id: "00005", title: "Sample Topic 5")
 Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: "Introduction to Interfaith", message: "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.")
 Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1, title: "Interfaith Ethics and Values", message: "Delve into the ethical principles and moral values shared across different religious traditions. Learn how these teachings can guide individuals and communities towards compassionate action, social justice, and interfaith harmony.")
 Lesson.create!(lesson_id: "00003", topic_id: "00001", order_index: 2, title: "Interfaith Dialogue Techniques", message: "Learn effective communication strategies and dialogue techniques for engaging in meaningful interfaith conversations. Develop skills to foster mutual understanding, empathy, and constructive discussions among people of different faiths.")
