@@ -3,9 +3,17 @@ import { Stack, Heading, Button, Avatar, Textarea } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+import { useParams } from "react-router-dom";
+
 export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const [valueContent, setValueContent] = React.useState("");
   const handleContentChange = (event) => setValueContent(event.target.value);
+
+
+  const url = window.location.href;
+  const parts = url.split("/");
+  const lessonnum = parts[parts.length - 1];
+  const lessonNumber = parseInt(lessonnum, 10);
 
   const handleButtonClick = () => {
     CreateComment(valueContent, postId);
@@ -17,7 +25,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
     const postId = id;
     try {
       const response = await axios.post(
-        `http://localhost:3001/lessons/1/posts/${postId}/comments`,
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments`,
         {
           token: cookieValue,
           comment: { content: con },

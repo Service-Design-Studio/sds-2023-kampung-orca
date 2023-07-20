@@ -1,10 +1,15 @@
 // Post.jsx
 import React from "react";
 import { Box, Text, Stack, Heading, Avatar, Button } from "@chakra-ui/react";
+import moment from "moment";
 
 function Post({ post, onClick, onDelete, onUpdate }) {
   const handleClick = () => {
     onClick(post);
+  };
+
+  const formatCreatedAt = (createdAt) => {
+    return moment(createdAt).fromNow();
   };
 
   const handleEditClick = (event) => {
@@ -19,6 +24,8 @@ function Post({ post, onClick, onDelete, onUpdate }) {
   const handleDeleteClick = () => {
     onDelete(post.id);
   };
+
+  //console.log(post.user);
 
   return (
     <Box
@@ -42,6 +49,7 @@ function Post({ post, onClick, onDelete, onUpdate }) {
               <span style={{ fontWeight: "bold" }}>
                 {post.user && post.user.name}
               </span>
+              {" "}{formatCreatedAt(post.created_at)}{" "}
             </Text>
           </Stack>
           <Text noOfLines={2} pt="1" fontSize="sm" color="#555">
