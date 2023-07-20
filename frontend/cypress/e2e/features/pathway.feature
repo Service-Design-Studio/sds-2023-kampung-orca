@@ -3,7 +3,7 @@ Feature: Display lessons pathway
   so that I can keep track of my learning progress.
 
   Background:
-    Given I am logged in
+    Given I am logged in as Mohammad
 
   Scenario: View lessons pathway after selecting a topic
     Given I am at the topic list page

@@ -25,22 +25,22 @@ const buttonComponentMap = {
   Login: "#login-button",
   "Google login": "#google-login",
   Complete: "#lesson-complete",
-  "right arrow" : '[data-cy="next-page"]',
-  "left arrow" : '[data-cy="previous-page"]',
-  "Go to Home" : '[data-cy="go-to-home"]',
-  "Complete Lesson" : '[data-cy="complete-lesson"]',
-  "next lesson" : '[data-cy="completion-next-lesson"]',
-  "redirect" : '[data-cy="go-to-home"]',
-  "forum" : '[data-cy="forum-button"]',
-  "New Post" : '[data-cy="new-post-button"]',
-  "Post" : '[data-cy="post-button"]',
+  "right arrow": '[data-cy="next-page"]',
+  "left arrow": '[data-cy="previous-page"]',
+  "Go to Home": '[data-cy="go-to-home"]',
+  "Complete Lesson": '[data-cy="complete-lesson"]',
+  "next lesson": '[data-cy="completion-next-lesson"]',
+  redirect: '[data-cy="go-to-home"]',
+  forum: '[data-cy="forum-button"]',
+  "New Post": '[data-cy="new-post-button"]',
+  Post: '[data-cy="post-button"]',
 };
 
 const pages = {
   "first page": "1",
   "second page": "2",
   "third page": "3",
-}
+};
 
 Cypress.Commands.add("checkErrorMessage", (errorName) => {
   cy.contains(errorRouteMap[errorName]).should("exist");
@@ -132,10 +132,10 @@ Cypress.Commands.add("getDataToken", () => {
   return Cypress.env("googleRefreshToken");
 });
 
-Cypress.Commands.add("loginByGoogleApi", () => {
-  cy.setCookie("token", "admin");
+Cypress.Commands.add("loginByGoogleApi", (username) => {
+  // username can be [ "aloysius", "thomas", "mohammad" ]
+  cy.setCookie("token", username);
 });
-
 
 Cypress.Commands.add("checkPage", (page) => {
   cy.get("p").contains(pages[page]).should("exist");
