@@ -288,13 +288,13 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       </Heading>
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}
-                        {"12h ago"}
+                        {formatCreatedAt(comment.created_at)}
                       </Text>
                     </Stack>
                   </Stack>
 
                   <Text mt="30px" fontSize="lg" mb={1} color="#555">
-                    {selectedPost.user_id === current_user_id ? (
+                    {comment.user_id === current_user_id ? (
                       <EditField
                         postId={selectedPost.id}
                         commentId={comment.id}

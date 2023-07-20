@@ -20,19 +20,6 @@ function Post({ post, onClick, onDelete, onUpdate }) {
     return moment(createdAt).fromNow();
   };
 
-  const handleEditClick = (event) => {
-    event.stopPropagation();
-    const updatedData = {
-      title: "updated title",
-      content: "this is updated post content",
-    };
-    onUpdate(post.id, updatedData);
-  };
-
-  const handleDeleteClick = () => {
-    onDelete(post.id);
-  };
-
   //console.log(post.user);
 
   return (
