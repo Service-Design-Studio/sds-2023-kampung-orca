@@ -28,27 +28,28 @@ const useGateway_oauth = (endpoint, method, code) => {
       setCache(data);
     }
   }, [loading, data]);
-
   return [cache, setCache, error];
 };
 
 const GoogleCallback = () => {
   const [link, setlink] = useState("");
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(null);
   const navigate = useNavigate();
-
+  const params = new URLSearchParams(window.location.href);
   useEffect(() => {
-    const params = new URLSearchParams(window.location.href);
-
-    setCode(params.get("code"));
+    
+    
     for (const key of params.keys()) {
       if (key.includes("/oauth/google?state")) {
         const value = params.get(key);
         setlink(value.replace(process.env.REACT_APP_FRONTEND_URL, ""));
-        break;
+      }
+      else if(key === "code"){
+        setCode(params.get("code"));
       }
     }
   }, []);
+  
   const [data] = useGateway_oauth("/users/signup", "Post", code);
   useEffect(() => {
     if (data) {
