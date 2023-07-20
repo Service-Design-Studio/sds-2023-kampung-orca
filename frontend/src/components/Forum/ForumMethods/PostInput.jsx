@@ -5,9 +5,16 @@ import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+import { useParams } from "react-router-dom";
+
 function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
   const [valueTitle, setValueTitle] = useState("");
   const [valueContent, setValueContent] = useState("");
+
+  const url = window.location.href;
+  const parts = url.split("/");
+  const lessonnum = parts[parts.length - 1];
+  const lessonNumber = parseInt(lessonnum, 10);
 
   const handleButtonClick = () => {
     setFormOpen(true);
@@ -40,7 +47,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/lessons/1/posts",
+        `http://localhost:3001/lessons/${lessonNumber}/posts`,
         {
           token: cookieValue,
           post: { title, content },

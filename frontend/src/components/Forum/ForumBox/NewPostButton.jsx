@@ -3,6 +3,9 @@ import Chat from "../../Chatbox/Chat";
 import { Link } from "react-router-dom";
 import ForumBoxPost from "./ForumBoxPost";
 import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
+
+import { useParams } from "react-router-dom";
+
 import {
   Input,
   Textarea,
@@ -30,6 +33,11 @@ function NewPostButton() {
   const [valueContent, setValueContent] = React.useState("");
   const handleContentChange = (event) => setValueContent(event.target.value);
 
+  const url = window.location.href;
+  const parts = url.split("/");
+  const lessonnum = parts[parts.length - 1];
+  const lessonNumber = parseInt(lessonnum, 10);
+
   const handleButtonClick = () => {
     setFormOpen(true);
   };
@@ -46,7 +54,7 @@ function NewPostButton() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
         {
           token: cookieValue,
           post: { title, content },

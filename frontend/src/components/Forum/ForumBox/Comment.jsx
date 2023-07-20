@@ -19,7 +19,8 @@ function Comment({ comment, onDelete }) {
         {comment.content}
       </Text>
       <Text color="#555">
-        Commented by: {comment.user && comment.user.name}
+        Commented by: {"eee"} {" "}{comment.created_at}{" "}ago
+        
       </Text>
       <Button
         onClick={handleDeleteClick}

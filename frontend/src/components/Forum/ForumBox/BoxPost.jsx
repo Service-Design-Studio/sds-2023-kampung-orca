@@ -8,6 +8,8 @@ import CommentList from "./CommentList";
 import { EnterComment } from "./EnterComment";
 import EditField from "../ForumMethods/EditField";
 import DeleteButton from "../ForumMethods/DeleteButton";
+import { useParams } from "react-router-dom";
+import moment from "moment";
 
 import {
   Editable,
@@ -22,6 +24,13 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const [selectedPost, setSelectedPost] = useState(null);
   const current_user_id = Cookies.get("user_id"); //TODO: Actually get the userid instead of using placeholder
 
+
+  const url = window.location.href;
+  const parts = url.split("/");
+  const lessonnum = parts[parts.length - 1];
+  const lessonNumber = parseInt(lessonnum, 10);
+  
+  //console.log(lessonnum, '    ', lessonNumber);
   //console.log(current_user_id);
 
   useEffect(() => {
@@ -33,11 +42,15 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     //setRefreshPosts(false);
   }, [refreshPosts]);
 
+  const formatCreatedAt = (createdAt) => {
+    return moment(createdAt).fromNow();
+  };
+
   const fetchPosts = async () => {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
         { params: { token: cookieValue } }
       );
       const uniquePosts = response.data.filter(
@@ -53,7 +66,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/1/posts/${postId}/comments`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments`,
         { params: { token: cookieValue } }
       );
       setComments((prevComments) => ({
@@ -92,7 +105,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.delete(
-        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           params: {
             token: cookieValue,
@@ -110,7 +123,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const deletePost = async (postId) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.delete(`http://localhost:3001/lessons/1/posts/${postId}`, {
+      await axios.delete(`http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`, {
         params: {
           token: cookieValue,
         },
@@ -137,7 +150,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           comment: updatedData,
@@ -154,7 +167,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   };
 
   // const handleShit = () => console.log(comments);
-  console.log(current_user_id);
+  //console.log(current_user_id);
   return (
     <div>
       {selectedPost ? (
@@ -187,7 +200,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               )}
             </Text>
             <Text color="#555">
-              Posted by: {selectedPost.user && selectedPost.user.name}
+              Posted by <strong>{selectedPost.user && selectedPost.user.name}</strong> {formatCreatedAt(selectedPost.created_at)}
             </Text>
           </Box>
           {comments[selectedPost.id] && (
@@ -230,7 +243,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                   </Text>
 
                   <Text color="#555">
-                    Commented by: {comment.user && comment.user.name}
+                    Commented by <strong>{comment.user && comment.user.name}</strong> {" "}{formatCreatedAt(comment.created_at)}{" "}
                   </Text>
 
                   {comment.user_id === current_user_id && (

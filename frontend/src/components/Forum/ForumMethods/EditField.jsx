@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEditableControls } from "@chakra-ui/react";
+
+import { useParams } from "react-router-dom";
+
 import {
   ButtonGroup,
   IconButton,
@@ -27,6 +30,12 @@ function EditField({
 }) {
   const [inputValue, setInputValue] = useState(defaultValue);
 
+
+  const url = window.location.href;
+  const parts = url.split("/");
+  const lessonnum = parts[parts.length - 1];
+  const lessonNumber = parseInt(lessonnum, 10);
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -45,7 +54,7 @@ function EditField({
   const updatePost = async (postId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(`http://localhost:3001/lessons/1/posts/${postId}`, {
+      await axios.patch(`http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`, {
         token: cookieValue,
         content: updatedData,
       });
@@ -62,7 +71,7 @@ function EditField({
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/1/posts/${postId}/comments/${commentId}`,
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           content: updatedData,
@@ -85,12 +94,12 @@ function EditField({
     } = useEditableControls();
 
     return isEditing ? (
-      <ButtonGroup justifyContent="center" size="sm">
+      <ButtonGroup justifyContent="right" size="sm">
         <IconButton icon={<BsCheckSquareFill />} {...getSubmitButtonProps()} />
         <IconButton icon={<BsFillXSquareFill />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
-      <Flex justifyContent="center">
+      <Flex justifyContent="right">
         <IconButton
           size="sm"
           icon={<BsFillPencilFill />}
