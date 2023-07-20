@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEditableControls } from "@chakra-ui/react";
+import DeleteButton from "../ForumMethods/DeleteButton";
 import {
   ButtonGroup,
   IconButton,
+  Icon,
+  Button,
   Flex,
   Editable,
   EditablePreview,
-  EditableInput,
-  Input,
+  EditableTextarea,
+  Stack,
 } from "@chakra-ui/react";
-import {
-  BsCheckSquareFill,
-  BsFillXSquareFill,
-  BsFillPencilFill,
-} from "react-icons/bs";
+import { BsCheckLg, BsXLg, BsFillPencilFill } from "react-icons/bs";
 
 function EditField({
   defaultValue,
@@ -24,6 +23,8 @@ function EditField({
   fetchPosts,
   fetchComments,
   type,
+  handleCommentDelete, // Receive handleCommentDelete as a prop
+  deletePost, // Receive deletePost as a prop
 }) {
   const [inputValue, setInputValue] = useState(defaultValue);
 
@@ -85,17 +86,29 @@ function EditField({
     } = useEditableControls();
 
     return isEditing ? (
-      <ButtonGroup justifyContent="center" size="sm">
-        <IconButton icon={<BsCheckSquareFill />} {...getSubmitButtonProps()} />
-        <IconButton icon={<BsFillXSquareFill />} {...getCancelButtonProps()} />
+      <ButtonGroup justifyContent="right" direction="column">
+        <Button
+          bg="#FFFFFF"
+          width="60px"
+          shadow="lg"
+          {...getSubmitButtonProps()}
+        >
+          <BsCheckLg size="20px" />
+        </Button>
+        <Button
+          bg="#FFFFFF"
+          width="60px"
+          shadow="lg"
+          {...getCancelButtonProps()}
+        >
+          <BsXLg />
+        </Button>
       </ButtonGroup>
     ) : (
-      <Flex justifyContent="center">
-        <IconButton
-          size="sm"
-          icon={<BsFillPencilFill />}
-          {...getEditButtonProps()}
-        />
+      <Flex justifyContent="right">
+        <Button bg="#FFFFFF" width="60px" shadow="lg" {...getEditButtonProps()}>
+          <BsFillPencilFill />
+        </Button>
       </Flex>
     );
   }
@@ -103,8 +116,7 @@ function EditField({
   return (
     <Editable
       textAlign="left"
-      fontSize="lg"
-      fontStyle="italic"
+      fontSize="md"
       mb={4}
       color="#555"
       isPreviewFocusable={false}
@@ -112,9 +124,34 @@ function EditField({
       //onChange={handleInputChange}
       onSubmit={handleUpdate}
     >
-      <EditablePreview />
-      <EditableInput />
-      <EditableControls />
+      <Stack
+        justify="space-between"
+        direction="column"
+        align="flex-start"
+        position="relative"
+      >
+        <EditablePreview textAlign="justify" />
+        <EditableTextarea minH={type === "post" ? "200px" : "80px"} />
+
+        <Flex direction="row" justify="flex-end" width="100%">
+          <Stack
+            direction="row"
+            position="absolute"
+            bottom="-35px"
+            right="-10px"
+          >
+            <EditableControls />
+            {type === "post" && (
+              <DeleteButton onDelete={() => deletePost(postId)} />
+            )}
+            {type === "comment" && (
+              <DeleteButton
+                onDelete={() => handleCommentDelete(postId, commentId)}
+              />
+            )}
+          </Stack>
+        </Flex>
+      </Stack>
     </Editable>
   );
 }

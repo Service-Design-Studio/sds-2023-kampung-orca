@@ -7,10 +7,15 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   AlertDialogCloseButton,
+  Flex,
+  Button,
+  Icon,
+  ButtonGroup,
 } from "@chakra-ui/react";
-import { useDisclosure, Button } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import { BsFillTrashFill } from "react-icons/bs";
 
-function DeleteButton({ onDelete, size, mt }) {
+function DeleteButton({ onDelete, ml }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
 
@@ -21,8 +26,8 @@ function DeleteButton({ onDelete, size, mt }) {
 
   return (
     <>
-      <Button colorScheme="red" onClick={onOpen} size={size} mt={mt}>
-        Delete
+      <Button bg="#FFFFFF" shadow="md" onClick={onOpen} ml={ml} width="60px">
+        <Icon as={BsFillTrashFill} />
       </Button>
 
       <AlertDialog
@@ -33,7 +38,7 @@ function DeleteButton({ onDelete, size, mt }) {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete Customer
+              Delete
             </AlertDialogHeader>
 
             <AlertDialogBody>
@@ -54,4 +59,5 @@ function DeleteButton({ onDelete, size, mt }) {
     </>
   );
 }
+
 export default DeleteButton;

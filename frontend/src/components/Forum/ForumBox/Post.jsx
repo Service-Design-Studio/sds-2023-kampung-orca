@@ -23,10 +23,10 @@ function Post({ post, onClick, onDelete, onUpdate }) {
   return (
     <Box
       onClick={handleClick}
-      mb="10px"
+      mb="20px"
       padding="20px"
-      shadow="0 0 5px 1px rgba(0, 0, 0, 0.3)"
-      bg="rgba(237, 242, 247, 0.9)"
+      shadow="md"
+      bg="rgba(242, 242, 247, 0.7)"
       transition="background-color 0.3s ease"
       _hover={{ bg: "#ffbabc" }}
     >
