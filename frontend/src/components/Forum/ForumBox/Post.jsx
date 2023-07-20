@@ -1,6 +1,14 @@
 // Post.jsx
 import React from "react";
-import { Box, Text, Stack, Heading, Avatar, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Stack,
+  Heading,
+  Avatar,
+  Button,
+  Flex,
+} from "@chakra-ui/react";
 import moment from "moment";
 
 function Post({ post, onClick, onDelete, onUpdate }) {
@@ -10,19 +18,6 @@ function Post({ post, onClick, onDelete, onUpdate }) {
 
   const formatCreatedAt = (createdAt) => {
     return moment(createdAt).fromNow();
-  };
-
-  const handleEditClick = (event) => {
-    event.stopPropagation();
-    const updatedData = {
-      title: "updated title",
-      content: "this is updated post content",
-    };
-    onUpdate(post.id, updatedData);
-  };
-
-  const handleDeleteClick = () => {
-    onDelete(post.id);
   };
 
   //console.log(post.user);
@@ -39,23 +34,28 @@ function Post({ post, onClick, onDelete, onUpdate }) {
     >
       <Stack direction="row" align="center" spacing={4}>
         <Avatar shadow="lg" size="lg" src={post.user && post.user.avatar} />
-        <Stack direction="column">
-          <Stack direction="row" align="center">
-            <Heading as="h3" size="md" textTransform="uppercase" color="#333">
-              {post.title}
-            </Heading>
+        <Flex width="100%" direction="row" justify="space-bewteen">
+          <Flex direction="column" spacing="0px" width="100%">
+            <Box maxW="400px">
+              <Heading
+                noOfLines={2}
+                as="h3"
+                size="md"
+                textTransform="uppercase"
+                color="#333"
+              >
+                {post.title}
+              </Heading>
+            </Box>
             <Text fontSize="sm" fontStyle="italic" color="#555">
               by{" "}
               <span style={{ fontWeight: "bold" }}>
                 {post.user && post.user.name}
-              </span>
-              {" "}{formatCreatedAt(post.created_at)}{" "}
+              </span>{" "}
+              {formatCreatedAt(post.created_at)}{" "}
             </Text>
-          </Stack>
-          <Text noOfLines={2} pt="1" fontSize="sm" color="#555">
-            {post.content}
-          </Text>
-        </Stack>
+          </Flex>
+        </Flex>
       </Stack>
     </Box>
   );

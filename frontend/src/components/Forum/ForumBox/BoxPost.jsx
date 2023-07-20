@@ -32,12 +32,11 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const [selectedPost, setSelectedPost] = useState(null);
   const current_user_id = Cookies.get("user_id"); //TODO: Actually get the userid instead of using placeholder
 
-
   const url = window.location.href;
   const parts = url.split("/");
   const lessonnum = parts[parts.length - 1];
   const lessonNumber = parseInt(lessonnum, 10);
-  
+
   //console.log(lessonnum, '    ', lessonNumber);
   //console.log(current_user_id);
 
@@ -131,11 +130,14 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const deletePost = async (postId) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.delete(`http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`, {
-        params: {
-          token: cookieValue,
-        },
-      });
+      await axios.delete(
+        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        {
+          params: {
+            token: cookieValue,
+          },
+        }
+      );
 
       //updates the list of post displayed
       await fetchPosts();
@@ -198,51 +200,52 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               width="fit-content"
               padding="10px"
               shadow="md"
-              position="absolute"
-              left="-10px"
-              top="-10px"
+              // position="absolute"
+              // left="-10px"
+              // top="-10px"
             >
               <Avatar size="md" />
               <Flex width="100%" direction="row" justify="space-bewteen">
                 <Flex direction="column" spacing="0px" width="100%">
-                  <Box maxW="450px">
-                  <Heading color="#333" size="lg">
-                    {selectedPost.title}
-                  </Heading>
+                  <Box width="400px" maxW="400px">
+                    <Heading color="#333" size="lg">
+                      {selectedPost.title}
+                    </Heading>
                   </Box>
                   <Text color="#333" fontSize="sm" fontStyle="italic">
                     by{" "}
                     <span style={{ fontSize: "sm", fontWeight: "bold" }}>
                       {selectedPost.user && selectedPost.user.name}
-                    </span>
-                    {" "}{formatCreatedAt(selectedPost.created_at)}
+                    </span>{" "}
+                    {formatCreatedAt(selectedPost.created_at)}
                   </Text>
                 </Flex>
               </Flex>
             </Stack>
 
-            <Text mt="50px" fontSize="lg" color="#555">
-              {selectedPost.user_id === current_user_id ? (
-                // JSX to render if the condition is true
-                // Place your JSX here
-                <EditField
-                  postId={selectedPost.id}
-                  commentId={null}
-                  defaultValue={selectedPost.content}
-                  fetchPosts={fetchPosts}
-                  fetchComments={fetchComments}
-                  type="post"
-                  deletePost={deletePost}
-                />
-              ) : (
-                // JSX to render if the condition is false
-                // Place your JSX here
-                <Box maxW="450px">
-                <>{selectedPost.content}</>
-                </Box>
-              )}
-            </Text>
-            
+            <Box maxW="400px" marginBottom="10px">
+              <Text mt="20px" fontSize="lg" color="#555">
+                {selectedPost.user_id === current_user_id ? (
+                  // JSX to render if the condition is true
+                  // Place your JSX here
+                  <EditField
+                    postId={selectedPost.id}
+                    commentId={null}
+                    defaultValue={selectedPost.content}
+                    fetchPosts={fetchPosts}
+                    fetchComments={fetchComments}
+                    type="post"
+                    deletePost={deletePost}
+                  />
+                ) : (
+                  // JSX to render if the condition is false
+                  // Place your JSX here
+                  <Box maxW="480px" marginBottom="10px">
+                    <>{selectedPost.content}</>
+                  </Box>
+                )}
+              </Text>
+            </Box>
           </Box>
           {comments[selectedPost.id] && (
             <div>
@@ -285,13 +288,13 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       </Heading>
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}
-                        {"12h ago"}
+                        {formatCreatedAt(comment.created_at)}
                       </Text>
                     </Stack>
                   </Stack>
 
                   <Text mt="30px" fontSize="lg" mb={1} color="#555">
-                    {selectedPost.user_id === current_user_id ? (
+                    {comment.user_id === current_user_id ? (
                       <EditField
                         postId={selectedPost.id}
                         commentId={comment.id}
@@ -307,10 +310,6 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       <>{comment.content}</>
                     )}
                   </Text>
-
-                  
-
-                  
                 </Box>
               ))}
             </div>
