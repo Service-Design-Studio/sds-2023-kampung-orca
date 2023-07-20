@@ -1,0 +1,6 @@
+start cmd.exe /k "cd api-gateway && wsl rails s"
+start cmd.exe /k "cd curriculum-service && wsl rails s"
+start cmd.exe /k "cd forum-service && wsl rails s"
+start cmd.exe /k "cd user-service && wsl rails s"
+start cmd.exe /k "cd frontend && npm start"
+start cmd.exe /k "cd frontend && npx cypress open"

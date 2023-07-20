@@ -89,4 +89,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ENV["FRONTEND_URL"] = Rails.application.credentials[:frontend_url]
+  ENV["GATEWAY_URL"] = Rails.application.credentials[:gateway_url]
+  ENV["GOOGLE_CLIENT_ID"] = Rails.application.credentials[:google_client_id]
+  ENV["GOOGLE_CLIENT_SECRET"] = Rails.application.credentials[:google_client_secret]
 end

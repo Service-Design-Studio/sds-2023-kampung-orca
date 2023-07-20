@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
   
       if @user.save
-        render json: @user, status: :created, location: @user
+        render json: @user, status: :created
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -35,15 +35,18 @@ class UsersController < ApplicationController
     # DELETE /users/:id
     def destroy
       @user.destroy
+      head :no_content
     end
   
     private
   
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
+      rescue ActiveRecord::RecordNotFound
+      render json: { error: 'User not found' }, status: :not_found
     end
   
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:user_id, :name, :email)
     end
   end

@@ -17,7 +17,7 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: <%= Rails.application.credentials[:db_name] %>
   username: <%= Rails.application.credentials[:db_username] %>
   password: <%= Rails.application.credentials[:db_password] %>

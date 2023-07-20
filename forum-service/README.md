@@ -23,7 +23,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"comment\":{\"content\":\
 
 curl -X GET http://localhost:3003/lessons/1/posts/2/comments
 
-curl -X PATCH -H "Content-Type: application/json" -d "{\"comment\":{\"content\":\"Love is cruel like college entrance exams\", \"user_id\":2}}" http://localhost:3003/lessons/1/posts/2/comments/2
+curl -X PATCH -H "Content-Type: application/json" -d "{\"comment\":{\"content\":\"Love is cruel like college entrance exams\", \"user_id\":2}}" http://localhost:3003/lessons/1/posts/2/comments/1
 
 curl -X DELETE http://localhost:3003/lessons/1/posts/2/comments/2
 ```
@@ -31,7 +31,7 @@ curl -X DELETE http://localhost:3003/lessons/1/posts/2/comments/2
 
 ```sh
 # Create: Create a new lesson.
-curl -X POST -H "Content-Type: application/json" -d '{ "lesson": { "title": "New Lesson Title" } }' http://localhost:3003/lessons
+curl -X POST -H "Content-Type: application/json" -d "{\"lesson\":{\"title\":\"New Lesson Title\"}}" http://localhost:3003/lessons
 
 # Read (Index): Retrieve all lessons.
 curl http://localhost:3003/lessons

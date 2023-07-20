@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
     before_action :set_post, only: [:show, :update, :create, :destroy, :index]
+    before_action :check_author, only: [:update]
+    before_action :validate_fields, only: [:create]
   
     # GET /comments
     def index
@@ -16,10 +18,10 @@ class CommentsController < ApplicationController
     # POST /comments
     def create
       @comment = @post.comments.build(comment_params)
-      #@comment.user_id = 1  # Placeholder user ID for now
+      @comment.user = User.find_by(user_id: params[:user_id])
   
       if @comment.save
-        render json: @comment, status: :created, location: lesson_post_comments_path(@comment.post)
+        render json: @comment, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
       end
@@ -36,7 +38,11 @@ class CommentsController < ApplicationController
   
     # DELETE /comments/:id
     def destroy
+      unless @comment.user_id == params[:user_id]
+        render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+      end
       @comment.destroy
+      head :no_content
     end
   
     private
@@ -47,9 +53,23 @@ class CommentsController < ApplicationController
   
     def set_comment
       @comment = Comment.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Comment not found' }, status: :not_found
     end
   
     def comment_params
       params.require(:comment).permit(:content, :user_id)
+    end
+
+    def validate_fields
+      if comment_params[:content].blank?
+        render json: { error: 'Content fields cannot be empty' }, status: :unprocessable_entity
+      end
+    end
+
+    def check_author
+      unless @comment.user.user_id == params[:user_id]
+        render json: { error: 'You are not authorized to perform this action' }, status: :unauthorized
+      end
     end
   end

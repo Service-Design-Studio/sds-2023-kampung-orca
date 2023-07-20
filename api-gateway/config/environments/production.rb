@@ -83,4 +83,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   # config.active_record.dump_schema_after_migration = false
+
+  ENV["FRONTEND_URL"] = Rails.application.credentials[:frontend_url]
+  ENV["CURRICULUM_URL"] = Rails.application.credentials[:curriculum_url]
+  ENV["FORUM_URL"] = Rails.application.credentials[:forum_url]
+  ENV["USER_URL"] = Rails.application.credentials[:user_url]
 end
