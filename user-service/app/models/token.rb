@@ -1,4 +1,5 @@
 class Token < ActiveRecord::Base
+  validates :token, :refresh_token, :user_id, presence: true
   def to_params
     { 'refresh_token' => refresh_token,
       'client_id' => ENV['GOOGLE_CLIENT_ID'],
