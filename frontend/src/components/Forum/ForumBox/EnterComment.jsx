@@ -41,34 +41,32 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
 
   return (
     <>
-      <Stack direction="row">
-        <Avatar size="md" src={image}></Avatar>
-        <Stack pl="5px" direction="column" width="100%">
-          <Heading size="s">{name} </Heading>
-          <Stack direction="row" align="flex-end">
-            <Textarea
-              resize="none"
-              fontSize="sm"
-              placeholder="Write your comment here..."
-              color="#555"
-              value={valueContent}
-              onChange={handleContentChange}
-            />
-            <Button
-              size="lg"
-              bg="#ed2e38"
-              textColor="#FFFFFF"
-              _hover={{ bg: "#7c191c" }}
-              height="28px"
-              fontSize="14px"
-              width="100px"
-              shadow="md"
-              onClick={handleButtonClick}
-            >
-              Comment
-            </Button>
-          </Stack>
-        </Stack>
+      <Stack width="100%" direction="row" justify="center" align="center">
+        <Avatar shadow="md" size="md" src={image}></Avatar>
+        <Textarea
+          bg="#FFFFFF"
+          resize="none"
+          fontSize="sm"
+          width="100%"
+          shadow="md"
+          placeholder="Write your comment here..."
+          color="#555"
+          value={valueContent}
+          onChange={handleContentChange}
+        />
+        <Button
+          size="lg"
+          bg="#ed2e38"
+          textColor="#FFFFFF"
+          _hover={{ bg: "#7c191c" }}
+          height="80px"
+          fontSize="14px"
+          width="20px"
+          shadow="lg"
+          onClick={handleButtonClick}
+        >
+          Post
+        </Button>
       </Stack>
     </>
   );

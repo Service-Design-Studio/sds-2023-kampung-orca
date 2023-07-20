@@ -77,7 +77,6 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
           _hover={{ bg: "#7c191c" }}
           leftIcon={<Icon as={BsFillPlusCircleFill} />}
           onClick={handleButtonClick}
-          data-cy = "new-post-button"
         >
           Create New Post
         </Button>
@@ -129,7 +128,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
             </Button>
             <Button
               width="50px"
-              height="100px"
+              height="92px"
               variant="ghost"
               bg="#ed2e38"
               textColor="#FFFFFF"
@@ -137,7 +136,6 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               fontSize="18px"
               style={{ zIndex: 999 }}
               onClick={handlePostButtonClick}
-              data-cy = "post-button"
             >
               Post
             </Button>

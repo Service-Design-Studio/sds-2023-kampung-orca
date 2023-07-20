@@ -2,12 +2,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { Box, Heading, Text, Button, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Button,
+  Stack,
+  Flex,
+  Avatar,
+} from "@chakra-ui/react";
 import PostList from "./PostList";
-import CommentList from "./CommentList";
+import DeleteButton from "../ForumMethods/DeleteButton";
+
 import { EnterComment } from "./EnterComment";
 import EditField from "../ForumMethods/EditField";
-import DeleteButton from "../ForumMethods/DeleteButton";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 
@@ -167,21 +175,53 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   };
 
   // const handleShit = () => console.log(comments);
-  //console.log(current_user_id);
+  console.log(current_user_id);
   return (
     <div>
       {selectedPost ? (
         <div>
           <Box
-            bg="rgba(237, 242, 247, 0.9)"
-            padding="20px"
-            shadow="0 0 5px 1px rgba(0, 0, 0, 0.3)"
-            mb={4}
+            bg="rgba(237, 242, 247, 0.8)"
+            paddingX="20px"
+            paddingTop="25px"
+            paddingBottom="5px"
+            shadow="md"
+            mb="40px"
+            position="relative"
+            ml="10px"
+            mt="10px"
           >
-            <Heading as="h2" mb={2} color="#333">
-              {selectedPost.title}
-            </Heading>
-            <Text fontSize="lg" fontStyle="italic" mb={4} color="#555">
+            <Stack
+              direction="row"
+              align="center"
+              bg="#FFFFFF"
+              width="fit-content"
+              padding="10px"
+              shadow="md"
+              position="absolute"
+              left="-10px"
+              top="-10px"
+            >
+              <Avatar size="md" />
+              <Flex width="100%" direction="row" justify="space-bewteen">
+                <Flex direction="column" spacing="0px" width="100%">
+                  <Box maxW="450px">
+                  <Heading color="#333" size="lg">
+                    {selectedPost.title}
+                  </Heading>
+                  </Box>
+                  <Text color="#333" fontSize="sm" fontStyle="italic">
+                    by{" "}
+                    <span style={{ fontSize: "sm", fontWeight: "bold" }}>
+                      {selectedPost.user && selectedPost.user.name}
+                    </span>
+                    {" "}{formatCreatedAt(selectedPost.created_at)}
+                  </Text>
+                </Flex>
+              </Flex>
+            </Stack>
+
+            <Text mt="50px" fontSize="lg" color="#555">
               {selectedPost.user_id === current_user_id ? (
                 // JSX to render if the condition is true
                 // Place your JSX here
@@ -192,23 +232,21 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                   fetchPosts={fetchPosts}
                   fetchComments={fetchComments}
                   type="post"
+                  deletePost={deletePost}
                 />
               ) : (
                 // JSX to render if the condition is false
                 // Place your JSX here
+                <Box maxW="450px">
                 <>{selectedPost.content}</>
+                </Box>
               )}
             </Text>
-            <Text color="#555">
-              Posted by <strong>{selectedPost.user && selectedPost.user.name}</strong> {formatCreatedAt(selectedPost.created_at)}
-            </Text>
+            
           </Box>
           {comments[selectedPost.id] && (
             <div>
-              <Heading as="h3" mt={4} mb={2} color="#555">
-                Comments
-              </Heading>
-              <Stack mb="20px">
+              <Stack mb="30px">
                 <EnterComment
                   postId={selectedPost.id}
                   fetchComments={fetchComments}
@@ -218,15 +256,42 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               {comments[selectedPost.id].map((comment) => (
                 <Box
                   key={comment.id}
-                  bg="rgba(237, 242, 247, 0.9)"
-                  padding="20px"
-                  shadow="0 0 5px 1px rgba(0, 0, 0, 0.3)"
-                  mb={2}
+                  bg="rgba(240, 245, 250, 0.8)"
+                  paddingX="20px"
+                  paddingTop="20px"
+                  paddingBottom="10px"
+                  shadow="md"
+                  marginLeft="20px"
+                  position="relative"
+                  mb="30px"
                 >
-                  <Text fontSize="lg" mb={1} color="#555">
+                  <Stack
+                    mb="10px"
+                    textColor="#333"
+                    direction="row"
+                    align="center"
+                    bg="#FFFFFF"
+                    width="fit-content"
+                    padding="10px"
+                    shadow="md"
+                    position="absolute" // Make the Stack position absolute
+                    left="-20px"
+                    top="-10px"
+                  >
+                    <Avatar size="sm" />
+                    <Stack direction="row" align="center">
+                      <Heading size="s">
+                        {comment.user && comment.user.name}{" "}
+                      </Heading>
+                      <Text fontSize="xs" fontStyle="italic">
+                        {" "}
+                        {"12h ago"}
+                      </Text>
+                    </Stack>
+                  </Stack>
+
+                  <Text mt="30px" fontSize="lg" mb={1} color="#555">
                     {selectedPost.user_id === current_user_id ? (
-                      // JSX to render if the condition is true
-                      // Place your JSX here
                       <EditField
                         postId={selectedPost.id}
                         commentId={comment.id}
@@ -234,6 +299,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                         fetchPosts={fetchPosts}
                         fetchComments={fetchComments}
                         type="comment"
+                        handleCommentDelete={handleCommentDelete}
                       />
                     ) : (
                       // JSX to render if the condition is false
@@ -242,21 +308,9 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                     )}
                   </Text>
 
-                  <Text color="#555">
-                    Commented by <strong>{comment.user && comment.user.name}</strong> {" "}{formatCreatedAt(comment.created_at)}{" "}
-                  </Text>
+                  
 
-                  {comment.user_id === current_user_id && (
-                    <Stack direction="row" spacing={2}>
-                      <DeleteButton
-                        size="sm"
-                        mt={2}
-                        onDelete={() =>
-                          handleCommentDelete(selectedPost.id, comment.id)
-                        }
-                      />
-                    </Stack>
-                  )}
+                  
                 </Box>
               ))}
             </div>
@@ -268,16 +322,13 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               colorScheme="blue"
               bg="#ed2e38"
               _hover={{ bg: "#f66873" }}
+              position="absolute"
+              top="10px"
+              right="30px"
             >
               Go Back
             </Button>
           </Stack>
-
-          {selectedPost.user_id === current_user_id && (
-            <Stack direction="row" spacing={5}>
-              <DeleteButton onDelete={() => deletePost(selectedPost.id)} />
-            </Stack>
-          )}
         </div>
       ) : (
         <div>
