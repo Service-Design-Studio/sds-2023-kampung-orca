@@ -7,6 +7,12 @@ Feature: Forum functionality
   Background:
     Given I am logged in as Thomas
     Given the forum box is open
+    Given a post with the following details:
+      | Title                      | Content                     | Author   |
+      | Curious about Christianity | What questions do you have? | Mohammad |
+    Given a comment with the following details:
+      | Post Title                 | Content              | Author   |
+      | Curious about Christianity | I want to know more! | Aloysius |
 
   Scenario: Creating a post
     Given I am on the forum home page
@@ -121,21 +127,14 @@ Feature: Forum functionality
   #   Then I should be informed that the post got deleted
   #   And redirected to the lesson page with the remaining posts
 
-#FIXME - Second feature does not work in the same file as of now, comment below to run testing
-Feature: Disabling editing and deleting of other people's posts and comments
-  Background:
-    Given I am logged in as Mohammad
-    Given the forum box is open
-
   Scenario: Cannot edit or delete another person's post
     Given I am on the forum home page
-    When I click on a post created by another user
-    Then I should see the other forum post page
+    When I click on a post titled "Curious about Christianity"
+    Then I should see the corresponding forum post page
     But I should not see the post's Edit and Delete buttons
 
-  # TODO: CHANGE THE SEEDED POSTS
   Scenario: Cannot edit or delete another person's comment
     Given I am on the forum home page
-    When I click on a post titled "HELLO PEOPLE 1"
-    Then I should see the comment saying "yoyo"
+    When I click on a post titled "Curious about Christianity"
+    Then I should see the comment saying "I want to know more!"
     But I should not see the comment's Edit and Delete buttons
