@@ -6,7 +6,7 @@ Feature: Forum functionality
 
   Background:
     Given I am logged in as Thomas
-    Given the forum box is open  
+    Given the forum box is open
 
   Scenario: Creating a post
     Given I am on the forum home page
@@ -47,7 +47,7 @@ Feature: Forum functionality
       | Does internalised racism really exist? |
     Then I should see a success message confirming the post edit
     And the content should be updated on the forum post page
-  
+
   Scenario: Cannot edit a post with empty content
     Given I am editing my post
     When I edit my post with the following details:
@@ -125,7 +125,7 @@ Feature: Disabling editing and deleting of other people's posts and comments
   Background:
     Given I am logged in as Mohammad
     Given the forum box is open
-    
+
   Scenario: Cannot edit or delete another person's post
     Given I am on the forum home page
     When I click on a post created by another user
