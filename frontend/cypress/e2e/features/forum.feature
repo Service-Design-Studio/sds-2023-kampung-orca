@@ -121,6 +121,7 @@ Feature: Forum functionality
   #   Then I should be informed that the post got deleted
   #   And redirected to the lesson page with the remaining posts
 
+#FIXME - Second feature does not work in the same file as of now, comment below to run testing
 Feature: Disabling editing and deleting of other people's posts and comments
   Background:
     Given I am logged in as Mohammad
