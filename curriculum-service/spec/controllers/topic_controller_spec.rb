@@ -27,18 +27,18 @@ RSpec.describe TopicController, type: :controller do
     end
   end
 
-  # describe 'POST #create' do
-  #   it 'creates a new topic' do
-  #     expect do
-  #       post :create, params: { title: 'New Topic', num_of_lessons: 5 }
-  #     end.to change(Topic, :count).by(1)
+  describe 'POST #create' do
+    it 'creates a new topic' do
+      expect do
+        post :create, params: { title: 'New Topic'}
+      end.to change(Topic, :count).by(1)
 
-  #     expect(response).to be_successful
-  #     parsed_response = JSON.parse(response.body)
-  #     expect(parsed_response['title']).to eq('New Topic')
-  #     expect(parsed_response['num_of_lessons']).to eq(5)
-  #   end
-  # end
+      expect(response).to be_successful
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['title']).to eq('New Topic')
+      expect(parsed_response['num_of_lessons']).to eq(nil)
+    end
+  end
 
   describe 'GET #show' do
     it 'returns a successful response' do
@@ -66,11 +66,11 @@ RSpec.describe TopicController, type: :controller do
       expect(parsed_response['message']).to eq('Topic deleted!')
     end
 
-    # it 'returns a successful response when topic is not found' do
-    #   delete :destroy, params: { id: 'non_existent_id' }
-    #   expect(response).to be_successful
-    #   parsed_response = JSON.parse(response.body)
-    #   expect(parsed_response['message']).to eq('Topic deleted!')
-    # end
+    it 'returns a successful response when topic is not found' do
+      delete :destroy, params: { id: 'non_existent_id' }
+      expect(response).to be_successful
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['message']).to eq('Topic deleted!')
+    end
   end
 end
