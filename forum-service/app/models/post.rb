@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :lesson
   has_many :comments, dependent: :destroy
+  validates :content, presence: true
 end
 
 """ -- how come we can do post.user.name when user_id is what is stored in the same table? --
