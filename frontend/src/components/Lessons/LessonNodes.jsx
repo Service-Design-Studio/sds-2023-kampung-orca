@@ -88,6 +88,7 @@ const Line = () => {
       minWidth="300px"
       shadow="lg"
       borderRadius="10px"
+      data-cy = 'line'
     />
   );
 };
@@ -166,6 +167,7 @@ const Node = ({
           fontWeight="semibold"
           color={statusColour}
           textAlign="justify"
+          data-cy = 'popup'
         >
           <Stack direction="row" justifyContent="space-between">
             <Text>{status}</Text>
@@ -205,6 +207,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           overflowX="scroll"
           direction="row"
           marginx="100px"
+          data-cy = 'scrollbar'
           sx={{
             "&::-webkit-scrollbar": {
               width: "8px",

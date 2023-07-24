@@ -30,12 +30,13 @@ Feature: Display lessons pathway
   #   Then I should see the pathway between lesson nodes
 
   # Scenario: Add graphics around the lesson pathway **added
-  #   Given I am on the learning pathway, 
+  #   Given I am on the learning pathway,
   #   Then I should be able to see the graphics on the lessons pathway
 
   Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
     Given I am at the lessons pathway page
-    When I make a GET request to lesson 00005 # require deployment
+    # Requires deployment
+    When I make a GET request to lesson 00005
     Then I should see an error page with a button that redirects me back to the main screen
 
   # Scenario: Start a Lesson
