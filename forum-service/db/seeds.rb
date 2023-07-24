@@ -8,8 +8,12 @@
 
 
 Lesson.create([{ title: "Lesson 1"}, { title: "Lesson 2"}])
-User.create([{ name: "Matt", email: "danny@gmail.com", user_id: "1" }, { name: "Mohammad", email: "mohi@gmail.com", user_id: "2" }])
+User.create([{ name: "Matt", email: "danny@gmail.com", user_id: "1" }, { name: "Mohammad", email: "mohi@gmail.com", user_id: "2" },
+{ name: "Aloysius", email: "aloy@gmail.com", user_id: "3" } ])
 Post.create([{ title: "Hello People 1", content: "I am saying hi 1", user_id: "1", lesson_id: 1 }])
 Post.create([{ title: "Hello People 1 in L2", content: "I am saying hi 1 in L2", user_id: "1", lesson_id: 2 }])
 Post.create([{ title: "Hihi in L1", content: "Moha saying hi 1 in L1", user_id: "2", lesson_id: 1 }])
 Comment.create([{ content: "yoyo", post_id: 1, user_id: "2" }])
+Post.create([{ title: "Hihi in L1", content: "Moha saying hi 1 in L1", user_id: "2", lesson_id: 1 }])
+Post.create([{ title: "Curious about Christianity", content: "What questions do you have?", user_id: "2", lesson_id: 1 }])
+Comment.create([{ content: "I want to know more!", post_id: 4, user_id: "3" }])

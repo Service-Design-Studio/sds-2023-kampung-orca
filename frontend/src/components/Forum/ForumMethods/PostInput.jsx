@@ -95,6 +95,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
             paddingX="20px"
           >
             <Input
+              data-cy='post-title-input'
               textColor="black"
               width="460px"
               variant="flushed"
@@ -104,6 +105,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               onChange={handleTitleChange}
             />
             <Textarea
+            data-cy='post-content-input'
               resize="none"
               textColor="black"
               width="460px"
