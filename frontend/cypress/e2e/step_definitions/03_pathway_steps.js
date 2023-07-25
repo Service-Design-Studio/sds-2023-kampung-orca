@@ -62,11 +62,41 @@ Then("I should be able to see the graphics on the lessons pathway", () => {
   cy.get('.chakra-stack.css-o73i9').should('exist');
 });
 
+Given("I am at the topic list page ", () => {
+  cy.visitRoute("topic list");
+});
 
+When("I mouse hover on an in progress lesson node on the lessons pathway page", () => {
+  cy.get('#node-1').trigger('mouseover');
+});
 
+Then("I will see that the lesson is in progress", () => {
+  const infobox = cy.get('#node-1').trigger('mouseover');
+  cy.wait(500);
+  infobox.get('p').should('contain', 'In Progress');
+});
 
+When("I mouse hover on a completed lesson node on the lessons pathway page", () => {
+  cy.get('#node-0').trigger('mouseover');
+});
 
+Then("I will see that the lesson is completed", () => {
+  const infobox = cy.get('#node-0').trigger('mouseover');
+  cy.wait(500);
+  infobox.get('p').should('contain', 'Completed');
+});
 
+When("I mouse hover on a locked lesson node on the lessons pathway page", () => {
+  cy.get('#node-2').trigger('mouseover');
+});
 
+Then("I will see that the lesson is locked", () => {
+  const infobox = cy.get('#node-2').trigger('mouseover');
+  cy.wait(500);
+  infobox.get('p').should('contain', 'Locked');
+});
 
+Then("I will not be able to click on the lesson node", () => {
+  cy.get('svg').should('not.have.attr', 'pointer-events', 'auto');
+});
 
