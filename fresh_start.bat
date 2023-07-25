@@ -1,0 +1,8 @@
+start "API Gateway" cmd.exe /k "cd api-gateway && bundle install && rails s"
+start "Curriculum" cmd.exe /k "cd curriculum-service && bundle install && rails db:drop:_unsafe && rails db:migrate && rails db:seed && rails s"
+start "Forum" cmd.exe /k "cd forum-service && bundle install && rails db:drop:_unsafe && rails db:migrate && rails db:seed && rails s"
+start "Users" cmd.exe /k "cd user-service && bundle install && rails db:drop:_unsafe && rails db:migrate && rails db:seed && rails s"
+start "Frontend" cmd.exe /k "cd frontend && npm i && npm start"
+start "Cypress" cmd.exe /k "cd frontend && npx cypress open"
+start "ML Flask" cmd.exe /k "cd forum-ml-test && gcloud config set project eeeeeeeeeeeeeee-393204 && python main.py"
+start "Inactivity Checker" cmd.exe /k "cd inactivity-checker-service && bundle install && rails s"

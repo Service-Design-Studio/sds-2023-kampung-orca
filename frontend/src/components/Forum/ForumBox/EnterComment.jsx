@@ -54,6 +54,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
             color="#555"
             value={valueContent}
             onChange={handleContentChange}
+            data-cy="comment-text-area"
           />
           <Button
             size="lg"

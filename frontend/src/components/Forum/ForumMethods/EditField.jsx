@@ -147,7 +147,7 @@ function EditField({
           <DeleteButton onDelete={() => deletePost(postId)} />
         )}
         {type === "comment" && (
-          <DeleteButton
+          <DeleteButton data-cy="comment-delete-button"
             onDelete={() => handleCommentDelete(postId, commentId)}
           />
         )}
