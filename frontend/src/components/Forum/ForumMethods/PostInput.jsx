@@ -136,6 +136,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               fontSize="18px"
               style={{ zIndex: 999 }}
               onClick={handlePostButtonClick}
+              isDisabled={!valueTitle || !valueContent}
             >
               Post
             </Button>
