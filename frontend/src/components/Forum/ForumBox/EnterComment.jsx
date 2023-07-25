@@ -64,6 +64,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
           width="20px"
           shadow="lg"
           onClick={handleButtonClick}
+          data-cy="post-comment-button"
         >
           Post
         </Button>

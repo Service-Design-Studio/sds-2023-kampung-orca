@@ -225,6 +225,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
 
             <Box maxW="400px" marginBottom="10px">
               <Text mt="20px" fontSize="lg" color="#555">
+                {console.log(selectedPost.user_id)}
                 {selectedPost.user_id === current_user_id ? (
                   // JSX to render if the condition is true
                   // Place your JSX here
@@ -302,6 +303,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                         fetchPosts={fetchPosts}
                         fetchComments={fetchComments}
                         type="comment"
+                        data-cy="comment"
                         handleCommentDelete={handleCommentDelete}
                       />
                     ) : (

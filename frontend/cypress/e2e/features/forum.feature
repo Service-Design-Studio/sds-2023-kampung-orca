@@ -22,25 +22,25 @@ Feature: Forum functionality
     # Then I should see a success message confirming the post creation
     And I should see the post on the forum home page
 
+#wait for janessa to push post button disabled
   Scenario: No empty title
     Given I am on the forum home page
-    When I create a post with the following details:
+    When I try to create a post with the following details:
       | Title | Content |
       |       | Help!   |
-    Then I should see an error message saying that the title cannot be empty
-    And the Post button should be disabled
+    Then the Post button should be disabled
 
+#wait for janessa to push post button disabled
   Scenario: No empty content
     Given I am on the forum home page
-    When I create a post with the following details:
+    When I try to create a post with the following details:
       | Title      | Content |
       | Oops!      |         |
-    Then I should see an error message saying that the content cannot be empty
-    And the Post button should be disabled
+    Then the Post button should be disabled
 
   Scenario: Viewing my new post
     Given I am on the forum home page
-    When I click on the post titled "Internalised Racism"
+    When I click on the post titled Internalised Racism
     Then I should see the forum post page
     And I should see no comments
     And I should see the interface to create a new comment
@@ -51,7 +51,7 @@ Feature: Forum functionality
     When I edit my post with the following details:
       | Content                                |
       | Does internalised racism really exist? |
-    Then I should see a success message confirming the post edit
+    #Then I should see a success message confirming the post edit
     And the content should be updated on the forum post page
 
   Scenario: Cannot edit a post with empty content

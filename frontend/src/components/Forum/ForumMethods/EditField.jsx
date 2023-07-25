@@ -104,7 +104,7 @@ function EditField({
           shadow="lg"
           {...getSubmitButtonProps()}
         >
-          <BsCheckLg size="20px" />
+          <BsCheckLg size="20px" data-cy="confirm-edit-post"/>
         </Button>
         <Button
           bg="#FFFFFF"
@@ -118,7 +118,7 @@ function EditField({
     ) : (
       <Flex justifyContent="right">
         <Button bg="#FFFFFF" width="60px" shadow="lg" {...getEditButtonProps()}>
-          <BsFillPencilFill />
+          <BsFillPencilFill data-cy="edit-post-button"/>
         </Button>
       </Flex>
     );
@@ -145,7 +145,7 @@ function EditField({
           textAlign="justify"
           maxW={type === "post" ? "480px" : "470px"}
         />
-        <EditableTextarea
+        <EditableTextarea data-cy='edit-content-text-area'
           minH={type === "post" ? "200px" : "80px"}
           width="480px"
         />

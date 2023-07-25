@@ -105,7 +105,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               onChange={handleTitleChange}
             />
             <Textarea
-            data-cy='post-content-input'
+              data-cy='post-content-input'
               resize="none"
               textColor="black"
               width="460px"
