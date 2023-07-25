@@ -25,13 +25,13 @@ Feature: Display lessons pathway
     Given I am at the lessons pathway page
     Then I should see the lesson node's icon
 
-  # Scenario: Pathway between lesson nodes
-  #   Given I am at the lessons pathway page
-  #   Then I should see the pathway between lesson nodes
+Scenario: Pathway between lesson nodes
+    Given I am at the lessons pathway page
+    Then I should see the pathway between lesson nodes
 
-  # Scenario: Add graphics around the lesson pathway **added
-  #   Given I am on the learning pathway,
-  #   Then I should be able to see the graphics on the lessons pathway
+  Scenario: Add graphics around the lesson pathway
+    Given I am at the lessons pathway page
+    Then I should be able to see the graphics on the lessons pathway
 
   Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
     Given I am at the lessons pathway page

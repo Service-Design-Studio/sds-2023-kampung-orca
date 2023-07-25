@@ -21,7 +21,6 @@ const errorRouteMap = {
 };
 
 const buttonComponentMap = {
-  redirect: "",
   Login: "#login-button",
   "Google login": "#google-login",
   Complete: "#lesson-complete",

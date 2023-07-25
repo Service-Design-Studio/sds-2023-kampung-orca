@@ -15,15 +15,18 @@ When("I click on topic {}", (topic_id) => {
 
 
 When("I mouse scroll up on the lessons pathway page", () => {
-  cy.get(`[data-cy="scrollbar"]`).scrollTo(500,0);
+  cy.get(`[data-cy="scrollbar"]`).scrollTo("right", { duration: 500 });
   cy.wait(100);
 });
 
 Then("I will see the lessons pathway move right", () => {
-  //TODO - seed an extra lesson and test with the line right below (will hide the first node)
-  // cy.get('a[href="/curriculum/lesson/00001"').should('not.exist');
-  cy.get('a[href="/curriculum/lesson/00001"').should('exist');
+  cy.get('[data-cy="scrollbar"]').should(($element) => {
+    const scrollPosition = $element[0].scrollLeft;
+    const isScrolledToRight = scrollPosition === $element[0].scrollWidth - $element[0].clientWidth;
+    expect(isScrolledToRight).to.be.true;
+  });
 });
+
 
 When("I mouse hover on a lesson node on the lessons pathway page", () => {
   cy.get('a[href="/curriculum/lesson/00001"]').trigger('mouseover');
@@ -41,7 +44,7 @@ Then("I should see the lesson node's icon", () => {
 });
 
 Then("I should see the pathway between lesson nodes", () => {
-  cy.get('div.css-pokqdi').should('exist');
+  cy.get(`[data-cy="line"]`).should('exist');
 });
 
 // FIXME: Visit the route in the comment once it has been routed to the error page
@@ -55,6 +58,9 @@ Then("I should see an error page with a button that redirects me back to the mai
   cy.get('button').should('contain', 'Go to Home');
 });
 
+Then("I should be able to see the graphics on the lessons pathway", () => {
+  cy.get('.chakra-stack.css-o73i9').should('exist');
+});
 
 
 
