@@ -1,5 +1,5 @@
 # app/models/page.rb
-class Page < ActiveRecord::Base
+class Page < ApplicationRecord
   # belongs_to :page_list
   # TODO: ID should be a string not integer!!
   self.primary_key = :page_id
