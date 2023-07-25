@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEditableControls } from "@chakra-ui/react";
@@ -16,6 +16,7 @@ import {
   EditablePreview,
   EditableTextarea,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { BsCheckLg, BsXLg, BsFillPencilFill } from "react-icons/bs";
 
@@ -30,6 +31,9 @@ function EditField({
   deletePost, // Receive deletePost as a prop
 }) {
   const [inputValue, setInputValue] = useState(defaultValue);
+  const [initialInputValue, setInitialInputValue] = useState(defaultValue);
+  const isTextareaEmpty = inputValue.trim().length === 0;
+  const editableRef = useRef(); //
 
   const url = window.location.href;
   const parts = url.split("/");
@@ -38,6 +42,18 @@ function EditField({
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const handleEditClick = () => {
+    setInitialInputValue(inputValue);
+  };
+
+  const handleCancelClick = () => {
+    setInputValue(initialInputValue);
+  };
+
+  const handleSubmitClick = () => {
+    setInitialInputValue(inputValue);
   };
 
   const handleUpdate = (newValue) => {
@@ -88,7 +104,8 @@ function EditField({
   };
 
   /* Here's a custom control */
-  function EditableControls() {
+  function EditableControls({ inputValue = "" }) {
+    const isTextareaEmpty = inputValue.trim().length === 0;
     const {
       isEditing,
       getSubmitButtonProps,
@@ -102,7 +119,8 @@ function EditField({
           bg="#FFFFFF"
           width="60px"
           shadow="lg"
-          {...getSubmitButtonProps()}
+          isDisabled={isTextareaEmpty}
+          {...getSubmitButtonProps({ onClick: handleSubmitClick })}
         >
           <BsCheckLg size="20px" data-cy="confirm-edit-post"/>
         </Button>
@@ -110,17 +128,30 @@ function EditField({
           bg="#FFFFFF"
           width="60px"
           shadow="lg"
-          {...getCancelButtonProps()}
+          {...getCancelButtonProps({ onClick: handleCancelClick })}
         >
           <BsXLg />
         </Button>
       </ButtonGroup>
     ) : (
-      <Flex justifyContent="right">
-        <Button bg="#FFFFFF" width="60px" shadow="lg" {...getEditButtonProps()}>
+      <ButtonGroup justifyContent="right" direction="column">
+        <Button
+          bg="#FFFFFF"
+          width="60px"
+          shadow="lg"
+          {...getEditButtonProps({ onClick: handleEditClick })}
+        >
           <BsFillPencilFill data-cy="edit-post-button"/>
         </Button>
-      </Flex>
+        {type === "post" && (
+          <DeleteButton onDelete={() => deletePost(postId)} />
+        )}
+        {type === "comment" && (
+          <DeleteButton
+            onDelete={() => handleCommentDelete(postId, commentId)}
+          />
+        )}
+      </ButtonGroup>
     );
   }
 
@@ -130,9 +161,9 @@ function EditField({
       fontSize="md"
       mb={4}
       color="#555"
-      isPreviewFocusable={false}
-      defaultValue={defaultValue}
-      //onChange={handleInputChange}
+      isPreviewFocusable={true}
+      value={inputValue}
+      onChange={(value) => setInputValue(value)}
       onSubmit={handleUpdate}
     >
       <Stack
@@ -151,21 +182,8 @@ function EditField({
         />
 
         <Flex direction="row" justify="flex-end" width="100%">
-          <Stack
-            direction="row"
-            position="absolute"
-            bottom="-35px"
-            right={type === "post" ? "-75px" : "0px"}
-          >
-            <EditableControls />
-            {type === "post" && (
-              <DeleteButton onDelete={() => deletePost(postId)} />
-            )}
-            {type === "comment" && (
-              <DeleteButton
-                onDelete={() => handleCommentDelete(postId, commentId)}
-              />
-            )}
+          <Stack direction="row" position="absolute" bottom="-35px" right="0px">
+            <EditableControls inputValue={inputValue} />
           </Stack>
         </Flex>
       </Stack>

@@ -24,6 +24,10 @@ function DeleteButton({ onDelete, ml }) {
     onClose();
   };
 
+  const handleCancel = () => {
+    onClose();
+  };
+
   return (
     <>
       <Button bg="#FFFFFF" shadow="md" onClick={onOpen} ml={ml} width="60px">
@@ -46,7 +50,7 @@ function DeleteButton({ onDelete, ml }) {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={handleDelete}>
+              <Button ref={cancelRef} onClick={handleCancel}>
                 Cancel
               </Button>
               <Button colorScheme="red" ml={3} onClick={handleDelete}>
