@@ -296,7 +296,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
 
                   <Box maxW="470px" marginBottom="10px">
                     <Text mt="30px" fontSize="md" mb={1} color="#555">
-                      {selectedPost.user_id === current_user_id ? (
+                      {comment.user_id === current_user_id ? (
                         <EditField
                           postId={selectedPost.id}
                           commentId={comment.id}
