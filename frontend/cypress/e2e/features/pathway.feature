@@ -10,21 +10,21 @@ Feature: Display lessons pathway
     When I click on topic 00001
     Then I should go to the lessons pathway page
 
-  Scenario: Mouse Scroll Up through lessons pathway
+  Scenario: Mouse Scroll through lessons pathway
     Given I am at the lessons pathway page
     When I mouse scroll up on the lessons pathway page
     Then I will see the lessons pathway move right
 
-  Scenario: Lesson Infobox appears
+  Scenario: Lesson Infobox appears on mouse hover of lesson node
     Given I am at the lessons pathway page
     When I mouse hover on a lesson node on the lessons pathway page
     Then I will see an info box for the lesson
 
-  Scenario: Icons on the lessons pathway
+  Scenario: Icons on the lessons pathway as links to the lessons
     Given I am at the lessons pathway page
     Then I should see the lesson node's icon
 
-Scenario: Pathway between lesson nodes
+  Scenario: Pathway between lesson nodes
     Given I am at the lessons pathway page
     Then I should see the pathway between lesson nodes
 
@@ -34,7 +34,6 @@ Scenario: Pathway between lesson nodes
 
   Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
     Given I am at the lessons pathway page
-    # Requires deployment
     When I make a GET request to lesson 00005
     Then I should see an error page with a button that redirects me back to the main screen
 
@@ -52,4 +51,4 @@ Scenario: Pathway between lesson nodes
     Given I am at the lessons pathway page
     When I mouse hover on a locked lesson node on the lessons pathway page
     Then I will see that the lesson is locked
-    Then I will not be able to click on the lesson node
+    And I will not be able to click on the lesson node

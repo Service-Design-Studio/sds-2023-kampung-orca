@@ -63,3 +63,11 @@ Feature: Display lesson content
     Given I am at the lesson completion page
     When I click on the next lesson button
     Then I should go to the next lesson page
+
+  Scenario: No previous lesson button upon lesson completion of first lesson
+    Given I am at the first lesson completion page
+    Then I should not see the previous lesson button
+
+  Scenario: No next lesson button upon lesson completion of last lesson
+    Given I am at the last lesson completion page
+    Then I should not see the next lesson button

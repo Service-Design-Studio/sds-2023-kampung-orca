@@ -13,6 +13,8 @@ const pageRouteMap = {
   "topic list": "curriculum/topic",
   "bogus link": "curriculum/12345",
   "next lesson": "curriculum/lesson/00002",
+  "first lesson completion" : "curriculum/lesson/00001/lesson_completed",
+  "last lesson completion" : "curriculum/lesson/00005/lesson_completed",
 };
 
 const errorRouteMap = {
@@ -33,6 +35,7 @@ const buttonComponentMap = {
   forum: '[data-cy="forum-button"]',
   "Create New Post": '[data-cy="create-new-post-button"]',
   Post: '[data-cy="post-button"]',
+  "previous lesson" : '[data-cy="completion-previous-lesson"]',
 };
 
 const pages = {
