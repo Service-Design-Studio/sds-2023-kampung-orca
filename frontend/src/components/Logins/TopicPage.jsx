@@ -24,6 +24,7 @@ function NavigationButton({ data, to, children, hideButton }) {
 
 const TopicPage = () => {
   // TODO: CHANGE THIS!
+  let counter = 1;
   const [topics] = useGateway(window.location.pathname);
   const handleLogout = () => {
     // Implement your logout logic here

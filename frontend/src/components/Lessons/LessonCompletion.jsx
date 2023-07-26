@@ -66,6 +66,7 @@ export const LessonCompletion = () => {
                 shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
                 leftIcon={<Icon as={GoChevronLeft} />}
                 size="lg"
+                data-cy = 'completion-previous-lesson'
               >
                 Previous Lesson
               </Button>
