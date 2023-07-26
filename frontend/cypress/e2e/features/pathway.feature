@@ -19,7 +19,6 @@ Feature: Display lessons pathway
     Given I am at the lessons pathway page
     When I mouse hover on a lesson node on the lessons pathway page
     Then I will see an info box for the lesson
-    # Then I will see the progress bar in the info box
 
   Scenario: Icons on the lessons pathway
     Given I am at the lessons pathway page
@@ -29,7 +28,7 @@ Scenario: Pathway between lesson nodes
     Given I am at the lessons pathway page
     Then I should see the pathway between lesson nodes
 
-  Scenario: Add graphics around the lesson pathway
+  Scenario: Graphics around the lesson pathway
     Given I am at the lessons pathway page
     Then I should be able to see the graphics on the lessons pathway
 
@@ -39,24 +38,18 @@ Scenario: Pathway between lesson nodes
     When I make a GET request to lesson 00005
     Then I should see an error page with a button that redirects me back to the main screen
 
-  Scenario: Lesson is in progress
+  Scenario: Show lesson in progress
     Given I am at the lessons pathway page
     When I mouse hover on an in progress lesson node on the lessons pathway page
     Then I will see that the lesson is in progress
 
-  Scenario: Lesson is completed
+  Scenario: Show lesson is completed
     Given I am at the lessons pathway page
     When I mouse hover on a completed lesson node on the lessons pathway page
     Then I will see that the lesson is completed
 
-  Scenario: Lesson is locked
+  Scenario: Show lesson is locked
     Given I am at the lessons pathway page
     When I mouse hover on a locked lesson node on the lessons pathway page
     Then I will see that the lesson is locked
     Then I will not be able to click on the lesson node
-
-  # Scenario: Create zig-zag pattern on the pathway** added
-  # Given that I am viewing the list of topics,
-  # And I am viewing the info box of a lesson,
-  # When I click on Start,
-  # Then I will see the lesson page containing text and videos corresponding to the lesson.

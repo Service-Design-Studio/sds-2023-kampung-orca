@@ -62,13 +62,6 @@ Feature: Forum functionality
       |         |
     Then the confirm edit post button should be disabled
 
-  Scenario: Deleting my post
-    Given I am on the forum post page
-    When I click the post Delete button
-    Then I should see a confirmation message to confirm if I wish to delete
-    When I click on the button titled Delete
-    Then I should see a success message confirming the post deletion
-    And I should not see the post on the forum home page
 
   Scenario: Cancelling deleting my post
     Given I am on the forum post page
@@ -110,6 +103,14 @@ Feature: Forum functionality
     When I click on the button titled Delete
     Then I should see a success message confirming the comment deletion
     Then I should see the post without my comment
+
+    Scenario: Deleting my post
+    Given I am on the forum post page
+    When I click the post Delete button
+    Then I should see a confirmation message to confirm if I wish to delete
+    When I click on the button titled Delete
+    Then I should see a success message confirming the post deletion
+    And I should not see the post on the forum home page
 
   Scenario: Cannot edit or delete another person's post
     Given I am on the forum home page
