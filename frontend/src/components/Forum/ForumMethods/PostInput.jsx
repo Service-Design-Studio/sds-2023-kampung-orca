@@ -77,6 +77,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
           _hover={{ bg: "#7c191c" }}
           leftIcon={<Icon as={BsFillPlusCircleFill} />}
           onClick={handleButtonClick}
+          data-cy = "create-new-post-button"
         >
           Create New Post
         </Button>
@@ -94,6 +95,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
             paddingX="20px"
           >
             <Input
+              data-cy='post-title-input'
               textColor="black"
               width="460px"
               variant="flushed"
@@ -103,6 +105,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               onChange={handleTitleChange}
             />
             <Textarea
+              data-cy='post-content-input'
               resize="none"
               textColor="black"
               width="460px"
@@ -136,6 +139,8 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               fontSize="18px"
               style={{ zIndex: 999 }}
               onClick={handlePostButtonClick}
+              isDisabled={!valueTitle || !valueContent}
+              data-cy = "post-button"
             >
               Post
             </Button>

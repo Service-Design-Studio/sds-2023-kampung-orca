@@ -9,7 +9,6 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const [valueContent, setValueContent] = React.useState("");
   const handleContentChange = (event) => setValueContent(event.target.value);
 
-
   const url = window.location.href;
   const parts = url.split("/");
   const lessonnum = parts[parts.length - 1];
@@ -43,30 +42,36 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
     <>
       <Stack width="100%" direction="row" justify="center" align="center">
         <Avatar shadow="md" size="md" src={image}></Avatar>
-        <Textarea
-          bg="#FFFFFF"
-          resize="none"
-          fontSize="sm"
-          width="100%"
-          shadow="md"
-          placeholder="Write your comment here..."
-          color="#555"
-          value={valueContent}
-          onChange={handleContentChange}
-        />
-        <Button
-          size="lg"
-          bg="#ed2e38"
-          textColor="#FFFFFF"
-          _hover={{ bg: "#7c191c" }}
-          height="80px"
-          fontSize="14px"
-          width="20px"
-          shadow="lg"
-          onClick={handleButtonClick}
+        <Stack width="100%" direction="column" align="flex-end">
+          <Textarea
+            bg="#FFFFFF"
+            resize="none"
+            fontSize="sm"
+            width="100%"
+            shadow="md"
+            height="10px"
+            placeholder="Write your comment here..."
+            color="#555"
+            value={valueContent}
+            onChange={handleContentChange}
+            data-cy="comment-text-area"
+          />
+          <Button
+            size="lg"
+            bg="#ed2e38"
+            textColor="#FFFFFF"
+            _hover={{ bg: "#7c191c" }}
+            height="30px"
+            fontSize="14px"
+            width="90px"
+            shadow="lg"
+            onClick={handleButtonClick}
+            isDisabled={!valueContent}
+            data-cy="post-comment-button"
         >
-          Post
-        </Button>
+            Comment
+          </Button>
+        </Stack>
       </Stack>
     </>
   );

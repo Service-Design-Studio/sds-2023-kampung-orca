@@ -15,8 +15,10 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    if @token == "admin" && Rails.env.development? 
+    if ENV["ADMIN"] == @token && Rails.env.development?
       @current_user = {token: "admin", user_id: "admin"}
+    elsif ENV["NORMAL_USER"] == @token && Rails.env.development?
+      @current_user = {token: "admin", user_id: "admin"} # modify this line to change the user account for a normal user 
     else
       current_user = HTTParty.post(ENV["USER_URL"] + "/user/verify_token", {
         body: {token: @token}.to_json,

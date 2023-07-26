@@ -14,7 +14,6 @@ class UserController < ApplicationController
     head 202
   end
 
-
   private
 
   def set_user
