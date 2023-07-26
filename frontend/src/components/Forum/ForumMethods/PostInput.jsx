@@ -47,7 +47,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
 
     try {
       const response = await axios.post(
-        `http://localhost:3001/lessons/${lessonNumber}/posts`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
         {
           token: cookieValue,
           post: { title, content },

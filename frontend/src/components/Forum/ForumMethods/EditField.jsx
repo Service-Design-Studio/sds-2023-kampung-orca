@@ -55,7 +55,7 @@ function EditField({
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
         {
           token: cookieValue,
           content: updatedData,
@@ -74,7 +74,7 @@ function EditField({
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           content: updatedData,

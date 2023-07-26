@@ -9,7 +9,6 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const [valueContent, setValueContent] = React.useState("");
   const handleContentChange = (event) => setValueContent(event.target.value);
 
-
   const url = window.location.href;
   const parts = url.split("/");
   const lessonnum = parts[parts.length - 1];
@@ -25,7 +24,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
     const postId = id;
     try {
       const response = await axios.post(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments`,
         {
           token: cookieValue,
           comment: { content: con },

@@ -112,7 +112,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.delete(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           params: {
             token: cookieValue,
@@ -131,7 +131,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       await axios.delete(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
         {
           params: {
             token: cookieValue,
@@ -160,7 +160,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           comment: updatedData,
