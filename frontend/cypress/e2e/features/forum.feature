@@ -95,6 +95,11 @@ Feature: Forum functionality
     Then I should see a success message confirming the comment edit
     And I should see the new comment on the forum post page
 
+  Scenario: Cannot edit a comment with empty content
+    Given I am on the forum post page
+    When I edit my comment and clear the original content
+    Then the confirm edit comment button should be disabled
+
   Scenario: Deleting Comment
     Given I am on the forum post page
     And I have created a comment
@@ -123,3 +128,4 @@ Feature: Forum functionality
     When I click on a post titled Hello People 1
     Then I should see the comment saying yoyo
     But I should not see the comment's Edit and Delete buttons
+

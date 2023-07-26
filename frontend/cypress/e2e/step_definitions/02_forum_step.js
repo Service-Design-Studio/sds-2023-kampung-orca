@@ -116,7 +116,7 @@ When("I create a post with the following details:", (datatable) => {
   When("I click on the button titled Cancel",()=>{
     cy.get('[data-cy="cancel-delete-button"]').click();
   });
-  
+
   Then( "I should see a success message confirming the post deletion",()=>{
     // TODO: think about how to test
   });
@@ -181,4 +181,13 @@ Then ("I should see the comment saying yoyo",()=>{
 Then("I should not see the {} Edit and Delete buttons",()=>{
   cy.get('[data-cy="post-delete-button"]').should('not.exist');
   cy.get('[data-cy="edit-post-button"]').should('not.exist');
+});
+
+When("I edit my comment and clear the original content",()=>{
+  cy.get('[data-cy="edit-post-button"]').eq(1).click();
+  cy.get('[data-cy="edit-content-text-area"]').eq(1).clear({force: true});
+});
+
+Then("the confirm edit comment button should be disabled", ()=>{
+  cy.get('button[aria-label="Submit"]').should('have.attr', 'disabled');
 });
