@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Lessons", type: :request do
+RSpec.describe "Lessons Controller", type: :request do
   describe "GET /lessons" do
     it "returns a successful response" do
       get "/lessons"
