@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Exercise, type: :model do
   describe 'validations' do
+    Topic.destroy_all
+    Lesson.destroy_all
+    Page.destroy_all
+    Exercise.destroy_all
     it 'is valid with valid attributes' do
       topic = Topic.create(topic_id: '00001', title: 'Topic Title')
       lesson = Lesson.create(

@@ -7,11 +7,11 @@ class LessonController < ApplicationController
 
   def create
     # TODO: Use uuid or other id generators
-    id = rand(0...99_999)
-    check = Lesson.find(id)
+    id = rand(0...99_999).to_s
+    check = Lesson.where(topic_id: id)
     while check.length != 0
-      id = rand(0...99_999)
-      check = Lesson.find(id)
+      id = rand(0...99_999).to_s
+      check = Lesson.where(topic_id: id)
     end
     lesson = Lesson.create!(lesson_id: id, topic_id: params[:topic_id], order_index: params[:order_index],
                             title: params[:title])

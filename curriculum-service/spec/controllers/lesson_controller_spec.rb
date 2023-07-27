@@ -1,3 +1,63 @@
+
+require 'rails_helper'
+require 'json'
+RSpec.describe LessonController, type: :controller do
+  before :each do
+    # Clean up existing records before each test
+    Topic.destroy_all
+    Lesson.destroy_all
+    Topic.create!(topic_id: '00001', title: 'Topic 1')
+  end
+
+  describe 'POST #create' do
+      
+      params =  {topic_id: "00001", order_index: 0, title: 'Test Lesson' } 
+      it 'creates a new lesson' do
+        post :create, params: params
+
+        lesson = Lesson.last
+        expect(lesson).to be_present
+        expect(lesson.topic_id).to eq("00001")
+        expect(lesson.order_index).to eq(0)
+        expect(lesson.title).to eq('Test Lesson')
+    end
+  end
+
+  describe 'GET #show' do
+    it 'returns the lesson' do
+      Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: 'Test Lesson' )
+      get :show, params: {lesson_id: "00001", id: "00001"}
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["lesson_id"]).to eq("00001")
+    end
+  end
+
+  describe '#index' do
+
+    it 'renders the lessons and lessons_access JSON' do
+      lesson = Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: 'Test Lesson' )
+      user = User.create!(user_id: "admin", lessons_access:["00001"])
+
+      get :index, params: { user_id: "admin", topic_id: "00001" }
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to eq(
+        {
+          "lessons" => [lesson.as_json],
+          "lessons_access"=> [lesson.as_json],
+          "topic_id"=> lesson.topic_id
+        }
+      )
+    end
+  end
+end
+
+
+
+
 # spec/controllers/lesson_controller_spec.rb
 # require 'rails_helper'
 

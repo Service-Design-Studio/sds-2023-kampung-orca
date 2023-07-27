@@ -4,13 +4,11 @@ As Mohammad, a retiree, I want to have constant engagement with the posts or com
 so that I will be encouraged to participate actively in discussions.
 
 Background:
-  Given I am logged in
+  Given I am logged in as Mohammad
+  Given the forum box is open
 
 Scenario: AI Reply to a post
-  Given I am in the lesson view page
-  When I click on the forum button
-  Then I should see an existing post
-  When I click on the post
+  When I create a new post
   Then I should see that the post has not been replied to for more than 3 days
   And I should see an AI comment replying to the post
 
