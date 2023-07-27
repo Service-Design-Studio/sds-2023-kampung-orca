@@ -13,3 +13,4 @@ Post.create([{ title: "Hello People 1", content: "I am saying hi 1", user_id: "1
 Post.create([{ title: "Hello People 1 in L2", content: "I am saying hi 1 in L2", user_id: "1", lesson_id: 2 }])
 Post.create([{ title: "Hihi in L1", content: "Moha saying hi 1 in L1", user_id: "2", lesson_id: 1 }])
 Comment.create([{ content: "yoyo", post_id: 1, user_id: "2" }])
+User.create([{name: "Kiithy", user_id: "ahh"}])

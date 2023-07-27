@@ -4,7 +4,7 @@ Feature: Display lesson content
   so that I will be able to continue learning by myself and go to physical lessons prepared with the content
 
   Background:
-    Given I am logged in
+    Given I am logged in as Thomas
 
   Scenario: Basic lesson view
     Given I am at the lessons pathway page

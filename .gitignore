@@ -1,2 +1,4 @@
 package-lock.json
 node_modules
+inactivity-checker-service/log
+inactivity-checker-service/tmp
