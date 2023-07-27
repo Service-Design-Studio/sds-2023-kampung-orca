@@ -3,21 +3,7 @@ import Xarrow from "react-xarrows";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
 
-import {
-  BsCircle,
-  BsStopCircle,
-  BsEmojiSmile,
-  BsCheckCircle,
-  Bs1CircleFill,
-  BsActivity,
-  BsHouse,
-  BsHeartPulse,
-  BsInfoCircle,
-  BsAppIndicator,
-  BsCircleFill,
-  BsJoystick,
-  BsAirplane,
-} from "react-icons/bs";
+import { BsStopCircle, BsCheckCircle } from "react-icons/bs";
 import { Progress } from "@chakra-ui/react";
 import {
   Popover,
@@ -30,21 +16,7 @@ import {
 
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
-import { BiSolidCheckCircle } from "react-icons/bi";
-import {
-  FaBookJournalWhills,
-  FaCircleExclamation,
-  FaPersonCircleExclamation,
-  FaPersonCircleQuestion,
-  FaPersonWalking,
-  FaSquarePersonConfined,
-} from "react-icons/fa6";
-
-const boxStyle = {
-  border: "grey solid 2px",
-  borderRadius: "10px",
-  padding: "5px",
-};
+import { FaCircleExclamation } from "react-icons/fa6";
 
 const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
 
@@ -177,7 +149,18 @@ const Node = ({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <Icon as={iconComponent} color={color} boxSize="80px" id={nodeId} />
+            <Icon
+              as={iconComponent}
+              color={color}
+              boxSize={{
+                base: "80px",
+                lg: "90px",
+                xl: "100px",
+                "2xl": "110px",
+              }}
+              id={nodeId}
+              bg="#FFFFFF"
+            />
           </Stack>
         </PopoverTrigger>
         <PopoverContent>
@@ -227,18 +210,19 @@ export const LessonNodes = ({ lessonProgress }) => {
       <Header buttontext="Back to Main" path={"/curriculum/topic"} />
 
       <Stack
-        width={{ base: "500px", md: "800px", lg: "1200px" }}
+        width="90vw"
+        height="80vh"
         justify="center"
         align="center"
-        height="600px"
         direction="row"
         ml="100px"
         mr="100px"
         mt="50px"
+        mb="50px"
       >
         <Stack
-          height="550px"
-          width={{ base: "500px", md: "800px", lg: "1200px" }}
+          height="100%"
+          width="100%"
           justify="flex-start"
           align="center"
           overflowX="scroll"
@@ -262,10 +246,8 @@ export const LessonNodes = ({ lessonProgress }) => {
           <Stack
             height="500px"
             width="fit-content"
-            minWidth={{ base: "500px", md: "800px", lg: "1200px" }}
             justify="flex-start"
             align="center"
-            overflowX="visible"
             direction="row"
             paddingLeft="20px"
             paddingRight="20px"
@@ -278,28 +260,10 @@ export const LessonNodes = ({ lessonProgress }) => {
               backgroundRepeat: "repeat-x",
             }}
           >
-            {/* Conditional rendering for DynamicNodes */}
-            {nodesLoaded ? (
-              <DynamicNodes
-                lessonProgress={lessonProgress}
-                nodeHeights={nodeHeights}
-              />
-            ) : null}
-
-            {/* Conditional rendering for Xarrow */}
-            {nodesLoaded && (
-              <>
-                {/* <Xarrow
-                  start="node-0"
-                  end="node-1"
-                  showHead={false}
-                  curveness={false}
-                  dashness={true}
-                  color="black"
-                  }}
-                /> */}
-              </>
-            )}
+            <DynamicNodes
+              lessonProgress={lessonProgress}
+              nodeHeights={nodeHeights}
+            />
           </Stack>
         </Stack>
       </Stack>
