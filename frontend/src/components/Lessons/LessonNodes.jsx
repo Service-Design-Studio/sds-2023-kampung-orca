@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
+import Xarrow from "react-xarrows";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { Stack, Icon, Text, Box } from "@chakra-ui/react";
+
 import {
   BsCircle,
   BsStopCircle,
@@ -38,7 +40,15 @@ import {
   FaSquarePersonConfined,
 } from "react-icons/fa6";
 
-const DynamicNodes = () => {
+const boxStyle = {
+  border: "grey solid 2px",
+  borderRadius: "10px",
+  padding: "5px",
+};
+
+const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
+
+const DynamicNodes = ({ nodeHeights }) => {
   const [data] = useGateway(window.location.pathname + "/lesson", "GET");
   console.log(data);
   if (!data) return null;
@@ -46,59 +56,78 @@ const DynamicNodes = () => {
   const lessonsAccess = data.lessons_access;
 
   return data.lessons.map((node, index) => {
+    const nodeId = `node-${index}`;
+    const height = nodeHeights[index] || "200px";
     const isEnabled = lessonsAccess.find(
       (lesson) => lesson.lesson_id === node.lesson_id
     );
 
     return (
       <React.Fragment key={index}>
-        {index !== 0 && <Line />}
+        {index !== 0 && <StraightLine />}
         {/* Render the Line component only if index is not 0 */}
         {isEnabled ? (
+          // For the enabled nodes
           <Link to={`/curriculum/lesson/${node.lesson_id}`}>
             <Node
+              nodeId={nodeId}
               title={node.title}
               message={node.message}
               lessonId={node.lesson_id}
               lessonsAccess={lessonsAccess}
+              height={height}
             />
           </Link>
         ) : (
+          // For the disabled nodes
           <Node
+            nodeId={nodeId}
             title={node.title}
             message={node.message}
             lessonId={node.lesson_id}
             lessonsAccess={lessonsAccess}
+            height={height}
             isDisabled
           />
         )}
       </React.Fragment>
     );
   });
-
 };
 
-const Line = () => {
+const StraightLine = () => {
   return (
-    <Box
-      w="300px"
-      h="8px"
-      bg="black"
-      my="4"
+    <Stack
       minWidth="300px"
-      shadow="lg"
-      borderRadius="10px"
-    />
+      justify="center"
+      align="center"
+      paddingBottom="25px"
+    >
+      <Text
+        color="black"
+        ellipsizeMode="clip"
+        numberOfLines="1"
+        fontSize="100px"
+        data-cy = 'line'
+      >
+        {Array.from(Array(7).keys()).map((each) => {
+          return "-";
+        })}
+      </Text>
+    </Stack>
   );
 };
 
 const Node = ({
+  nodeId,
   color,
   title,
   message,
   lessonId,
   lessonsAccess,
   isDisabled,
+  height,
+  counter
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -106,6 +135,7 @@ const Node = ({
   let statusColour;
   let cursorStyle;
   let iconComponent;
+
 
   if (isDisabled) {
     status = "Locked";
@@ -133,8 +163,7 @@ const Node = ({
       lessonsAccess.find(
         (lesson) =>
           lesson.lesson_id === lessonId &&
-          lesson.lesson_id ===
-            lessonsAccess[lessonsAccess.length - 1].lesson_id
+          lesson.lesson_id === lessonsAccess[lessonsAccess.length - 1].lesson_id
       )
     ) {
       iconComponent = FaCircleExclamation;
@@ -144,39 +173,58 @@ const Node = ({
   }
 
   return (
-    <Popover trigger="hover" placement="top">
-      <PopoverTrigger>
-        <Stack
-          opacity={isDisabled ? 0.5 : 1}
-          cursor={cursorStyle}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <Icon as={iconComponent} color={color} boxSize="80px" />
-        </Stack>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
-        <PopoverBody fontSize="14px" textAlign="justify">
-          {message}
-        </PopoverBody>
-        <PopoverBody
-          fontSize="14px"
-          fontWeight="semibold"
-          color={statusColour}
-          textAlign="justify"
-        >
-          <Stack direction="row" justifyContent="space-between">
-            <Text>{status}</Text>
+    <Stack justify="flex-end">
+      <Popover trigger="hover" placement="top">
+        <PopoverTrigger>
+          <Stack
+            opacity={isDisabled ? 0.5 : 1}
+            cursor={cursorStyle}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            data-cy={`node-${counter++}`}
+          >
+            <Icon as={iconComponent} color={color} boxSize="80px" id={nodeId} />
           </Stack>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
+          <PopoverBody fontSize="14px" textAlign="justify">
+            {message}
+          </PopoverBody>
+          <PopoverBody
+            fontSize="14px"
+            fontWeight="semibold"
+            color={statusColour}
+            textAlign="justify"
+            data-cy = 'popup'
+          >
+            <Stack direction="row" justifyContent="space-between">
+              <Text>{status}</Text>
+            </Stack>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </Stack>
   );
 };
 
 export const LessonNodes = ({ lessonProgress }) => {
+  const [nodesLoaded, setNodesLoaded] = React.useState(false);
+
+  // Fetch data using useGateway hook
+  const [data] = useGateway(window.location.pathname + "/lesson", "GET");
+  console.log(data);
+
+  const [counter, setCounter] = React.useState(1);
+
+  // Check if data has been fetched and set the nodesLoaded state accordingly
+  React.useEffect(() => {
+    if (data) {
+      setNodesLoaded(true);
+    }
+  }, [data]);
+
   return (
     <Stack
       justify="flex-start"
@@ -205,6 +253,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           overflowX="scroll"
           direction="row"
           marginx="100px"
+          data-cy = 'scrollbar'
           sx={{
             "&::-webkit-scrollbar": {
               width: "8px",
@@ -236,9 +285,32 @@ export const LessonNodes = ({ lessonProgress }) => {
               backgroundSize: "contain",
               backgroundPosition: "left",
               backgroundColor: "rgba(255, 255, 255, 0.5)",
+              backgroundRepeat: "repeat-x",
             }}
           >
-            <DynamicNodes lessonProgress={lessonProgress} />
+            {/* Conditional rendering for DynamicNodes */}
+            {nodesLoaded ? (
+              <DynamicNodes
+                lessonProgress={lessonProgress}
+                nodeHeights={nodeHeights}
+                counter={counter}
+              />
+            ) : null}
+
+            {/* Conditional rendering for Xarrow */}
+            {nodesLoaded && (
+              <>
+                {/* <Xarrow
+                  start="node-0"
+                  end="node-1"
+                  showHead={false}
+                  curveness={false}
+                  dashness={true}
+                  color="black"
+                  }}
+                /> */}
+              </>
+            )}
           </Stack>
         </Stack>
       </Stack>

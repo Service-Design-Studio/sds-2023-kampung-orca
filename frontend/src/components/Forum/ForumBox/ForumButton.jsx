@@ -33,7 +33,7 @@ function ForumButton() {
         height="48px"
         shadow="md"
         leftIcon={<Icon as={BsChatDots} boxSize="7" />}
-        data-cy = "forum-button"
+        data-cy="forum-button"
       >
         Forum
       </Button>
@@ -54,7 +54,7 @@ function ForumButton() {
           // borderRadius="20px 0 0 0px"
           // border="1px solid black"
         >
-          <CloseButton mb="10px" size="lg" onClick={onToggle} color="black" />
+          <CloseButton data-cy="forum-close-button" mb="10px" size="lg" onClick={onToggle} color="black" />
 
           <NewPost />
         </Box>
