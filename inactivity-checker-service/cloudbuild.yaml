@@ -1,0 +1,46 @@
+steps:
+  - id: "build image"
+    name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker build --build-arg MASTER_KEY=$$RAILS_KEY -t gcr.io/${PROJECT_ID}/${_SERVICE_NAME} . ",
+      ]
+    secretEnv: ["RAILS_KEY"]
+
+  - id: "push image"
+    name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"]
+
+  - id: "run deploy"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args: [
+        "run",
+        "deploy",
+        "${_SERVICE_NAME}",
+        "--platform",
+        "managed",
+        "--region",
+        "${_REGION}",
+        "--image",
+        "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}",
+        "--port",
+        "${_PORT}",
+        "--allow-unauthenticated", # might have to be removed?
+      ]
+
+substitutions:
+  _REGION: asia-southeast1
+  _SERVICE_NAME: kampung-inactivity
+  _SECRET_NAME: inactivity-credentials
+  _PORT: "3006"
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/latest
+      env: RAILS_KEY
+
+images:
+  - "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"
