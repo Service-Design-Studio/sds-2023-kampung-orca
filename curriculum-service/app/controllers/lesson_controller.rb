@@ -1,9 +1,9 @@
 class LessonController < ApplicationController
   before_action :set_lesson, only: %i[show destroy]
-  # def index
-  #   lesson = Lesson.where()
-  #   render json: lesson
-  # end
+  def index
+    lessons = Lesson.all
+    render json: lessons
+  end
 
   def create
     # TODO: Use uuid or other id generators
@@ -27,9 +27,11 @@ class LessonController < ApplicationController
     render json: @lesson
   end
 
-  def index
-    p params[:user_id]
+
+
+  def show_lessons
     user = User.find(params[:user_id])
+    print(params)
     lessons = Lesson.where(topic_id: params[:topic_id]).order(order_index: :asc)
     lessons_access = lessons.where(lesson_id: user[:lessons_access]).order(order_index: :asc)
     render json: { lessons: lessons, lessons_access: lessons_access,  topic_id: params[:topic_id]}
@@ -41,12 +43,12 @@ class LessonController < ApplicationController
   end
 
   def lesson_completed
-    current_lesson = Lesson.find(params[:id])
+    current_lesson = Lesson.find(params[:lesson_id])
     topic_id = current_lesson.topic_id
     next_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index + 1)
     pre_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index - 1)
     user = User.find(params[:user_id])
-    
+  
     if next_lesson != nil
       unless user.lessons_access.include?(next_lesson.lesson_id)
         user.lessons_access << next_lesson.lesson_id if next_lesson

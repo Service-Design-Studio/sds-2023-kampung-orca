@@ -49,7 +49,7 @@ const boxStyle = {
 const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
 
 const DynamicNodes = ({ nodeHeights }) => {
-  const [data] = useGateway(window.location.pathname + "/lesson", "GET");
+  const [data] = useGateway(window.location.pathname + "/lesson/show_lessons", "GET");
   console.log(data);
   if (!data) return null;
 
