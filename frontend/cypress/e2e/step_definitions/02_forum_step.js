@@ -12,14 +12,14 @@ Then("I should see the New Post inputs", () => {
 
 Given("a post with the following details:", (datatable) => {
   datatable.hashes().forEach((element) => {
-  cy.contains("Curious about Christianity").click();
+  cy.contains(element.Title).click();
   });
 
   });
 
 Given("a comment with the following details:", (datatable) => {
     datatable.hashes().forEach((element) => {
-    cy.contains("I want to know more!")
+    cy.contains(element.Content).should('exist');
     cy.contains("Go Back").click()
     });
     });
