@@ -8,12 +8,12 @@ class TopicController < ApplicationController
   def create
     # TODO: Use uuid or other id generators
     id = rand(0...99_999)
-    check = Topic.where(topic_id: id)
+    check = Topic.find(id)
     while check.length != 0
       id = rand(0...99_999)
-      check = Topic.where(topic_id: id)
+      check = Topic.find(id)
     end
-    topic = Topic.create!(topic_id: id, title: params[:title])
+    topic = Topic.create!(topic_id: id, title: params[:title], num_of_lessons: params[:num_of_lessons])
 
     if topic
       render json: topic
@@ -39,6 +39,6 @@ class TopicController < ApplicationController
   end
 
   def set_topic
-    @topic = Topic.find_by(topic_id: params[:id])
+    @topic = Topic.find(params[:id])
   end
 end

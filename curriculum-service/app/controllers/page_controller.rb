@@ -9,10 +9,10 @@ class PageController < ApplicationController
   def create
     # TODO: Use uuid or other id generators
     id = rand(0...99_999)
-    check = Page.where(page_id: id)
+    check = Page.find(id)
     while check.length != 0
       id = rand(0...99_999)
-      check = Page.where(page_id: id)
+      check = Page.find(id)
     end
     page = Page.create!(page_id: id, lesson_id: params[:lesson_id], order_index: params[:order_index],
                         video: params[:video], words: params[:words])
@@ -55,6 +55,6 @@ class PageController < ApplicationController
   end
 
   def set_page
-    @page = Page.find(params[:page_id])
+    @page = Page.find(params[:id])
   end
 end
