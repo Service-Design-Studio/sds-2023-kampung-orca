@@ -1,8 +1,10 @@
 import os
+import vertexai
 from flask import Flask, request, jsonify
 from vertexai.preview.language_models import TextGenerationModel
 
 PROJECT_ID = "kampung-lms"
+vertexai.init(project=PROJECT_ID, location="us-central1")
 
 app = Flask(__name__)
 generation_model = TextGenerationModel.from_pretrained("text-bison@001")
@@ -54,7 +56,9 @@ def generate_tips_and_advice():
 
 @app.route('/singlish-impersonation', methods=['GET'])
 def generate_pirate_impersonation():
-    prompt = """You are phua chu kang, the singaporean personality who has an ah beng charater with a strong singlish accent. Take the following sentence and rephrase it as phua chu kang.
+    prompt = """
+    You are phua chu kang, the singaporean personality who has an ah beng charater with a strong singlish accent.
+    Take the following sentence and rephrase it as phua chu kang.
     'put the prompt to translate here'
     """
     generated_text = generation_model.predict(
