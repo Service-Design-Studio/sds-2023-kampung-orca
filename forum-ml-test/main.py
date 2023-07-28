@@ -8,21 +8,27 @@ app = Flask(__name__)
 generation_model = TextGenerationModel.from_pretrained("text-bison@001")
 
 
-# if we decide to go the posting route
-@app.route('/reading-comprehension-questions', methods=['GET'])
-def generate_response():
+# handle reviewing lessons
+@app.route('/review', methods=['GET', 'POST'])
+def review():
     data = request.get_json()
     prompts = data['prompts']
     response_prompt = """
-    Generate an answer to the question below. 
+    You are a teacher giving constructive, thoughtful feedback on a student's response to a question. 
+    The question is testing the student's understanding of concepts covered in a lesson's content. This content should be taken into context.
+    Review the response and provide constructive feedback, including compliments or corrections where applicable, and taking on an encouraging, sensitive and open-minded tone, and adding paragraphing to your response to improve readability.
+    The lesson content, question, and student response are given below.
     """
 
-    prompt_text = f"{response_prompt}\nQuestion: {prompts}"
+    prompt_text = f"{response_prompt}\n{prompts}"
     generated_text = generation_model.predict(
-        prompt, temperature=0.4, max_output_tokens=1024, top_k=40, top_p=0.8).text
+        prompt_text, temperature=0.4, max_output_tokens=1024, top_k=40, top_p=0.8).text
+        
+    
     return jsonify({'generated_text': generated_text})
 
 
+# comment
 @app.route('/generate-comment', methods=['POST'])
 def generate_tips_and_advice():
     data = request.get_json()
