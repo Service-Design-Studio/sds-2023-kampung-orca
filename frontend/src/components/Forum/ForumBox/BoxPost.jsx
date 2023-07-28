@@ -289,7 +289,6 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}
                         {formatCreatedAt(comment.created_at)}
-                        {formatCreatedAt(comment.created_at)}
                       </Text>
                     </Stack>
                   </Stack>
@@ -305,7 +304,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                           fetchComments={fetchComments}
                           type="comment"
                           data-cy="comment"
-                        handleCommentDelete={handleCommentDelete}
+                          handleCommentDelete={handleCommentDelete}
                         />
                       ) : (
                         // JSX to render if the condition is false

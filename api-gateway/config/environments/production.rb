@@ -88,5 +88,6 @@ Rails.application.configure do
   ENV["CURRICULUM_URL"] = Rails.application.credentials[:curriculum_url]
   ENV["FORUM_URL"] = Rails.application.credentials[:forum_url]
   ENV["USER_URL"] = Rails.application.credentials[:user_url]
+  ENV["ML_URL"] = Rails.application.credentials[:ml_url]
   ENV["ML_TOKEN"] = Rails.application.credentials[:ml_token]
 end
