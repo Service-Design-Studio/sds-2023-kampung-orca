@@ -112,7 +112,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.delete(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           params: {
             token: cookieValue,
@@ -131,7 +131,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       await axios.delete(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
         {
           params: {
             token: cookieValue,
@@ -160,7 +160,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           comment: updatedData,
@@ -206,9 +206,9 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
             >
               <Avatar size="md" />
               <Flex width="100%" direction="row" justify="space-bewteen">
-                <Flex direction="column" spacing="0px" width="100%">
-                  <Box width="400px" maxW="400px">
-                    <Heading color="#333" size="lg">
+                <Flex mb="5px" direction="column" spacing="0px" width="100%">
+                  <Box mb="5px" width="400px" maxW="400px">
+                    <Heading color="#333" size="md">
                       {selectedPost.title}
                     </Heading>
                   </Box>
@@ -223,8 +223,8 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               </Flex>
             </Stack>
 
-            <Box maxW="400px" marginBottom="10px">
-              <Text mt="20px" fontSize="lg" color="#555">
+            <Box maxW="475px" marginBottom="10px">
+              <Text mt="10px" fontSize="md" color="#555">
                 {selectedPost.user_id === current_user_id ? (
                   // JSX to render if the condition is true
                   // Place your JSX here
@@ -289,27 +289,33 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}
                         {formatCreatedAt(comment.created_at)}
+                        {formatCreatedAt(comment.created_at)}
                       </Text>
                     </Stack>
                   </Stack>
 
-                  <Text mt="30px" fontSize="lg" mb={1} color="#555">
-                    {comment.user_id === current_user_id ? (
-                      <EditField
-                        postId={selectedPost.id}
-                        commentId={comment.id}
-                        defaultValue={comment.content}
-                        fetchPosts={fetchPosts}
-                        fetchComments={fetchComments}
-                        type="comment"
+                  <Box maxW="470px" marginBottom="10px">
+                    <Text mt="30px" fontSize="md" mb={1} color="#555">
+                      {comment.user_id === current_user_id ? (
+                        <EditField
+                          postId={selectedPost.id}
+                          commentId={comment.id}
+                          defaultValue={comment.content}
+                          fetchPosts={fetchPosts}
+                          fetchComments={fetchComments}
+                          type="comment"
+                          data-cy="comment"
                         handleCommentDelete={handleCommentDelete}
-                      />
-                    ) : (
-                      // JSX to render if the condition is false
-                      // Place your JSX here
-                      <>{comment.content}</>
-                    )}
-                  </Text>
+                        />
+                      ) : (
+                        // JSX to render if the condition is false
+                        // Place your JSX here
+                        <Box maxW="470px" marginBottom="10px">
+                          <>{comment.content}</>
+                        </Box>
+                      )}
+                    </Text>
+                  </Box>
                 </Box>
               ))}
             </div>

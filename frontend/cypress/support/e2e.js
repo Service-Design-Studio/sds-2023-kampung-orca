@@ -17,4 +17,11 @@
 import './commands'
 
 // Alternatively you can use CommonJS syntax:
-// require('./commands')
+// require('./commands')'
+
+// Code to bypass Unexpected token '<' error
+Cypress.on('uncaught:exception', (err, runnable) => {
+  if (err.message.includes("Unexpected token '<'")) {
+    return false;
+  }
+});

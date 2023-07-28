@@ -36,6 +36,7 @@ class CreateDatabase < ActiveRecord::Migration[7.0]
     add_index :posts, :lesson_id
     add_index :comments, :post_id
     add_index :comments, :user_id
+    add_index :lessons, :lesson_id
 
     add_foreign_key :posts, :users, column: :user_id, primary_key: :user_id
     add_foreign_key :posts, :lessons

@@ -26,4 +26,3 @@ Scenario: AI does not reply to itself
   Given I am on the forum post page
   When the latest comment is an AI comment
   Then I should not see the second latest comment is an AI comment
-
