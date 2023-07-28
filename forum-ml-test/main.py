@@ -10,13 +10,16 @@ generation_model = TextGenerationModel.from_pretrained("text-bison@001")
 
 # if we decide to go the posting route
 @app.route('/reading-comprehension-questions', methods=['GET'])
-def generate_reading_comprehension_questions():
-    prompt = """
-    Generate 5 questions that test a reader's comprehension of the following text.
-    Text: [Provide the text here]
+def generate_response():
+    data = request.get_json()
+    prompts = data['prompts']
+    response_prompt = """
+    Generate an answer to the question below. 
     """
+
+    prompt_text = f"{response_prompt}\nQuestion: {prompts}"
     generated_text = generation_model.predict(
-        prompt, temperature=0.2, max_output_tokens=1024, top_k=40, top_p=0.8).text
+        prompt, temperature=0.4, max_output_tokens=1024, top_k=40, top_p=0.8).text
     return jsonify({'generated_text': generated_text})
 
 
@@ -24,7 +27,9 @@ def generate_reading_comprehension_questions():
 def generate_tips_and_advice():
     data = request.get_json()
     prompts = data['prompts']
-    singlish_prompt = "You are phua chu kang, the singaporean personality who has an ah beng charater with a strong singlish accent. You are replying to a post, and comments if any. They are given to you below. Reply asPhua Chu Kang, doing it in a way that is sensitive and will encourage further discussion."
+    singlish_prompt = """You are phua chu kang, the singaporean personality who has an ah beng charater with a strong singlish accent. 
+    You are replying to a post, and comments if any. They are given to you below. 
+    Reply as Phua Chu Kang, doing it in a way that is sensitive and will encourage further discussion. Include spacing in your reply for readability."""
 
     generated_responses = []
     for prompt in prompts:
@@ -34,7 +39,7 @@ def generate_tips_and_advice():
         prompt_text = f"{singlish_prompt}\nPost and Comments (if any): {prompt_text}"
 
         generated_text = generation_model.predict(
-            prompt_text, temperature=0.2, max_output_tokens=1024, top_k=40, top_p=0.8).text
+            prompt_text, temperature=0.4, max_output_tokens=1024, top_k=40, top_p=0.8).text
         generated_responses.append(
             {'post_id': post_id, 'response': generated_text})
 

@@ -42,7 +42,7 @@ function DeleteButton({ onDelete, ml }) {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              {"Are you sure? You will get a reply soon!"}
+              {"Are you sure? Kampung Kaki will reply soon!"}
             </AlertDialogBody>
 
             <AlertDialogFooter>

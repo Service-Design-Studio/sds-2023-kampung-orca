@@ -18,15 +18,9 @@ class CommentsController < ApplicationController
     # POST /comments
     def create
       @comment = @post.comments.build(comment_params)
-      
-      
 
-      if @comment.user.nil?
-        # If user with the given user_id doesn't exist, create a new one
-        @comment.user = User.find_by(user_id: "admin")
-      else
-        @comment.user = User.find_by(user_id: params[:user_id])
-      end
+      @comment.user ||= User.find_by(user_id: params[:user_id]) || User.find_by(user_id: "admin")
+
   
       if @comment.save
         render json: @comment, status: :created

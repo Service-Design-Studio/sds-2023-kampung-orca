@@ -3,7 +3,7 @@ class InactivityCheckerController < ApplicationController
 
   def fetch_posts_and_comments(lesson_id)
     puts lesson_id
-    url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts?token=Thomas"
+    url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts?token=#{ENV["ML_TOKEN"]}"
 
     #puts url
 
@@ -23,7 +23,7 @@ class InactivityCheckerController < ApplicationController
 
     posts_data = posts_data.map do |post|
       post_id = post["id"]
-      comments_url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=Thomas"
+      comments_url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=#{ENV["ML_TOKEN"]}"
       comments_response = Net::HTTP.get(URI(comments_url))
       comments_data = JSON.parse(comments_response)
   
@@ -104,7 +104,7 @@ class InactivityCheckerController < ApplicationController
 
       puts "Post ID: #{post_id}, Response Content: #{response_content}"
 
-      api_gateway_url = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=Thomas")
+      api_gateway_url = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=#{ENV["ML_TOKEN"]}")
       http = Net::HTTP.new(api_gateway_url.host, api_gateway_url.port)
     
       path = api_gateway_url.path
@@ -132,7 +132,7 @@ class InactivityCheckerController < ApplicationController
 
   def run_inactivity_check
 
-    url = "#{ENV["GATEWAY_URL"]}/lessons?token=Thomas"
+    url = "#{ENV["GATEWAY_URL"]}/lessons?token=#{ENV["ML_TOKEN"]}"
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true if uri.scheme == 'https'
