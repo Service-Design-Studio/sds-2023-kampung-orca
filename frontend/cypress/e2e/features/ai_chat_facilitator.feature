@@ -4,24 +4,26 @@ As Mohammad, a retiree, I want to have constant engagement with the posts or com
 so that I will be encouraged to participate actively in discussions.
 
 Background:
-  Given I am logged in
+  Given I am logged in as Mohammad
   Given the forum box is open
+  Given a post with the following details:
+      | Title                      | Content                     | Author   |
+      | Curious about Christianity | What questions do you have? | Mohammad |
 
-Scenario: AI Reply to a post
-  Given I see an existing post
-  When I click on the post
-  Then I should see that the post has not been replied to for more than 3 days
-  And I should see an AI comment replying to the post
+Scenario: AI Reply to an empty post
+  Given I am on the forum post page
+  When the post has no comments
+  And the post is 3 days old
+  Then I should see the latest comment is an AI comment
 
-Scenario: AI Reply to a comment
-  Given I see an existing post
-  When I click on the post
-  Then I should see a comment that has not been replied to for more than 3 days
-  And I should see an AI comment replying to the comment
+Scenario: AI Reply to a post with old comments
+  Given I am on the forum post page
+  When the post has at least 1 comment
+  And the latest non-AI comment is 3 days old
+  Then I should see the latest comment is an AI comment
 
 Scenario: AI does not reply to itself
-  Given I should see an existing post with AI as the last comment
-  When I click on the post
-  Then I should see that the last comment is an AI comment
-  And I should not see an AI comment replying to the previous AI comment
+  Given I am on the forum post page
+  When the latest comment is an AI comment
+  Then I should not see the second latest comment is an AI comment
 
