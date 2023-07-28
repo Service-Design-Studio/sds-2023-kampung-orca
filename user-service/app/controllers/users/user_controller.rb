@@ -81,6 +81,8 @@ class Users::UserController < ApplicationController
       if token == nil
         render json: {token: nil, user_id: nil}
       else
+        p token.expires_at
+        p Time.now
         if token.expires_at < Time.now
           token[:token] = token.refresh!
         end

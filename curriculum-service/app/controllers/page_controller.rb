@@ -1,10 +1,9 @@
 class PageController < ApplicationController
   before_action :set_page, only: %i[show destroy]
-  # def index
-  #   page = Page.all
-  #   puts page.to_json
-  #   render json: page
-  # end
+  def index
+    page = Page.all
+    render json: page
+  end
 
   def create
     # TODO: Use uuid or other id generators
@@ -27,13 +26,13 @@ class PageController < ApplicationController
   def show
     render json: @page
   end
-
+  
   def destroy
     Page&.destroy(params[:id])
     render json: { message: 'Page deleted!' }
   end
 
-  def index
+  def show_pages
     if Lesson.where(lesson_id: params[:lesson_id]).exists?
       user = User.find(params[:user_id])
       if user.lessons_access.include?(params[:lesson_id])
@@ -46,7 +45,6 @@ class PageController < ApplicationController
       render json: { message: 'Lesson does not exist' }
     end
   end
-
   
   private
 
