@@ -19,6 +19,8 @@ class ApplicationController < ActionController::API
       @current_user = {token: "admin", user_id: "admin"}
     elsif ENV["NORMAL_USER"] == @token && Rails.env.development?
       @current_user = {token: "admin", user_id: "admin"} # modify this line to change the user account for a normal user 
+    elsif ENV["ML_TOKEN"] == @token
+      @current_user = {token: "admin", user_id: "admin", name: "Kampung Kaki"}
     else
       current_user = HTTParty.post(ENV["USER_URL"] + "/user/verify_token", {
         body: {token: @token}.to_json,
@@ -29,7 +31,6 @@ class ApplicationController < ActionController::API
       }).parsed_response
       @current_user = current_user.transform_keys(&:to_sym)
     end
-
   end
 
   def set_authentication

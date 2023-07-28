@@ -91,3 +91,5 @@ docker compose up -d
 | Curriculum     | 3002 |
 | Forum          | 3003 |
 | Users          | 3004 |
+| ML             | 3005 |
+| Inactivity     | 3006 |
