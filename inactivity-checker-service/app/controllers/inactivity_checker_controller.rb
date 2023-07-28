@@ -156,7 +156,7 @@ class InactivityCheckerController < ApplicationController
     render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
 
     lesson_ids.each do |lesson_id|
-      puts "IIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDD: #{lesson_id}"
+      #puts "IIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDD: #{lesson_id}"
       puts "Checking inactivity for lesson ID: #{lesson_id}"
       #check_inactivity(lesson_id, interval_seconds)
       Thread.new { check_inactivity(lesson_id, interval_seconds) }
@@ -165,14 +165,39 @@ class InactivityCheckerController < ApplicationController
   end
 
   def answer_question
-    #need sth here to ask api gateway for lesson content
-    lesson = "Interfaith is good"
+    #need sth here to ask api gateway for lesson content yay done
+    #TODO: make dynamic
+    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/lesson/00001/page?token=#{ENV["ML_TOKEN"]}")
+    http = Net::HTTP.new(lesson_url.host, lesson_url.port)
+    request = Net::HTTP::Get.new(lesson_url)
+    request['Content-Type'] = 'application/json'
+    #request.body = { prompts: prompts }.to_json
+
+    lesson_response = http.request(request)
+    lesson_data = JSON.parse(lesson_response.body)
+
+    #puts lesson_data
+
+    lesson_content = []
+    if lesson_data["data"] && lesson_data["data"]["pages"]
+      lesson_data["data"]["pages"].each do |page|
+        if page["sections"]
+          page["sections"].each do |section|
+            lesson_content.concat(section["content"]) if section["content"]
+          end
+        end
+      end
+    end
+
+    puts lesson_content
 
     #need sth here 
-    question = "Why is interfaith good"
+    question = "Why is interfaith dialogue important"
 
     #here also
-    answer = "Cuz its good lor"
+    answer = "It is not important"
+
+    lesson = lesson_content.join("\n")
 
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
 
@@ -183,10 +208,7 @@ class InactivityCheckerController < ApplicationController
     request.body = { prompts: prompts }.to_json
 
     response = http.request(request)
-
-
-
-    render json: response.body 
+    render json: response.body
 
   end
 
