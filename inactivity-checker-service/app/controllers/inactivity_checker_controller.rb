@@ -162,6 +162,31 @@ class InactivityCheckerController < ApplicationController
       Thread.new { check_inactivity(lesson_id, interval_seconds) }
       puts "Finished checking inactivity for lesson ID: #{lesson_id}\n\n"
     end
+  end
+
+  def answer_question
+    #need sth here to ask api gateway for lesson content
+    lesson = "Interfaith is good"
+
+    #need sth here 
+    question = "Why is interfaith good"
+
+    #here also
+    answer = "Cuz its good lor"
+
+    prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
+
+    ml_url = URI("#{ENV["ML_API"]}/review")
+    http = Net::HTTP.new(ml_url.host, ml_url.port)
+    request = Net::HTTP::Post.new(ml_url)
+    request['Content-Type'] = 'application/json'
+    request.body = { prompts: prompts }.to_json
+
+    response = http.request(request)
+
+
+
+    render json: response.body 
 
   end
 
