@@ -82,5 +82,9 @@ Rails.application.configure do
   end
 
   # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+  # config.active_record.dump_schema_after_migration = false
+
+  ENV["GATEWAY_URL"] = Rails.application.credentials[:GATEWAY_URL]
+  ENV["ML_API"] = Rails.application.credentials[:ml_url]
+  ENV["ML_TOKEN"] = Rails.application.credentials[:ml_token]
 end
