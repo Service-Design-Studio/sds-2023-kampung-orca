@@ -47,7 +47,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
 
     try {
       const response = await axios.post(
-        `http://localhost:3001/lessons/${lessonNumber}/posts`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
         {
           token: cookieValue,
           post: { title, content },
@@ -77,6 +77,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
           _hover={{ bg: "#7c191c" }}
           leftIcon={<Icon as={BsFillPlusCircleFill} />}
           onClick={handleButtonClick}
+          data-cy = "create-new-post-button"
         >
           Create New Post
         </Button>
@@ -95,6 +96,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
             paddingX="20px"
           >
             <Input
+              data-cy='post-title-input'
               textColor="black"
               width="calc(100% - 0px)"
               variant="flushed"
@@ -104,6 +106,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               onChange={handleTitleChange}
             />
             <Textarea
+              data-cy='post-content-input'
               resize="none"
               textColor="black"
               width="calc(100% - 0px)"
@@ -138,6 +141,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               style={{ zIndex: 999 }}
               onClick={handlePostButtonClick}
               isDisabled={!valueTitle || !valueContent}
+              data-cy = "post-button"
             >
               Post
             </Button>

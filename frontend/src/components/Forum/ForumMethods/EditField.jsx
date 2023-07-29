@@ -71,7 +71,7 @@ function EditField({
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
         {
           token: cookieValue,
           content: updatedData,
@@ -90,7 +90,7 @@ function EditField({
     const cookieValue = Cookies.get("token");
     try {
       await axios.patch(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
         {
           token: cookieValue,
           content: updatedData,
@@ -122,7 +122,7 @@ function EditField({
           isDisabled={isTextareaEmpty}
           {...getSubmitButtonProps({ onClick: handleSubmitClick })}
         >
-          <BsCheckLg size="20px" />
+          <BsCheckLg size="20px" data-cy="confirm-edit-post"/>
         </Button>
         <Button
           bg="#FFFFFF"
@@ -141,13 +141,13 @@ function EditField({
           shadow="lg"
           {...getEditButtonProps({ onClick: handleEditClick })}
         >
-          <BsFillPencilFill />
+          <BsFillPencilFill data-cy="edit-post-button"/>
         </Button>
         {type === "post" && (
           <DeleteButton onDelete={() => deletePost(postId)} />
         )}
         {type === "comment" && (
-          <DeleteButton
+          <DeleteButton data-cy="comment-delete-button"
             onDelete={() => handleCommentDelete(postId, commentId)}
           />
         )}
@@ -176,7 +176,7 @@ function EditField({
           textAlign="justify"
           maxW={type === "post" ? "480px" : "470px"}
         />
-        <EditableTextarea
+        <EditableTextarea data-cy='edit-content-text-area'
           minH={type === "post" ? "200px" : "80px"}
           width="480px"
         />

@@ -61,26 +61,6 @@ export const Header = ({
       )}
     </Stack>
 
-    <Stack direction="row">
-      {showChat && <ChatButton />}
-
-      {showForum && (
-        <Link to={`/forum`} bg="#ed2e38">
-          <Button
-            size="lg"
-            bg="#FFFFFF"
-            textColor="#000000"
-            _hover={{ bg: "#d8d9e3" }}
-            height="48px"
-            fontSize="18px"
-            shadow="md"
-            style={{ zIndex: 999 }}
-            leftIcon={<Icon as={BsFillPeopleFill} />}
-          >
-            Visit the Forums
-          </Button>
-        </Link>
-      )}
-    </Stack>
+    <Stack direction="row">{showChat && <ChatButton />}</Stack>
   </Stack>
 );

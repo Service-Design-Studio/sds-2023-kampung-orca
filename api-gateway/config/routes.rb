@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   post '/users/signup', to: 'user#authorization_code_exchange'
   get '/curriculum/*path', to: 'curriculum#forward_request'
   post '/curriculum/*path', to: 'curriculum#forward_request'
+
+  get '/inactivity-checker/fetch-posts-and-comments', to: 'inactivity_checker#fetch_posts_and_comments'
+  get '/inactivity-checker/run_inactivity_check', to: 'inactivity_checker#run_inactivity_check'
 end

@@ -24,6 +24,7 @@ function NavigationButton({ data, to, children, hideButton }) {
 
 const TopicPage = () => {
   // TODO: CHANGE THIS!
+  let counter = 1;
   const [topics] = useGateway(window.location.pathname);
   const handleLogout = () => {
     // Implement your logout logic here
@@ -71,15 +72,16 @@ const TopicPage = () => {
         </Stack>
 
         <Stack direction="row" spacing="50px" paddingY="50px">
-          {topics.map((topic) => (
-            <NavigationButton
-              key={topic.topic_id}
-              to={`/curriculum/topic/${topic.topic_id}`}
-              hideButton={false}
-            >
-              <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
-            </NavigationButton>
-          ))}
+          {topics &&
+            topics.map((topic) => (
+              <NavigationButton
+                key={topic.topic_id}
+                to={`/curriculum/topic/${topic.topic_id}`}
+                hideButton={false}
+              >
+                <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
+              </NavigationButton>
+            ))}
         </Stack>
       </Stack>
     )

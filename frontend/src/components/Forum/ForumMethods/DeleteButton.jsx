@@ -30,7 +30,7 @@ function DeleteButton({ onDelete, ml }) {
 
   return (
     <>
-      <Button bg="#FFFFFF" shadow="md" onClick={onOpen} ml={ml} width="60px">
+      <Button data-cy="post-delete-button"  bg="#FFFFFF" shadow="md" onClick={onOpen} ml={ml} width="60px">
         <Icon as={BsFillTrashFill} />
       </Button>
 
@@ -46,14 +46,14 @@ function DeleteButton({ onDelete, ml }) {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              {"Are you sure? You can't undo this action afterwards."}
+              {"Are you sure? Kampung Kaki will reply soon!"}
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={handleCancel}>
+              <Button ref={cancelRef} onClick={handleCancel} data-cy="cancel-delete-button">
                 Cancel
               </Button>
-              <Button colorScheme="red" ml={3} onClick={handleDelete}>
+              <Button colorScheme="red" ml={3} onClick={handleDelete} data-cy="confirm-delete-button">
                 Delete
               </Button>
             </AlertDialogFooter>

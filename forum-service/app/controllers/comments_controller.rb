@@ -18,7 +18,9 @@ class CommentsController < ApplicationController
     # POST /comments
     def create
       @comment = @post.comments.build(comment_params)
-      @comment.user = User.find_by(user_id: params[:user_id])
+
+      @comment.user ||= User.find_by(user_id: params[:user_id]) || User.find_by(user_id: "admin")
+
   
       if @comment.save
         render json: @comment, status: :created

@@ -28,6 +28,7 @@ class LessonController < ApplicationController
   end
 
   def index
+    p params[:user_id]
     user = User.find(params[:user_id])
     lessons = Lesson.where(topic_id: params[:topic_id]).order(order_index: :asc)
     lessons_access = lessons.where(lesson_id: user[:lessons_access]).order(order_index: :asc)

@@ -39,6 +39,7 @@ const DynamicNodes = ({ nodeHeights }) => {
         {index !== 0 && <StraightLine />}
         {/* Render the Line component only if index is not 0 */}
         {isEnabled ? (
+          // For the enabled nodes
           <Link to={`/curriculum/lesson/${node.lesson_id}`}>
             <Node
               nodeId={nodeId}
@@ -50,6 +51,7 @@ const DynamicNodes = ({ nodeHeights }) => {
             />
           </Link>
         ) : (
+          // For the disabled nodes
           <Node
             nodeId={nodeId}
             title={node.title}
@@ -78,6 +80,7 @@ const StraightLine = () => {
         ellipsizeMode="clip"
         numberOfLines="1"
         fontSize="100px"
+        data-cy = 'line'
       >
         {Array.from(Array(7).keys()).map((each) => {
           return "-";
@@ -96,6 +99,7 @@ const Node = ({
   lessonsAccess,
   isDisabled,
   height,
+  counter
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -103,6 +107,7 @@ const Node = ({
   let statusColour;
   let cursorStyle;
   let iconComponent;
+
 
   if (isDisabled) {
     status = "Locked";
@@ -148,6 +153,7 @@ const Node = ({
             cursor={cursorStyle}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            data-cy={`node-${counter++}`}
           >
             <Icon
               as={iconComponent}
@@ -174,6 +180,7 @@ const Node = ({
             fontWeight="semibold"
             color={statusColour}
             textAlign="justify"
+            data-cy = 'popup'
           >
             <Stack direction="row" justifyContent="space-between">
               <Text>{status}</Text>
@@ -191,6 +198,8 @@ export const LessonNodes = ({ lessonProgress }) => {
   // Fetch data using useGateway hook
   const [data] = useGateway(window.location.pathname + "/lesson", "GET");
   console.log(data);
+
+  const [counter, setCounter] = React.useState(1);
 
   // Check if data has been fetched and set the nodesLoaded state accordingly
   React.useEffect(() => {
@@ -228,6 +237,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           overflowX="scroll"
           direction="row"
           marginx="100px"
+          data-cy = 'scrollbar'
           sx={{
             "&::-webkit-scrollbar": {
               width: "8px",

@@ -69,7 +69,7 @@ This will launch the web app running on local host and will also turn on Cypress
 ##### Troubleshooting on Mac (Silicon)
 
 ```shell
-sh restart_dev.sh
+sh restart_mac_dev.sh
 ```
 
 Use this to troubleshoot your local installation as it re-downloads all the dependencies in each microservice.
@@ -91,3 +91,5 @@ docker compose up -d
 | Curriculum     | 3002 |
 | Forum          | 3003 |
 | Users          | 3004 |
+| ML             | 3005 |
+| Inactivity     | 3006 |

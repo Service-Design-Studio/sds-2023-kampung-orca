@@ -24,7 +24,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
     const postId = id;
     try {
       const response = await axios.post(
-        `http://localhost:3001/lessons/${lessonNumber}/posts/${postId}/comments`,
+        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments`,
         {
           token: cookieValue,
           comment: { content: con },
@@ -54,6 +54,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
             color="#555"
             value={valueContent}
             onChange={handleContentChange}
+            data-cy="comment-text-area"
           />
           <Button
             size="lg"
@@ -66,7 +67,8 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
             shadow="lg"
             onClick={handleButtonClick}
             isDisabled={!valueContent}
-          >
+            data-cy="post-comment-button"
+        >
             Comment
           </Button>
         </Stack>
