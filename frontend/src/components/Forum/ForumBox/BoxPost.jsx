@@ -197,7 +197,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               direction="row"
               align="center"
               bg="#FFFFFF"
-              width="fit-content"
+              width="100%"
               padding="10px"
               shadow="md"
               // position="absolute"
@@ -207,7 +207,15 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               <Avatar size="md" />
               <Flex width="100%" direction="row" justify="space-bewteen">
                 <Flex mb="5px" direction="column" spacing="0px" width="100%">
-                  <Box mb="5px" width="400px" maxW="400px">
+                  <Box
+                    mb="5px"
+                    maxW={{
+                      base: "20vw",
+                      lg: "26vw",
+                      xl: "30vw",
+                      "2xl": "32vw",
+                    }}
+                  >
                     <Heading color="#333" size="md">
                       {selectedPost.title}
                     </Heading>
@@ -223,7 +231,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
               </Flex>
             </Stack>
 
-            <Box maxW="475px" marginBottom="10px">
+            <Box maxW="100%" marginBottom="10px">
               <Text mt="10px" fontSize="md" color="#555">
                 {selectedPost.user_id === current_user_id ? (
                   // JSX to render if the condition is true
@@ -240,7 +248,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                 ) : (
                   // JSX to render if the condition is false
                   // Place your JSX here
-                  <Box maxW="480px" marginBottom="10px">
+                  <Box maxW="100%" marginBottom="10px">
                     <>{selectedPost.content}</>
                   </Box>
                 )}
@@ -293,7 +301,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                     </Stack>
                   </Stack>
 
-                  <Box maxW="470px" marginBottom="10px">
+                  <Box maxW="100%" marginBottom="10px">
                     <Text mt="30px" fontSize="md" mb={1} color="#555">
                       {comment.user_id === current_user_id ? (
                         <EditField
@@ -307,9 +315,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                           handleCommentDelete={handleCommentDelete}
                         />
                       ) : (
-                        // JSX to render if the condition is false
-                        // Place your JSX here
-                        <Box maxW="470px" marginBottom="10px">
+                        <Box maxW="100%" marginBottom="10px">
                           <>{comment.content}</>
                         </Box>
                       )}
