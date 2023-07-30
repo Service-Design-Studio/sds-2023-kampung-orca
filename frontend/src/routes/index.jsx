@@ -24,7 +24,6 @@ import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
 import HomePage from "../components/Logins/HomePage";
 import TopicPage from "../components/Logins/TopicPage";
-import LearnMore from "../components/Logins/LearnMore";
 
 import useCookie from "../hooks/useCookie";
 
@@ -57,7 +56,6 @@ export default (
       <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
-      <Route path="/learnmore" element={<LearnMore />} />
       <Route path="*" element={<Navigate to="/error" />} />
     </Routes>
   </Router>

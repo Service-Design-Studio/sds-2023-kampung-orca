@@ -1,10 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Stack, Text, Button, Image } from "@chakra-ui/react";
-import axios from "./api.jsx";
+import { Link } from "react-router-dom";
+import { Stack, Text, Button } from "@chakra-ui/react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Cookies from "js-cookie";
 
 const GoogleLoginButton = () => {
   const googleLogin = useGoogleLogin({
