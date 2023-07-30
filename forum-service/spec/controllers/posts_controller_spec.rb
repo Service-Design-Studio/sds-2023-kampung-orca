@@ -48,9 +48,14 @@ RSpec.describe PostsController, type: :controller do
       post :create, params: { lesson_id: lesson.id, post: post_params }
 
       expect(response).to have_http_status(:created)
-      expect(Post.last.title).to eq('New Post')
-      expect(Post.last.content).to eq('Content of New Post')
-      expect(Post.last.user).to eq(user)
+      parsed_response = JSON.parse(response.body)
+      if response.status == 201
+        expect(parsed_response['title']).to eq('New Post')
+        expect(parsed_response['content']).to eq('Content of New Post')
+        expect(parsed_response['user']['id']).to eq(user.id)
+      else
+        puts "Post creation failed with errors: #{parsed_response['errors']}"
+      end
     end
 
     it 'returns unprocessable_entity status for invalid post' do
@@ -96,8 +101,9 @@ RSpec.describe PostsController, type: :controller do
 
     it 'returns unauthorized status for unauthorized deletion' do
       post = lesson.posts.create(title: 'Unauthorized Post', content: 'Content of Unauthorized Post', user: user)
+      unauth_user = User.create(user_id: '696969', name: 'John Doe')
 
-      delete :destroy, params: { lesson_id: lesson.id, id: post.id, user_id: 'unauthorized_user' }
+      delete :destroy, params: { lesson_id: lesson.id, id: post.id, user: unauth_user }
       expect(response).to have_http_status(:unauthorized)
     end
   end

@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if @post.save
       render json: @post.to_json(include: { user: { only: [:id, :name] } }), status: :created
     else
-      render json: @post.errors, status: :unprocessable_entity
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
     end
   end
   
