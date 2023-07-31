@@ -63,7 +63,6 @@ When("I create a post with the following details:", (datatable) => {
     cy.contains("Go Back").should('exist');
   });
   Given("I am on the forum post page", ()=>{
-    cy.contains('by Thomas').click();
     cy.contains("Go Back").should('exist');
   });
 
