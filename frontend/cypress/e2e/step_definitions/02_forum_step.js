@@ -14,8 +14,7 @@ Given("a post with the following details:", (datatable) => {
   datatable.hashes().forEach((element) => {
   cy.contains(element.Title).click();
   });
-
-  });
+});
 
 Given("a comment with the following details:", (datatable) => {
     datatable.hashes().forEach((element) => {
