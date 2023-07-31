@@ -1,88 +1,137 @@
-import React from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
-import Cookies from "js-cookie";
-import useGateway from "../../hooks/useGateway";
+  import React from "react";
+  import { useNavigate, useOutletContext } from "react-router-dom";
+  import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
+  import Cookies from "js-cookie";
+  import useGateway from "../../hooks/useGateway";
+  import { motion } from "framer-motion";
+  import { FiLogOut ,FiGrid, FiList } from "react-icons/fi";
+  import NavigationButton from "./NavigationButton";
 
-function NavigationButton({ data, to, children, hideButton }) {
-  const navigate = useNavigate();
 
-  function handleClick() {
-    navigate(to);
-  }
-  const buttonStyle = {
-    display: hideButton ? "none" : "block",
-    width: "200px", // Adjust the width as per your requirement
-    height: "30px", // Adjust the height as per your requirement
-  };
-  return (
-    <button onClick={handleClick} style={buttonStyle} data-cy={data}>
-      {children}
-    </button>
-  );
-}
 
-const TopicPage = () => {
-  // TODO: CHANGE THIS!
-  let counter = 1;
-  const [topics] = useGateway(window.location.pathname);
-  const handleLogout = () => {
-    // Implement your logout logic here
-    // For example, clear session or local storage, and navigate to the login page
-    Cookies.remove("token");
-    window.location.href = "/";
-  };
-  return (
-    topics && (
-      <Stack
-        direction="column"
-        justify="center"
-        align="center"
-        spacing="0"
-        width="100%"
-        minHeight="100vh"
-        color="#000"
-        textAlign="center"
-        fontFamily="Arial"
-        position="relative"
-        overflow="auto"
-        style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-        }}
-      >
-        <header style={{ position: "absolute", top: "10px", right: "10px" }}>
-          <Button onClick={handleLogout}>Logout</Button>
-        </header>
 
-        <Stack direction="column" spacing="10px" paddingTop="50px">
-          <Text
-            fontSize={["32px", "48px"]} // Responsive font size based on breakpoints
-            fontWeight="700"
-            lineHeight="normal"
-            color="#000000"
+
+  const TopicPage = () => {
+    // TODO: CHANGE THIS!
+    const [topics] = useGateway(window.location.pathname);
+    const handleLogout = () => {
+      // Implement your logout logic here
+      // For example, clear session or local storage, and navigate to the login page
+      Cookies.remove("token");
+      window.location.href = "/";
+    };
+    return (
+      topics && (
+        <Stack
+          direction="column"
+          justify="center"
+          align="center"
+          spacing="0"
+          width="100%"
+          minHeight="100vh"
+          color="#000"
+          textAlign="center"
+          fontFamily="Arial"
+          position="relative"
+          overflow="auto"
+          style={{
+            backgroundImage:
+              'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+          }}
+        >
+          <Box
+          position="fixed"
+          top="0"
+          left="0"
+          width="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-end"
+          padding="10px"
+          bg="red"
+          zIndex="9999"
+        >
+          <Button
+            onClick={handleLogout}
+            variant="unstyled"
+            fontSize="md"
+            marginLeft="1"
           >
-            Welcome back!
-          </Text>
-          <Text fontSize="16px" fontFamily="Outfit" lineHeight="normal">
-            Sharpen your interfaith knowledge
-          </Text>
-        </Stack>
+            <FiLogOut size={40} />
+          </Button>
+        </Box>
 
-        <Stack direction="row" spacing="50px" paddingY="50px">
-          {topics &&
-            topics.map((topic) => (
-              <NavigationButton
-                key={topic.topic_id}
-                to={`/curriculum/topic/${topic.topic_id}`}
-                hideButton={false}
-              >
-                <Square bg="rgba(128, 128, 128, 0.5)" size="200px" />
-              </NavigationButton>
-            ))}
-        </Stack>
+        <div style={{ position: "fixed", top: "100px", width: "100%", textAlign: "center" }}>
+          <Stack direction="column" spacing="10px">
+            <Text fontSize={["32px", "48px"]} fontWeight="700" fontFamily="Poppins" lineHeight="normal" color="#000000">
+              Welcome back, USER_ID!
+            </Text>
+            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }}>
+              <Text fontSize="36px" fontFamily="Poppins" lineHeight="normal">
+                Sharpen your interfaith knowledge
+              </Text>
+            </motion.div>
+          </Stack>
+        </div>
+
+       
+        <Box
+          width="100%"
+          maxWidth="1200px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          flex="1"
+          paddingY="15vh"
+        >
+          {/* Add a custom scrollbar div */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1200px",
+              overflowX: "auto",
+              
+              scrollbarWidth: "thin",
+              scrollbarColor: "#888 #f0f0f0",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "#f0f0f0",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#888",
+                borderRadius: "10px",
+              },
+            }}
+          >
+            <Stack
+              direction="row"
+              spacing="50px"
+              width="max-content" 
+              justifyContent="center" 
+              alignItems="center" 
+              
+              paddingX="10vw"
+              
+              paddingY="26vh"
+              overflowY="hidden" 
+            >
+              {topics.map((topic) => (
+                <NavigationButton
+                  key={topic.topic_id}
+                  to={`/curriculum/topic/${topic.topic_id}`}
+                  hideButton={false}
+                  data={topic.topic_id}
+                  topic_id={topic.topic_id}
+                />
+              ))}
+            </Stack>
+          </div>
+        </Box>
       </Stack>
     )
   );

@@ -1,0 +1,22 @@
+/* NavigationButton.css */
+.square-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(128, 128, 128, 0.7);
+  transition: transform 0.3s;
+}
+
+.square-container:hover {
+  transform: scale(1.1);
+}
+
+.square-image {
+  width: 120px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
