@@ -5,9 +5,9 @@ so that I will be encouraged to participate actively in discussions.
 
 Background:
   Given I am logged in as Mohammad
-  And I am at the lesson 0003 view page
+  And I am at the lessons pathway page
   And the forum box is open
-  And there is a post with the following details:
+  And a post with the following details:
   | Title             | Content                           | Author   |
   | Hi, I am new here | What can I learn with Kampung.sg? | Mohammad |
 
