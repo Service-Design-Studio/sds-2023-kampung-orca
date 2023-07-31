@@ -267,6 +267,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                   marginLeft="20px"
                   position="relative"
                   mb="30px"
+                  data-cy="comment"
                 >
                   <Stack
                     mb="10px"
