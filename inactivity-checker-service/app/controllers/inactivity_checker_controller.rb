@@ -1,5 +1,6 @@
 class InactivityCheckerController < ApplicationController
   skip_before_action :authenticate_user, raise: false
+  after_action :run_inactivity_check, only: :check_inactivity
 
   def fetch_posts_and_comments(lesson_id)
     puts lesson_id
@@ -60,7 +61,7 @@ class InactivityCheckerController < ApplicationController
 
       inactive = (no_comments && days_since_creation > 3) || (days_since_last_comment.to_i > 3)
   
-      puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}"
+      #puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}"
   
       inactive
     end
@@ -153,7 +154,7 @@ class InactivityCheckerController < ApplicationController
     #text-bison can only process up to 60 requests a minute by default T_T
     interval_seconds = 61 #params[:interval_seconds].to_i || 90
 
-    render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
+    #render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
 
     lesson_ids.each do |lesson_id|
       #puts "IIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDD: #{lesson_id}"
@@ -192,10 +193,10 @@ class InactivityCheckerController < ApplicationController
     puts lesson_content
 
     #need sth here 
-    question = "Why is interfaith dialogue important"
+    question = "Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
 
     #here also
-    answer = "It is not important"
+    answer = "‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
 
     lesson = lesson_content.join("\n")
 

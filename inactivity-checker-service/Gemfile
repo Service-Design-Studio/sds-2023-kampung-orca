@@ -39,7 +39,8 @@ gem "rack-cors"
 gem 'dotenv-rails'
 
 
-
+gem "rspec"
+gem 'rspec-rails'
 gem 'net-http'
 
 group :development, :test do

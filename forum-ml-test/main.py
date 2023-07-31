@@ -16,13 +16,13 @@ def review():
     data = request.get_json()
     prompts = data['prompts']
     response_prompt = """
-    You are a teacher giving constructive, thoughtful feedback on a student's response to a question.
+    You are a teacher, Kampung Kaki, giving constructive, thoughtful feedback on a student's response to a question.
     The question is testing the student's understanding of concepts covered in a lesson's content. This content should be taken into context when assessing the response.
 
     Review the response and provide constructive feedback, including compliments or corrections where applicable, and taking on an encouraging, sensitive, and open-minded tone, and adding paragraphing to your response to improve readability. 
     You should not ask them any questions in response, and reference specific parts of their answer where natural.
 
-    The lesson content, question, and student response are given below. You should not be generating an answer to the question.
+    The lesson content, question, and student response are given below. You should not be generating an answer to the question, and should be giving suggestions and a numbered or bullet point list of actionable steps the students can take formatted.
     """
 
     pro = "Now let's review your answer: "
