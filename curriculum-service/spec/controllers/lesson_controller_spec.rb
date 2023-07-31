@@ -9,6 +9,21 @@ RSpec.describe LessonController, type: :controller do
     Topic.create!(topic_id: '00001', title: 'Topic 1')
   end
 
+  describe "Get #index" do
+    it 'shows all lessons' do
+      Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: 'Test Lesson1' )
+      Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1, title: 'Test Lesson2' )
+      Lesson.create!(lesson_id: "00003", topic_id: "00001", order_index: 2, title: 'Test Lesson3' )
+      Lesson.create!(lesson_id: "00004", topic_id: "00001", order_index: 3, title: 'Test Lesson4' )
+      Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: 'Test Lesson5' )
+      get :index
+      expect(response).to be_successful
+  
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.length).to eq(5)
+    end
+  end
+
   describe 'POST #create' do
       
       params =  {topic_id: "00001", order_index: 0, title: 'Test Lesson' } 
@@ -35,13 +50,13 @@ RSpec.describe LessonController, type: :controller do
     end
   end
 
-  describe '#index' do
+  describe '#show_lessons' do
 
     it 'renders the lessons and lessons_access JSON' do
       lesson = Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: 'Test Lesson' )
       user = User.create!(user_id: "admin", lessons_access:["00001"])
 
-      get :index, params: { user_id: "admin", topic_id: "00001" }
+      get :show_lessons, params: { user_id: "admin", topic_id: "00001" }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(

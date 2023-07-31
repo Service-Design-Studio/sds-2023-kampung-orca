@@ -13,6 +13,19 @@ RSpec.describe PageController, type: :controller do
   
   end
 
+  describe 'GET #index' do
+    it 'gets all pages' do
+      Page.create!(page_id: "00001", lesson_id: "00001")
+      Page.create!(page_id: "00002", lesson_id: "00001")
+      get :index
+      expect(response).to be_successful
+  
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.length).to eq(2)
+
+    end
+  end
+
   describe 'POST #create' do
     it 'creates a new page' do
       lesson_id = "00001" 
@@ -65,7 +78,9 @@ RSpec.describe PageController, type: :controller do
     end
   end
 
-  describe 'GET #index' do
+
+
+  describe 'GET #show_pages' do
     it 'returns pages for an existing lesson with authorized user' do
       lesson_id = "00001" 
       user_id = "00001"
@@ -73,7 +88,7 @@ RSpec.describe PageController, type: :controller do
       User.find(user_id).update(lessons_access: [lesson_id])
       Page.create!(page_id: "00001", lesson_id: "00001")
       Page.create!(page_id: "00002", lesson_id: "00001")
-      get :index, params: { lesson_id: lesson_id, user_id: user_id }
+      get :show_pages, params: { lesson_id: lesson_id, user_id: user_id }
       expect(response).to have_http_status(:success)
 
       # Check if the correct pages are returned in the response
@@ -86,17 +101,18 @@ RSpec.describe PageController, type: :controller do
       user_id = "00001"
       Page.create!(page_id: "00001", lesson_id: "00001")
       Page.create!(page_id: "00002", lesson_id: "00001")
-      get :index, params: { lesson_id: lesson_id, user_id: user_id }
+      get :show_pages, params: { lesson_id: lesson_id, user_id: user_id }
       expect(response).to have_http_status(:success)
 
       # Check if the correct error message is returned in the response
       response_data = JSON.parse(response.body)
+      p response_data
       expect(response_data['message']).to eq('User unauthorized to see lesson')
     end
 
     it 'returns an error message for a non-existing lesson' do
       lesson_id = "9999"
-      get :index, params: { lesson_id: lesson_id, user_id: "00001"}
+      get :show_pages, params: { lesson_id: lesson_id, user_id: "00001"}
       expect(response).to have_http_status(:success)
 
       # Check if the correct error message is returned in the response

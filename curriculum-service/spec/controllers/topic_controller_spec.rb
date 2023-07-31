@@ -44,7 +44,7 @@ RSpec.describe TopicController, type: :controller do
     it 'returns a successful response' do
       topic = Topic.create(topic_id: '00001', title: 'Topic 1')
 
-      get :show, params: { id: topic.id }
+      get :show, params: { topic_id: topic.id }
       expect(response).to be_successful
 
       parsed_response = JSON.parse(response.body)
@@ -58,7 +58,7 @@ RSpec.describe TopicController, type: :controller do
       topic = Topic.create(topic_id: '00001', title: 'Topic 1')
 
       expect do
-        delete :destroy, params: { id: topic.id }
+        delete :destroy, params: { topic_id: topic.id }
       end.to change(Topic, :count).by(-1)
 
       expect(response).to be_successful
@@ -67,7 +67,7 @@ RSpec.describe TopicController, type: :controller do
     end
 
     it 'returns a successful response when topic is not found' do
-      delete :destroy, params: { id: 'non_existent_id' }
+      delete :destroy, params: { topic_id: 'non_existent_id' }
       expect(response).to be_successful
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['message']).to eq('Topic deleted!')
