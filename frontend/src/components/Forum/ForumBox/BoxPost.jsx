@@ -142,7 +142,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
       //updates the list of post displayed
       await fetchPosts();
       //go back
-      setSelectedPost(null);
+      await goBack();
     } catch (error) {
       console.log(error.response.status);
     }
