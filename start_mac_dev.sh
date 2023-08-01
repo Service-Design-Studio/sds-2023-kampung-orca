@@ -28,6 +28,10 @@ osascript -e 'tell application "System Events"
             tell application "System Events" to keystroke "t" using command down
             delay 1
             tell application "System Events" to keystroke "7" using command down
+            do script "cd '$PWD'/inactivity-checker-service && rails s" in selected tab of front window
+            tell application "System Events" to keystroke "t" using command down
+            delay 1
+            tell application "System Events" to keystroke "8" using command down
             do script "cd '$PWD'/frontend && npx cypress open" in selected tab of front window
         end tell
     end if
