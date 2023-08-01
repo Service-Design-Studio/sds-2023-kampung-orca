@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Stack, Text, Button, ScaleFade } from "@chakra-ui/react";
-import Particles from "./Particles.jsx";
+import Particles from "../Misc/Particles.jsx";
 
 const CoverLogin = () => {
   const [showContent, setShowContent] = useState(false);

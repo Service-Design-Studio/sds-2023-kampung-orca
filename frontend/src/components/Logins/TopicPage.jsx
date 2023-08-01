@@ -10,6 +10,7 @@ import NavigationButton from "./NavigationButton";
 const TopicPage = () => {
   // TODO: CHANGE THIS!
   const [topics] = useGateway(window.location.pathname);
+  const [userData] = useGateway("/users/profile");
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
@@ -75,7 +76,7 @@ const TopicPage = () => {
               lineHeight="normal"
               color="#000000"
             >
-              Welcome back, USER_ID!
+              Welcome back, {userData.name || "Guest"}!
             </Text>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
