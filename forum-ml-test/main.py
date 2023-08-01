@@ -3,7 +3,7 @@ import vertexai
 from flask import Flask, request, jsonify
 from vertexai.preview.language_models import TextGenerationModel
 
-PROJECT_ID = "kampung-lms"#"kampung-lms"
+PROJECT_ID = "kampung-lms" #"eeeeeeeeeeeeeee-393204"
 vertexai.init(project=PROJECT_ID, location="us-central1")
 
 app = Flask(__name__)
