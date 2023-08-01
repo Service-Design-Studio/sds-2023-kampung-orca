@@ -5,14 +5,14 @@ so that I will be encouraged to participate actively in discussions.
 
 Background:
   Given I am logged in as Mohammad
-  Given the forum box is open
-  Given a post with the following details:
-      | Title                      | Content                     | Author   |
-      | Curious about Christianity | What questions do you have? | Mohammad |
+  And I am at the lessons pathway page
+  And the forum box is open
+  And a post with the following details:
+  | Title             | Content                           | Author   |
+  | Hi, I am new here | What can I learn with Kampung.sg? | Mohammad |
 
 Scenario: AI Reply to an empty post
-  Given I am on the forum post page
-  When the post has no comments
+  Given the post has no comments
   And the post is 3 days old
   Then I should see the latest comment is an AI comment
 

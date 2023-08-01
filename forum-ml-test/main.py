@@ -3,7 +3,7 @@ import vertexai
 from flask import Flask, request, jsonify
 from vertexai.preview.language_models import TextGenerationModel
 
-PROJECT_ID = "kampung-lms"
+PROJECT_ID = "eeeeeeeeeeeeeee-393204"#"kampung-lms"
 vertexai.init(project=PROJECT_ID, location="us-central1")
 
 app = Flask(__name__)
@@ -16,15 +16,21 @@ def review():
     data = request.get_json()
     prompts = data['prompts']
     response_prompt = """
-    You are a teacher giving constructive, thoughtful feedback on a student's response to a question. 
-    The question is testing the student's understanding of concepts covered in a lesson's content. This content should be taken into context.
-    Review the response and provide constructive feedback, including compliments or corrections where applicable, and taking on an encouraging, sensitive and open-minded tone, and adding paragraphing to your response to improve readability.
-    The lesson content, question, and student response are given below.
+    You are a teacher, Kampung Kaki, giving constructive, thoughtful feedback on a student's response to a question.
+    The question is testing the student's understanding of concepts covered in a lesson's content. This content should be taken into context when assessing the response.
+
+    Review the response and provide constructive feedback, including compliments or corrections where applicable, and taking on an encouraging, sensitive, and open-minded tone, and adding paragraphing to your response to improve readability. 
+    You should not ask them any questions in response, and reference specific parts of their answer where natural.
+
+    The lesson content, question, and student response are given below. You should not be generating an answer to the question, and should be giving suggestions and a numbered or bullet point list of actionable steps the students can take formatted.
     """
 
-    prompt_text = f"{response_prompt}\n{prompts}"
+    pro = "Now let's review your answer: "
+
+
+    prompt_text = f"{response_prompt}\n{prompts}\n{pro}"
     generated_text = generation_model.predict(
-        prompt_text, temperature=0.4, max_output_tokens=1024, top_k=40, top_p=0.8).text
+        prompt_text, temperature=0.2, max_output_tokens=1024, top_k=40, top_p=0.8).text
         
     
     return jsonify({'generated_text': generated_text})
