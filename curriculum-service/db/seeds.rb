@@ -24,8 +24,8 @@ Lesson.create!(lesson_id: "00003", topic_id: "00001", order_index: 2, title: "In
 Lesson.create!(lesson_id: "00004", topic_id: "00001", order_index: 3, title: "Interfaith Festivals and Celebrations", message: "Discover the vibrant tapestry of interfaith festivals and celebrations from around the world. Explore the cultural expressions, rituals, and symbolism that promote interfaith unity, inclusivity, and shared joy.")
 Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "Interfaith Peacebuilding and Reconciliation", message: "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.")
 
-qns = ["sample_qn 1","sample_qn 2"]
-Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
+qns = ["This is the first question.","sample_qn 2"]
+Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Why is Interfaith important?", qns: qns)
 Exercise.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 2", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")

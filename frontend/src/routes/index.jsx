@@ -55,7 +55,7 @@ export default (
         />
         <Route
           path="/curriculum/lesson/:lesson_id/exercise"
-          element={<Exercise />}
+          element={<Exercises />}
         />
       </Route>
 
@@ -67,7 +67,6 @@ export default (
       <Route path="/home" element={<HomePage />} />
       <Route path="/learnmore" element={<LearnMore />} />
       <Route path="*" element={<Navigate to="/error" />} />
-      <Route path="/exercise" element={<Exercises />} />
     </Routes>
   </Router>
 );

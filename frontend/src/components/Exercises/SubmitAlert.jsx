@@ -51,7 +51,7 @@ function SubmitAlert({ isOpen, onClose, onSubmit }) {
 
             <AlertDialogBody>
               {
-                "Do you want to submit your answer! You cannot change your response after it has been submitted!"
+                "Do you want to submit your answer? You cannot change your response after it has been submitted!"
               }
             </AlertDialogBody>
 

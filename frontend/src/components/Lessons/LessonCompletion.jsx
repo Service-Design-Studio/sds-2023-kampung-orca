@@ -15,8 +15,12 @@ export const LessonCompletion = () => {
 
   let back_to_topic = `/curriculum/topic/${data.topic}`;
   console.log(back_to_topic);
+  console.log(params.lesson_id);
   let pre_lesson = `/curriculum/lesson/${data.pre_lesson}`;
   let next_lesson = `/curriculum/lesson/${data.next_lesson}`;
+
+  let exercise = `/curriculum/lesson/${params.lesson_id}/exercise`;
+
   let show_previous_lesson = true;
   let show_next_lesson = true;
   if (pre_lesson === `/curriculum/lesson/null`) {
@@ -165,20 +169,22 @@ export const LessonCompletion = () => {
               </Text>
             </Stack>
           </Stack>
-          <Button
-            fontSize="24px"
-            borderRadius="20px"
-            bg="#ed2e38"
-            textColor="#FFFFFF"
-            _hover={{ bg: "#7c191c" }}
-            // onClick={onToggle}
-            size="lg"
-            height="60px"
-            shadow="md"
-            // leftIcon={<Icon as={BsChatDots} boxSize="7" />}
-          >
-            Test your understanding!
-          </Button>
+          <Link to={exercise}>
+            <Button
+              fontSize="24px"
+              borderRadius="20px"
+              bg="#ed2e38"
+              textColor="#FFFFFF"
+              _hover={{ bg: "#7c191c" }}
+              // onClick={onToggle}
+              size="lg"
+              height="60px"
+              shadow="md"
+              // leftIcon={<Icon as={BsChatDots} boxSize="7" />}
+            >
+              Test your understanding!
+            </Button>
+          </Link>
         </Stack>
 
         <Stack
