@@ -202,7 +202,7 @@ export const LessonView = () => {
                 </Text>
               </Stack>
 
-              <Stack flex="1">
+              <Stack flex="1" zIndex="10">
                 <Stack align="flex-end">
                   {currentPage < pages.length - 1 && (
                     <Button

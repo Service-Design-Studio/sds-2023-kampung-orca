@@ -13,20 +13,18 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
-import { BsFillTrashFill } from "react-icons/bs";
 
-function DeleteButton({ onDelete, ml }) {
+function SubmitAlert({ isOpen, onClose, onSubmit }) {
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
 
-  const handleDelete = () => {
-    onDelete();
+  const handleSubmit = () => {
+    onSubmit();
     onClose();
+
     toast({
-      title: "Deleted!",
-      description: "Your post or comment has been successfully deleted.",
+      title: "Answer submitted!",
+      description: "Your answer has been submitted successfully.",
       status: "success",
       duration: 3000,
       isClosable: true,
@@ -40,17 +38,6 @@ function DeleteButton({ onDelete, ml }) {
 
   return (
     <>
-      <Button
-        data-cy="post-delete-button"
-        bg="#FFFFFF"
-        shadow="md"
-        onClick={onOpen}
-        ml={ml}
-        width="60px"
-      >
-        <Icon as={BsFillTrashFill} />
-      </Button>
-
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -59,28 +46,21 @@ function DeleteButton({ onDelete, ml }) {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete
+              Submit
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              {"Are you sure? Kampung Kaki will reply soon!"}
+              {
+                "Do you want to submit your answer! You cannot change your response after it has been submitted!"
+              }
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button
-                ref={cancelRef}
-                onClick={handleCancel}
-                data-cy="cancel-delete-button"
-              >
+              <Button ref={cancelRef} onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button
-                colorScheme="red"
-                ml={3}
-                onClick={handleDelete}
-                data-cy="confirm-delete-button"
-              >
-                Delete
+              <Button colorScheme="red" ml={3} onClick={handleSubmit}>
+                Submit
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -90,4 +70,4 @@ function DeleteButton({ onDelete, ml }) {
   );
 }
 
-export default DeleteButton;
+export default SubmitAlert;

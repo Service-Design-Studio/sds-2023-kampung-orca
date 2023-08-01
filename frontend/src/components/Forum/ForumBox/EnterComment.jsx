@@ -2,10 +2,12 @@ import React from "react";
 import { Stack, Heading, Button, Avatar, Textarea } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 import { useParams } from "react-router-dom";
 
 export const EnterComment = ({ image, name, postId, fetchComments }) => {
+  const toast = useToast();
   const [valueContent, setValueContent] = React.useState("");
   const handleContentChange = (event) => setValueContent(event.target.value);
 
@@ -17,6 +19,14 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const handleButtonClick = () => {
     CreateComment(valueContent, postId);
     console.log(postId);
+    toast({
+      title: "Comment created!",
+      description: "Your comment has been successfully created.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      colorScheme: "red",
+    });
   };
 
   const CreateComment = async (con, id) => {
@@ -68,7 +78,7 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
             onClick={handleButtonClick}
             isDisabled={!valueContent}
             data-cy="post-comment-button"
-        >
+          >
             Comment
           </Button>
         </Stack>

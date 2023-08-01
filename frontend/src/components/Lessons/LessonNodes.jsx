@@ -80,7 +80,7 @@ const StraightLine = () => {
         ellipsizeMode="clip"
         numberOfLines="1"
         fontSize="100px"
-        data-cy = 'line'
+        data-cy="line"
       >
         {Array.from(Array(7).keys()).map((each) => {
           return "-";
@@ -99,7 +99,7 @@ const Node = ({
   lessonsAccess,
   isDisabled,
   height,
-  counter
+  counter,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -107,7 +107,6 @@ const Node = ({
   let statusColour;
   let cursorStyle;
   let iconComponent;
-
 
   if (isDisabled) {
     status = "Locked";
@@ -180,7 +179,7 @@ const Node = ({
             fontWeight="semibold"
             color={statusColour}
             textAlign="justify"
-            data-cy = 'popup'
+            data-cy="popup"
           >
             <Stack direction="row" justifyContent="space-between">
               <Text>{status}</Text>
@@ -237,7 +236,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           overflowX="scroll"
           direction="row"
           marginx="100px"
-          data-cy = 'scrollbar'
+          data-cy="scrollbar"
           sx={{
             "&::-webkit-scrollbar": {
               width: "8px",
@@ -254,7 +253,8 @@ export const LessonNodes = ({ lessonProgress }) => {
           }}
         >
           <Stack
-            height="500px"
+            height="100%"
+            maxheight="500px"
             width="fit-content"
             justify="flex-start"
             align="center"

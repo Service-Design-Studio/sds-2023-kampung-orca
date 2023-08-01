@@ -4,10 +4,12 @@ import { Input, Textarea, Button, Icon, Stack } from "@chakra-ui/react";
 import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 import { useParams } from "react-router-dom";
 
 function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
+  const toast = useToast();
   const [valueTitle, setValueTitle] = useState("");
   const [valueContent, setValueContent] = useState("");
 
@@ -26,6 +28,14 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
     await createPost(valueTitle, valueContent);
     setValueTitle("");
     setValueContent("");
+    toast({
+      title: "Post created!",
+      description: "Your post has been successfully created.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      colorScheme: "red",
+    });
   };
 
   const handleBackButtonClick = async () => {
@@ -77,7 +87,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
           _hover={{ bg: "#7c191c" }}
           leftIcon={<Icon as={BsFillPlusCircleFill} />}
           onClick={handleButtonClick}
-          data-cy = "create-new-post-button"
+          data-cy="create-new-post-button"
         >
           Create New Post
         </Button>
@@ -96,7 +106,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
             paddingX="20px"
           >
             <Input
-              data-cy='post-title-input'
+              data-cy="post-title-input"
               textColor="black"
               width="calc(100% - 0px)"
               variant="flushed"
@@ -106,7 +116,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               onChange={handleTitleChange}
             />
             <Textarea
-              data-cy='post-content-input'
+              data-cy="post-content-input"
               resize="none"
               textColor="black"
               width="calc(100% - 0px)"
@@ -141,7 +151,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               style={{ zIndex: 999 }}
               onClick={handlePostButtonClick}
               isDisabled={!valueTitle || !valueContent}
-              data-cy = "post-button"
+              data-cy="post-button"
             >
               Post
             </Button>

@@ -13,6 +13,8 @@ import {
   LessonCompletion,
 } from "../components/Lessons";
 
+import Exercises from "../components/Exercises/Exercises";
+
 import {
   CurriculumErrorPage,
   ErrorPage,
@@ -59,6 +61,7 @@ export default (
       <Route path="/home" element={<HomePage />} />
       <Route path="/learnmore" element={<LearnMore />} />
       <Route path="*" element={<Navigate to="/error" />} />
+      <Route path="/exercise" element={<Exercises />} />
     </Routes>
   </Router>
 );
