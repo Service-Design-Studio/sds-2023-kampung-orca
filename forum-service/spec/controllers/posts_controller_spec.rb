@@ -1,6 +1,6 @@
 # spec/controllers/posts_controller_spec.rb
 require 'rails_helper'
-
+#ensure change
 RSpec.describe PostsController, type: :controller do
   let(:lesson) { Lesson.create(title: 'Test Lesson') }
   let(:user) { User.create(user_id: '123', name: 'John Doe') }

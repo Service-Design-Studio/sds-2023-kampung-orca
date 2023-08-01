@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+#ensure change
 RSpec.describe CommentsController, type: :controller do
   let(:user) { User.create(user_id: 'user123', name: 'John Doe') }
   let(:admin_user) { User.create(user_id: 'admin', name: 'Admin User') }
