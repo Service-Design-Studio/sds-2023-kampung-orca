@@ -39,7 +39,7 @@ class InactivityCheckerController < ApplicationController
   end
 
   def check_for_inactivity_and_format_prompts(lesson_id)
-    puts "Checking inactivity for lesson ID: #{lesson_id}"
+    #puts "Checking inactivity for lesson ID: #{lesson_id}"
     posts_data = fetch_posts_and_comments(lesson_id)
  
     posts = posts_data
@@ -57,11 +57,17 @@ class InactivityCheckerController < ApplicationController
   
       last_comment_time = post["comments"]&.last ? Time.parse(post["comments"].last["created_at"]) : nil
       days_since_last_comment = last_comment_time ? (Time.now - last_comment_time) / (60 * 60 * 24) : nil
-  
+      
+      most_recent_comment = post["comments"].max_by { |comment| comment['created_at'] }
+      #puts most_recent_comment
+      unless most_recent_comment.nil?
+        user_id_of_most_recent_comment = most_recent_comment['user_id']
+      end
 
-      inactive = (no_comments && days_since_creation > 3) || (days_since_last_comment.to_i > 3)
+
+      inactive = (no_comments && days_since_creation > 3) || (days_since_last_comment.to_i > 3 && user_id_of_most_recent_comment != "admin") 
   
-      #puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}"
+      puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}, User Of Last Comment: #{user_id_of_most_recent_comment}"
   
       inactive
     end
