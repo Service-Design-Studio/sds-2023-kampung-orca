@@ -51,9 +51,11 @@ export const Exercises = () => {
 
   const isTextareaEmpty = value.trim().length === 0;
   const [data] = useGateway(url, "Get");
-  console.log(JSON.parse(data));
   if (!data) return;
   else {
+    const index = 1;
+    const qns = data.qns;
+    const title = data.title;
     return (
       <Stack
         justify="flex-start"
@@ -149,10 +151,9 @@ export const Exercises = () => {
                 },
               }}
             >
-              <Heading> Why is interfaith important?</Heading>
-              <Text> Question content (unseeded) </Text>
+              {/* <Heading> Why is interfaith important?</Heading>
+              <Text> Question content (unseeded) </Text> */}
 
-              {data.qns.map((exercise, index) => (
                 <ExerciseSection
                   headerSize={{
                     base: "22px",
@@ -166,11 +167,10 @@ export const Exercises = () => {
                     xl: "18px",
                     "2xl": "19px",
                   }}
-                  key={index}
-                  title={exercise}
-                  // content={qns}
+                  key={"0"}
+                  title={title}
+                  content={qns}
                 />
-              ))}
             </Stack>
           </Stack>
 
