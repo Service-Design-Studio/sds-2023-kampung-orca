@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
+import { Stack, Text, Button, Square, Box, Flex, HStack} from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
 import { motion } from "framer-motion";
@@ -47,17 +47,24 @@ const TopicPage = () => {
           alignItems="center"
           justifyContent="flex-end"
           padding="10px"
-          bg="red"
+          bg="#ed2e38"
           zIndex="9999"
         >
-          <Button
+         <Flex align="center"> {/* Use Flex container */}
+         
+         <Button
             onClick={handleLogout}
             variant="unstyled"
             fontSize="md"
             marginLeft="1"
+            backgroundColor="white"
+            display="flex"
+            alignItems="center"
           >
-            <FiLogOut size={40} />
+            Logout
+            <FiLogOut size={20} style={{ marginLeft: "5px" }} /> {/* FiLogOut icon */}
           </Button>
+          </Flex>
         </Box>
 
         <div
@@ -72,7 +79,7 @@ const TopicPage = () => {
             <Text
               fontSize={["32px", "48px"]}
               fontWeight="700"
-              fontFamily="Poppins"
+              fontFamily="Roboto"
               lineHeight="normal"
               color="#000000"
             >
@@ -83,7 +90,7 @@ const TopicPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <Text fontSize="36px" fontFamily="Poppins" lineHeight="normal">
+              <Text fontSize="36px" fontFamily="Roboto" lineHeight="normal">
                 Sharpen your interfaith knowledge
               </Text>
             </motion.div>
@@ -128,7 +135,7 @@ const TopicPage = () => {
               justifyContent="center"
               alignItems="center"
               paddingX="10vw"
-              paddingY="26vh"
+              paddingY="30vh"
               overflowY="hidden"
             >
               {topics.map((topic) => (
