@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { useDisclosure } from "@chakra-ui/react";
 import SubmitAlert from "./SubmitAlert";
 import ExerciseSection from "./ExerciseSection";
+import SendAnswer from "./SendAnswer";
 import {
   Stack,
   Button,
@@ -26,7 +27,7 @@ export const Exercises = () => {
     onClose: closeSubmitAlert,
   } = useDisclosure();
 
-  // const back_to_lesson_pathway = `/curriculum/topic/${topic_id}`;
+  const back_to_complete = `/curriculum/lesson/${params.lesson_id}/lesson_completed`;
 
   useEffect(() => {
     setIsSubmitted(false);
@@ -44,18 +45,20 @@ export const Exercises = () => {
     setValue(inputValue);
   };
 
-  const handleSubmit = () => {
-    setIsSubmitted(true);
-    closeSubmitAlert();
-  };
-
   const isTextareaEmpty = value.trim().length === 0;
   const [data] = useGateway(url, "Get");
   if (!data) return;
   else {
-    const index = 1;
     const qns = data.qns;
     const title = data.title;
+    const lesson_id = data.lesson_id;
+
+    const handleSubmit = () => {
+      setIsSubmitted(true);
+      closeSubmitAlert();
+      SendAnswer(lesson_id, qns, value);
+    };
+
     return (
       <Stack
         justify="flex-start"
@@ -64,7 +67,7 @@ export const Exercises = () => {
         width="100vw"
         background="#FFFFFF"
       >
-        <Header buttontext="Back to Lessons" />
+        <Header buttontext="Back to Lessons" path={back_to_complete} />
 
         <Stack
           direction="row"
@@ -151,26 +154,23 @@ export const Exercises = () => {
                 },
               }}
             >
-              {/* <Heading> Why is interfaith important?</Heading>
-              <Text> Question content (unseeded) </Text> */}
-
-                <ExerciseSection
-                  headerSize={{
-                    base: "22px",
-                    lg: "23px",
-                    xl: "24px",
-                    "2xl": "25px",
-                  }}
-                  contentSize={{
-                    base: "16px",
-                    lg: "17px",
-                    xl: "18px",
-                    "2xl": "19px",
-                  }}
-                  key={"0"}
-                  title={title}
-                  content={qns}
-                />
+              <ExerciseSection
+                headerSize={{
+                  base: "22px",
+                  lg: "23px",
+                  xl: "24px",
+                  "2xl": "25px",
+                }}
+                contentSize={{
+                  base: "16px",
+                  lg: "17px",
+                  xl: "18px",
+                  "2xl": "19px",
+                }}
+                key={"0"}
+                title={title}
+                content={qns}
+              />
             </Stack>
           </Stack>
 

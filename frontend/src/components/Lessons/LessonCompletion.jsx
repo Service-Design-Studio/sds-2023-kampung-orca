@@ -130,7 +130,7 @@ export const LessonCompletion = () => {
             shadow="lg"
           >
             <Stack
-              justify="flex-start"
+              justify="center"
               align="center"
               spacing={{
                 base: "18px",
@@ -171,6 +171,7 @@ export const LessonCompletion = () => {
           </Stack>
           <Link to={exercise}>
             <Button
+              width="100%"
               fontSize="24px"
               borderRadius="20px"
               bg="#ed2e38"
