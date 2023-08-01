@@ -290,7 +290,6 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}
                         {formatCreatedAt(comment.created_at)}
-                        {formatCreatedAt(comment.created_at)}
                       </Text>
                     </Stack>
                   </Stack>

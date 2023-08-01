@@ -172,9 +172,13 @@ class InactivityCheckerController < ApplicationController
   end
 
   def answer_question
+    lesson_id = params[:lesson_id]
+    question_content = params[:question_content]
+    answer_content = params[:answer_content]
+
     #need sth here to ask api gateway for lesson content yay done
     #TODO: make dynamic
-    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/lesson/00001/page?token=#{ENV["ML_TOKEN"]}")
+    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/#{lesson_id}/page?token=#{ENV["ML_TOKEN"]}")
     http = Net::HTTP.new(lesson_url.host, lesson_url.port)
     request = Net::HTTP::Get.new(lesson_url)
     request['Content-Type'] = 'application/json'
@@ -196,13 +200,37 @@ class InactivityCheckerController < ApplicationController
       end
     end
 
-    puts lesson_content
+    #puts lesson_content
+
+    question_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/lesson/00001/show_exercise?token=#{ENV["ML_TOKEN"]}")
+    http = Net::HTTP.new(question_url.host, question_url.port)
+    request = Net::HTTP::Get.new(question_url)
+    request['Content-Type'] = 'application/json'
+    #request.body = { prompts: prompts }.to_json
+
+    question_response = http.request(request)
+    question_data = JSON.parse(question_response.body)
+
+
+
+    puts question_data
+
+    # lesson_content = []
+    # if lesson_data["data"] && lesson_data["data"]["pages"]
+    #   lesson_data["data"]["pages"].each do |page|
+    #     if page["sections"]
+    #       page["sections"].each do |section|
+    #         lesson_content.concat(section["content"]) if section["content"]
+    #       end
+    #     end
+    #   end
+    # end
 
     #need sth here 
-    question = "Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
+    question = question_content#"Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
 
     #here also
-    answer = "‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
+    answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
 
     lesson = lesson_content.join("\n")
 
@@ -215,7 +243,7 @@ class InactivityCheckerController < ApplicationController
     request.body = { prompts: prompts }.to_json
 
     response = http.request(request)
-    render json: response.body
+    render json: question_data#response.body
 
   end
 
