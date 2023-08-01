@@ -11,7 +11,7 @@ import useCookie from "../../hooks/useCookie";
 
 export const LessonView = () => {
   const params = useParams();
-  const endpoint = window.location.pathname + "/page";
+  const endpoint = window.location.pathname + "/show_pages";
   console.log(endpoint);
   const [data] = useGateway(endpoint, "Get");
   const [currentPage, setCurrentPage] = useState(0);

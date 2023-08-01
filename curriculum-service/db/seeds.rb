@@ -26,6 +26,7 @@ Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "In
 
 qns = ["sample_qn 1","sample_qn 2"]
 Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
+Exercise.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 2", qns: qns)
 #ExerciseContent.create!(exercise_id: "00002", title: "help", qns: str.to_s)
 #ExerciseList.create!(exercise_id: "00002", topic_id: "00001", lesson_id: "00001")
 
