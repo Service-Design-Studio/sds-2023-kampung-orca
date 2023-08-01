@@ -59,38 +59,89 @@ const TopicPage = () => {
           </Button>
         </Box>
 
-        <Stack direction="column" spacing="10px" paddingTop="50px">
-          <Text
-            fontSize={["32px", "48px"]}
-            fontWeight="700"
-            fontFamily="Poppins"
-            lineHeight="normal"
-            color="#000000"
-          >
-            Welcome back, USER_ID!
-          </Text>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <Text fontSize="36px" fontFamily="Poppins" lineHeight="normal">
-              Sharpen your interfaith knowledge
+        <div
+          style={{
+            position: "fixed",
+            top: "100px",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          <Stack direction="column" spacing="10px">
+            <Text
+              fontSize={["32px", "48px"]}
+              fontWeight="700"
+              fontFamily="Poppins"
+              lineHeight="normal"
+              color="#000000"
+            >
+              Welcome back, USER_ID!
             </Text>
-          </motion.div>
-        </Stack>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <Text fontSize="36px" fontFamily="Poppins" lineHeight="normal">
+                Sharpen your interfaith knowledge
+              </Text>
+            </motion.div>
+          </Stack>
+        </div>
 
-        <Stack direction="row" spacing="50px" paddingY="50px">
-          {topics.map((topic) => (
-            <NavigationButton
-              key={topic.topic_id}
-              to={`/curriculum/topic/${topic.topic_id}`}
-              hideButton={false}
-              data={topic.topic_id}
-              topic_id={topic.topic_id} // Change the prop name here
-            ></NavigationButton>
-          ))}
-        </Stack>
+        <Box
+          width="100%"
+          maxWidth="1200px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          flex="1"
+          paddingY="15vh"
+        >
+          {/* Add a custom scrollbar div */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1200px",
+              overflowX: "auto",
+
+              scrollbarWidth: "thin",
+              scrollbarColor: "#888 #f0f0f0",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "#f0f0f0",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#888",
+                borderRadius: "10px",
+              },
+            }}
+          >
+            <Stack
+              direction="row"
+              spacing="50px"
+              width="max-content"
+              justifyContent="center"
+              alignItems="center"
+              paddingX="10vw"
+              paddingY="26vh"
+              overflowY="hidden"
+            >
+              {topics.map((topic) => (
+                <NavigationButton
+                  key={topic.topic_id}
+                  to={`/curriculum/topic/${topic.topic_id}`}
+                  hideButton={false}
+                  data={topic.topic_id}
+                  topic_id={topic.topic_id}
+                />
+              ))}
+            </Stack>
+          </div>
+        </Box>
       </Stack>
     )
   );
