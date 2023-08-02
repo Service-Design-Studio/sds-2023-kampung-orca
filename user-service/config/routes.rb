@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'google-callback' => 'users/user#google'
     post 'authorization_code_exchange' => 'users/user#authorization_code_exchange'
     post 'verify_token' => 'users/user#verify_token'
+    get 'profile' => 'users/user#profile'
   end
   # Defines the root path route ("/")
   # root "articles#index"

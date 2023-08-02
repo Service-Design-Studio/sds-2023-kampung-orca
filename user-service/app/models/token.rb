@@ -18,7 +18,7 @@ class Token < ActiveRecord::Base
       token: data['access_token'],
       expires_at: Time.now + data['expires_in'].to_i.seconds
     )
-    return  data["access_token"]
+    data['access_token']
   end
 
   def self.access_token
