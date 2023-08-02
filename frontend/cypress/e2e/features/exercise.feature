@@ -38,14 +38,14 @@
       And I have submitted my answer
       Then I should see AI comments about my answer
 
-    Scenario: Unable to edit my answer after submission
+    Scenario: Unable to resubmit an answer after submission
       Given I am on the exercise page
       And I have submitted my answer
-      Then I should not be able to edit my answer
+      Then I should not be able to submit my answer again
 
     Scenario: Unable to edit my answer even after leaving the exercise page
       Given I am on the exercise page
       And I have submitted my answer
       When I leave the exercise page
       And I come back to the exercise page
-      Then I should not be able to edit my answer
+      Then I should not be able submit my answer again
