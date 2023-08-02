@@ -21,7 +21,7 @@ Post.create([{ title: "Why are we using English as the standard language of Sing
 Comment.create([{ content: "I like Hari Raya!", post_id: 1, user_id: "2" }])
 Post.create([{ title: "Curious about Christianity", content: "What questions do you have?", user_id: "2", lesson_id: 1 }])
 Post.create([{ title: "Hi, I am new here.", content: "What can I learn with Kampung.sg?", user_id: "2", lesson_id: 1 , created_at: five_days_ago}])
-Post.create([{ title: "What should I learn about interfaith?", content: "I'm not sure exactly how I should start. Would be good if someone led me in the right direction.", user_id: "2", lesson_id: 1 , created_at: five_days_ago}])
-Comment.create([{ content: "I want to know more!", post_id: 5, user_id: "3" , created_at: three_days_ago}])
+Post.create([{ title: "What is the best way to approach interfaith dialogue?", content: "I'm not sure exactly how I should start. Would be good if someone led me in the right direction.", user_id: "2", lesson_id: 1 , created_at: five_days_ago}])
+Comment.create([{ content: "I want to know more!", post_id: 5, user_id: "3" , created_at: four_days_ago}])
 Comment.create([{ content: "I too am not sure about where to start with interfaith learning.", post_id: 7, user_id:3, created_at: three_days_ago}])
 
