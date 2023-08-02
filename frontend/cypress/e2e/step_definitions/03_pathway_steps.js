@@ -9,6 +9,7 @@ Given("that I am at the topic list page", () => {
   cy.visitRoute("topic list");
 });
 
+// FIXME - Update this to detect first topic according to new RESTful routes (Clayson)
 When("I click on topic {}", (topic_id) => {
   cy.get(`[data-cy="${topic_id}"]`).click();
 });
