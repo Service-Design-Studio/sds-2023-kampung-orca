@@ -9,16 +9,19 @@
 
 today = Time.zone.now.strftime("%Y-%m-%d %H:%M:%S")
 three_days_ago = (Time.zone.now - 3.days).strftime("%Y-%m-%d %H:%M:%S")
+five_days_ago = (Time.zone.now - 5.days).strftime("%Y-%m-%d %H:%M:%S")
+four_days_ago = (Time.zone.now - 4.days).strftime("%Y-%m-%d %H:%M:%S")
 
-Lesson.create([{ title: "Lesson 1"}, { title: "Lesson 2"}, {title: "Lesson 6"}])
+Lesson.create([{ title: "Lesson 1"}, { title: "Lesson 2"}])
 User.create([{ name: "Matt", email: "danny@gmail.com", user_id: "1" }, { name: "Mohammad", email: "mohi@gmail.com", user_id: "2" },
-{ name: "Aloysius", email: "aloy@gmail.com", user_id: "3" },{ name: "Thomas", email: "thomas@gmail.com", user_id: "admin" } ])
-Post.create([{ title: "Hello People 1", content: "I am saying hi 1", user_id: "1", lesson_id: 1 }])
-Post.create([{ title: "Hello People 1 in L2", content: "I am saying hi 1 in L2", user_id: "1", lesson_id: 2 }])
-Post.create([{ title: "Hihi in L1", content: "Moha saying hi 1 in L1", user_id: "2", lesson_id: 1 }])
-Comment.create([{ content: "yoyo", post_id: 1, user_id: "2" }])
-Post.create([{ title: "Hihi in L1", content: "Moha saying hi 1 in L1", user_id: "2", lesson_id: 1 }])
+{ name: "Aloysius", email: "aloy@gmail.com", user_id: "3" },{ name: "Kampung Kaki", email: "kaki@gmail.com", user_id: "admin" } ])
+Post.create([{ title: "What are the most fun religious festivals?", content: "Give me your top 5.", user_id: "1", lesson_id: 1 }])
+Post.create([{ title: "Create some games for people to learn about interfaith.", content: "They can be board games or card games or video games.", user_id: "1", lesson_id: 2 }])
+Post.create([{ title: "Why are we using English as the standard language of Singapore even though the national language is Malay?", content: "Is it colonialism?", user_id: "2", lesson_id: 1 }])
+Comment.create([{ content: "I like Hari Raya!", post_id: 1, user_id: "2" }])
 Post.create([{ title: "Curious about Christianity", content: "What questions do you have?", user_id: "2", lesson_id: 1 }])
-Post.create([{ title: "Hi, I am new here.", content: "What can I learn with Kampung.sg?", user_id: "2", lesson_id: 1 , created_at: three_days_ago}])
-Comment.create([{ content: "I want to know more!", post_id: 5, user_id: "3" }])
+Post.create([{ title: "Hi, I am new here.", content: "What can I learn with Kampung.sg?", user_id: "2", lesson_id: 1 , created_at: five_days_ago}])
+Post.create([{ title: "What is the best way to approach interfaith dialogue?", content: "I'm not sure exactly how I should start. Would be good if someone led me in the right direction.", user_id: "2", lesson_id: 1 , created_at: five_days_ago}])
+Comment.create([{ content: "I want to know more!", post_id: 5, user_id: "3" , created_at: four_days_ago}])
+Comment.create([{ content: "I too am not sure about where to start with interfaith learning.", post_id: 7, user_id:3, created_at: three_days_ago}])
 

@@ -79,7 +79,7 @@ class InactivityCheckerController < ApplicationController
       }
     end
   
-    ml_url = URI("#{ENV["ML_API"]}/generate-comment")
+    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/generate-comment")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
