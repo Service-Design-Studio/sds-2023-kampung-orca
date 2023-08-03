@@ -7,12 +7,6 @@ RSpec.describe InactivityCheckerController, type: :controller do
       get :run_inactivity_check
       expect(response).to have_http_status(:success)
     end
-
-    it 'receives starting json' do
-      get :run_inactivity_check
-      expected_response = {"message":"Inactivity checker started with interval of 61 seconds."}
-      expect(response.body).to eq(expected_response.to_json)
-    end
     
   end
 

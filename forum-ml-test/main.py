@@ -11,7 +11,7 @@ generation_model = TextGenerationModel.from_pretrained("text-bison@001")
 
 
 # handle reviewing lessons
-@app.route('/review', methods=['GET', 'POST'])
+@app.route('/ml/review', methods=['GET', 'POST'])
 def review():
     data = request.get_json()
     prompts = data['prompts']
@@ -37,7 +37,7 @@ def review():
 
 
 # comment
-@app.route('/generate-comment', methods=['POST'])
+@app.route('/ml/generate-comment', methods=['POST'])
 def generate_tips_and_advice():
     data = request.get_json()
     prompts = data['prompts']
