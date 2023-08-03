@@ -1,0 +1,7 @@
+Fatal Python error: init_signals: can't import signal
+Python runtime state: core initialized
+Traceback (most recent call last):
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 657, in _load_unlocked
+KeyboardInterrupt

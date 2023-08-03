@@ -7,7 +7,11 @@ class TopicController < ApplicationController
 
   def create
     # TODO: Use uuid or other id generators
-    id = rand(0...99_999)
+    if params[:topic_id] != nil
+      id = params[:topic_id]
+    else
+      id = rand(0...99_999)
+    end
     check = Topic.where(topic_id: id)
     while check.length != 0
       id = rand(0...99_999)
@@ -35,10 +39,10 @@ class TopicController < ApplicationController
   private
 
   def topic_params
-    params.permit(:topic_id, :title, :num_of_lessons)
+    params.permit(:topic_id, :title, :id)
   end
 
   def set_topic
-    @topic = Topic.find_by(topic_id: params[:id])
+    @topic = Topic.find_by(topic_id: params[:topic_id])
   end
 end

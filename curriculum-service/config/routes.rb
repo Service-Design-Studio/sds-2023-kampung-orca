@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Api::Engine => 'api-docs'
+  mount Rswag::Ui::Engine => 'api-docs'
   resources :topic, only: [:index, :show, :create, :destroy], param: :topic_id do
     member do
       get 'lesson/show_lessons', to: 'lesson#show_lessons'

@@ -1,0 +1,122 @@
+[
+  {
+    "consumer": {
+      "id": {
+        "RequestId": {
+          "endpoint": "/topic",
+          "method": "Post"
+        },
+        "ResourceReference": {
+          "QueryResource": "topic_id"
+        },
+        "ContainerName": "topic",
+        "PathContainerName": "topic",
+        "CandidateTypeNames": [
+          "topic"
+        ],
+        "AccessPathParts": {
+          "path": []
+        },
+        "ResourceName": "topic_id",
+        "ProducerParameterName": "id",
+        "IsNestedBodyResource": false,
+        "PrimitiveType": "String"
+      },
+      "parameterKind": "Query"
+    }
+  },
+  {
+    "consumer": {
+      "id": {
+        "RequestId": {
+          "endpoint": "/topic",
+          "method": "Post"
+        },
+        "ResourceReference": {
+          "QueryResource": "title"
+        },
+        "ContainerName": "topic",
+        "PathContainerName": "topic",
+        "CandidateTypeNames": [
+          "topic"
+        ],
+        "AccessPathParts": {
+          "path": []
+        },
+        "ResourceName": "title",
+        "ProducerParameterName": "title",
+        "IsNestedBodyResource": false,
+        "PrimitiveType": "String"
+      },
+      "parameterKind": "Query"
+    }
+  },
+  {
+    "consumer": {
+      "id": {
+        "RequestId": {
+          "endpoint": "/topic/{topic_id}",
+          "method": "Get"
+        },
+        "ResourceReference": {
+          "PathResource": {
+            "name": "topic_id",
+            "pathToParameter": [
+              "topic"
+            ],
+            "responsePath": {
+              "path": []
+            }
+          }
+        },
+        "ContainerName": "topic",
+        "PathContainerName": "topic",
+        "CandidateTypeNames": [
+          "topic"
+        ],
+        "AccessPathParts": {
+          "path": []
+        },
+        "ResourceName": "topic_id",
+        "ProducerParameterName": "id",
+        "IsNestedBodyResource": false,
+        "PrimitiveType": "String"
+      },
+      "parameterKind": "Path"
+    }
+  },
+  {
+    "consumer": {
+      "id": {
+        "RequestId": {
+          "endpoint": "/topic/{topic_id}",
+          "method": "Delete"
+        },
+        "ResourceReference": {
+          "PathResource": {
+            "name": "topic_id",
+            "pathToParameter": [
+              "topic"
+            ],
+            "responsePath": {
+              "path": []
+            }
+          }
+        },
+        "ContainerName": "topic",
+        "PathContainerName": "topic",
+        "CandidateTypeNames": [
+          "topic"
+        ],
+        "AccessPathParts": {
+          "path": []
+        },
+        "ResourceName": "topic_id",
+        "ProducerParameterName": "id",
+        "IsNestedBodyResource": false,
+        "PrimitiveType": "String"
+      },
+      "parameterKind": "Path"
+    }
+  }
+]

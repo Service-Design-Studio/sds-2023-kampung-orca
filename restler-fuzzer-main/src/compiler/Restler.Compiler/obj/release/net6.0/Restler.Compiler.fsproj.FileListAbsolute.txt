@@ -1,0 +1,10 @@
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/bin/release/net6.0/Sysprep.ps1
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/bin/release/net6.0/Restler.Compiler.deps.json
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/bin/release/net6.0/Restler.Compiler.dll
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/bin/release/net6.0/Restler.Compiler.pdb
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.fsproj.AssemblyReference.cache
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.AssemblyInfoInputs.cache
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.AssemblyInfo.fs
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.fsproj.CoreCompileInputs.cache
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.dll
+/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/release/net6.0/Restler.Compiler.pdb

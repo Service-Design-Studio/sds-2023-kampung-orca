@@ -1,0 +1,12 @@
+Restler Information: 0 : Starting task Compile...
+    DateTime=2023-08-03T10:46:38.4111979Z
+Restler Information: 0 : Launching 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../compiler/Restler.CompilerExe.dll" "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/config.json"'
+    DateTime=2023-08-03T10:46:39.3797766Z
+Restler Information: 0 : Process execution terminated in 00:00:00.6004743 with exit code 0x0: 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../compiler/Restler.CompilerExe.dll" "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/config.json"'
+    DateTime=2023-08-03T10:46:39.9829437Z
+Restler Information: 0 : (28887) dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../compiler/Restler.CompilerExe.dll" "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/config.json" exited with code: 0
+    DateTime=2023-08-03T10:46:39.9874157Z
+Restler Information: 0 : Task Compile succeeded.
+    DateTime=2023-08-03T10:46:39.9988629Z
+Restler Information: 0 : Collecting logs...
+    DateTime=2023-08-03T10:46:40.1659658Z

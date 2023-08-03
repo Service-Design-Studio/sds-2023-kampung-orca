@@ -1,0 +1,42 @@
+{
+  "/topic": {
+    "POST": {
+      "Query": [
+        {
+          "producer_endpoint": "",
+          "producer_method": "",
+          "producer_resource_name": "",
+          "consumer_param": "title"
+        },
+        {
+          "producer_endpoint": "",
+          "producer_method": "",
+          "producer_resource_name": "",
+          "consumer_param": "topic_id"
+        }
+      ]
+    }
+  },
+  "/topic/{topic_id}": {
+    "DELETE": {
+      "Path": [
+        {
+          "producer_endpoint": "",
+          "producer_method": "",
+          "producer_resource_name": "",
+          "consumer_param": "topic_id"
+        }
+      ]
+    },
+    "GET": {
+      "Path": [
+        {
+          "producer_endpoint": "",
+          "producer_method": "",
+          "producer_resource_name": "",
+          "consumer_param": "topic_id"
+        }
+      ]
+    }
+  }
+}

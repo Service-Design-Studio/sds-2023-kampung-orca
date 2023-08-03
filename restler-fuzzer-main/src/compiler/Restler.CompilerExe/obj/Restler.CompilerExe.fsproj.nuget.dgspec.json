@@ -1,0 +1,199 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.CompilerExe/Restler.CompilerExe.fsproj": {}
+  },
+  "projects": {
+    "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/Restler.Compiler.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/Restler.Compiler.fsproj",
+        "projectName": "Restler.Compiler",
+        "projectPath": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/Restler.Compiler.fsproj",
+        "packagesPath": "/home/qazer/.nuget/packages/",
+        "outputPath": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/qazer/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/home/qazer/.dotnet/sdk/6.0.412/FSharp/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1603"
+          ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "restoreLockedMode": true
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.ApplicationInsights": {
+              "target": "Package",
+              "version": "[2.14.0, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.FSharpLu": {
+              "target": "Package",
+              "version": "[0.11.7, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.FSharpLu.Json": {
+              "target": "Package",
+              "version": "[0.11.7, )",
+              "generatePathProperty": true
+            },
+            "NJsonSchema": {
+              "target": "Package",
+              "version": "[10.7.2, )",
+              "generatePathProperty": true
+            },
+            "NSwag.Core": {
+              "target": "Package",
+              "version": "[13.16.1, )",
+              "generatePathProperty": true
+            },
+            "NSwag.Core.Yaml": {
+              "target": "Package",
+              "version": "[13.16.1, )",
+              "generatePathProperty": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )",
+              "generatePathProperty": true
+            },
+            "Pluralize.NET.Core": {
+              "target": "Package",
+              "version": "[1.0.0, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/qazer/.dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.CompilerExe/Restler.CompilerExe.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.CompilerExe/Restler.CompilerExe.fsproj",
+        "projectName": "Restler.CompilerExe",
+        "projectPath": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.CompilerExe/Restler.CompilerExe.fsproj",
+        "packagesPath": "/home/qazer/.nuget/packages/",
+        "outputPath": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.CompilerExe/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/qazer/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/home/qazer/.dotnet/sdk/6.0.412/FSharp/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/Restler.Compiler.fsproj": {
+                "projectPath": "/home/qazer/kampung/restler-fuzzer-main/src/compiler/Restler.Compiler/Restler.Compiler.fsproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1603"
+          ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "restoreLockedMode": true
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.FSharpLu.Json": {
+              "target": "Package",
+              "version": "[0.11.7, )",
+              "generatePathProperty": true
+            },
+            "NJsonSchema": {
+              "target": "Package",
+              "version": "[10.7.2, )",
+              "generatePathProperty": true
+            },
+            "NSwag.Core": {
+              "target": "Package",
+              "version": "[13.16.1, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/qazer/.dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

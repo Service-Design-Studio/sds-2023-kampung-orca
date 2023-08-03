@@ -1,0 +1,6 @@
+Testing request: /topic GET
+Testing request: /topic GET
+Testing request: /topic POST
+Found 2 fuzzable blocks.
+Budget: 100 values per parameter.
+Fuzzing request block 6, type: restler_fuzzable_string

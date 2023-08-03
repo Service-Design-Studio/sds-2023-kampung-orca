@@ -1,0 +1,36 @@
+Restler Information: 0 : Starting task Test...
+    DateTime=2023-08-03T10:46:42.4086715Z
+Restler Information: 0 : Launching 'python --version'
+    DateTime=2023-08-03T10:46:44.5409617Z
+Restler Information: 0 : Launching 'python3 --version'
+    DateTime=2023-08-03T10:46:44.5410477Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0524453 with exit code 0x0: 'python3 --version'
+    DateTime=2023-08-03T10:46:44.6102030Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0525264 with exit code 0x0: 'python --version'
+    DateTime=2023-08-03T10:46:44.6102318Z
+Restler Information: 0 : (28959) python --version exited with code: 0
+    DateTime=2023-08-03T10:46:44.6143014Z
+Restler Information: 0 : (28958) python3 --version exited with code: 0
+    DateTime=2023-08-03T10:46:44.6143279Z
+Restler Information: 0 : Launching 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json"     --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2023-08-03T10:46:44.6251432Z
+Restler Information: 0 : Process execution terminated in 00:00:00.5364688 with exit code 0x0: 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json"     --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2023-08-03T10:46:45.1617236Z
+Restler Information: 0 : (29040) python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json"     --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test exited with code: 0
+    DateTime=2023-08-03T10:46:45.1617951Z
+Restler Information: 0 : Launching 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:46:45.1709864Z
+Restler Information: 0 : Process execution terminated in 00:00:00.2583606 with exit code 0x0: 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:46:45.4294480Z
+Restler Information: 0 : (29086) dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Test/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10 exited with code: 0
+    DateTime=2023-08-03T10:46:45.4295322Z
+Restler Information: 0 : Request coverage (successful / total): 4 / 4
+    DateTime=2023-08-03T10:46:45.5142030Z
+Restler Information: 0 : Attempted requests: 4 / 4
+    DateTime=2023-08-03T10:46:45.5142225Z
+Restler Information: 0 : No bugs were found.
+    DateTime=2023-08-03T10:46:45.5155324Z
+Restler Information: 0 : Task Test succeeded.
+    DateTime=2023-08-03T10:46:45.5208132Z
+Restler Information: 0 : Collecting logs...
+    DateTime=2023-08-03T10:46:45.6989099Z

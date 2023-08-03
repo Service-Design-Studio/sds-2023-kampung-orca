@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/topic": {
+      "get": {
+        "summary": "list topics",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create topic",
+        "parameters": [
+          {
+            "name": "topic_id",
+            "in": "query",
+            "description": "topic_id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "title",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_body": {
+                    "value": {
+                      "topic_id": "00001",
+                      "title": "Hello world!",
+                      "lessons_count": 5
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topic/{topic_id}": {
+      "parameters": [
+        {
+          "name": "topic_id",
+          "in": "path",
+          "description": "topic_id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show topic",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete topic",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002",
+      "description": "Staging environment"
+  }
+  ]
+}

@@ -1,0 +1,34 @@
+Restler Information: 0 : Starting task Fuzz...
+    DateTime=2023-08-03T10:52:21.3930524Z
+Restler Information: 0 : Launching 'python3 --version'
+    DateTime=2023-08-03T10:52:22.2502967Z
+Restler Information: 0 : Launching 'python --version'
+    DateTime=2023-08-03T10:52:22.2504029Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0553803 with exit code 0x0: 'python3 --version'
+    DateTime=2023-08-03T10:52:22.3141410Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0552845 with exit code 0x0: 'python --version'
+    DateTime=2023-08-03T10:52:22.3141894Z
+Restler Information: 0 : (30826) python3 --version exited with code: 0
+    DateTime=2023-08-03T10:52:22.3203836Z
+Restler Information: 0 : (30825) python --version exited with code: 0
+    DateTime=2023-08-03T10:52:22.3204193Z
+Restler Information: 0 : Launching 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode bfs-fast'
+    DateTime=2023-08-03T10:52:22.3330325Z
+Restler Information: 0 : Ctrl-C intercepted. Long running tasks should have exited. Uploading logs.
+    DateTime=2023-08-03T10:52:25.4296485Z
+Restler Information: 0 : Process execution terminated in 00:00:03.1060556 with exit code 0x0: 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode bfs-fast'
+    DateTime=2023-08-03T10:52:25.4391695Z
+Restler Information: 0 : (30914) python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2    --no_ssl   --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode bfs-fast exited with code: 0
+    DateTime=2023-08-03T10:52:25.4392082Z
+Restler Information: 0 : Launching 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:52:25.4446098Z
+Restler Information: 0 : Process execution terminated in 00:00:00.2970960 with exit code 0x0: 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:52:25.7417747Z
+Restler Information: 0 : (30981) dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Fuzz/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10 exited with code: 0
+    DateTime=2023-08-03T10:52:25.7418190Z
+Restler Information: 0 : Testing summary was not found.
+    DateTime=2023-08-03T10:52:25.7471406Z
+Restler Information: 0 : Task Fuzz succeeded.
+    DateTime=2023-08-03T10:52:25.7488074Z
+Restler Information: 0 : Collecting logs...
+    DateTime=2023-08-03T10:52:25.9086719Z

@@ -1,0 +1,40 @@
+Restler Information: 0 : Starting task FuzzLean...
+    DateTime=2023-08-03T10:50:02.3529329Z
+Restler Information: 0 : Ctrl-C intercepted. Long running tasks should have exited. Uploading logs.
+    DateTime=2023-08-03T10:50:04.3699951Z
+Restler Information: 0 : Launching 'python3 --version'
+    DateTime=2023-08-03T10:50:05.6115511Z
+Restler Information: 0 : Launching 'python --version'
+    DateTime=2023-08-03T10:50:05.6115826Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0390580 with exit code 0x0: 'python --version'
+    DateTime=2023-08-03T10:50:05.6542284Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0390865 with exit code 0x0: 'python3 --version'
+    DateTime=2023-08-03T10:50:05.6542643Z
+Restler Information: 0 : (29887) python3 --version exited with code: 0
+    DateTime=2023-08-03T10:50:05.6587160Z
+Restler Information: 0 : (29886) python --version exited with code: 0
+    DateTime=2023-08-03T10:50:05.6588416Z
+Restler Information: 0 : Launching 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2       --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2023-08-03T10:50:05.6724615Z
+Restler Information: 0 : Ctrl-C intercepted. Long running tasks should have exited. Uploading logs.
+    DateTime=2023-08-03T10:50:05.7153842Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0434877 with exit code 0x1: 'python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2       --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2023-08-03T10:50:05.7160032Z
+Restler Information: 0 : (29971) python3 -B "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../engine/restler.py" --restler_grammar "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/grammar.py" --custom_mutations "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --set_version 9.2.2       --settings "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule --time_budget 1.000000   --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test exited with code: 1
+    DateTime=2023-08-03T10:50:05.7160442Z
+Restler Error: 0 : Restler engine failed. See logs in /home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean directory for more information. 
+    DateTime=2023-08-03T10:50:05.7176127Z
+Restler Information: 0 : Launching 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:50:05.7226590Z
+Restler Information: 0 : Ctrl-C intercepted. Long running tasks should have exited. Uploading logs.
+    DateTime=2023-08-03T10:50:05.8722343Z
+Restler Information: 0 : Process execution terminated in 00:00:00.1507828 with exit code 0x82: 'dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2023-08-03T10:50:05.8734896Z
+Restler Information: 0 : (30011) dotnet "/home/qazer/kampung/restler-fuzzer-main/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean" --output_dir "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean/ResponseBuckets" --dictionary_file "/home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json" --max_instances_per_bucket 10 exited with code: 130
+    DateTime=2023-08-03T10:50:05.8735227Z
+Restler Error: 0 : Results analyzer for logs in /home/qazer/kampung/restler-fuzzer-main/test-curriculum/FuzzLean failed.
+    DateTime=2023-08-03T10:50:05.8742870Z
+Restler Information: 0 : Task FuzzLean failed.
+    DateTime=2023-08-03T10:50:05.8788346Z
+Restler Information: 0 : Collecting logs...
+    DateTime=2023-08-03T10:50:06.0520881Z

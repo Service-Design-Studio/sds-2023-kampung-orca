@@ -1,0 +1,90 @@
+
+Generation-1: Rendering Sequence-1
+
+	Request: 1 (Remaining candidate combinations: 2)
+	Request hash: 260f19573e894281fad610e2c54788f522fd9002
+
+		- restler_static_string: 'GET '
+		- restler_static_string: ''
+		- restler_static_string: '/'
+		- restler_static_string: 'topic'
+		- restler_static_string: '/'
+		- restler_fuzzable_string: 'fuzzstring'
+		- restler_static_string: ' HTTP/1.1\r\n'
+		- restler_static_string: 'Accept: application/json\r\n'
+		- restler_static_string: 'Host: localhost:3002\r\n'
+		+ restler_refreshable_authentication_token: [token_auth_method, token_refresh_interval, ...]
+		- restler_static_string: '\r\n'
+
+2023-08-03 18:46:44.796: Sending: 'GET /topic/fuzzstring HTTP/1.1\r\nAccept: application/json\r\nHost: localhost:3002\r\nContent-Length: 0\r\nUser-Agent: restler/9.2.2\r\n\r\n'
+
+2023-08-03 18:46:44.918: Received: 'HTTP/1.1 200 OK\r\nX-Frame-Options: SAMEORIGIN\r\nX-XSS-Protection: 0\r\nX-Content-Type-Options: nosniff\r\nX-Download-Options: noopen\r\nX-Permitted-Cross-Domain-Policies: none\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nContent-Type: application/json; charset=utf-8\r\nETag: W/"36974347f8b517ac14873392b72c75d0"\r\nCache-Control: max-age=0, private, must-revalidate\r\nX-Request-Id: 502a70cc-7db6-4471-afd1-e1d9a305337b\r\nX-Runtime: 0.025886\r\nServer-Timing: sql.active_record;dur=1.97, start_processing.action_controller;dur=0.06, instantiation.active_record;dur=1.83, process_action.action_controller;dur=7.10\r\nvary: Accept, Origin\r\nTransfer-Encoding: chunked\r\n\r\n43\r\n{"topic_id":"fuzzstring","title":"fuzzstring","lessons_count":null}\r\n0\r\n\r\n'
+
+
+Generation-1: Rendering Sequence-2
+
+	Request: 1 (Remaining candidate combinations: 2)
+	Request hash: 29c8c82495a0b2d3693b8a228bc2364d38df8543
+
+		- restler_static_string: 'DELETE '
+		- restler_static_string: ''
+		- restler_static_string: '/'
+		- restler_static_string: 'topic'
+		- restler_static_string: '/'
+		- restler_fuzzable_string: 'fuzzstring'
+		- restler_static_string: ' HTTP/1.1\r\n'
+		- restler_static_string: 'Accept: application/json\r\n'
+		- restler_static_string: 'Host: localhost:3002\r\n'
+		+ restler_refreshable_authentication_token: [token_auth_method, token_refresh_interval, ...]
+		- restler_static_string: '\r\n'
+
+2023-08-03 18:46:44.957: Sending: 'DELETE /topic/fuzzstring HTTP/1.1\r\nAccept: application/json\r\nHost: localhost:3002\r\nContent-Length: 0\r\nUser-Agent: restler/9.2.2\r\n\r\n'
+
+2023-08-03 18:46:45.000: Received: 'HTTP/1.1 200 OK\r\nX-Frame-Options: SAMEORIGIN\r\nX-XSS-Protection: 0\r\nX-Content-Type-Options: nosniff\r\nX-Download-Options: noopen\r\nX-Permitted-Cross-Domain-Policies: none\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nContent-Type: application/json; charset=utf-8\r\nETag: W/"71c0606784c4607e5f74a05c9608865f"\r\nCache-Control: max-age=0, private, must-revalidate\r\nX-Request-Id: c60459e0-a386-4b5d-8a7a-1e106da00add\r\nX-Runtime: 0.034627\r\nServer-Timing: start_processing.action_controller;dur=0.14, sql.active_record;dur=16.56, instantiation.active_record;dur=0.09, process_action.action_controller;dur=30.60\r\nvary: Accept, Origin\r\nTransfer-Encoding: chunked\r\n\r\n1c\r\n{"message":"Topic deleted!"}\r\n0\r\n\r\n'
+
+
+Generation-1: Rendering Sequence-3
+
+	Request: 1 (Remaining candidate combinations: 2)
+	Request hash: 3098fa3a25f530f652da31ed6f506f609b8cc44c
+
+		- restler_static_string: 'POST '
+		- restler_static_string: ''
+		- restler_static_string: '/'
+		- restler_static_string: 'topic'
+		- restler_static_string: '?'
+		- restler_static_string: 'topic_id='
+		- restler_fuzzable_string: 'fuzzstring'
+		- restler_static_string: '&'
+		- restler_static_string: 'title='
+		- restler_fuzzable_string: 'fuzzstring'
+		- restler_static_string: ' HTTP/1.1\r\n'
+		- restler_static_string: 'Accept: application/json\r\n'
+		- restler_static_string: 'Host: localhost:3002\r\n'
+		+ restler_refreshable_authentication_token: [token_auth_method, token_refresh_interval, ...]
+		- restler_static_string: '\r\n'
+
+2023-08-03 18:46:45.041: Sending: 'POST /topic?topic_id=fuzzstring&title=fuzzstring HTTP/1.1\r\nAccept: application/json\r\nHost: localhost:3002\r\nContent-Length: 0\r\nUser-Agent: restler/9.2.2\r\n\r\n'
+
+2023-08-03 18:46:45.073: Received: 'HTTP/1.1 200 OK\r\nX-Frame-Options: SAMEORIGIN\r\nX-XSS-Protection: 0\r\nX-Content-Type-Options: nosniff\r\nX-Download-Options: noopen\r\nX-Permitted-Cross-Domain-Policies: none\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nContent-Type: application/json; charset=utf-8\r\nETag: W/"36974347f8b517ac14873392b72c75d0"\r\nCache-Control: max-age=0, private, must-revalidate\r\nX-Request-Id: 7bad1ba2-f9e5-42b6-8f85-3599f612600e\r\nX-Runtime: 0.023525\r\nServer-Timing: start_processing.action_controller;dur=0.16, sql.active_record;dur=17.31, process_action.action_controller;dur=19.84\r\nvary: Accept, Origin\r\nTransfer-Encoding: chunked\r\n\r\n43\r\n{"topic_id":"fuzzstring","title":"fuzzstring","lessons_count":null}\r\n0\r\n\r\n'
+
+
+Generation-1: Rendering Sequence-4
+
+	Request: 1 (Remaining candidate combinations: 2)
+	Request hash: f6f58d9edf1cbbcd26476ad2a147f66a630e7f05
+
+		- restler_static_string: 'GET '
+		- restler_static_string: ''
+		- restler_static_string: '/'
+		- restler_static_string: 'topic'
+		- restler_static_string: ' HTTP/1.1\r\n'
+		- restler_static_string: 'Accept: application/json\r\n'
+		- restler_static_string: 'Host: localhost:3002\r\n'
+		+ restler_refreshable_authentication_token: [token_auth_method, token_refresh_interval, ...]
+		- restler_static_string: '\r\n'
+
+2023-08-03 18:46:45.117: Sending: 'GET /topic HTTP/1.1\r\nAccept: application/json\r\nHost: localhost:3002\r\nContent-Length: 0\r\nUser-Agent: restler/9.2.2\r\n\r\n'
+
+2023-08-03 18:46:45.130: Received: 'HTTP/1.1 200 OK\r\nX-Frame-Options: SAMEORIGIN\r\nX-XSS-Protection: 0\r\nX-Content-Type-Options: nosniff\r\nX-Download-Options: noopen\r\nX-Permitted-Cross-Domain-Policies: none\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nContent-Type: application/json; charset=utf-8\r\nETag: W/"288c9d822bff8bb8c28f71b2180007b8"\r\nCache-Control: max-age=0, private, must-revalidate\r\nX-Request-Id: c22853cd-9f20-4015-ac9a-47e90cb0ce35\r\nX-Runtime: 0.005499\r\nServer-Timing: start_processing.action_controller;dur=0.11, sql.active_record;dur=1.04, instantiation.active_record;dur=0.10, process_action.action_controller;dur=2.42\r\nvary: Accept, Origin\r\nTransfer-Encoding: chunked\r\n\r\n2af\r\n[{"topic_id":"00001","title":"Sample Topic 1","lessons_count":5},{"topic_id":"00002","title":"Sample Topic 2","lessons_count":null},{"topic_id":"00003","title":"Sample Topic 2","lessons_count":null},{"topic_id":"00004","title":"Sample Topic 4","lessons_count":null},{"topic_id":"00005","title":"Sample Topic 5","lessons_count":null},{"topic_id":"1006005","title":"help","lessons_count":null},{"topic_id":"14428","title":"help","lessons_count":null},{"topic_id":"53702","title":null,"lessons_count":null},{"topic_id":"adsca","title":"vasacfa","lessons_count":null},{"topic_id":"fuzzstring","title":"fuzzstring","lessons_count":null},{"topic_id":"qazer","title":"ad","lessons_count":null}]\r\n0\r\n\r\n'
+

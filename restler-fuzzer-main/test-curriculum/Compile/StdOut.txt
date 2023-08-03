@@ -1,0 +1,116 @@
+[3/8/2023 6:46:39 pm] Generating grammar...
+[3/8/2023 6:46:39 pm] Getting requests...
+[3/8/2023 6:46:39 pm] Getting dependencies...
+[3/8/2023 6:46:39 pm] Getting path consumers...
+[3/8/2023 6:46:39 pm] Getting query consumers...
+[3/8/2023 6:46:39 pm] Getting header consumers...
+[3/8/2023 6:46:39 pm] Getting body consumers...
+[3/8/2023 6:46:39 pm] Getting producers...
+[3/8/2023 6:46:39 pm] Done processing producers
+[3/8/2023 6:46:39 pm] Compute dependencies
+[[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Get }] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+
+
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Second pass dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Delete }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic/{topic_id}"
+  xMsPath = None
+  method = Get }
+[3/8/2023 6:46:39 pm] Done dependencies for request { endpoint = "/topic"
+  xMsPath = None
+  method = Post }
+[3/8/2023 6:46:39 pm] Assigning equality constraints...
+[3/8/2023 6:46:39 pm] Getting ordering constraints...
+[3/8/2023 6:46:39 pm] Dependency analysis completed.
+[3/8/2023 6:46:39 pm] Generating request primitives...
+Writing new dictionary to /home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile/dict.json
+[3/8/2023 6:46:39 pm] Generating python grammar...
+[3/8/2023 6:46:39 pm] Get requests
+[3/8/2023 6:46:39 pm] Done get requests
+[3/8/2023 6:46:39 pm] Done generating python grammar.
+Workflow completed.  See /home/qazer/kampung/restler-fuzzer-main/test-curriculum/Compile for REST-ler grammar.

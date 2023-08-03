@@ -1,0 +1,11 @@
+{
+  "failedRequestsCount": 2,
+  "bugCount": 0,
+  "codeCounts": {
+    "0": 1,
+    "422": 1
+  },
+  "errorBuckets": {
+    "(422, a3035822-881a-49b9-87c8-070e8d1adfaf)": 1
+  }
+}
