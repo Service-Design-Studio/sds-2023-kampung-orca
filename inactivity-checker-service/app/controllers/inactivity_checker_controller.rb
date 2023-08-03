@@ -79,7 +79,7 @@ class InactivityCheckerController < ApplicationController
       }
     end
   
-    ml_url = URI("#{ENV["ML_API"]}/generate-comment")
+    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/generate-comment")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
@@ -202,49 +202,25 @@ class InactivityCheckerController < ApplicationController
 
     #puts lesson_content
 
-    question_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/lesson/00001/show_exercise?token=#{ENV["ML_TOKEN"]}")
-    http = Net::HTTP.new(question_url.host, question_url.port)
-    request = Net::HTTP::Get.new(question_url)
-    request['Content-Type'] = 'application/json'
-    #request.body = { prompts: prompts }.to_json
-
-    question_response = http.request(request)
-    question_data = JSON.parse(question_response.body)
-
-
-
-    puts question_data
-
-    # lesson_content = []
-    # if lesson_data["data"] && lesson_data["data"]["pages"]
-    #   lesson_data["data"]["pages"].each do |page|
-    #     if page["sections"]
-    #       page["sections"].each do |section|
-    #         lesson_content.concat(section["content"]) if section["content"]
-    #       end
-    #     end
-    #   end
-    # end
-
     #need sth here 
-    question = question_content#"Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
+    question = "Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
 
     #here also
-    answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
+    answer = "I will host an interfaith dialogue event in my neighborhood. We will host it in the community centre, and I will invite religious leaders from the nearby houses of worship to come and take part. I will get the religious leaders to talk to each other on stage, while an audience watches and can ask questions once they are all done."
 
     lesson = lesson_content.join("\n")
 
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
 
-    ml_url = URI("#{ENV["ML_API"]}/review")
+    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/review")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
     request.body = { prompts: prompts }.to_json
 
     response = http.request(request)
-    render json: question_data#response.body
+    render json: response.body
+    response.body
 
   end
-
 end
