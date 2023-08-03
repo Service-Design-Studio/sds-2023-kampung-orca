@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :lesson , only: [:index, :show, :create, :destroy]
   resources :exercise , only: [:index, :show, :create, :destroy]
   resources :page, only: [:index, :show, :create, :destroy]
-  resources :entries, only: [:new, :create, :show, :index]
+  resources :entries, only: [:create, :show, :index]
 
   resources :user, only: [:create] do
     member do

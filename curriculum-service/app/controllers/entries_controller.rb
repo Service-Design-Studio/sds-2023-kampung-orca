@@ -1,19 +1,17 @@
+require 'securerandom'
+
 class EntriesController < ApplicationController
   before_action :set_entry, only: %i[show destroy]
   def index
-    entrys = entry.all
+    entrys = Entry.all
     render json: entrys
   end
 
   def create
-    id = rand(0...99_999)
-    check = Entry.find(id)
-    while check.length != 0
-      id = rand(0...99_999)
-      check = Entry.find(id)
-    end
-    entry = Entry.create!(entry_id: id, exercise_id: params[:exercise_id], user_id: params[:user_id],
-                                user_answer: params[:user_answer], ml_answer: params[:ml_answer])
+    ml_result = answer_question
+
+    entry = Entry.create!(entry_id:  generate_uuid, exercise_id: params[:exercise_id], user_id: params[:user_id],
+                                user_answer: params[:user_answer], ml_answer:  ml_result)
     if entry
       render json: entry
     else
@@ -22,13 +20,17 @@ class EntriesController < ApplicationController
   end
 
   def show
-    render json: entry
+    if @entry
+      render json: @entry
+    else
+      render json: { error: 'Entry not found' }, status: :not_found
+    end
   end
 
   private
 
   def entry_params
-    params.require(:entry).permit(:user_answer, :ml_answer, :exercise_id, :user_id, :entry_id)
+    params.require(:entry).permit(:user_answer, :exercise_id, :user_id, :entry_id)
   end
 
   def set_entry
@@ -39,7 +41,71 @@ class EntriesController < ApplicationController
       render json: { error: 'Entry not found' }, status: :not_found
     end
   end
+
+  def generate_uuid
+    SecureRandom.uuid
+  end
+
+  def answer_question
+    lesson_id = params[:exercise_id]
+
+    exercise = Exercise.find_by(lesson_id: lesson_id)
+
+    question_content = exercise.qns
+    answer_content = params[:user_answer]
+  
+    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/00001/page?token=#{ENV["ML_TOKEN"]}")
+    http = Net::HTTP.new(lesson_url.host, lesson_url.port)
+    request = Net::HTTP::Get.new(lesson_url)
+    request['Content-Type'] = 'application/json'
+    #request.body = { prompts: prompts }.to_json
+  
+    lesson_response = http.request(request)
+    puts "Lesson Response Body: #{lesson_response.body}"
+    lesson_data = JSON.parse(lesson_response.body)
+  
+    #puts lesson_data
+  
+    lesson_content = []
+    if lesson_data["data"] && lesson_data["data"]["pages"]
+      lesson_data["data"]["pages"].each do |page|
+        if page["sections"]
+          page["sections"].each do |section|
+            lesson_content.concat(section["content"]) if section["content"]
+          end
+        end
+      end
+    end
+  
+    
+  
+    #need sth here 
+    question = question_content#"Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
+  
+    #here also
+    answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
+  
+    lesson = lesson_content.join("\n")
+  
+    prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
+  
+    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/review")
+    http = Net::HTTP.new(ml_url.host, ml_url.port)
+    request = Net::HTTP::Post.new(ml_url)
+    request['Content-Type'] = 'application/json'
+    request.body = { prompts: prompts }.to_json
+  
+    response = http.request(request)
+    render json: question_data#response.body
+  
+    response_data = JSON.parse(response.body)
+    ml_result = response_data["generated text"]
+  
+  
+  end
 end
+
+
 
   # def destroy
   #   entry&.destroy(params[:id])
