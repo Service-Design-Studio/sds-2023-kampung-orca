@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_061946) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_090425) do
+  create_table "entries", id: false, force: :cascade do |t|
+    t.text "entry_id", null: false
+    t.string "user_answer"
+    t.string "ml_answer"
+    t.integer "exercise_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_id"], name: "index_entries_on_entry_id", unique: true
+    t.index ["exercise_id"], name: "index_entries_on_exercise_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
   create_table "exercises", id: false, force: :cascade do |t|
     t.text "exercise_id", null: false
     t.text "topic_id"
@@ -53,4 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_061946) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "entries", "exercises"
+  add_foreign_key "entries", "users"
 end
