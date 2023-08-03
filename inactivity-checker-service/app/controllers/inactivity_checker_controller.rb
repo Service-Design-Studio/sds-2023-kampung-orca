@@ -171,56 +171,5 @@ class InactivityCheckerController < ApplicationController
     end
   end
 
-  def answer_question
-    lesson_id = params[:lesson_id]
-    question_content = params[:question_content]
-    answer_content = params[:answer_content]
-
-    #need sth here to ask api gateway for lesson content yay done
-    #TODO: make dynamic
-    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/#{lesson_id}/page?token=#{ENV["ML_TOKEN"]}")
-    http = Net::HTTP.new(lesson_url.host, lesson_url.port)
-    request = Net::HTTP::Get.new(lesson_url)
-    request['Content-Type'] = 'application/json'
-    #request.body = { prompts: prompts }.to_json
-
-    lesson_response = http.request(request)
-    lesson_data = JSON.parse(lesson_response.body)
-
-    #puts lesson_data
-
-    lesson_content = []
-    if lesson_data["data"] && lesson_data["data"]["pages"]
-      lesson_data["data"]["pages"].each do |page|
-        if page["sections"]
-          page["sections"].each do |section|
-            lesson_content.concat(section["content"]) if section["content"]
-          end
-        end
-      end
-    end
-
-    #puts lesson_content
-
-    #need sth here 
-    question = "Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
-
-    #here also
-    answer = "I will host an interfaith dialogue event in my neighborhood. We will host it in the community centre, and I will invite religious leaders from the nearby houses of worship to come and take part. I will get the religious leaders to talk to each other on stage, while an audience watches and can ask questions once they are all done."
-
-    lesson = lesson_content.join("\n")
-
-    prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
-
-    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/review")
-    http = Net::HTTP.new(ml_url.host, ml_url.port)
-    request = Net::HTTP::Post.new(ml_url)
-    request['Content-Type'] = 'application/json'
-    request.body = { prompts: prompts }.to_json
-
-    response = http.request(request)
-    render json: response.body
-    response.body
-
-  end
+  
 end
