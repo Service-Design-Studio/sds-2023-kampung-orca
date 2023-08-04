@@ -10,26 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_090425) do
-  create_table "entries", id: false, force: :cascade do |t|
-    t.text "entry_id", null: false
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_042058) do
+  create_table "entries", primary_key: "entry_id", id: :text, force: :cascade do |t|
     t.string "user_answer"
     t.string "ml_answer"
-    t.integer "exercise_id", null: false
-    t.integer "user_id", null: false
+    t.string "user_id"
+    t.text "exercise_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["entry_id"], name: "index_entries_on_entry_id", unique: true
-    t.index ["exercise_id"], name: "index_entries_on_exercise_id"
-    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
-  create_table "exercises", id: false, force: :cascade do |t|
-    t.text "exercise_id", null: false
+  create_table "exercises", primary_key: "exercise_id", id: :text, force: :cascade do |t|
     t.text "topic_id"
     t.text "lesson_id"
     t.string "title"
     t.string "qns"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_exercises_on_exercise_id", unique: true
   end
 
@@ -59,13 +57,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_090425) do
     t.index ["topic_id"], name: "index_topics_on_topic_id", unique: true
   end
 
-  create_table "users", id: false, force: :cascade do |t|
-    t.string "user_id", null: false
+  create_table "users", primary_key: "user_id", id: :string, force: :cascade do |t|
     t.string "lessons_access"
     t.string "exercises_access"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
-  add_foreign_key "entries", "exercises"
-  add_foreign_key "entries", "users"
+  add_foreign_key "entries", "exercises", primary_key: "exercise_id"
+  add_foreign_key "entries", "users", primary_key: "user_id"
 end

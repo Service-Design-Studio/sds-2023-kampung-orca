@@ -10,7 +10,14 @@ class EntriesController < ApplicationController
   def create
     ml_result = answer_question
 
-    entry = Entry.create!(entry_id:  generate_uuid, exercise_id: params[:exercise_id], user_id: params[:user_id],
+    exercise = Exercise.find_by(exercise_id: params[:exercise_id])
+    
+
+    user = User.find_by(user_id: params[:user_id])
+
+    puts user
+
+    entry = Entry.create!(entry_id: generate_uuid, exercise: exercise, user: user,
                                 user_answer: params[:user_answer], ml_answer:  ml_result)
     if entry
       render json: entry
@@ -49,33 +56,16 @@ class EntriesController < ApplicationController
   def answer_question
     lesson_id = params[:exercise_id]
 
+    lesson = Lesson.find_by(lesson_id: lesson_id)
+    pages = Page.where(lesson_id: lesson_id)
+
     exercise = Exercise.find_by(lesson_id: lesson_id)
 
-    question_content = exercise.qns
+    question_content = exercise.qns.to_s
     answer_content = params[:user_answer]
   
-    lesson_url = URI("#{ENV["GATEWAY_URL"]}/curriculum/00001/page?token=#{ENV["ML_TOKEN"]}")
-    http = Net::HTTP.new(lesson_url.host, lesson_url.port)
-    request = Net::HTTP::Get.new(lesson_url)
-    request['Content-Type'] = 'application/json'
-    #request.body = { prompts: prompts }.to_json
-  
-    lesson_response = http.request(request)
-    puts "Lesson Response Body: #{lesson_response.body}"
-    lesson_data = JSON.parse(lesson_response.body)
-  
-    #puts lesson_data
-  
-    lesson_content = []
-    if lesson_data["data"] && lesson_data["data"]["pages"]
-      lesson_data["data"]["pages"].each do |page|
-        if page["sections"]
-          page["sections"].each do |section|
-            lesson_content.concat(section["content"]) if section["content"]
-          end
-        end
-      end
-    end
+    lesson_content = pages.pluck(:sections).flatten.compact
+
   
     
   
@@ -86,6 +76,10 @@ class EntriesController < ApplicationController
     answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
   
     lesson = lesson_content.join("\n")
+
+    # puts "Lesson" + lesson 
+    # puts "Question" + question
+    # puts "Answer" + answer
   
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
   
@@ -96,11 +90,13 @@ class EntriesController < ApplicationController
     request.body = { prompts: prompts }.to_json
   
     response = http.request(request)
-    render json: question_data#response.body
+    #render json: question_data#response.body
   
     response_data = JSON.parse(response.body)
-    ml_result = response_data["generated text"]
-  
+    ml_result = response_data["generated_text"]
+
+    puts response_data
+    return ml_result
   
   end
 end
