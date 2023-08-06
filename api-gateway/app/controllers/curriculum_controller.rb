@@ -39,5 +39,5 @@ class CurriculumController < ApplicationController
     end
     p "Data received: " + request.method.capitalize + " " + url + " " + data.to_json
     render json: {token: @current_user[:token], data: data}
-  end 
+  end
 end

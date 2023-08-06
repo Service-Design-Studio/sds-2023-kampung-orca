@@ -56,7 +56,7 @@ export const Exercises = () => {
     const handleSubmit = () => {
       setIsSubmitted(true);
       closeSubmitAlert();
-      SendAnswer(lesson_id, qns, value);
+      SendAnswer(lesson_id, value);
     };
 
     return (
