@@ -10,8 +10,8 @@ class EntriesController < ApplicationController
   def create
     ml_result = answer_question
 
-    exercise = Exercise.find_by(exercise_id: params[:exercise_id])
-    
+    exercise = Exercise.find_by(lesson_id: params[:lesson_id])
+
 
     user = User.find_by(user_id: params[:user_id])
 
@@ -54,50 +54,51 @@ class EntriesController < ApplicationController
   end
 
   def answer_question
-    lesson_id = params[:exercise_id]
+    lesson_id = params[:lesson_id]
 
     lesson = Lesson.find_by(lesson_id: lesson_id)
     pages = Page.where(lesson_id: lesson_id)
 
     exercise = Exercise.find_by(lesson_id: lesson_id)
 
+    p params, lesson_id
     question_content = exercise.qns.to_s
     answer_content = params[:user_answer]
-  
+
     lesson_content = pages.pluck(:sections).flatten.compact
 
-  
-    
-  
-    #need sth here 
+
+    puts params[:user_answer]
+
+    #need sth here
     question = question_content#"Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
-  
+
     #here also
     answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
-  
+
     lesson = lesson_content.join("\n")
 
-    # puts "Lesson" + lesson 
-    # puts "Question" + question
-    # puts "Answer" + answer
-  
+    puts "Lesson" + lesson
+    puts "Question" + question
+    puts "Answer" + answer
+
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
-  
+
     ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/review")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
     request.body = { prompts: prompts }.to_json
-  
+
     response = http.request(request)
     #render json: question_data#response.body
-  
+
     response_data = JSON.parse(response.body)
     ml_result = response_data["generated_text"]
 
     puts response_data
     return ml_result
-  
+
   end
 end
 
