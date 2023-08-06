@@ -67,7 +67,7 @@ export const Exercises = () => {
         width="100vw"
         background="#FFFFFF"
       >
-        <Header buttontext="Back to Lessons" path={back_to_complete} />
+        <Header showBack showLogout buttontext="Back to Lessons" path={back_to_complete} />
 
         <Stack
           direction="row"
@@ -310,7 +310,7 @@ export const Exercises = () => {
                   <Text>Great response!</Text>
                 ) : (
                   <Text>
-                    Here are some things to consider as you answer on this
+                    Here are some things to consider as you answer this
                     question!
                   </Text>
                 )}

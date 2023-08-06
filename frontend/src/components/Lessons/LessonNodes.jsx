@@ -215,7 +215,7 @@ export const LessonNodes = ({ lessonProgress }) => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Main" path={"/curriculum/topic"} />
+      <Header showBack showLogout buttontext="Back to Main" path={"/curriculum/topic"} />
 
       <Stack
         width="90vw"

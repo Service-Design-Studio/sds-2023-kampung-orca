@@ -55,7 +55,7 @@ export const LessonView = () => {
       width="100vw"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Lessons" path={back_to_lesson_pathway} />
+      <Header showBack showLogout buttontext="Back to Lessons" path={back_to_lesson_pathway} />
 
       <Stack
         direction="row"

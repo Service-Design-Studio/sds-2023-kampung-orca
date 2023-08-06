@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box } from "@chakra-ui/react";
+import { Stack, Text, Button, Square, Box, Heading } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
 import { motion } from "framer-motion";
 import { FiLogOut ,FiGrid, FiList } from "react-icons/fi";
 import NavigationButton from "./NavigationButton";
+import { Header } from "../Header";
 
 
 
@@ -21,19 +22,26 @@ const TopicPage = () => {
     window.location.href = "/";
   };
   return (
-    topics && (
-      <Stack
+
+    <Stack
+    justify="flex-start"
+    align="flex-start"
+    height="100vh"
+    width="100vw"
+    background="#FFFFFF"
+  >
+    <Header showLogout path="/" />
+
+    <Stack
+        paddingX="91px"
+        paddingY="40px"
         direction="column"
-        justify="center"
         align="center"
-        spacing="0"
-        width="100%"
-        minHeight="100vh"
-        color="#000"
-        textAlign="center"
-        fontFamily="Arial"
-        position="relative"
-        overflow="auto"
+        justify="flex-start"
+        spacing="20px"
+        width="100vw"
+        height={`calc(100vh - 120px)`}
+        maxWidth="100%"
         style={{
           backgroundImage:
             'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
@@ -41,50 +49,17 @@ const TopicPage = () => {
           backgroundPosition: "center",
         }}
       >
-        <Box
-        position="fixed"
-        top="0"
-        left="0"
-        width="100%"
-        display="flex"
-        alignItems="center"
-        justifyContent="flex-end"
-        padding="10px"
-        bg="red"
-        zIndex="9999"
-      >
-        <Button
-          onClick={handleLogout}
-          variant="unstyled"
-          fontSize="md"
-          marginLeft="1"
-        >
-          <FiLogOut size={40} />
-        </Button>
-      </Box>
-
-        <Stack direction="column" spacing="10px" paddingTop="50px">
-        <Text
-          fontSize={["32px", "48px"]} 
-          fontWeight="700"
-          fontFamily="Poppins"
-          lineHeight="normal"
-          color="#000000"
-        >
-          Welcome back, USER_ID!
-        </Text>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <Text fontSize="36px" fontFamily="Poppins" lineHeight="normal">
+        <Stack align="center" borderRadius="20px" bg="#FFFFFF" shadow="lg" paddingX="50px" paddingY="30px">
+          <Heading fontSize="60px">
+            Welcome back!
+          </Heading>
+          <Text fontSize="30px" fontStyle="italic">
             Sharpen your interfaith knowledge
           </Text>
-        </motion.div>
-      
         </Stack>
-
+        
+      
+      
         <Stack direction="row" spacing="50px" paddingY="50px">
           {topics.map((topic) => (
             <NavigationButton
@@ -99,7 +74,8 @@ const TopicPage = () => {
           ))}
         </Stack>
       </Stack>
-    )
+      </Stack>
+    
   );
 };
 

@@ -37,7 +37,7 @@ export const LessonCompletion = () => {
       width="100vw"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Lessons" path={back_to_topic} />
+      <Header showLogout showBack buttontext="Back to Lessons" path={back_to_topic} />
 
       <Stack //main body stack with the 2 buttons and lesson complete box
         paddingX="91px"

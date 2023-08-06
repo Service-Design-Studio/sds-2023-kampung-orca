@@ -1,6 +1,10 @@
 import React from "react";
-import { Box, Text, Stack } from "@chakra-ui/react";
+import { Box, Text, Stack, Button, Heading, Icon } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { GiSpellBook } from "react-icons/gi";
+import { MdOutlineHistoryEdu } from "react-icons/md";
+import { PiBookBookmarkBold, PiScalesBold, PiHandsPrayingBold, PiChatsCircleBold } from "react-icons/pi";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import "./NavigationButton.css"; // Import the CSS file
 
 
@@ -14,19 +18,21 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
   }
 
   const imageSrcMap = {
-    "00001": "https://cdn-icons-png.flaticon.com/512/29/29302.png?w=740&t=st=1689052858~exp=1689053458~hmac=7cf8faa9fd039c16be8dde7ef26fd2eddab71c077a80aac164e1528770a0046a",
-    "00002": "https://img.freepik.com/free-vector/interreligious-dialogue-abstract-concept-vector-illustration-different-traditions-religious-symbol-members-interaction-orthodox-church-handshake-christian-pope-conference-abstract-metaphor_335657-6320.jpg?w=740&t=st=1689053151~exp=1689053751~hmac=2b5d09c24d62c6b11675fc3241281a0b05116a6f257962bc0f36675b9b985167",
-    "00003": "https://cdn-icons-png.flaticon.com/512/86/86122.png?w=740&t=st=1689054584~exp=1689055184~hmac=89f6b6409da35c7d836206ef6d31ac64ad2aeb62e8561d6ca49587fbb70fc744",
-    "00004": "https://cdn-icons-png.flaticon.com/512/43/43168.png?w=740&t=st=1689059837~exp=1689060437~hmac=cb3d0e305ad9f551c9616fc44193e14f22a7df3d743c3a6be21c9dd5c921a619",
-    "00005": "https://img.freepik.com/free-vector/praying-hands-religion-holy-catholic-christian-spirituality-belief-hope_1284-41654.jpg?w=740&t=st=1689061208~exp=1689061808~hmac=f6349c0c9bbc6220e9fcb94971149f37143a8c75064b3bc3d5f8e96e6e408a42",
+    "00001": PiBookBookmarkBold,
+    "00002": MdOutlineHistoryEdu,
+    "00003": PiScalesBold,
+    "00004": PiChatsCircleBold,
+    "00005": PiHandsPrayingBold,
   };
 
+ 
+
   const title = {
-    "00001": "Chapter 1 Introduction",
-    "00002": "Chapter 2 History of Religion",
-    "00003": "Chapter 3 Ethics and Morals",
-    "00004": "Chapter 4 Communications",
-    "00005": "Chapter 5 Practices",
+    "00001": "Introduction",
+    "00002": "History of Religion",
+    "00003": "Ethics and Morals",
+    "00004": "Communications",
+    "00005": "Practices",
   };
 
   const imageSrc = imageSrcMap[topic_id];
@@ -39,20 +45,42 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
   };
 
   return (
-    
-      <div onClick={handleClick} style={buttonStyle} data-cy={data}>
-        <div className="square-container">
-          <img
-            src={imageSrc}
-            alt={`Chapter ${topic_id}`}
-            className="square-image"
+    <Stack direction="column" align="center">
+      <Button 
+          height={{
+            base: "100px",
+            lg: "150px",
+            xl: "200px",
+            "2xl": "200px",
+          }}
+          width={{
+            base: "100px",
+            lg: "150px",
+            xl: "200px",
+            "2xl": "200px",
+          }}
+          onClick={handleClick} data-cy={data} bg="#FFFFFF" shadow="lg">
+        <Stack direction="column" align="center">       
+          <Icon
+            as={imageSrc}
+            boxSize={{
+              base: "80px",
+              lg: "80px",
+              xl: "130px",
+              "2xl": "130px",
+            }}
           />
-          <Text fontSize="lg" fontWeight="bold">
-            {title[topic_id]}
-          </Text>
-        </div>
-        {children}
-      </div>
+          </Stack> 
+      </Button>
+      <Heading textAlign="center" mt="5px" fontSize={{
+            base: "14px",
+            lg: "18px",
+            xl: "20px",
+            "2xl": "20px",
+          }}>
+      {title[topic_id]}
+    </Heading>
+    </Stack>
     );
   }
   
