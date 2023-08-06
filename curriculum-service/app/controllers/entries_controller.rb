@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
   def create
     ml_result = answer_question
 
-    exercise = Exercise.find_by(exercise_id: params[:exercise_id])
+    exercise = Exercise.find_by(lesson_id: params[:lesson_id])
     
 
     user = User.find_by(user_id: params[:user_id])
@@ -54,13 +54,14 @@ class EntriesController < ApplicationController
   end
 
   def answer_question
-    lesson_id = params[:exercise_id]
+    lesson_id = params[:lesson_id]
 
     lesson = Lesson.find_by(lesson_id: lesson_id)
     pages = Page.where(lesson_id: lesson_id)
 
     exercise = Exercise.find_by(lesson_id: lesson_id)
 
+    p params, lesson_id
     question_content = exercise.qns.to_s
     answer_content = params[:user_answer]
   
@@ -77,9 +78,9 @@ class EntriesController < ApplicationController
   
     lesson = lesson_content.join("\n")
 
-    # puts "Lesson" + lesson 
-    # puts "Question" + question
-    # puts "Answer" + answer
+    puts "Lesson" + lesson 
+    puts "Question" + question
+    puts "Answer" + answer
   
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
   

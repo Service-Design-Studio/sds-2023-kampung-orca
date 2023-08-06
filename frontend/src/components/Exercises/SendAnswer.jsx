@@ -1,12 +1,14 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 // Function to call the answer_question API endpoint
-const SendAnswer = async (lessonId, questionContent, answerContent) => {
+const SendAnswer = async (lessonId, answerContent) => {
+  const cookieValue = Cookies.get("token");
   try {
-    const response = await axios.post("/inactivity_checker/answer_question", {
+    const response = await axios.post(`${process.env.REACT_APP_GATEWAY_URL}/curriculum/entries`, {
       lesson_id: lessonId,
-      question_content: questionContent,
-      answer_content: answerContent,
+      user_answer: answerContent,
+      token: cookieValue
     });
     console.log("API response:", response.data);
     // Handle the API response here as needed
