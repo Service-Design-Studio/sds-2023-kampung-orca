@@ -83,7 +83,9 @@ export const Exercises = () => {
       SendAnswer(lesson_id, value, callBack);
     };
 
+    const contentLines = mlAnswer.trim().split('\n');
 
+    
 
     return (
       <Stack
@@ -334,10 +336,17 @@ export const Exercises = () => {
               >
                 <div>
                 {isSubmitted ? (
-                  <Text>{mlAnswer}</Text>
+                  <Text>
+                  {contentLines.map((line, index) => (
+                      <p key={index}>{line}<br /></p>
+                    ))}  
+                  </Text>
                 ) : (
                   <Text>
-                    Previous Response by Kampung Kaki:  {mlAnswer}
+                    Previous Response by Kampung Kaki:  
+                    {contentLines.map((line, index) => (
+                      <p key={index}>{line}<br /></p>
+                    ))}
                   </Text>
                 )}
                 </div>
