@@ -77,7 +77,10 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
             lg: "18px",
             xl: "20px",
             "2xl": "20px",
-          }}>
+          }}
+          fontStyle="italic"
+      >
+
       {title[topic_id]}
     </Heading>
     </Stack>

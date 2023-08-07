@@ -114,7 +114,6 @@ export const Exercises = () => {
           align="flex-start"
           spacing="0px"
           width="100vw"
-          height={`calc(100vh - 120px)`}
           maxWidth="100%"
           style={{
             backgroundImage:
@@ -123,31 +122,21 @@ export const Exercises = () => {
             backgroundPosition: "center",
           }}
         >
+          <Stack direction="column" spacing="4vh"  height={`calc(100vh - 120px)`}>
           <Stack
-            paddingLeft={{
-              base: "40px",
-              lg: "50px",
-              xl: "60px",
-              "2xl": "70px",
+            padding={{
+              base: "20px",
+              lg: "30px",
+              xl: "40px",
+              "2xl": "50px",
             }}
             paddingRight={{
               base: "10px",
               lg: "20px",
-              xl: "25px",
+              xl: "30px",
               "2xl": "40px",
             }}
-            paddingTop={{
-              base: "40px",
-              lg: "50px",
-              xl: "60px",
-              "2xl": "70px",
-            }}
-            paddingBottom={{
-              base: "10px",
-              lg: "10px",
-              xl: "15px",
-              "2xl": "20px",
-            }}
+            
             spacing={{
               base: "20px",
               lg: "20px",
@@ -157,12 +146,12 @@ export const Exercises = () => {
             justify="flex-start"
             align="center"
             overflow="hidden"
-            width="46vw"
-            height={`calc(97vh - 120px)`}
+            width="60vw"
+            height="43vh"
             background="#FFFFFF"
             shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
-            marginX="2vw"
-            marginY="2vh"
+            marginLeft="2vw"
+            marginTop="2vh"
             borderRadius="20px"
           >
             <Stack
@@ -170,9 +159,9 @@ export const Exercises = () => {
               align="flex-start"
               paddingRight={{
                 base: "10px",
-                lg: "20px",
-                xl: "35px",
-                "2xl": "30px",
+                lg: "10px",
+                xl: "20px",
+                "2xl": "20px",
               }}
               spacing="20px"
               width="100%"
@@ -195,16 +184,16 @@ export const Exercises = () => {
             >
               <ExerciseSection
                 headerSize={{
-                  base: "22px",
-                  lg: "23px",
-                  xl: "24px",
-                  "2xl": "25px",
+                  base: "20px",
+                  lg: "21px",
+                  xl: "22px",
+                  "2xl": "23px",
                 }}
                 contentSize={{
-                  base: "16px",
-                  lg: "17px",
-                  xl: "18px",
-                  "2xl": "19px",
+                  base: "14px",
+                  lg: "15px",
+                  xl: "16px",
+                  "2xl": "17px",
                 }}
                 key={"0"}
                 title={title}
@@ -214,21 +203,6 @@ export const Exercises = () => {
           </Stack>
 
           <Stack
-            spacing={{
-              base: "20px",
-              lg: "20px",
-              xl: "30px",
-              "2xl": "30px",
-            }}
-            justify="flex-start"
-            align="center"
-            width="46vw"
-            height={`calc(97vh - 120px)`}
-            marginX="2vw"
-            marginY="2vh"
-            direction="column"
-          >
-            <Stack
               paddingX={{
                 base: "30px",
                 lg: "40px",
@@ -236,10 +210,10 @@ export const Exercises = () => {
                 "2xl": "50px",
               }}
               paddingTop={{
-                base: "30px",
-                lg: "40px",
-                xl: "40px",
-                "2xl": "50px",
+                base: "15px",
+                lg: "15px",
+                xl: "25px",
+                "2xl": "35px",
               }}
               paddingBottom={{
                 base: "10px",
@@ -249,21 +223,38 @@ export const Exercises = () => {
               }}
               justify="flex-start"
               align="flex-start"
-              overflow="hidden"
-              width="100%"
-              height="45vh"
+              width="60vw"
+              height="38vh"
               background="#FFFFFF"
               shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
               borderRadius="20px"
+              marginLeft="2vw"
+              marginBottom="2vh"
+              overflowY="auto"
+              sx={{
+                "&::-webkit-scrollbar": {
+                  width: "16px",
+                  borderRadius: "8px",
+                  backgroundColor: `rgba(0, 0, 0, 0.1)`,
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  width: "16px",
+                  borderRadius: "8px",
+                  backgroundColor: `rgba(237, 46, 56, 1)`,
+                },
+              }}
             >
               {isSubmitted ? (
                 <>
+                <Stack height="100%">
                   <Heading fontSize="20px" mb="10px">
                     {" "}
                     Your answer:
                   </Heading>
                   <Text>{value}</Text>
-
+                  </Stack>
+                  
+                  <Stack width="100%" justify="flex-end" align="flex-end">
                   {mlAnswerRendered ? (
                   <Button
                     fontSize="18px"
@@ -276,18 +267,22 @@ export const Exercises = () => {
                     onClick={handleResubmission}
                     marginX="auto" // Change the marginX value to adjust the horizontal position
                   >
-                    Re-Submit Answer
+                    Re-submit Answer
                   </Button>
                 ) : (
                   <Spinner size="lg" />
+                  
                 )}
+                </Stack>
                 </>
-
-
 
               ) : (
                 <>
-                  <Heading fontSize="20px" mb="10px">
+                  <Heading
+                  fontSize={{base: "14px", lg: "16px", xl: "20px", "2xl": "20px"}}
+                  mb={{base: "2px", lg: "5px", xl: "10px", "2xl": "10px"}}
+                  mt={{base: "2px", lg: "5px", xl: "0px", "2xl": "0px"}}
+                  >
                     {" "}
                     Write your answer:
                   </Heading>
@@ -305,7 +300,7 @@ export const Exercises = () => {
                       textColor="#FFFFFF"
                       _hover={{ bg: "#7c191c" }}
                       size="lg"
-                      height="48px"
+                      height="30px"
                       shadow="md"
                       onClick={handleSubmitClick}
                       isDisabled={isTextareaEmpty}
@@ -321,6 +316,25 @@ export const Exercises = () => {
                 </>
               )}
             </Stack>
+
+          </Stack>
+
+          <Stack
+            spacing={{
+              base: "10px",
+              lg: "20px",
+              xl: "30px",
+              "2xl": "30px",
+            }}
+            justify="flex-start"
+            align="center"
+            width="46vw"
+            height={`calc(97vh - 120px)`}
+            marginX="2vw"
+            marginY="2vh"
+            direction="column"
+          >
+            
             <Stack
               padding={{
                 base: "30px",
@@ -337,7 +351,7 @@ export const Exercises = () => {
               justify="flex-start"
               align="flex-start"
               width="100%"
-              height="40vh"
+              height={`calc(100vh - 120px)`}
               background="#FFFFFF"
               shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
               borderRadius="20px"

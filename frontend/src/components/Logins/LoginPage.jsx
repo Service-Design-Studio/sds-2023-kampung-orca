@@ -69,7 +69,7 @@ const LoginPage = () => {
     width="100vw"
     background="#FFFFFF"
   >
-    <Header buttontext="Back to Main" path="/" />
+    <Header showBack buttontext="Back to Main" path="/" />
     <Stack
       direction="row"
       justify="center"

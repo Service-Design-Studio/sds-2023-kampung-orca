@@ -79,7 +79,7 @@ const StraightLine = () => {
         color="black"
         ellipsizeMode="clip"
         numberOfLines="1"
-        fontSize="100px"
+        fontSize="90px"
         data-cy="line"
       >
         {Array.from(Array(7).keys()).map((each) => {
@@ -148,13 +148,15 @@ const Node = ({
       <Popover trigger="hover" placement="top">
         <PopoverTrigger>
           <Stack
-            opacity={isDisabled ? 0.5 : 1}
             cursor={cursorStyle}
+            bg="#FFFFFF"
+            borderRadius="50px"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             data-cy={`node-${counter++}`}
           >
             <Icon
+              opacity={isDisabled ? 0.5 : 1}
               as={iconComponent}
               color={color}
               boxSize={{
@@ -164,7 +166,6 @@ const Node = ({
                 "2xl": "110px",
               }}
               id={nodeId}
-              bg="#FFFFFF"
             />
           </Stack>
         </PopoverTrigger>

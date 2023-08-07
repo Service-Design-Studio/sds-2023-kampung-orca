@@ -22,8 +22,8 @@ const TopicPage = () => {
     window.location.href = "/";
   };
   return (
-    topics && (
-      <Stack
+
+    <Stack
     justify="flex-start"
     align="flex-start"
     height="100vh"
@@ -49,18 +49,17 @@ const TopicPage = () => {
           backgroundPosition: "center",
         }}
       >
-        
-
-      <Stack align="center" borderRadius="20px" bg="#FFFFFF" shadow="lg" paddingX="50px" paddingY="30px">
+        <Stack align="center" borderRadius="20px" bg="#FFFFFF" shadow="lg" paddingX="50px" paddingY="30px">
           <Heading fontSize="60px">
             Welcome back!
           </Heading>
-          <Text fontSize="24px" fontStyle="italic">
+          <Text fontSize="30px" fontStyle="italic">
             Sharpen your interfaith knowledge
           </Text>
         </Stack>
         
-
+      
+      
         <Stack direction="row" spacing="50px" paddingY="50px">
           {topics.map((topic) => (
             <NavigationButton
@@ -76,7 +75,7 @@ const TopicPage = () => {
         </Stack>
       </Stack>
       </Stack>
-    )
+    
   );
 };
 

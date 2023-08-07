@@ -13,11 +13,12 @@ const DrawImageAnimation = () => {
         width: "100%",
         height: "100%",
         backgroundImage:
-          'url("https://www.clipartmax.com/png/middle/124-1246762_financial-lateracy-exhibition-malay-kampung-house-sketch.png")',
+          'url("https://i.ibb.co/0Cykw1g/new.jpg")',
         backgroundSize: "cover",
-        opacity: 0.5, // Set opacity to 50%
+        opacity: 0.9, // Set opacity to 50%
         zIndex: -1, // Send the image to the back
         animation: "drawImageAnimation 5s linear forwards",
+        filter: "grayscale(50%)",
       }}
     ></Box>
   );
