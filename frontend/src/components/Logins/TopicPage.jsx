@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box, Flex, HStack} from "@chakra-ui/react";
+import { Stack, Text, Button, Square, Box, Flex, HStack, theme} from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
 import { motion } from "framer-motion";
@@ -34,50 +34,61 @@ const TopicPage = () => {
         style={{
           backgroundImage:
             'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <Box
-          position="fixed"
-          top="0"
-          left="0"
-          width="100%"
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-end"
-          padding="10px"
-          bg="#ed2e38"
-          zIndex="9999"
-        >
-         <Flex align="center"> {/* Use Flex container */}
+  position="fixed"
+  top="0"
+  left="0"
+  width="100%"
+  display="flex"
+  alignItems="center"
+  justifyContent="flex-end"
+  padding="10px"
+  background="#ed2e38"
+  height="90px" 
+  zIndex="9999"
+>
+         <Flex align="center"> 
          
          <Button
             onClick={handleLogout}
             variant="unstyled"
             fontSize="md"
             marginLeft="1"
-            backgroundColor="white"
+            size="lg"
+            shadow="lg"
+            bg="#FFFFFF"
             display="flex"
             alignItems="center"
-          >
+            textColor="#000000"
+            _hover={{ bg: "#d8d9e3" }}
+            height="48px"
+            padding = "10px"
+            marginRight="20px"          >
             Logout
-            <FiLogOut size={20} style={{ marginLeft: "5px" }} /> {/* FiLogOut icon */}
+            <FiLogOut size={20} style={{ marginLeft: "10px" }} /> 
           </Button>
           </Flex>
         </Box>
 
         <div
-          style={{
-            position: "fixed",
-            top: "100px",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          <Stack direction="column" spacing="10px">
+        style={{
+          position: "absolute",
+          
+          top: "100px",
+          width: "100%",
+          textAlign: "center",
+          marginTop: "10vh",
+          padding: `0 ${theme.space["4"]}`, // Adjust the spacing as needed
+          
+        }}
+      >
+          <Stack direction="column" spacing="10px" >
             <Text
-              fontSize={["32px", "48px"]}
+              fontSize={["24px","36px","48px"]}
               fontWeight="700"
               fontFamily="Roboto"
               lineHeight="normal"
@@ -90,7 +101,7 @@ const TopicPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <Text fontSize="36px" fontFamily="Roboto" lineHeight="normal">
+              <Text fontSize={["8px","16px","36px"]} fontFamily="Roboto" lineHeight="normal">
                 Sharpen your interfaith knowledge
               </Text>
             </motion.div>
@@ -98,36 +109,35 @@ const TopicPage = () => {
         </div>
 
         <Box
-          width="100%"
-          maxWidth="1200px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          flex="1"
-          paddingY="15vh"
-        >
-          {/* Add a custom scrollbar div */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "1200px",
-              overflowX: "auto",
-
-              scrollbarWidth: "thin",
-              scrollbarColor: "#888 #f0f0f0",
-              "&::-webkit-scrollbar": {
-                width: "8px",
-              },
-              "&::-webkit-scrollbar-track": {
-                background: "#f0f0f0",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                background: "#888",
-                borderRadius: "10px",
-              },
-            }}
-          >
+      width="100%"
+      maxWidth="1200px"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      flex="1"
+      paddingY="15vh"
+    >
+      <Stack
+  width="100%"
+  maxWidth="1200px"
+  overflowX="auto"
+  spacing = "10px"
+  
+  
+  sx={{
+    "&::-webkit-scrollbar": {
+      width: "16px",
+      borderRadius: "8px",
+      backgroundColor: "rgba(0, 0, 0, 0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      width: "16px",
+      borderRadius: "8px",
+      backgroundColor: "rgba(237, 46, 56, 1)",
+    },
+  }}
+>
             <Stack
               direction="row"
               spacing="50px"
@@ -135,8 +145,11 @@ const TopicPage = () => {
               justifyContent="center"
               alignItems="center"
               paddingX="10vw"
-              paddingY="30vh"
+              paddingY={["15vh", "220px"]} // Adjust the spacing as needed
               overflowY="hidden"
+              
+              
+              
             >
               {topics.map((topic) => (
                 <NavigationButton
@@ -148,8 +161,9 @@ const TopicPage = () => {
                 />
               ))}
             </Stack>
-          </div>
+          </Stack>
         </Box>
+        
       </Stack>
     )
   );
