@@ -62,10 +62,7 @@ export const Exercises = () => {
     setValue(inputValue);
   };
 
-  const handleClearClick = () => {
-    setUserAnswer("");
-    setMlAnswer("");
-    setValue("");
+  const handleResubmission = () => {
     localStorage.removeItem(`userAnswer_${url}`);
     localStorage.removeItem(`mlAnswer_${url}`);
     setIsSubmitted(false);
@@ -100,7 +97,7 @@ export const Exercises = () => {
 
     const contentLines = mlAnswer.trim().split('\n');
 
-    
+
 
     return (
       <Stack
@@ -273,22 +270,23 @@ export const Exercises = () => {
                   {mlAnswerRendered ? (
                   <Button
                     fontSize="18px"
-                    bg="#4A90E2"
+                    bg="#ed2e38" // Change to the desired color (same as the "Submit" button)
                     textColor="#FFFFFF"
-                    _hover={{ bg: "#206FB5" }}
+                    _hover={{ bg: "#7c191c" }} // Change the hover color if needed
                     size="lg"
                     height="48px"
                     shadow="md"
-                    onClick={handleClearClick}
+                    onClick={handleResubmission}
+                    marginX="auto" // Change the marginX value to adjust the horizontal position
                   >
-                    Clear Exercises
+                    Re-Submit Answer
                   </Button>
                 ) : (
                   <Spinner size="lg" />
                 )}
                 </>
 
-                
+
 
               ) : (
                 <>
@@ -376,11 +374,11 @@ export const Exercises = () => {
                   <Text>
                   {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
-                    ))}  
+                    ))}
                   </Text>
                 ) : (
                   <Text>
-                    Previous Response by Kampung Kaki:  
+                    Previous Response by Kampung Kaki:
                     {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
                     ))}
@@ -391,7 +389,7 @@ export const Exercises = () => {
             </Stack>
           </Stack>
 
-          
+
         </Stack>
       </Stack>
     );
