@@ -39,15 +39,15 @@ export const Exercises = () => {
 
   useEffect(() => {
     setIsSubmitted(false);
-    const storedUserAnswer = localStorage.getItem("userAnswer");
-    const storedMlAnswer = localStorage.getItem("mlAnswer");
+    const storedUserAnswer = localStorage.getItem(`userAnswer_${url}`);
+    const storedMlAnswer = localStorage.getItem(`mlAnswer_${url}`);
     if (storedUserAnswer){
       setUserAnswer(storedUserAnswer);
     }
     if (storedMlAnswer){
       setMlAnswer(storedMlAnswer);
     }
-  }, []);
+  }, [url]);
 
   const handleSubmitClick = () => {
     openSubmitAlert();
@@ -73,8 +73,8 @@ export const Exercises = () => {
       setUserAnswer(userAnswer);
       setMlAnswer(mlAnswer);
 
-      localStorage.setItem("userAnswer", userAnswer);
-      localStorage.setItem("mlAnswer", mlAnswer);
+      localStorage.setItem(`userAnswer_${url}`, userAnswer);
+      localStorage.setItem(`mlAnswer_${url}`, mlAnswer);
     };
 
     const handleSubmit = () => {
