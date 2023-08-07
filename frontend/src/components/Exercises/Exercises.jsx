@@ -30,14 +30,24 @@ export const Exercises = () => {
 
   const back_to_complete = `/curriculum/lesson/${params.lesson_id}/lesson_completed`;
 
-  useEffect(() => {
-    setIsSubmitted(false);
-  }, []);
+
 
   const [value, setValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [userAnswer, setUserAnswer] = useState("");
   const [mlAnswer, setMlAnswer] = useState("");
+  const [userAnswer, setUserAnswer] = useState("");
+
+  useEffect(() => {
+    setIsSubmitted(false);
+    const storedUserAnswer = localStorage.getItem("userAnswer");
+    const storedMlAnswer = localStorage.getItem("mlAnswer");
+    if (storedUserAnswer){
+      setUserAnswer(storedUserAnswer);
+    }
+    if (storedMlAnswer){
+      setMlAnswer(storedMlAnswer);
+    }
+  }, []);
 
   const handleSubmitClick = () => {
     openSubmitAlert();
@@ -62,6 +72,9 @@ export const Exercises = () => {
 
       setUserAnswer(userAnswer);
       setMlAnswer(mlAnswer);
+
+      localStorage.setItem("userAnswer", userAnswer);
+      localStorage.setItem("mlAnswer", mlAnswer);
     };
 
     const handleSubmit = () => {
@@ -249,7 +262,7 @@ export const Exercises = () => {
                     height="100%"
                     value={value}
                     onChange={handleInputChange}
-                    placeholder="Write your answer here!"
+                    placeholder={userAnswer ? "Previous Answer: "+ userAnswer : "Write your answer here!"}
                   />
                   <Stack width="100%" justify="flex-start" align="flex-end">
                     <Button
@@ -319,14 +332,15 @@ export const Exercises = () => {
                   },
                 }}
               >
+                <div>
                 {isSubmitted ? (
                   <Text>{mlAnswer}</Text>
                 ) : (
                   <Text>
-                    Here are some things to consider as you answer on this
-                    question!
+                    Previous Response by Kampung Kaki:  {mlAnswer}
                   </Text>
                 )}
+                </div>
               </Stack>
             </Stack>
           </Stack>
