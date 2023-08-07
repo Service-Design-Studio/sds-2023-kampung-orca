@@ -16,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
+import { Spinner } from "@chakra-ui/react";
+
 
 export const Exercises = () => {
   const params = useParams();
@@ -36,6 +38,8 @@ export const Exercises = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mlAnswer, setMlAnswer] = useState("");
   const [userAnswer, setUserAnswer] = useState("");
+  const [mlAnswerRendered, setMlAnswerRendered] = useState(false);
+
 
   useEffect(() => {
     setIsSubmitted(false);
@@ -58,6 +62,16 @@ export const Exercises = () => {
     setValue(inputValue);
   };
 
+  const handleClearClick = () => {
+    setUserAnswer("");
+    setMlAnswer("");
+    setValue("");
+    localStorage.removeItem(`userAnswer_${url}`);
+    localStorage.removeItem(`mlAnswer_${url}`);
+    setIsSubmitted(false);
+    setMlAnswerRendered(false);
+  };
+
   const isTextareaEmpty = value.trim().length === 0;
   const [data] = useGateway(url, "Get");
   if (!data) return;
@@ -72,6 +86,7 @@ export const Exercises = () => {
 
       setUserAnswer(userAnswer);
       setMlAnswer(mlAnswer);
+      setMlAnswerRendered(true);
 
       localStorage.setItem(`userAnswer_${url}`, userAnswer);
       localStorage.setItem(`mlAnswer_${url}`, mlAnswer);
@@ -96,6 +111,8 @@ export const Exercises = () => {
         background="#FFFFFF"
       >
         <Header buttontext="Back to Lessons" path={back_to_complete} />
+
+
 
         <Stack
           direction="row"
@@ -252,7 +269,27 @@ export const Exercises = () => {
                     Your answer:
                   </Heading>
                   <Text>{value}</Text>
+
+                  {mlAnswerRendered ? (
+                  <Button
+                    fontSize="18px"
+                    bg="#4A90E2"
+                    textColor="#FFFFFF"
+                    _hover={{ bg: "#206FB5" }}
+                    size="lg"
+                    height="48px"
+                    shadow="md"
+                    onClick={handleClearClick}
+                  >
+                    Clear Exercises
+                  </Button>
+                ) : (
+                  <Spinner size="lg" />
+                )}
                 </>
+
+                
+
               ) : (
                 <>
                   <Heading fontSize="20px" mb="10px">
@@ -353,6 +390,8 @@ export const Exercises = () => {
               </Stack>
             </Stack>
           </Stack>
+
+          
         </Stack>
       </Stack>
     );
