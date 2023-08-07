@@ -43,8 +43,8 @@ export const Exercises = () => {
 
   useEffect(() => {
     setIsSubmitted(false);
-    const storedUserAnswer = localStorage.getItem(`userAnswer_${url}`);
-    const storedMlAnswer = localStorage.getItem(`mlAnswer_${url}`);
+    const storedUserAnswer = sessionStorage.getItem(`userAnswer_${url}`);
+    const storedMlAnswer = sessionStorage.getItem(`mlAnswer_${url}`);
     if (storedUserAnswer){
       setUserAnswer(storedUserAnswer);
     }
@@ -62,14 +62,10 @@ export const Exercises = () => {
     setValue(inputValue);
   };
 
-  const handleClearClick = () => {
-    setUserAnswer("");
-    setMlAnswer("");
-    setValue("");
-    localStorage.removeItem(`userAnswer_${url}`);
-    localStorage.removeItem(`mlAnswer_${url}`);
+  const handleResubmission = () => {
     setIsSubmitted(false);
     setMlAnswerRendered(false);
+    setUserAnswer("");
   };
 
   const isTextareaEmpty = value.trim().length === 0;
@@ -88,8 +84,8 @@ export const Exercises = () => {
       setMlAnswer(mlAnswer);
       setMlAnswerRendered(true);
 
-      localStorage.setItem(`userAnswer_${url}`, userAnswer);
-      localStorage.setItem(`mlAnswer_${url}`, mlAnswer);
+      sessionStorage.setItem(`userAnswer_${url}`, userAnswer);
+      sessionStorage.setItem(`mlAnswer_${url}`, mlAnswer);
     };
 
     const handleSubmit = () => {
@@ -100,7 +96,7 @@ export const Exercises = () => {
 
     const contentLines = mlAnswer.trim().split('\n');
 
-    
+
 
     return (
       <Stack
@@ -271,22 +267,23 @@ export const Exercises = () => {
                   {mlAnswerRendered ? (
                   <Button
                     fontSize="18px"
-                    bg="#4A90E2"
+                    bg="#ed2e38" // Change to the desired color (same as the "Submit" button)
                     textColor="#FFFFFF"
-                    _hover={{ bg: "#206FB5" }}
+                    _hover={{ bg: "#7c191c" }} // Change the hover color if needed
                     size="lg"
                     height="48px"
                     shadow="md"
-                    onClick={handleClearClick}
+                    onClick={handleResubmission}
+                    marginX="auto" // Change the marginX value to adjust the horizontal position
                   >
-                    Clear Exercises
+                    Re-Submit Answer
                   </Button>
                 ) : (
                   <Spinner size="lg" />
                 )}
                 </>
 
-                
+
 
               ) : (
                 <>
@@ -370,15 +367,15 @@ export const Exercises = () => {
                 }}
               >
                 <div>
-                {isSubmitted ? (
+                {userAnswer ? (
                   <Text>
                   {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
-                    ))}  
+                    ))}
                   </Text>
                 ) : (
                   <Text>
-                    Previous Response by Kampung Kaki:  
+                    Response:
                     {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
                     ))}
@@ -389,7 +386,7 @@ export const Exercises = () => {
             </Stack>
           </Stack>
 
-          
+
         </Stack>
       </Stack>
     );
