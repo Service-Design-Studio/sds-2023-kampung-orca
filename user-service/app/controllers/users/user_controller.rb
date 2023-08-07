@@ -70,13 +70,18 @@ class Users::UserController < ApplicationController
     # end
   end
 
-  def verify_token
-    token = Token.find_by(token: @token)
-    if token.nil?
-      render json: { token: nil, user_id: nil }
-    else
-      token[:token] = token.refresh! if token.expires_at < Time.now
-      render json: { token: token[:token], user_id: token[:user_id] }
+    def verify_token
+      token = Token.find_by(token: @token)
+      if token == nil
+        render json: {token: nil, user_id: nil}
+      else
+        p token.expires_at
+        p Time.now
+        if token.expires_at < Time.now
+          token[:token] = token.refresh!
+        end
+        render json: {token: token[:token], user_id: token[:user_id]}
+      end
     end
   end
 

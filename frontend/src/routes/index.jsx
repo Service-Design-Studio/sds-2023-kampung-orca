@@ -11,6 +11,8 @@ import {
   LessonNodes,
   LessonView,
   LessonCompletion,
+  LessonSection,
+  Exercise,
 } from "../components/Lessons";
 
 import {
@@ -47,6 +49,10 @@ export default (
         <Route
           path="/curriculum/lesson/:lesson_id/error"
           element={<CurriculumErrorPage />}
+        />
+        <Route
+          path="/curriculum/lesson/:lesson_id/exercise"
+          element={<Exercise />}
         />
       </Route>
 
