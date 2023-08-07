@@ -20,6 +20,7 @@ import useGateway from "../../hooks/useGateway";
 export const Exercises = () => {
   const params = useParams();
   const url = window.location.pathname.replace("exercise", "show_exercise");
+  console.log(url);
 
   const {
     isOpen: showSubmitAlert,
@@ -35,6 +36,8 @@ export const Exercises = () => {
 
   const [value, setValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [mlAnswer, setMlAnswer] = useState("");
 
   const handleSubmitClick = () => {
     openSubmitAlert();
@@ -53,11 +56,21 @@ export const Exercises = () => {
     const title = data.title;
     const lesson_id = data.lesson_id;
 
+    const callBack = (responseData) => {
+      const userAnswer = responseData.data.user_answer;
+      const mlAnswer = responseData.data.ml_answer;
+
+      setUserAnswer(userAnswer);
+      setMlAnswer(mlAnswer);
+    };
+
     const handleSubmit = () => {
       setIsSubmitted(true);
       closeSubmitAlert();
-      SendAnswer(lesson_id, value);
+      SendAnswer(lesson_id, value, callBack);
     };
+
+
 
     return (
       <Stack
@@ -236,7 +249,7 @@ export const Exercises = () => {
                     height="100%"
                     value={value}
                     onChange={handleInputChange}
-                    placeholder="Write your thoughts here!"
+                    placeholder="Write your answer here!"
                   />
                   <Stack width="100%" justify="flex-start" align="flex-end">
                     <Button
@@ -307,7 +320,7 @@ export const Exercises = () => {
                 }}
               >
                 {isSubmitted ? (
-                  <Text>Great response!</Text>
+                  <Text>{mlAnswer}</Text>
                 ) : (
                   <Text>
                     Here are some things to consider as you answer on this
