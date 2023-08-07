@@ -43,8 +43,8 @@ export const Exercises = () => {
 
   useEffect(() => {
     setIsSubmitted(false);
-    const storedUserAnswer = localStorage.getItem(`userAnswer_${url}`);
-    const storedMlAnswer = localStorage.getItem(`mlAnswer_${url}`);
+    const storedUserAnswer = sessionStorage.getItem(`userAnswer_${url}`);
+    const storedMlAnswer = sessionStorage.getItem(`mlAnswer_${url}`);
     if (storedUserAnswer){
       setUserAnswer(storedUserAnswer);
     }
@@ -63,10 +63,9 @@ export const Exercises = () => {
   };
 
   const handleResubmission = () => {
-    localStorage.removeItem(`userAnswer_${url}`);
-    localStorage.removeItem(`mlAnswer_${url}`);
     setIsSubmitted(false);
     setMlAnswerRendered(false);
+    setUserAnswer("");
   };
 
   const isTextareaEmpty = value.trim().length === 0;
@@ -85,8 +84,8 @@ export const Exercises = () => {
       setMlAnswer(mlAnswer);
       setMlAnswerRendered(true);
 
-      localStorage.setItem(`userAnswer_${url}`, userAnswer);
-      localStorage.setItem(`mlAnswer_${url}`, mlAnswer);
+      sessionStorage.setItem(`userAnswer_${url}`, userAnswer);
+      sessionStorage.setItem(`mlAnswer_${url}`, mlAnswer);
     };
 
     const handleSubmit = () => {
@@ -108,9 +107,6 @@ export const Exercises = () => {
         background="#FFFFFF"
       >
         <Header buttontext="Back to Lessons" path={back_to_complete} />
-
-
-
         <Stack
           direction="row"
           justify="flex-start"
@@ -370,7 +366,7 @@ export const Exercises = () => {
                 }}
               >
                 <div>
-                {isSubmitted ? (
+                {userAnswer ? (
                   <Text>
                   {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
@@ -378,7 +374,7 @@ export const Exercises = () => {
                   </Text>
                 ) : (
                   <Text>
-                    Previous Response by Kampung Kaki:
+                    Response:
                     {contentLines.map((line, index) => (
                       <p key={index}>{line}<br /></p>
                     ))}
