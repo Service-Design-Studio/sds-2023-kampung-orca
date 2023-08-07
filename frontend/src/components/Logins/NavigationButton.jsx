@@ -2,11 +2,11 @@ import React from "react";
 import { Box, Text, Stack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import "./NavigationButton.css";
-import image1 from "../../assets/css/imgs/image1.png";
-import image2 from "../../assets/css/imgs/image2.avif";
-import image3 from "../../assets/css/imgs/image3.png";
-import image4 from "../../assets/css/imgs/image4.png";
-import image5 from "../../assets/css/imgs/image5.avif";
+import image1 from "../../assets/img/image1.png";
+import image2 from "../../assets/img/image2.avif";
+import image3 from "../../assets/img/image3.png";
+import image4 from "../../assets/img/image4.png";
+import image5 from "../../assets/img/image5.avif";
 
 function NavigationButton({ data, to, topic_id, children, hideButton }) {
   console.log("Received topic_id:", topic_id);
@@ -17,16 +17,11 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
   }
 
   const imageSrcMap = {
-    "00001":
-      image1,
-    "00002":
-      image2,
-    "00003":
-      image3,
-    "00004":
-      image4,
-    "00005":
-      image5,
+    "00001": image1,
+    "00002": image2,
+    "00003": image3,
+    "00004": image4,
+    "00005": image5,
   };
 
   const title = {
