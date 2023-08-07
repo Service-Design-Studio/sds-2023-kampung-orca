@@ -16,10 +16,13 @@ import {
 } from "@chakra-ui/react";
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
+import { Spinner } from "@chakra-ui/react";
+
 
 export const Exercises = () => {
   const params = useParams();
   const url = window.location.pathname.replace("exercise", "show_exercise");
+  console.log(url);
 
   const {
     isOpen: showSubmitAlert,
@@ -29,12 +32,26 @@ export const Exercises = () => {
 
   const back_to_complete = `/curriculum/lesson/${params.lesson_id}/lesson_completed`;
 
-  useEffect(() => {
-    setIsSubmitted(false);
-  }, []);
+
 
   const [value, setValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [mlAnswer, setMlAnswer] = useState("");
+  const [userAnswer, setUserAnswer] = useState("");
+  const [mlAnswerRendered, setMlAnswerRendered] = useState(false);
+
+
+  useEffect(() => {
+    setIsSubmitted(false);
+    const storedUserAnswer = localStorage.getItem(`userAnswer_${url}`);
+    const storedMlAnswer = localStorage.getItem(`mlAnswer_${url}`);
+    if (storedUserAnswer){
+      setUserAnswer(storedUserAnswer);
+    }
+    if (storedMlAnswer){
+      setMlAnswer(storedMlAnswer);
+    }
+  }, [url]);
 
   const handleSubmitClick = () => {
     openSubmitAlert();
@@ -45,6 +62,16 @@ export const Exercises = () => {
     setValue(inputValue);
   };
 
+  const handleClearClick = () => {
+    setUserAnswer("");
+    setMlAnswer("");
+    setValue("");
+    localStorage.removeItem(`userAnswer_${url}`);
+    localStorage.removeItem(`mlAnswer_${url}`);
+    setIsSubmitted(false);
+    setMlAnswerRendered(false);
+  };
+
   const isTextareaEmpty = value.trim().length === 0;
   const [data] = useGateway(url, "Get");
   if (!data) return;
@@ -53,11 +80,27 @@ export const Exercises = () => {
     const title = data.title;
     const lesson_id = data.lesson_id;
 
+    const callBack = (responseData) => {
+      const userAnswer = responseData.data.user_answer;
+      const mlAnswer = responseData.data.ml_answer;
+
+      setUserAnswer(userAnswer);
+      setMlAnswer(mlAnswer);
+      setMlAnswerRendered(true);
+
+      localStorage.setItem(`userAnswer_${url}`, userAnswer);
+      localStorage.setItem(`mlAnswer_${url}`, mlAnswer);
+    };
+
     const handleSubmit = () => {
       setIsSubmitted(true);
       closeSubmitAlert();
-      SendAnswer(lesson_id, value);
+      SendAnswer(lesson_id, value, callBack);
     };
+
+    const contentLines = mlAnswer.trim().split('\n');
+
+    
 
     return (
       <Stack
@@ -224,7 +267,27 @@ export const Exercises = () => {
                     Your answer:
                   </Heading>
                   <Text>{value}</Text>
+
+                  {mlAnswerRendered ? (
+                  <Button
+                    fontSize="18px"
+                    bg="#4A90E2"
+                    textColor="#FFFFFF"
+                    _hover={{ bg: "#206FB5" }}
+                    size="lg"
+                    height="48px"
+                    shadow="md"
+                    onClick={handleClearClick}
+                  >
+                    Clear Exercises
+                  </Button>
+                ) : (
+                  <Spinner size="lg" />
+                )}
                 </>
+
+                
+
               ) : (
                 <>
                   <Heading fontSize="20px" mb="10px">
@@ -236,7 +299,7 @@ export const Exercises = () => {
                     height="100%"
                     value={value}
                     onChange={handleInputChange}
-                    placeholder="Write your thoughts here!"
+                    placeholder={userAnswer ? "Previous Answer: "+ userAnswer : "Write your answer here!"}
                   />
                   <Stack width="100%" justify="flex-start" align="flex-end">
                     <Button
@@ -306,17 +369,27 @@ export const Exercises = () => {
                   },
                 }}
               >
+                <div>
                 {isSubmitted ? (
-                  <Text>Great response!</Text>
+                  <Text>
+                  {contentLines.map((line, index) => (
+                      <p key={index}>{line}<br /></p>
+                    ))}  
+                  </Text>
                 ) : (
                   <Text>
-                    Here are some things to consider as you answer this
-                    question!
+                    Previous Response by Kampung Kaki:  
+                    {contentLines.map((line, index) => (
+                      <p key={index}>{line}<br /></p>
+                    ))}
                   </Text>
                 )}
+                </div>
               </Stack>
             </Stack>
           </Stack>
+
+          
         </Stack>
       </Stack>
     );
