@@ -18,6 +18,8 @@ Topic.create!(topic_id: "00002", title: "Sample Topic 2")
 Topic.create!(topic_id: "00003", title: "Sample Topic 2")
 Topic.create!(topic_id: "00004", title: "Sample Topic 4")
 Topic.create!(topic_id: "00005", title: "Sample Topic 5")
+
+# Topic 1 Seeding
 Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: "Introduction to Interfaith", message: "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.")
 Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1, title: "Interfaith Ethics and Values", message: "Delve into the ethical principles and moral values shared across different religious traditions. Learn how these teachings can guide individuals and communities towards compassionate action, social justice, and interfaith harmony.")
 Lesson.create!(lesson_id: "00003", topic_id: "00001", order_index: 2, title: "Interfaith Dialogue Techniques", message: "Learn effective communication strategies and dialogue techniques for engaging in meaningful interfaith conversations. Develop skills to foster mutual understanding, empathy, and constructive discussions among people of different faiths.")
@@ -128,3 +130,81 @@ Page.create!(
   ]
 )
 p "Created #{Page.count} pages"
+
+
+# Topic 2 Seeding
+# Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "Interfaith Peacebuilding and Reconciliation", message: "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.")
+# Lesson title for history of religions
+Lesson.create!(lesson_id: "00006", topic_id: "00002", order_index: 0, title: "Introduction to History of Religions", message: "Explore the history of the world’s major religions and their contributions to human civilization. Learn about the origins of Hinduism, Buddhism, Judaism, Christianity, and Islam.")
+Lesson.create!(lesson_id: "00007", topic_id: "00002", order_index: 1, title: "Hinduism", message: "Learn about the origins and development of Hinduism, the world’s oldest religion. Explore the Hindu concept of God and the major Hindu scriptures.")
+
+Page.create!(
+  page_id: "00008",
+  lesson_id: "00006",
+  order_index: 0,
+  video: "https://www.youtube.com/embed/P_uKbiHBUHo",
+  sections: [
+    { content: ["This is page 1 of lesson 6."]},
+    { title: "About Histories of Religion", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+    { title: "Why Study the History of Religions?", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+]
+)
+
+Page.create!(
+  page_id: "00009",
+  lesson_id: "00007",
+  order_index: 0,
+  video: "https://www.youtube.com/embed/P_uKbiHBUHo",
+  sections: [
+    { content: ["This is page 1 of lesson 7."]},
+    { title: "About Hinduism", content: ["Hinduism is the world’s oldest religion, with roots dating back to the Indus Valley civilization of the third millennium BCE. It is the third largest religion in the world, with over one billion adherents. Hinduism is a diverse tradition, encompassing a wide range of beliefs and practices. Hindus believe in one supreme God, Brahman, who manifests in many forms. The Vedas, the Upanishads, and the Bhagavad Gita are the most important Hindu scriptures. Hindus believe in reincarnation, the cycle of birth and death, and the law of karma, which states that one’s actions in this life determine one’s destiny in the next."]},
+    { title: "Hindu Beliefs", content: ["Hinduism is the world’s oldest religion, with roots dating back to the Indus Valley civilization of the third millennium BCE. It is the third largest religion in the world, with over one billion adherents. Hinduism is a diverse tradition, encompassing a wide range of beliefs and practices. Hindus believe in one supreme God, Brahman, who manifests in many forms. The Vedas, the Upanishads, and the Bhagavad Gita are the most important Hindu scriptures. Hindus believe in reincarnation, the cycle of birth and death, and the law of karma, which states that one’s actions in this life determine one’s destiny in the next."]},
+]
+)
+
+
+exercise6 = ["Why is it important to know about the history of religions?"]
+exercise7 = ["What are the major Hindu scriptures?"]
+
+Exercise.create!(exercise_id: "00006", topic_id: "00002", lesson_id: "00006", title: "The Importance of Histories of Religions", qns: exercise6)
+Exercise.create!(exercise_id: "00007", topic_id: "00002", lesson_id: "00007", title: "Hinduism", qns: exercise7)
+
+## Topic 3 Seeding: Do the same as topic 2 but for topic 3: Ethics and morals
+Lesson.create!(lesson_id: "00008", topic_id: "00003", order_index: 0, title: "Introduction to Ethics and Morals", message: "Learn about why ehics and morals are important in interfaith dialogues.")
+Lesson.create!(lesson_id: "00009", topic_id: "00003", order_index: 1, title: "More about Ethics and Morals", message: "Learn more about ethics and morals during interfaith dialogues.")
+
+Page.create!(
+  page_id: "00010",
+  lesson_id: "00008",
+  order_index: 0,
+  video: "https://www.youtube.com/embed/P_uKbiHBUHo",
+  sections: [
+    { content: ["This is page 1 of lesson 8."]},
+    { title: "About Ethics and Morals", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+    { title: "Are Ethics and Morals Important?", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+]
+)
+
+Page.create!(
+  page_id: "00011",
+  lesson_id: "00009",
+  order_index: 0,
+  video: "https://www.youtube.com/embed/P_uKbiHBUHo",
+  sections: [
+    { content: ["This is page 1 of lesson 9."]},
+    { title: "About Ethics and Morals", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+    { title: "Why Study Ethics and Morals?", content: ["The study of the history of religions is a field of academic inquiry that examines the origins and development of the world’s major religions. Scholars of religion analyze the historical context in which religious traditions emerged, as well as their impact on human civilization. By studying the history of religions, we can gain a deeper understanding of the beliefs, practices, and values that shape the lives of billions of people around the world."]},
+]
+)
+
+exercise8 = ["Why is it important to know about ethics and morals?"]
+exercise9 = ["Do you need to study ethics and morals?"]
+
+Exercise.create!(exercise_id: "00008", topic_id: "00003", lesson_id: "00008", title: "The Importance of Ethics and Morals", qns: exercise8)
+Exercise.create!(exercise_id: "00009", topic_id: "00003", lesson_id: "00009", title: "More About Ethics and Morals", qns: exercise9)
+
+
+
+
+
+
