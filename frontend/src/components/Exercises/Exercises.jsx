@@ -364,9 +364,14 @@ export const Exercises = () => {
               borderRadius="20px"
             >
               <Stack textColor="#333" direction="row" align="center" mb="10px">
-                <Avatar size="md" />
+                <Avatar
+                  size="md"
+                  shadow="lg"
+                  border="1px solid black"
+                  src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdyNDNtMGMzNmtkaThoNG03cWFqMjdyc2VxMWNoM2FtOHVxYzZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1o1uxm9c9YcNoJrQ3W/giphy.gif"
+                />
                 <Stack direction="row" align="center">
-                  <Heading fontFamily="Averia Serif Libre" size="md">
+                  <Heading fontFamily="Averia Serif Libre" size="lg">
                     Kampung Kaki
                   </Heading>
                   <Text fontSize="xs" fontStyle="italic"></Text>
@@ -401,7 +406,7 @@ export const Exercises = () => {
                     </Text>
                   ) : (
                     <Text>
-                      Response:
+                      I will guide you through this exercise!
                       {contentLines.map((line, index) => (
                         <p key={index}>
                           {line}
