@@ -48,7 +48,7 @@ const TopicPage = () => {
           <Stack
             align="center"
             borderRadius="20px"
-            bg = "#F9F9F9"
+            bg="#F9F9F9"
             shadow="lg"
             paddingX="50px"
             paddingY="30px"
@@ -62,33 +62,24 @@ const TopicPage = () => {
           </Stack>
 
           <Box
-          width="100%"
-          maxWidth="1200px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          flex="1"
-          paddingY="15vh"
-        >
-          {/* Add a custom scrollbar div */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "1200px",
-              overflowX: "auto",
-
-              scrollbarWidth: "thin",
-              scrollbarColor: "#888 #f0f0f0",
+            width="100%"
+            maxWidth="90vw"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            flex="1"
+            overflowX="auto"
+            sx={{
               "&::-webkit-scrollbar": {
-                width: "8px",
-              },
-              "&::-webkit-scrollbar-track": {
-                background: "#f0f0f0",
+                width: "16px",
+                borderRadius: "8px",
+                backgroundColor: `rgba(0, 0, 0, 0.1)`,
               },
               "&::-webkit-scrollbar-thumb": {
-                background: "#888",
-                borderRadius: "10px",
+                width: "16px",
+                borderRadius: "8px",
+                backgroundColor: `rgba(237, 46, 56, 1)`,
               },
             }}
           >
@@ -98,7 +89,6 @@ const TopicPage = () => {
               width="max-content"
               justifyContent="center"
               alignItems="center"
-              overflowY="hidden"
             >
               {topics.map((topic) => (
                 <NavigationButton
@@ -110,8 +100,7 @@ const TopicPage = () => {
                 />
               ))}
             </Stack>
-          </div>
-        </Box>
+          </Box>
         </Stack>
       </Stack>
     )
