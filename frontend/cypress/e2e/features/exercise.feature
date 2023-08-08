@@ -3,12 +3,12 @@
     so that I can reinforce my learning.
 
     Background:
-      Given I am logged in
-      And I am on the exercise page
+      Given I am logged in as Mohammad
+      And I am at the exercise page
 
     Scenario: Going to exercise page from lesson complete page
-      Given I am on the lesson complete page
-      When I click on the Test My Understanding button
+      Given I am at the lesson completion page
+      When I click on the Test Your Understanding button
       Then I should be on the exercise page
 
     Scenario: Submission button is disabled when text box is empty
