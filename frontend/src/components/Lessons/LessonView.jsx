@@ -11,7 +11,7 @@ import useCookie from "../../hooks/useCookie";
 
 export const LessonView = () => {
   const params = useParams();
-  const endpoint = window.location.pathname + "/page";
+  const endpoint = window.location.pathname + "/show_pages";
   console.log(endpoint);
   const [data] = useGateway(endpoint, "Get");
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,9 +36,6 @@ export const LessonView = () => {
   // Define a boolean state variable to track the playing state
   const isPlaying = useState(false);
 
-
-
-
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -58,17 +55,13 @@ export const LessonView = () => {
       width="100vw"
       background="#FFFFFF"
     >
-      <Header
-        buttontext="Back to Lessons"
-        path={back_to_lesson_pathway}
-        showForum="true"
-      />
+      <Header buttontext="Back to Lessons" path={back_to_lesson_pathway} />
 
       <Stack
         direction="row"
         justify="flex-start"
         align="flex-start"
-        width="100%"
+        width="100vw"
         height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
@@ -79,17 +72,40 @@ export const LessonView = () => {
         }}
       >
         <Stack
-          paddingLeft="37px"
-          paddingRight="37px"
-          paddingTop="50px"
-          paddingBottom="20px"
-          marginRight="20px"
-          spacing="15px"
-          justify="flex-start"
-          align="flex-start"
+          paddingLeft={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          paddingRight={{
+            base: "10px",
+            lg: "20px",
+            xl: "25px",
+            "2xl": "40px",
+          }}
+          paddingTop={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          paddingBottom={{
+            base: "10px",
+            lg: "10px",
+            xl: "15px",
+            "2xl": "20px",
+          }}
+          spacing={{
+            base: "20px",
+            lg: "20px",
+            xl: "30px",
+            "2xl": "30px",
+          }}
+          justify="fllex-start"
+          align="center"
           overflow="hidden"
-          width={{ base: "400px", md: "500px", lg: "800px" }}
-          minWidth="400px"
+          width="50vw"
           height={`calc(100vh - 120px)`}
           background="#FFFFFF"
           shadow="10px 0px 10px -5px rgba(0, 0, 0, 0.3)"
@@ -97,10 +113,15 @@ export const LessonView = () => {
           <Stack
             justify="flex-start"
             align="flex-start"
+            paddingRight={{
+              base: "10px",
+              lg: "20px",
+              xl: "35px",
+              "2xl": "30px",
+            }}
             spacing="20px"
             width="100%"
             height="100vh"
-            paddingRight="8"
             overflowY="auto"
             color="#000000"
             ref={containerRef}
@@ -120,6 +141,18 @@ export const LessonView = () => {
           >
             {pages[currentPage]?.sections?.map((section, index) => (
               <LessonSection
+                headerSize={{
+                  base: "22px",
+                  lg: "23px",
+                  xl: "24px",
+                  "2xl": "25px",
+                }}
+                contentSize={{
+                  base: "16px",
+                  lg: "17px",
+                  xl: "18px",
+                  "2xl": "19px",
+                }}
                 key={index}
                 title={section.title}
                 content={section.content}
@@ -136,94 +169,113 @@ export const LessonView = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
+            spacing="50px"
           >
             <Stack width="100%" direction="row" justify="space-between">
               <Stack flex="1">
-                {currentPage > 0 && (
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    textColor="#ed2e38"
-                    _hover={{ bg: "#ffaea8" }}
-                    height="48px"
-                    fontSize="18px"
-                    leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
-                    onClick={prevPage}
-                    data-cy = "previous-page"
-                  />
-                )}
-              </Stack>
-              <Stack flex="1" align="center" justify="center">
-                <Text fontSize="16px">{currentPage + 1}</Text>
-              </Stack>
-
-              <Stack flex="1">
-                {currentPage < pages.length - 1 && (
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    textColor="#ed2e38"
-                    _hover={{ bg: "#ffaea8" }}
-                    height="48px"
-                    fontSize="18px"
-                    rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
-                    onClick={nextPage}
-                    data-cy = "next-page"
-                  />
-                )}
-
-                {currentPage === pages.length - 1 && (
-                  <Link to={lesson_complete}>
+                <Stack align="flex-start">
+                  {currentPage > 0 && (
                     <Button
                       size="lg"
                       variant="ghost"
-                      bg="#ed2e38"
-                      textColor="#FFFFFF"
-                      _hover={{ bg: "#7c191c" }}
+                      textColor="#ed2e38"
+                      _hover={{ bg: "#ffaea8" }}
                       height="48px"
                       fontSize="18px"
-                      data-cy = "complete-lesson"
-                    >
-                      Complete Lesson
-                    </Button>
-                  </Link>
-                )}
+                      leftIcon={<Icon as={FaAnglesLeft} boxSize="7" />}
+                      onClick={prevPage}
+                      data-cy="previous-page"
+                    />
+                  )}
+                </Stack>
+              </Stack>
+              <Stack flex="1" align="center" justify="center">
+                <Text
+                  fontSize={{
+                    base: "16px",
+                    lg: "17px",
+                    xl: "18px",
+                    "2xl": "19px",
+                  }}
+                >
+                  {currentPage + 1}
+                </Text>
+              </Stack>
+
+              <Stack flex="1">
+                <Stack align="flex-end">
+                  {currentPage < pages.length - 1 && (
+                    <Button
+                      size="lg"
+                      variant="ghost"
+                      textColor="#ed2e38"
+                      _hover={{ bg: "#ffaea8" }}
+                      height="48px"
+                      fontSize="18px"
+                      rightIcon={<Icon as={FaAnglesRight} boxSize="7" />}
+                      onClick={nextPage}
+                      data-cy="next-page"
+                    />
+                  )}
+
+                  {currentPage === pages.length - 1 && (
+                    <Link to={lesson_complete}>
+                      <Button
+                        size="lg"
+                        variant="ghost"
+                        bg="#ed2e38"
+                        textColor="#FFFFFF"
+                        _hover={{ bg: "#7c191c" }}
+                        height="48px"
+                        fontSize="18px"
+                        data-cy="complete-lesson"
+                      >
+                        Complete Lesson
+                      </Button>
+                    </Link>
+                  )}
+                </Stack>
               </Stack>
             </Stack>
           </Stack>
         </Stack>
-
-        <Stack direction="column">
-          {pages[currentPage]?.video && (
-            <Stack
-              borderRadius="0px 0px 0px 0px"
-              justify="flex-start"
-              align="center"
-              marginTop="30px"
-              overflow="hidden"
-              background="#E0C825"
-              shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
-              marginRight="20px"
-              width="650px"
-              height="450px"
-            >
-              <iframe
-                title="kampung"
-                src={pages[currentPage].video}
-                width="100%"
-                height="100%"
-                data-cy={isPlaying ? "iframe-playing" : "iframe-not-playing"}
-              />
-            </Stack>
-          )}
+        <Stack
+          justify="center"
+          align="center"
+          width="50vw"
+          height={`calc(100vh - 120px)`}
+          paddingBottom="50px"
+        >
+          <Stack direction="column">
+            {pages[currentPage]?.video && (
+              <Stack
+                borderRadius="0px 0px 0px 0px"
+                justify="flex-start"
+                align="center"
+                overflow="hidden"
+                background="#E0C825"
+                shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+                width="45vw"
+                height="60vh"
+              >
+                <iframe
+                  title="kampung"
+                  src={pages[currentPage].video}
+                  width="100%"
+                  height="100%"
+                  data-cy={isPlaying ? "iframe-playing" : "iframe-not-playing"}
+                />
+              </Stack>
+            )}
+          </Stack>
 
           <Stack
             position="fixed"
-            right="20px"
-            bottom="20px"
             direction="row"
-            justify="space-between"
-            align="center"
+            justify="flex-end"
+            align="flex-end"
+            width="45vw"
+            bottom="22px"
           >
             <ForumButton />
           </Stack>

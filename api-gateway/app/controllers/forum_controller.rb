@@ -12,7 +12,7 @@ class ForumController < ApplicationController
   
   def forward
     response = forward_request(ENV["FORUM_URL"], request, @current_user[:user_id])
-    p "Forwarding body: " + response.body
+    p "Forwarding body: " + response.body.to_s
     if response.body == nil
       render json: {}, status: response.code
     else

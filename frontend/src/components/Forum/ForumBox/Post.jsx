@@ -36,7 +36,14 @@ function Post({ post, onClick, onDelete, onUpdate }) {
         <Avatar shadow="lg" size="lg" src={post.user && post.user.avatar} />
         <Flex width="100%" direction="row" justify="space-bewteen">
           <Flex direction="column" spacing="0px" width="100%">
-            <Box maxW="400px">
+            <Box
+              maxW={{
+                base: "20vw",
+                lg: "26vw",
+                xl: "30vw",
+                "2xl": "32vw",
+              }}
+            >
               <Heading
                 noOfLines={2}
                 as="h3"

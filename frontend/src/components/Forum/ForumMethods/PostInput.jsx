@@ -65,7 +65,7 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
   };
 
   return (
-    <Stack width="600px" justify="center" align="center">
+    <Stack width="100%" justify="center" align="center">
       {!isFormOpen ? (
         <Button
           shadow="md"
@@ -86,18 +86,19 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
           direction="row"
           align="flex-start"
           justify="flex-start"
-          mr="30px"
+          width="calc(100% - 30px)"
         >
           <Stack
             bg="#FFFFFF"
             borderRadius="5px"
             border="1px solid grey"
+            width="100%"
             paddingX="20px"
           >
             <Input
               data-cy='post-title-input'
               textColor="black"
-              width="460px"
+              width="calc(100% - 0px)"
               variant="flushed"
               borderColor="grey"
               placeholder="Title"
@@ -108,14 +109,14 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
               data-cy='post-content-input'
               resize="none"
               textColor="black"
-              width="460px"
+              width="calc(100% - 0px)"
               variant="unstyled"
               placeholder="Enter your post content here..."
               value={valueContent}
               onChange={handleContentChange}
             />
           </Stack>
-          <Stack direction="column">
+          <Stack width="fit-content" direction="column">
             <Button
               width="50px"
               height="30px"

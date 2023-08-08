@@ -33,6 +33,10 @@ class ExerciseController < ApplicationController
     render json: { message: 'Exercise deleted!' }
   end
 
+  def show_exercise
+    exercise = Exercise.find_by(lesson_id: params[:lesson_id])
+    render json: exercise
+  end
   private
 
   def exercise_params
