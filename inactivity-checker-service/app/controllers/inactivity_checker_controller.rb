@@ -114,7 +114,7 @@ class InactivityCheckerController < ApplicationController
 
       api_gateway_uri = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments")
       http = Net::HTTP.new(api_gateway_uri.host, api_gateway_uri.port)
-      http.use_ssl = true if api_gateway_url.scheme == 'https'
+      http.use_ssl = true if api_gateway_uri.scheme == 'https'
       api_gateway_uri.query = URI.encode_www_form({ "token" => ENV["ML_TOKEN"], "user_id" => "admin" })
     
       request = Net::HTTP::Post.new(api_gateway_uri)
