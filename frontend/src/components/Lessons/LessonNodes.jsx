@@ -267,7 +267,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           <Stack
             height="100%"
             maxheight="500px"
-            minheight="500px"
+            minheight="60vh"
             width="fit-content"
             justify="flex-start"
             align="center"
