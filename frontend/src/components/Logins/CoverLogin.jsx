@@ -27,15 +27,15 @@ const CoverLogin = () => {
       >
         <Stack width="45vw" textAlign="center" borderRadius="20px" bg="#FFFFFF" shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)" padding="40px" mb="20px">
           <Heading
-            fontSize={{ base: "30px", lg: "65px", xl: "75px", "2xl": "80px" }}
+            fontSize={{ base: "25px", lg: "55px", xl: "75px", "2xl": "80px" }}
           >
             Welcome to
           </Heading>
           <Heading
-            fontSize={{ base: "40px", lg: "80px", xl: "90px", "2xl": "100px" }}
+            fontSize={{ base: "30px", lg: "60px", xl: "80px", "2xl": "90px" }}
             textColor="#ed2e38"
           >
-            Interfaith
+            Kampung.SG
           </Heading>
         </Stack>
     

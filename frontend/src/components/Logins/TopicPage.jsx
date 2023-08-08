@@ -23,7 +23,7 @@ const TopicPage = () => {
   };
   return (
     topics && (
-      <Stack
+    <Stack
     justify="flex-start"
     align="flex-start"
     height="100vh"
@@ -61,7 +61,7 @@ const TopicPage = () => {
         </Stack>
         
 
-        <Stack direction="row" spacing="50px" paddingY="50px">
+        <Stack direction="row" spacing="50px" paddingY="50px" height="100%" justify="center" align="center">
           {topics.map((topic) => (
             <NavigationButton
             key={topic.topic_id}
