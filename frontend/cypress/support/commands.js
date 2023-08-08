@@ -144,6 +144,26 @@ Cypress.Commands.add("checkPage", (page) => {
   cy.get("p").contains(pages[page]).should("exist");
 });
 
+// Custom command to check if the post does not contain "X days ago" where X is greater than 3
+Cypress.Commands.add('checkRecent', () => {
+  const regex = /\b(\d+)\s+days\s+ago\b/i; // Regular expression to match "X days ago" where X is a number
+  cy.contains(regex).should(($posts) => {
+    const text = $posts.text();
+    const daysAgoMatches = text.match(regex);
+    if (daysAgoMatches) {
+      // NOTE - change minDaysAgo to the number of days ago we would like to check from
+      let minDaysAgo = 3;
+      const daysAgoValues = daysAgoMatches.map((match) => parseInt(match));
+      expect(daysAgoValues.some((daysAgo) => daysAgo > minDaysAgo)).to.be.false;
+    } else {
+      // If there are no matches, the test will pass as there is no "X days ago" text
+      expect(true).to.be.true;
+    }
+  });
+});
+
+
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })

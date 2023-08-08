@@ -1,5 +1,6 @@
 class InactivityCheckerController < ApplicationController
   skip_before_action :authenticate_user, raise: false
+  after_action :run_inactivity_check, only: :check_inactivity
 
   def fetch_posts_and_comments(lesson_id)
     puts lesson_id
@@ -38,7 +39,7 @@ class InactivityCheckerController < ApplicationController
   end
 
   def check_for_inactivity_and_format_prompts(lesson_id)
-    puts "Checking inactivity for lesson ID: #{lesson_id}"
+    #puts "Checking inactivity for lesson ID: #{lesson_id}"
     posts_data = fetch_posts_and_comments(lesson_id)
  
     posts = posts_data
@@ -56,11 +57,17 @@ class InactivityCheckerController < ApplicationController
   
       last_comment_time = post["comments"]&.last ? Time.parse(post["comments"].last["created_at"]) : nil
       days_since_last_comment = last_comment_time ? (Time.now - last_comment_time) / (60 * 60 * 24) : nil
-  
+      
+      most_recent_comment = post["comments"].max_by { |comment| comment['created_at'] }
+      #puts most_recent_comment
+      unless most_recent_comment.nil?
+        user_id_of_most_recent_comment = most_recent_comment['user_id']
+      end
 
-      inactive = (no_comments && days_since_creation > 3) || (days_since_last_comment.to_i > 3)
+
+      inactive = (no_comments && days_since_creation > 3) || (days_since_last_comment.to_i > 3 && user_id_of_most_recent_comment != "admin") 
   
-      puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}"
+      puts "Post ID: #{post["id"] || 'N/A'}, Inactive: #{inactive}, Days Since Creation: #{days_since_creation}, Days Since Last Comment: #{days_since_last_comment}, User Of Last Comment: #{user_id_of_most_recent_comment}"
   
       inactive
     end
@@ -72,7 +79,7 @@ class InactivityCheckerController < ApplicationController
       }
     end
   
-    ml_url = URI("#{ENV["ML_API"]}/generate-comment")
+    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/generate-comment")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
@@ -153,10 +160,10 @@ class InactivityCheckerController < ApplicationController
     #text-bison can only process up to 60 requests a minute by default T_T
     interval_seconds = 61 #params[:interval_seconds].to_i || 90
 
-    render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
+    #render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
 
     lesson_ids.each do |lesson_id|
-      puts "IIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDD: #{lesson_id}"
+      #puts "IIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDD: #{lesson_id}"
       puts "Checking inactivity for lesson ID: #{lesson_id}"
       #check_inactivity(lesson_id, interval_seconds)
       Thread.new { check_inactivity(lesson_id, interval_seconds) }
@@ -164,30 +171,5 @@ class InactivityCheckerController < ApplicationController
     end
   end
 
-  def answer_question
-    #need sth here to ask api gateway for lesson content
-    lesson = "Interfaith is good"
-
-    #need sth here 
-    question = "Why is interfaith good"
-
-    #here also
-    answer = "Cuz its good lor"
-
-    prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
-
-    ml_url = URI("#{ENV["ML_API"]}/review")
-    http = Net::HTTP.new(ml_url.host, ml_url.port)
-    request = Net::HTTP::Post.new(ml_url)
-    request['Content-Type'] = 'application/json'
-    request.body = { prompts: prompts }.to_json
-
-    response = http.request(request)
-
-
-
-    render json: response.body 
-
-  end
-
+  
 end
