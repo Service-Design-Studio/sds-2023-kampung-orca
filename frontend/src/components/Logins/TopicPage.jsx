@@ -48,7 +48,7 @@ const TopicPage = () => {
           <Stack
             align="center"
             borderRadius="20px"
-            bg="#FFFFFF"
+            bg = "#F9F9F9"
             shadow="lg"
             paddingX="50px"
             paddingY="30px"
