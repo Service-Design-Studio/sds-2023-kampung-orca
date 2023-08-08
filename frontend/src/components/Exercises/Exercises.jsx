@@ -18,7 +18,6 @@ import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
 import { Spinner } from "@chakra-ui/react";
 
-
 export const Exercises = () => {
   const params = useParams();
   const url = window.location.pathname.replace("exercise", "show_exercise");
@@ -32,23 +31,20 @@ export const Exercises = () => {
 
   const back_to_complete = `/curriculum/lesson/${params.lesson_id}/lesson_completed`;
 
-
-
   const [value, setValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mlAnswer, setMlAnswer] = useState("");
   const [userAnswer, setUserAnswer] = useState("");
   const [mlAnswerRendered, setMlAnswerRendered] = useState(false);
 
-
   useEffect(() => {
     setIsSubmitted(false);
     const storedUserAnswer = sessionStorage.getItem(`userAnswer_${url}`);
     const storedMlAnswer = sessionStorage.getItem(`mlAnswer_${url}`);
-    if (storedUserAnswer){
+    if (storedUserAnswer) {
       setUserAnswer(storedUserAnswer);
     }
-    if (storedMlAnswer){
+    if (storedMlAnswer) {
       setMlAnswer(storedMlAnswer);
     }
   }, [url]);
@@ -94,9 +90,7 @@ export const Exercises = () => {
       SendAnswer(lesson_id, value, callBack);
     };
 
-    const contentLines = mlAnswer.trim().split('\n');
-
-
+    const contentLines = mlAnswer.trim().split("\n");
 
     return (
       <Stack
@@ -106,7 +100,12 @@ export const Exercises = () => {
         width="100vw"
         background="#FFFFFF"
       >
-        <Header showBack showLogout buttontext="Back to Lessons" path={back_to_complete} />
+        <Header
+          showBack
+          showLogout
+          buttontext="Back to Lessons"
+          path={back_to_complete}
+        />
 
         <Stack
           direction="row"
@@ -122,87 +121,90 @@ export const Exercises = () => {
             backgroundPosition: "center",
           }}
         >
-          <Stack direction="column" spacing="4vh"  height={`calc(100vh - 120px)`}>
           <Stack
-            padding={{
-              base: "20px",
-              lg: "30px",
-              xl: "40px",
-              "2xl": "50px",
-            }}
-            paddingRight={{
-              base: "10px",
-              lg: "20px",
-              xl: "30px",
-              "2xl": "40px",
-            }}
-            
-            spacing={{
-              base: "20px",
-              lg: "20px",
-              xl: "30px",
-              "2xl": "30px",
-            }}
-            justify="flex-start"
-            align="center"
-            overflow="hidden"
-            width="60vw"
-            height="43vh"
-            background="#FFFFFF"
-            shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
-            marginLeft="2vw"
-            marginTop="2vh"
-            borderRadius="20px"
+            direction="column"
+            spacing="4vh"
+            height={`calc(100vh - 120px)`}
           >
             <Stack
-              justify="flex-start"
-              align="flex-start"
+              padding={{
+                base: "20px",
+                lg: "30px",
+                xl: "40px",
+                "2xl": "50px",
+              }}
               paddingRight={{
                 base: "10px",
-                lg: "10px",
-                xl: "20px",
-                "2xl": "20px",
+                lg: "20px",
+                xl: "30px",
+                "2xl": "40px",
               }}
-              spacing="20px"
-              width="100%"
-              height="100vh"
-              overflowY="auto"
-              color="#000000"
-              style={{ zIndex: 10 }}
-              sx={{
-                "&::-webkit-scrollbar": {
-                  width: "16px",
-                  borderRadius: "8px",
-                  backgroundColor: `rgba(0, 0, 0, 0.1)`,
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  width: "16px",
-                  borderRadius: "8px",
-                  backgroundColor: `rgba(237, 46, 56, 1)`,
-                },
+              spacing={{
+                base: "20px",
+                lg: "20px",
+                xl: "30px",
+                "2xl": "30px",
               }}
+              justify="flex-start"
+              align="center"
+              overflow="hidden"
+              width="48vw"
+              height="43vh"
+              background="#FFFFFF"
+              shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
+              marginLeft="2vw"
+              marginTop="2vh"
+              borderRadius="20px"
             >
-              <ExerciseSection
-                headerSize={{
-                  base: "20px",
-                  lg: "21px",
-                  xl: "22px",
-                  "2xl": "23px",
+              <Stack
+                justify="flex-start"
+                align="flex-start"
+                paddingRight={{
+                  base: "10px",
+                  lg: "10px",
+                  xl: "20px",
+                  "2xl": "20px",
                 }}
-                contentSize={{
-                  base: "14px",
-                  lg: "15px",
-                  xl: "16px",
-                  "2xl": "17px",
+                spacing="20px"
+                width="100%"
+                height="100vh"
+                overflowY="auto"
+                color="#000000"
+                style={{ zIndex: 10 }}
+                sx={{
+                  "&::-webkit-scrollbar": {
+                    width: "16px",
+                    borderRadius: "8px",
+                    backgroundColor: `rgba(0, 0, 0, 0.1)`,
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    width: "16px",
+                    borderRadius: "8px",
+                    backgroundColor: `rgba(237, 46, 56, 1)`,
+                  },
                 }}
-                key={"0"}
-                title={title}
-                content={qns}
-              />
+              >
+                <ExerciseSection
+                  headerSize={{
+                    base: "20px",
+                    lg: "21px",
+                    xl: "22px",
+                    "2xl": "23px",
+                  }}
+                  contentSize={{
+                    base: "14px",
+                    lg: "15px",
+                    xl: "16px",
+                    "2xl": "17px",
+                  }}
+                  key={"0"}
+                  title={title}
+                  content={qns}
+                />
+              </Stack>
             </Stack>
-          </Stack>
 
-          <Stack
+            <Stack
               paddingX={{
                 base: "30px",
                 lg: "40px",
@@ -223,7 +225,7 @@ export const Exercises = () => {
               }}
               justify="flex-start"
               align="flex-start"
-              width="60vw"
+              width="48vw"
               height="38vh"
               background="#FFFFFF"
               shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
@@ -246,52 +248,59 @@ export const Exercises = () => {
             >
               {isSubmitted ? (
                 <>
-                <Stack height="100%">
-                  <Heading fontSize="20px" mb="10px">
-                    {" "}
-                    Your answer:
-                  </Heading>
-                  <Text>{value}</Text>
+                  <Stack height="100%">
+                    <Heading fontSize="20px" mb="10px">
+                      {" "}
+                      Your answer:
+                    </Heading>
+                    <Text>{value}</Text>
                   </Stack>
-                  
-                  <Stack width="100%" justify="flex-end" align="flex-end">
-                  {mlAnswerRendered ? (
-                  <Button
-                    fontSize="18px"
-                    bg="#ed2e38" // Change to the desired color (same as the "Submit" button)
-                    textColor="#FFFFFF"
-                    _hover={{ bg: "#7c191c" }} // Change the hover color if needed
-                    size="lg"
-                    height="48px"
-                    shadow="md"
-                    onClick={handleResubmission}
-                    marginX="auto" // Change the marginX value to adjust the horizontal position
-                  >
-                    Re-submit Answer
-                  </Button>
-                ) : (
-                  <Spinner size="lg" />
-                  
-                )}
-                </Stack>
-                </>
 
+                  <Stack width="100%" justify="flex-end" align="flex-end">
+                    {mlAnswerRendered ? (
+                      <Button
+                        fontSize="18px"
+                        bg="#ed2e38" // Change to the desired color (same as the "Submit" button)
+                        textColor="#FFFFFF"
+                        _hover={{ bg: "#7c191c" }} // Change the hover color if needed
+                        size="lg"
+                        height="30px"
+                        shadow="md"
+                        onClick={handleResubmission}
+                        marginX="auto" // Change the marginX value to adjust the horizontal position
+                      >
+                        Re-submit Answer
+                      </Button>
+                    ) : (
+                      <Spinner size="lg" />
+                    )}
+                  </Stack>
+                </>
               ) : (
                 <>
                   <Heading
-                  fontSize={{base: "14px", lg: "16px", xl: "20px", "2xl": "20px"}}
-                  mb={{base: "2px", lg: "5px", xl: "10px", "2xl": "10px"}}
-                  mt={{base: "2px", lg: "5px", xl: "0px", "2xl": "0px"}}
+                    fontSize={{
+                      base: "14px",
+                      lg: "16px",
+                      xl: "20px",
+                      "2xl": "20px",
+                    }}
+                    mb={{ base: "2px", lg: "5px", xl: "10px", "2xl": "10px" }}
+                    mt={{ base: "2px", lg: "5px", xl: "0px", "2xl": "0px" }}
                   >
                     {" "}
-                    Write your answer:
+                    Write Your Answer:
                   </Heading>
                   <Textarea
                     width="100%"
                     height="100%"
                     value={value}
                     onChange={handleInputChange}
-                    placeholder={userAnswer ? "Previous Answer: "+ userAnswer : "Write your answer here!"}
+                    placeholder={
+                      userAnswer
+                        ? "Previous Answer: " + userAnswer
+                        : "Write your answer here!"
+                    }
                   />
                   <Stack width="100%" justify="flex-start" align="flex-end">
                     <Button
@@ -316,7 +325,6 @@ export const Exercises = () => {
                 </>
               )}
             </Stack>
-
           </Stack>
 
           <Stack
@@ -328,13 +336,12 @@ export const Exercises = () => {
             }}
             justify="flex-start"
             align="center"
-            width="46vw"
+            width="45vw"
             height={`calc(97vh - 120px)`}
             marginX="2vw"
             marginY="2vh"
             direction="column"
           >
-            
             <Stack
               padding={{
                 base: "30px",
@@ -359,7 +366,9 @@ export const Exercises = () => {
               <Stack textColor="#333" direction="row" align="center" mb="10px">
                 <Avatar size="md" />
                 <Stack direction="row" align="center">
-                  <Heading size="md">Kampung Kaki</Heading>
+                  <Heading fontFamily="Averia Serif Libre" size="md">
+                    Kampung Kaki
+                  </Heading>
                   <Text fontSize="xs" fontStyle="italic"></Text>
                 </Stack>
               </Stack>
@@ -381,26 +390,30 @@ export const Exercises = () => {
                 }}
               >
                 <div>
-                {userAnswer ? (
-                  <Text>
-                  {contentLines.map((line, index) => (
-                      <p key={index}>{line}<br /></p>
-                    ))}
-                  </Text>
-                ) : (
-                  <Text>
-                    Response:
-                    {contentLines.map((line, index) => (
-                      <p key={index}>{line}<br /></p>
-                    ))}
-                  </Text>
-                )}
+                  {userAnswer ? (
+                    <Text>
+                      {contentLines.map((line, index) => (
+                        <p key={index}>
+                          {line}
+                          <br />
+                        </p>
+                      ))}
+                    </Text>
+                  ) : (
+                    <Text>
+                      Response:
+                      {contentLines.map((line, index) => (
+                        <p key={index}>
+                          {line}
+                          <br />
+                        </p>
+                      ))}
+                    </Text>
+                  )}
                 </div>
               </Stack>
             </Stack>
           </Stack>
-
-
         </Stack>
       </Stack>
     );

@@ -27,12 +27,12 @@ const CoverLogin = () => {
       >
         <Stack width="45vw" textAlign="center" borderRadius="20px" bg="#FFFFFF" shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)" padding="40px" mb="20px">
           <Heading
-            fontSize={{ base: "25px", lg: "55px", xl: "75px", "2xl": "80px" }}
+            fontFamily="Averia Serif Libre" fontSize={{ base: "25px", lg: "55px", xl: "75px", "2xl": "80px" }}
           >
             Welcome to
           </Heading>
           <Heading
-            fontSize={{ base: "30px", lg: "60px", xl: "80px", "2xl": "90px" }}
+            fontFamily="Averia Serif Libre" fontSize={{ base: "30px", lg: "60px", xl: "80px", "2xl": "90px" }}
             textColor="#ed2e38"
           >
             Kampung.SG
@@ -50,6 +50,7 @@ const CoverLogin = () => {
               _hover={{ bg: "#7c191c" }}
               size="lg"
               height="65px"
+              fontFamily="Roboto"
               shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
               id="login-button"
             >

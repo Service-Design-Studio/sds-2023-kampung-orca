@@ -293,7 +293,17 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                     <Avatar size="sm" />
                     <Stack direction="row" align="center">
                       <Heading size="s">
-                        {comment.user && comment.user.name}{" "}
+                        <span
+                          style={{
+                            fontFamily:
+                              comment.user_id === "admin"
+                                ? "Averia Serif Libre"
+                                : "Roboto",
+                            // Add more styling properties as needed
+                          }}
+                        >
+                          {comment.user && comment.user.name}{" "}
+                        </span>
                       </Heading>
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}

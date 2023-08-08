@@ -37,7 +37,12 @@ export const LessonCompletion = () => {
       width="100vw"
       background="#FFFFFF"
     >
-      <Header showLogout showBack buttontext="Back to Lessons" path={back_to_topic} />
+      <Header
+        showLogout
+        showBack
+        buttontext="Back to Lessons"
+        path={back_to_topic}
+      />
 
       <Stack //main body stack with the 2 buttons and lesson complete box
         paddingX="91px"
@@ -93,6 +98,7 @@ export const LessonCompletion = () => {
                     }}
                   />
                   <Text
+                    fontFamily="Roboto"
                     fontSize={{
                       base: "18px",
                       lg: "24px",
@@ -110,7 +116,6 @@ export const LessonCompletion = () => {
 
         <Stack>
           <Stack
-            paddingX="90px"
             paddingTop="31px"
             marginBottom="30px"
             borderRadius="50px"
@@ -150,20 +155,20 @@ export const LessonCompletion = () => {
                 }}
               />
               <Text
-                fontFamily="Arial"
                 lineHeight="1.33"
                 fontWeight="bold"
                 fontSize={{
                   base: "18px",
                   lg: "24px",
-                  xl: "26px",
-                  "2xl": "26px",
+                  xl: "28px",
+                  "2xl": "28px",
                 }}
                 color="#000000"
                 width="250px"
                 height="64px"
                 maxWidth="100%"
                 textAlign="center"
+                fontFamily="Roboto"
               >
                 Lesson Completed!
               </Text>
@@ -181,6 +186,7 @@ export const LessonCompletion = () => {
               size="lg"
               height="60px"
               shadow="md"
+              fontFamily="Roboto"
               // leftIcon={<Icon as={BsChatDots} boxSize="7" />}
             >
               Test your understanding!
@@ -225,6 +231,7 @@ export const LessonCompletion = () => {
                     }}
                   />
                   <Text
+                    fontFamily="Roboto"
                     fontSize={{
                       base: "18px",
                       lg: "24px",

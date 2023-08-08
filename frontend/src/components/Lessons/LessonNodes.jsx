@@ -70,7 +70,7 @@ const DynamicNodes = ({ nodeHeights }) => {
 const StraightLine = () => {
   return (
     <Stack
-      minWidth="300px"
+      minWidth="280px"
       justify="center"
       align="center"
       paddingBottom="25px"
@@ -160,10 +160,10 @@ const Node = ({
               as={iconComponent}
               color={color}
               boxSize={{
-                base: "80px",
-                lg: "90px",
-                xl: "100px",
-                "2xl": "110px",
+                base: "70px",
+                lg: "80px",
+                xl: "90px",
+                "2xl": "100px",
               }}
               id={nodeId}
             />
@@ -171,11 +171,12 @@ const Node = ({
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />
-          <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
+          <PopoverHeader fontFamily="Averia Serif Libre" fontWeight="semibold">{title}</PopoverHeader>
           <PopoverBody fontSize="14px" textAlign="justify">
             {message}
           </PopoverBody>
           <PopoverBody
+            fontFamily="Roboto"
             fontSize="14px"
             fontWeight="semibold"
             color={statusColour}
@@ -183,7 +184,7 @@ const Node = ({
             data-cy="popup"
           >
             <Stack direction="row" justifyContent="space-between">
-              <Text>{status}</Text>
+              <Text fontFamily="Roboto">{status}</Text>
             </Stack>
           </PopoverBody>
         </PopoverContent>

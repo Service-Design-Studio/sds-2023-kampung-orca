@@ -1,82 +1,89 @@
 import React from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box, Heading } from "@chakra-ui/react";
-import Cookies from "js-cookie";
-import useGateway from "../../hooks/useGateway";
-import { motion } from "framer-motion";
-import { FiLogOut ,FiGrid, FiList } from "react-icons/fi";
-import NavigationButton from "./NavigationButton";
-import { Header } from "../Header";
+import { Box, Text, Stack, Button, Heading, Icon } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineHistoryEdu } from "react-icons/md";
+import { PiBookBookmarkBold, PiScalesBold, PiHandsPrayingBold, PiChatsCircleBold } from "react-icons/pi";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
+import "./NavigationButton.css"; // Import the CSS file
 
 
 
+function NavigationButton({ data, to, topic_id, children, hideButton }) {
+  console.log("Received topic_id:", topic_id);
+  const navigate = useNavigate();
 
+  function handleClick() {
+    navigate(to);
+  }
 
-const TopicPage = () => {
-  // TODO: CHANGE THIS!
-  const [topics] = useGateway(window.location.pathname);
-  const handleLogout = () => {
-    // Implement your logout logic here
-    // For example, clear session or local storage, and navigate to the login page
-    Cookies.remove("token");
-    window.location.href = "/";
+  const imageSrcMap = {
+    "00001": PiBookBookmarkBold,
+    "00002": MdOutlineHistoryEdu,
+    "00003": PiScalesBold,
+    "00004": PiChatsCircleBold,
+    "00005": PiHandsPrayingBold,
   };
+
+ 
+
+  const title = {
+    "00001": "Introduction",
+    "00002": "History of Religion",
+    "00003": "Ethics and Morals",
+    "00004": "Communications",
+    "00005": "Practices",
+  };
+
+  const imageSrc = imageSrcMap[topic_id];
+  console.log("Image source for topic_id:", topic_id, "is", imageSrc);
+
+  const buttonStyle = {
+    display: hideButton ? "none" : "block",
+    width: "200px",
+    height: "30px",
+  };
+
   return (
-
-    <Stack
-    justify="flex-start"
-    align="flex-start"
-    height="100vh"
-    width="100vw"
-    background="#FFFFFF"
-  >
-    <Header showLogout path="/" />
-
-    <Stack
-        paddingX="91px"
-        paddingY="40px"
-        direction="column"
-        align="center"
-        justify="flex-start"
-        spacing="20px"
-        width="100vw"
-        height={`calc(100vh - 120px)`}
-        maxWidth="100%"
-        style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-        }}
+    <Stack direction="column" align="center">
+      <Button 
+          height={{
+            base: "100px",
+            lg: "150px",
+            xl: "200px",
+            "2xl": "200px",
+          }}
+          width={{
+            base: "100px",
+            lg: "150px",
+            xl: "200px",
+            "2xl": "200px",
+          }}
+          onClick={handleClick} data-cy={data} bg="#FFFFFF" shadow="lg">
+        <Stack direction="column" align="center">       
+          <Icon
+            as={imageSrc}
+            boxSize={{
+              base: "80px",
+              lg: "80px",
+              xl: "130px",
+              "2xl": "130px",
+            }}
+          />
+          </Stack> 
+      </Button>
+      <Heading textAlign="center" mt="5px" fontSize={{
+            base: "14px",
+            lg: "18px",
+            xl: "20px",
+            "2xl": "20px",
+          }}
+          fontStyle="italic"
       >
-        <Stack align="center" borderRadius="20px" bg="#FFFFFF" shadow="lg" paddingX="50px" paddingY="30px">
-          <Heading fontSize="60px">
-            Welcome back!
-          </Heading>
-          <Text fontSize="30px" fontStyle="italic">
-            Sharpen your interfaith knowledge
-          </Text>
-        </Stack>
-        
-      
-      
-        <Stack direction="row" spacing="50px" paddingY="50px">
-          {topics.map((topic) => (
-            <NavigationButton
-            key={topic.topic_id}
-            to={`/curriculum/topic/${topic.topic_id}`}
-            hideButton={false}
-            data={topic.topic_id}
-            topic_id={topic.topic_id} // Change the prop name here
-          >
-              
-            </NavigationButton>
-          ))}
-        </Stack>
-      </Stack>
-      </Stack>
-    
-  );
-};
 
-export default TopicPage;
+      {title[topic_id]}
+    </Heading>
+    </Stack>
+    );
+  }
+  
+  export default NavigationButton;

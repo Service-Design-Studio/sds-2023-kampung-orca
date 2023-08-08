@@ -46,7 +46,7 @@ const GoogleLoginButton = () => {
         height="auto"
       />
       
-      <Text margin="20px" fontSize={{
+      <Text fontFamily="Roboto" fontStyle="normal" margin="20px" fontSize={{
             base: "16px",
             lg: "20px",
             xl: "24px",
@@ -149,6 +149,7 @@ const LoginPage = () => {
       >
         <Heading
           fontSize="50px"
+          fontFamily="Averia Serif Libre"
         >
           Login to Interfaith
         </Heading>

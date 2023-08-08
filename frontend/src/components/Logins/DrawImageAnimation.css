@@ -4,11 +4,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://i.ibb.co/0Cykw1g/new.jpg");
+  background-image: url("https://cdn.discordapp.com/attachments/1031134090688217130/1138418695589343272/80_kampung_fishing_village_singapore_malaysia_countryside_2ac2975a-3a1e-4985-b08a-cc4adb2e0581.png");
   background-size: cover;
   background-position: 0 0;
   background-repeat: no-repeat;
   animation: drawImage 5s linear forwards;
+  transform: "scaleX(-1)";
 }
 
 @keyframes drawImageAnimation {

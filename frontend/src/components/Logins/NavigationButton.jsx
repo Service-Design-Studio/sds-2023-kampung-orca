@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Text, Stack, Button, Heading, Icon } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { GiSpellBook } from "react-icons/gi";
 import { MdOutlineHistoryEdu } from "react-icons/md";
 import { PiBookBookmarkBold, PiScalesBold, PiHandsPrayingBold, PiChatsCircleBold } from "react-icons/pi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
@@ -72,13 +71,13 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
           />
           </Stack> 
       </Button>
-      <Heading textAlign="center" mt="5px" fontSize={{
+      <Heading fontFamily="Roboto" textAlign="center" mt="5px" fontSize={{
             base: "14px",
             lg: "18px",
             xl: "20px",
             "2xl": "20px",
           }}
-          fontStyle="italic"
+          
       >
 
       {title[topic_id]}
