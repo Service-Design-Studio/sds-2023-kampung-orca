@@ -81,6 +81,7 @@ class InactivityCheckerController < ApplicationController
   
     ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/generate-comment")
     http = Net::HTTP.new(ml_url.host, ml_url.port)
+    http.use_ssl = true if ml_url.scheme == 'https'
     request = Net::HTTP::Post.new(ml_url)
     request['Content-Type'] = 'application/json'
     request.body = { prompts: prompts }.to_json
@@ -111,12 +112,12 @@ class InactivityCheckerController < ApplicationController
 
       puts "Post ID: #{post_id}, Response Content: #{response_content}"
 
-      api_gateway_url = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=#{ENV["ML_TOKEN"]}")
-      http = Net::HTTP.new(api_gateway_url.host, api_gateway_url.port)
+      api_gateway_uri = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments")
+      http = Net::HTTP.new(api_gateway_uri.host, api_gateway_uri.port)
+      http.use_ssl = true if api_gateway_url.scheme == 'https'
+      api_gateway_uri.query = URI.encode_www_form({ "token" => ENV["ML_TOKEN"], "user_id" => "admin" })
     
-      path = api_gateway_url.path
-    
-      request = Net::HTTP::Post.new(path + '?' + api_gateway_url.query)
+      request = Net::HTTP::Post.new(api_gateway_uri)
       request['Content-Type'] = 'application/json'
       request.body = { comment: { content: response_content } }.to_json
     
@@ -158,7 +159,7 @@ class InactivityCheckerController < ApplicationController
     puts "Class of lesson_ids: #{lesson_ids.class}"
 
     #text-bison can only process up to 60 requests a minute by default T_T
-    interval_seconds = 61 #params[:interval_seconds].to_i || 90
+    interval_seconds = 300 #params[:interval_seconds].to_i || 90
 
     #render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
 
@@ -170,6 +171,4 @@ class InactivityCheckerController < ApplicationController
       puts "Finished checking inactivity for lesson ID: #{lesson_id}\n\n"
     end
   end
-
-  
 end
