@@ -18,75 +18,77 @@ require 'json'
 require 'googleauth'
 
 class Users::UserController < ApplicationController
-  
-    before_action :set_credentials
-    #skip_before_action :verify_authenticity_token, only: [:google]
-    
-    def google
-      render json: {}
-    end
-  
-    def authorization_code_exchange
-      begin
-        query = {
-          code: @code,
-          client_id: ENV['GOOGLE_CLIENT_ID'],
-          client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-          redirect_uri: ENV['FRONTEND_URL'] + '/oauth/google',
-          grant_type: 'authorization_code'
-        }
-        response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query: query)
-        p "Exchanged Tokens: #{response}"
-        tokens_data =  {token: response['access_token'], refresh_token: response['refresh_token'], expires_at: response["expires_in"]}
-        @token = response['access_token']
-        headers = {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer #{response['access_token']}"
-        }
+  before_action :set_credentials
+  # skip_before_action :verify_authenticity_token, only: [:google]
 
-        # Get user profile information
-        profile_response = HTTParty.get(
-          'https://www.googleapis.com/oauth2/v2/userinfo',
-          headers: headers
-        )
-        profile_data = JSON.parse(profile_response.body)
-        p "Exchanged profile: #{profile_data}"
+  def google
+    render json: {}
+  end
 
-        if profile_data["id"] == nil
-          head 400
-        end
-  
-        if User.where(user_id: profile_data["id"]).blank? == true
-          first_time_setup_google(tokens_data, profile_data)
-        else
-          Token.create!(token:tokens_data[:token], refresh_token:tokens_data[:refresh_token], expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data["id"])
-        end
-        
-        render json: {token: @token, user_id: profile_data["id"], name: profile_data["name"], email: profile_data["email"]}
-      rescue Exception
-        render json: {token: nil, user_id: nil}
-      end
+  def authorization_code_exchange
+    query = {
+      code: @code,
+      client_id: ENV['GOOGLE_CLIENT_ID'],
+      client_secret: ENV['GOOGLE_CLIENT_SECRET'],
+      redirect_uri: ENV['FRONTEND_URL'] + '/oauth/google',
+      grant_type: 'authorization_code'
+    }
+    response = HTTParty.post('https://www.googleapis.com/oauth2/v4/token', query:)
+    p "Exchanged Tokens: #{response}"
+    tokens_data = { token: response['access_token'], refresh_token: response['refresh_token'],
+                    expires_at: response['expires_in'] }
+    @token = response['access_token']
+    headers = {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer #{response['access_token']}"
+    }
 
+    # Get user profile information
+    profile_response = HTTParty.get(
+      'https://www.googleapis.com/oauth2/v2/userinfo',
+      headers:
+    )
+    profile_data = JSON.parse(profile_response.body)
+    p "Exchanged profile: #{profile_data}"
 
-      #if profile_data[:id] not in database
-        #first_time_setup()
-      #end
+    head 400 if profile_data['id'].nil?
 
-      
+    if User.where(user_id: profile_data['id']).blank? == true
+      first_time_setup_google(tokens_data, profile_data)
+    else
+      Token.create!(token: tokens_data[:token], refresh_token: tokens_data[:refresh_token],
+                    expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data['id'])
     end
 
+    render json: { token: @token, user_id: profile_data['id'], name: profile_data['name'],
+                   email: profile_data['email'] }
+  rescue Exception
+    render json: { token: nil, user_id: nil }
+
+    # if profile_data[:id] not in database
+    # first_time_setup()
+    # end
+  end
 
     def verify_token
       token = Token.find_by(token: @token)
       if token == nil
         render json: {token: nil, user_id: nil}
       else
+        p token.expires_at
+        p Time.now
         if token.expires_at < Time.now
           token[:token] = token.refresh!
         end
         render json: {token: token[:token], user_id: token[:user_id]}
       end
     end
+  end
+
+  def profile
+    user = User.find_by(user_id: params[:user_id])
+    render json: { user_id: user[:user_id], name: user[:name], email: user[:email] }
+  end
 
   private
 

@@ -16,9 +16,11 @@ class ApplicationController < ActionController::API
 
   def current_user
     if ENV["ADMIN"] == @token && Rails.env.development?
-      @current_user = {token: "admin", user_id: "admin"}
+      @current_user = {token: "admin", user_id: "admin", name: @token}
     elsif ENV["NORMAL_USER"] == @token && Rails.env.development?
-      @current_user = {token: "admin", user_id: "admin"} # modify this line to change the user account for a normal user 
+      @current_user = {token: "admin", user_id: "admin", name: @token}} # modify this line to change the user account for Mohammad
+    elsif ENV["NORMAL_USER2"] == @token && Rails.env.development?
+      @current_user = {token: "admin", user_id: "admin", name: @token}} # modify this line to change the user account for ALoysius
     elsif ENV["ML_TOKEN"] == @token
       @current_user = {token: "admin", user_id: "admin", name: "Kampung Kaki"}
     else

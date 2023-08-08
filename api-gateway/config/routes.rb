@@ -12,12 +12,13 @@ Rails.application.routes.draw do
 
   get '/posts/*path', to: 'forum#forward'
   post '/posts/test_user', to: 'forum#testing'
+  
   post '/users/signup', to: 'user#authorization_code_exchange'
+  get '/users/profile', to: 'user#profile'
+  
   get '/curriculum/*path', to: 'curriculum#forward_request'
   post '/curriculum/*path', to: 'curriculum#forward_request'
 
   post '/ml/review', to: 'ml#forward'
   post '/ml/generate-comment', to: 'ml#forward'
-
-  
 end

@@ -11,6 +11,8 @@ import {
   LessonNodes,
   LessonView,
   LessonCompletion,
+  LessonSection,
+  Exercise,
 } from "../components/Lessons";
 
 import {
@@ -22,9 +24,8 @@ import {
 import GoogleCallback from "../components/Logins/GoogleCallback";
 import LoginPage from "../components/Logins/LoginPage";
 import CoverLogin from "../components/Logins/CoverLogin";
-import HomePage from "../components/Logins/HomePage";
+
 import TopicPage from "../components/Logins/TopicPage";
-import LearnMore from "../components/Logins/LearnMore";
 
 import useCookie from "../hooks/useCookie";
 
@@ -49,6 +50,10 @@ export default (
           path="/curriculum/lesson/:lesson_id/error"
           element={<CurriculumErrorPage />}
         />
+        <Route
+          path="/curriculum/lesson/:lesson_id/exercise"
+          element={<Exercise />}
+        />
       </Route>
 
       <Route path="/error" element={<ErrorPage />} />
@@ -56,8 +61,7 @@ export default (
       <Route path="/oauth/google" element={<GoogleCallback />} />
       <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/learnmore" element={<LearnMore />} />
+      
       <Route path="*" element={<Navigate to="/error" />} />
     </Routes>
   </Router>
