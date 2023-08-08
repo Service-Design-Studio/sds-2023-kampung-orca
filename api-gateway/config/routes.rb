@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
   get '/posts/*path', to: 'forum#forward'
   post '/posts/test_user', to: 'forum#testing'
+  
   post '/users/signup', to: 'user#authorization_code_exchange'
+  get '/users/profile', to: 'user#profile'
+  
   get '/curriculum/*path', to: 'curriculum#forward_request'
   post '/curriculum/*path', to: 'curriculum#forward_request'
-
-  get '/inactivity-checker/fetch-posts-and-comments', to: 'inactivity_checker#fetch_posts_and_comments'
-  get '/inactivity-checker/run_inactivity_check', to: 'inactivity_checker#run_inactivity_check'
 end
