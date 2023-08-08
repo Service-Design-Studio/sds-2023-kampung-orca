@@ -18,6 +18,8 @@ Topic.create!(topic_id: "00002", title: "Sample Topic 2")
 Topic.create!(topic_id: "00003", title: "Sample Topic 2")
 Topic.create!(topic_id: "00004", title: "Sample Topic 4")
 Topic.create!(topic_id: "00005", title: "Sample Topic 5")
+Topic.create!(topic_id: "00006", title: "Sample Topic 6")
+Topic.create!(topic_id: "00007", title: "Sample Topic 7")
 
 # Topic 1 Seeding
 Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: "Introduction to Interfaith", message: "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.")

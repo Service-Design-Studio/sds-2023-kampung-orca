@@ -8,7 +8,7 @@ import {
   PiHandsPrayingBold,
   PiChatsCircleBold,
 } from "react-icons/pi";
-import { HiChatBubbleLeftRight } from "react-icons/hi2";
+import { HiAcademicCap, HiChatBubbleLeftRight } from "react-icons/hi2";
 import "./NavigationButton.css"; // Import the CSS file
 
 function NavigationButton({ data, to, topic_id, children, hideButton }) {
@@ -25,6 +25,8 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
     "00003": PiScalesBold,
     "00004": PiChatsCircleBold,
     "00005": PiHandsPrayingBold,
+    "00006": HiChatBubbleLeftRight,
+    "00007": HiAcademicCap,
   };
 
   const title = {
@@ -33,6 +35,8 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
     "00003": "Ethics and Morals",
     "00004": "Communications",
     "00005": "Practices",
+    "00006": "Respect and Tolerance",
+    "00007": "Understanding"
   };
 
   const imageSrc = imageSrcMap[topic_id];
