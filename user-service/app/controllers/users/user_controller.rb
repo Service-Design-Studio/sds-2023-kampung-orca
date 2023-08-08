@@ -105,6 +105,11 @@ class Users::UserController < ApplicationController
       end
     end
 
+  def profile
+    user = User.find_by(user_id: params[:user_id])
+    render json: { user_id: user[:user_id], name: user[:name], email: user[:email] }
+  end
+
   private
 
   def first_time_setup_google(tokens_data, profile_data)
