@@ -25,6 +25,16 @@ class Users::UserController < ApplicationController
     def google
       render json: {}
     end
+
+    def index
+      render json: User.all
+    end
+
+    def show
+      render json: User.find_by(user_id: params[:id])
+    end
+    
+
   
     def authorization_code_exchange
       begin
@@ -97,6 +107,8 @@ class Users::UserController < ApplicationController
                   expires_at: Time.now + tokens_data[:expires_at].to_i.seconds, user_id: profile_data['id'])
     User.create!(user_id: profile_data['id'], email: profile_data['email'], name: profile_data['name'])
   end
+
+
 
   def set_credentials
     @token = params[:token]
