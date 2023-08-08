@@ -61,7 +61,7 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
         }}
         onClick={handleClick}
         data-cy={data}
-        bg="#FFFFFF"
+        bg = "#F9F9F9"
         shadow="lg"
       >
         <Stack direction="column" align="center">
