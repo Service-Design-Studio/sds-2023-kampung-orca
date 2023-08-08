@@ -296,6 +296,7 @@ export const Exercises = () => {
                     height="100%"
                     value={value}
                     onChange={handleInputChange}
+                    data-cy="exercise-answer-input"
                     placeholder={
                       userAnswer
                         ? "Previous Answer: " + userAnswer
@@ -313,6 +314,7 @@ export const Exercises = () => {
                       shadow="md"
                       onClick={handleSubmitClick}
                       isDisabled={isTextareaEmpty}
+                      data-cy="exercise-submit-button"
                     >
                       <SubmitAlert
                         isOpen={showSubmitAlert}

@@ -187,6 +187,7 @@ export const LessonCompletion = () => {
               height="60px"
               shadow="md"
               fontFamily="Roboto"
+              data-cy ="test-your-understanding"
               // leftIcon={<Icon as={BsChatDots} boxSize="7" />}
             >
               Test your understanding!
