@@ -61,24 +61,57 @@ const TopicPage = () => {
             </Text>
           </Stack>
 
-          <Stack
-            direction="row"
-            spacing="50px"
-            paddingY="50px"
-            height="100%"
-            justify="center"
-            align="center"
+          <Box
+          width="100%"
+          maxWidth="1200px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          flex="1"
+          paddingY="15vh"
+        >
+          {/* Add a custom scrollbar div */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1200px",
+              overflowX: "auto",
+
+              scrollbarWidth: "thin",
+              scrollbarColor: "#888 #f0f0f0",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "#f0f0f0",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#888",
+                borderRadius: "10px",
+              },
+            }}
           >
-            {topics.map((topic) => (
-              <NavigationButton
-                key={topic.topic_id}
-                to={`/curriculum/topic/${topic.topic_id}`}
-                hideButton={false}
-                data={topic.topic_id}
-                topic_id={topic.topic_id} // Change the prop name here
-              ></NavigationButton>
-            ))}
-          </Stack>
+            <Stack
+              direction="row"
+              spacing="50px"
+              width="max-content"
+              justifyContent="center"
+              alignItems="center"
+              overflowY="hidden"
+            >
+              {topics.map((topic) => (
+                <NavigationButton
+                  key={topic.topic_id}
+                  to={`/curriculum/topic/${topic.topic_id}`}
+                  hideButton={false}
+                  data={topic.topic_id}
+                  topic_id={topic.topic_id}
+                />
+              ))}
+            </Stack>
+          </div>
+        </Box>
         </Stack>
       </Stack>
     )
