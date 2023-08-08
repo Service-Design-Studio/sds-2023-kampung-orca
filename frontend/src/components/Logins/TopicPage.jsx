@@ -11,6 +11,9 @@ import { Header } from "../Header";
 const TopicPage = () => {
   // TODO: CHANGE THIS!
   const [topics] = useGateway(window.location.pathname);
+
+  // FIXME - Update current-user-id to the actual current user id
+  const current_user_id = Cookies.get("name");
   const handleLogout = () => {
     // Implement your logout logic here
     // For example, clear session or local storage, and navigate to the login page
@@ -54,7 +57,7 @@ const TopicPage = () => {
             paddingY="30px"
           >
             <Heading fontFamily="Roboto" fontSize="60px">
-              Welcome back, Keith!
+              Welcome back, {current_user_id || "Guest"}!
             </Heading>
             <Text fontFamily="Roboto" fontSize="24px">
               Sharpen your interfaith knowledge
