@@ -66,7 +66,7 @@ const TopicPage = () => {
             maxWidth="90vw"
             display="flex"
             flexDirection="column"
-            alignItems="center"
+            alignItems="flex-start"
             justifyContent="center"
             flex="1"
             overflowX="auto"
