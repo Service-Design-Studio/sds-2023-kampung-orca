@@ -18,11 +18,14 @@ Topic.create!(topic_id: "00002", title: "Sample Topic 2")
 Topic.create!(topic_id: "00003", title: "Sample Topic 2")
 Topic.create!(topic_id: "00004", title: "Sample Topic 4")
 Topic.create!(topic_id: "00005", title: "Sample Topic 5")
+
 Lesson.create!(lesson_id: "00001", topic_id: "00001", order_index: 0, title: "Introduction to Interfaith", message: "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.")
 Lesson.create!(lesson_id: "00002", topic_id: "00001", order_index: 1, title: "Interfaith Ethics and Values", message: "Delve into the ethical principles and moral values shared across different religious traditions. Learn how these teachings can guide individuals and communities towards compassionate action, social justice, and interfaith harmony.")
 Lesson.create!(lesson_id: "00003", topic_id: "00001", order_index: 2, title: "Interfaith Dialogue Techniques", message: "Learn effective communication strategies and dialogue techniques for engaging in meaningful interfaith conversations. Develop skills to foster mutual understanding, empathy, and constructive discussions among people of different faiths.")
 Lesson.create!(lesson_id: "00004", topic_id: "00001", order_index: 3, title: "Interfaith Festivals and Celebrations", message: "Discover the vibrant tapestry of interfaith festivals and celebrations from around the world. Explore the cultural expressions, rituals, and symbolism that promote interfaith unity, inclusivity, and shared joy.")
 Lesson.create!(lesson_id: "00005", topic_id: "00001", order_index: 4, title: "Interfaith Peacebuilding and Reconciliation", message: "Examine the role of interfaith efforts in promoting peace, conflict resolution, and reconciliation. Learn about inspiring examples of interfaith initiatives fostering harmony in diverse and divided societies.")
+
+Lesson.create!(lesson_id: "00006", topic_id: "00002", order_index: 0, title: "Intermediate Interfaith Lessons", message: "Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect.")
 
 qns = ["sample_qn 1","sample_qn 2"]
 Exercise.create!(exercise_id: "00001", topic_id: "00001", lesson_id: "00001", title: "Sample Exercise 1", qns: qns)
@@ -120,4 +123,16 @@ Page.create!(
     { title: "Interfaith Dialogue: A Path to Global Peace", content: ["Interfaith dialogue holds the promise of contributing to global peace by addressing the root causes of conflict and division. By fostering understanding, empathy, and mutual respect, individuals from diverse religious backgrounds can transcend religious differences and work together toward shared goals. The principles of interfaith dialogue, such as inclusivity, justice, and cooperation, provide a framework for resolving conflicts and promoting social harmony. Through interfaith dialogue, we can envision a future where people of all faiths collaborate to create a more peaceful and just world for all."]}
   ]
 )
+
+Page.create!(
+  page_id: "00008",
+  lesson_id: "00006",
+  order_index: 0,
+  video: "https://www.youtube.com/embed/P_uKbiHBUHo",
+  sections: [
+    { content: ["This is page 1 of lesson 6."]},
+    { title: "Intermediate Interfaith Lessons", content: ["Explore the rich tapestry of diverse religious traditions and foster a deeper understanding of interfaith dialogue and cooperation. Discover the commonalities and unique aspects of various faiths, promoting unity and respect."]}
+  ]
+)
 p "Created #{Page.count} pages"
+
