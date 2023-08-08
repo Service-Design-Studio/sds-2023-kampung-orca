@@ -33,7 +33,12 @@ class Users::UserController < ApplicationController
     def show
       render json: User.find_by(user_id: params[:id])
     end
-    
+
+    def destroy
+      user = User.find_by(user_id: params[:id])
+      user&.destroy
+      render json: {message: "User deleted"}
+    end
 
   
     def authorization_code_exchange

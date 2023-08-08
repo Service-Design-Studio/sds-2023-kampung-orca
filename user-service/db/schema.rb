@@ -20,8 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_022051) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: false, force: :cascade do |t|
-    t.string "user_id"
+  create_table "users", primary_key: "user_id", id: :string, force: :cascade do |t|
     t.string "email"
     t.string "name"
     t.datetime "created_at", null: false

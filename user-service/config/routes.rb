@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope :user do
     get ""=> 'users/user#index' 
     get ":id" => "users/user#show"
+    delete ":id" => "users/user#destroy"
     post 'google' => 'users/user#google'
     get 'google-callback' => 'users/user#google'
     post 'authorization_code_exchange' => 'users/user#authorization_code_exchange'
