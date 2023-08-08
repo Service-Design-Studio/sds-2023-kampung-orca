@@ -32,13 +32,8 @@ class UserController < ApplicationController
   end
 
   def profile
-    user = HTTParty.get(ENV["USER_URL"] + "/user/profile", {
-      :query => {user_id: @current_user[:user_id]},
-      headers: {
-        'Content-Type' => 'application/json',
-        'charset' => 'utf-8'
-      }
-    }).parsed_response.transform_keys(&:to_sym)
+    user = HTTParty.get(ENV["USER_URL"] + "/user/" + @current_user[:user_id])
+    .parsed_response.transform_keys(&:to_sym)
 
     p user[:user_id]
 
