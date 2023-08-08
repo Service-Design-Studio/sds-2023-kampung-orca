@@ -18,6 +18,11 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+key_file = File.join "config", "master.key"
+if File.exist? key_file
+  ENV["RAILS_MASTER_KEY"] = File.read key_file
+end
+
 module InactivityCheckerApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
