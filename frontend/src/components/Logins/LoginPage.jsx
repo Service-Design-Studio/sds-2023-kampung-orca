@@ -19,7 +19,6 @@ const GoogleLoginButton = () => {
   });
 
   return (
-   
     <Button
       width="100%"
       fontSize="24px"
@@ -32,29 +31,30 @@ const GoogleLoginButton = () => {
       shadow="md"
       onClick={() => googleLogin()}
       // as="a"
-      
+
       color="#FFFFFF"
       // fontSize={["36px", "40px", "44px", "48px"]}
-      
-      
+
       id="google-login"
     >
-      
       <img
         src="https://ragsdalemartin.com/wp-content/uploads/2020/07/white-google-logo.png" // Replace with the actual path to the Google icon image
         width="40px"
         height="auto"
       />
-      
-      <Text fontFamily="Roboto" fontStyle="normal" margin="20px" fontSize={{
-            base: "16px",
-            lg: "20px",
-            xl: "24px",
-            "2xl": "24px",
-          }}
+
+      <Text
+        fontFamily="Roboto"
+        fontStyle="normal"
+        margin="20px"
+        fontSize={{
+          base: "16px",
+          lg: "20px",
+          xl: "24px",
+          "2xl": "24px",
+        }}
       >
-        
-      Sign in with Google
+        Sign in with Google
       </Text>
     </Button>
   );
@@ -63,31 +63,31 @@ const GoogleLoginButton = () => {
 const LoginPage = () => {
   return (
     <Stack
-    justify="flex-start"
-    align="flex-start"
-    height="100vh"
-    width="100vw"
-    background="#FFFFFF"
-  >
-    <Header showBack buttontext="Back to Main" path="/" />
-    <Stack
-      direction="row"
-      justify="center"
-      align="center"
-      spacing="0"
-      width="100%"
-      height={`calc(100vh - 120px)`}
-      color="#000"
-      textAlign="center"
-      style={{
-        backgroundImage:
-          'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-      }}
+      justify="flex-start"
+      align="flex-start"
+      height="100vh"
+      width="100vw"
+      background="#FFFFFF"
     >
-      {/* Video Embedding */}
+      <Header showBack buttontext="Back to Main" path="/" />
       <Stack
+        direction="row"
+        justify="center"
+        align="center"
+        spacing="0"
+        width="100%"
+        height={`calc(100vh - 120px)`}
+        color="#000"
+        textAlign="center"
+        style={{
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Video Embedding */}
+        {/* <Stack
                 borderRadius="0px 0px 0px 0px"
                 justify="flex-start"
                 align="center"
@@ -105,59 +105,57 @@ const LoginPage = () => {
           title="Embedded Video"
         />
       
-      </Stack>
+      </Stack> */}
 
-      <Stack
-            paddingX={{
-              base: "40px",
-              lg: "50px",
-              xl: "60px",
-              "2xl": "70px",
-            }}
-            paddingY={{
-              base: "40px",
-              lg: "50px",
-              xl: "60px",
-              "2xl": "70px",
-            }}
-        
-            spacing={{
-              base: "20px",
-              lg: "20px",
-              xl: "30px",
-              "2xl": "30px",
-            }}
+        <Stack
+          paddingX={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          paddingY={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          spacing={{
+            base: "20px",
+            lg: "20px",
+            xl: "30px",
+            "2xl": "30px",
+          }}
+          justify="center"
+          align="center"
+          overflow="hidden"
+          width="45vw"
+          height="fit-content"
+          background="#FFFFFF"
+          shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
+          marginX="2vw"
+          marginY="2vh"
+          borderRadius="20px"
+        >
+          <Stack
+            direction="column"
             justify="center"
             align="center"
-            overflow="hidden"
-            width="45vw"
-            height="fit-content"
-            background="#FFFFFF"
-            shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
-            marginX="2vw"
-            marginY="2vh"
-            borderRadius="20px"
+            spacing="8"
+            width="100%"
+            height="100%"
+            px="4"
           >
-      <Stack
-        direction="column"
-        justify="center"
-        align="center"
-        spacing="8"
-        width="100%"
-        height="100%"
-        px="4"
-      >
-        <Heading
-          fontSize="50px"
-          fontFamily="Averia Serif Libre"
-        >
-          Login to Interfaith
-        </Heading>
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-          <GoogleLoginButton />
-        </GoogleOAuthProvider>
+            <Heading fontSize="50px" fontFamily="Averia Serif Libre">
+              Login to Interfaith
+            </Heading>
+            <GoogleOAuthProvider
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            >
+              <GoogleLoginButton />
+            </GoogleOAuthProvider>
 
-        {/* <Button
+            {/* <Button
           as={Link}
           to="/signin-facebook"
           display="flex"
@@ -178,10 +176,9 @@ const LoginPage = () => {
         >
           Sign in with Facebook
         </Button> */}
-
+          </Stack>
+        </Stack>
       </Stack>
-    </Stack>
-    </Stack>
     </Stack>
   );
 };

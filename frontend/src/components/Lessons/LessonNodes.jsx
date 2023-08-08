@@ -21,7 +21,10 @@ import { FaCircleExclamation } from "react-icons/fa6";
 const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
 
 const DynamicNodes = ({ nodeHeights }) => {
-  const [data] = useGateway(window.location.pathname + "/lesson/show_lessons", "GET");
+  const [data] = useGateway(
+    window.location.pathname + "/lesson/show_lessons",
+    "GET"
+  );
   console.log(data);
   if (!data) return null;
 
@@ -171,7 +174,9 @@ const Node = ({
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />
-          <PopoverHeader fontFamily="Averia Serif Libre" fontWeight="semibold">{title}</PopoverHeader>
+          <PopoverHeader fontFamily="Averia Serif Libre" fontWeight="semibold">
+            {title}
+          </PopoverHeader>
           <PopoverBody fontSize="14px" textAlign="justify">
             {message}
           </PopoverBody>
@@ -217,7 +222,12 @@ export const LessonNodes = ({ lessonProgress }) => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header showBack showLogout buttontext="Back to Main" path={"/curriculum/topic"} />
+      <Header
+        showBack
+        showLogout
+        buttontext="Back to Main"
+        path={"/curriculum/topic"}
+      />
 
       <Stack
         width="90vw"
@@ -257,6 +267,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           <Stack
             height="100%"
             maxheight="500px"
+            minheight="500px"
             width="fit-content"
             justify="flex-start"
             align="center"
