@@ -1,57 +1,52 @@
   Feature: Display exercise content
-    As Aloysius, a a student learner, I want to be able to navigate to the lesson exercise after I have completed a lesson
+    As Mohammad, a retiree, I want to be able to navigate to the lesson exercise after I have completed a lesson
     so that I can reinforce my learning.
 
     Background:
-    Given I am logged in as Aloysius
-    And I am at the lesson completion page
+      Given I am logged in as Mohammad
+      And I am at the exercise page
 
-      Scenario: Go to exercise page from lesson completion page
-        Given I am at the lesson completion page
-        When I click on the Go to exercise button
-        Then I should go to the exercise page
+    Scenario: Going to exercise page from lesson complete page
+      Given I am at the lesson completion page
+      When I click on the Test Your Understanding button
+      Then I should be on the exercise page
 
-      Scenario: Questions on the exercise page
-        Given I am at the exercise page
-        Then I should see a question
+    Scenario: Submission button is disabled when text box is empty
+      Given I see a text box to type in my answer
+      When I do not type in anything in the text box
+      Then I should see that the submit exercise button is disabled
 
-      Scenario: Answer input field on the exercise page
-        Given I am at the exercise page
-        Then I should see an answer input field
+    Scenario: Submission confirmation message upon pressing submit button
+      Given I type in an answer in the text box
+      When I press the submit exercise button
+      Then I should see a message to tell me if I want to confirm my answer
 
-      Scenario: Submit button under the answer input field on the exercise page
-        Given I am at the exercise page
-        Then I should see a Submit Answer button
+    Scenario: Submission of intended answer
+      Given I am on the exercise page
+      When I type in an intended answer in the text box
+      And I press the submit button
+      And I press the confirm button on the confirmation message
+      Then I should see my answer
+      And I should see an infobox to say that I have submitted my answer
 
-      Scenario: Answering questions on the exercise page
-        Given I am at the exercise page
-        When I create an answer with the following details:
-        | Answer                  |
-        | Interfaith is important |
-        And I click on the Submit Answer button
-        Then I should see the answer on the exercise page
+    Scenario: Getting AI response about my answer
+      Given I have submitted and confirmed my answer
+      When I see an empty AI response
+      Then I should see a loading spinner while waiting for an AI response
 
-      Scenario: Answering a question with a blank answer
-        Given I am at the exercise page
-        When I create an empty answer
-        And the Submit Answer button should be disabled
+    Scenario: Resubmission of my answer
+      Given I have submitted and confirmed my answer
+      And I see an AI response
+      When I click on the resubmit exercise button
+      Then I should be able to resubmit my answer
 
-      Scenario: AI gives a model answer in response to the user's answer
-        Given I am at the exercise page
-        And there is an answer with the following details:
-        | Answer                  |
-        | Interfaith is important |
-        I should see the a model answer from the AI
-
-      Scenario: User tries to click the Submit Answer button while the AI is generating a model answer
-        Given I am at the exercise page
-        When I create an answer with the following details:
-        | Answer                                 |
-        | Interfaith communication is important  |
-        And I click on the Submit Answer button and see the answer on the exercise page
-        Then I should see that the AI is generating a response
-        And I should not be able to edit the answer
-
+    Scenario: Viewing of previous answer and AI response upon returning to exercise page
+      Given I have submitted and confirmed my answer
+      And I see an AI response
+      When I go to the lesson completed page
+      And I return to the exercise page
+      Then I should see my previous answer in the text box as a placeholder
+      And I should see the previous AI response
 
 
 

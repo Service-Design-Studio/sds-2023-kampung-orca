@@ -15,6 +15,7 @@ const pageRouteMap = {
   "next lesson": "curriculum/lesson/00002",
   "first lesson completion" : "curriculum/lesson/00001/lesson_completed",
   "last lesson completion" : "curriculum/lesson/00005/lesson_completed",
+  "exercise": "curriculum/lesson/00001/exercise",
 };
 
 const errorRouteMap = {
@@ -36,6 +37,7 @@ const buttonComponentMap = {
   "Create New Post": '[data-cy="create-new-post-button"]',
   Post: '[data-cy="post-button"]',
   "previous lesson" : '[data-cy="completion-previous-lesson"]',
+  "Test Your Understanding": '[data-cy="test-your-understanding"]',
 };
 
 const pages = {

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEditableControls } from "@chakra-ui/react";
 
 import { useParams } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 import DeleteButton from "../ForumMethods/DeleteButton";
 import {
@@ -30,6 +31,7 @@ function EditField({
   handleCommentDelete, // Receive handleCommentDelete as a prop
   deletePost, // Receive deletePost as a prop
 }) {
+  const toast = useToast();
   const [inputValue, setInputValue] = useState(defaultValue);
   const [initialInputValue, setInitialInputValue] = useState(defaultValue);
   const isTextareaEmpty = inputValue.trim().length === 0;
@@ -50,10 +52,26 @@ function EditField({
 
   const handleCancelClick = () => {
     setInputValue(initialInputValue);
+    toast({
+      title: "Changes cancelled!",
+      description: "Your changes have been cancelled.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      colorScheme: "red",
+    });
   };
 
   const handleSubmitClick = () => {
     setInitialInputValue(inputValue);
+    toast({
+      title: "Changes saved!",
+      description: "You have successfully made changes.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      colorScheme: "red",
+    });
   };
 
   const handleUpdate = (newValue) => {
@@ -122,7 +140,7 @@ function EditField({
           isDisabled={isTextareaEmpty}
           {...getSubmitButtonProps({ onClick: handleSubmitClick })}
         >
-          <BsCheckLg size="20px" data-cy="confirm-edit-post"/>
+          <BsCheckLg size="20px" data-cy="confirm-edit-post" />
         </Button>
         <Button
           bg="#FFFFFF"
@@ -141,13 +159,14 @@ function EditField({
           shadow="lg"
           {...getEditButtonProps({ onClick: handleEditClick })}
         >
-          <BsFillPencilFill data-cy="edit-post-button"/>
+          <BsFillPencilFill data-cy="edit-post-button" />
         </Button>
         {type === "post" && (
           <DeleteButton onDelete={() => deletePost(postId)} />
         )}
         {type === "comment" && (
-          <DeleteButton data-cy="comment-delete-button"
+          <DeleteButton
+            data-cy="comment-delete-button"
             onDelete={() => handleCommentDelete(postId, commentId)}
           />
         )}
@@ -176,9 +195,10 @@ function EditField({
           textAlign="justify"
           maxW={type === "post" ? "480px" : "470px"}
         />
-        <EditableTextarea data-cy='edit-content-text-area'
+        <EditableTextarea
+          data-cy="edit-content-text-area"
           minH={type === "post" ? "200px" : "80px"}
-          width="480px"
+          width="100%"
         />
 
         <Flex direction="row" justify="flex-end" width="100%">

@@ -21,7 +21,10 @@ import { FaCircleExclamation } from "react-icons/fa6";
 const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
 
 const DynamicNodes = ({ nodeHeights }) => {
-  const [data] = useGateway(window.location.pathname + "/lesson/show_lessons", "GET");
+  const [data] = useGateway(
+    window.location.pathname + "/lesson/show_lessons",
+    "GET"
+  );
   console.log(data);
   if (!data) return null;
 
@@ -70,7 +73,7 @@ const DynamicNodes = ({ nodeHeights }) => {
 const StraightLine = () => {
   return (
     <Stack
-      minWidth="300px"
+      minWidth="280px"
       justify="center"
       align="center"
       paddingBottom="25px"
@@ -79,8 +82,8 @@ const StraightLine = () => {
         color="black"
         ellipsizeMode="clip"
         numberOfLines="1"
-        fontSize="100px"
-        data-cy = 'line'
+        fontSize="90px"
+        data-cy="line"
       >
         {Array.from(Array(7).keys()).map((each) => {
           return "-";
@@ -99,7 +102,7 @@ const Node = ({
   lessonsAccess,
   isDisabled,
   height,
-  counter
+  counter,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -107,7 +110,6 @@ const Node = ({
   let statusColour;
   let cursorStyle;
   let iconComponent;
-
 
   if (isDisabled) {
     status = "Locked";
@@ -149,41 +151,45 @@ const Node = ({
       <Popover trigger="hover" placement="top">
         <PopoverTrigger>
           <Stack
-            opacity={isDisabled ? 0.5 : 1}
             cursor={cursorStyle}
+            bg="#FFFFFF"
+            borderRadius="50px"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             data-cy={`node-${counter++}`}
           >
             <Icon
+              opacity={isDisabled ? 0.5 : 1}
               as={iconComponent}
               color={color}
               boxSize={{
-                base: "80px",
-                lg: "90px",
-                xl: "100px",
-                "2xl": "110px",
+                base: "70px",
+                lg: "80px",
+                xl: "90px",
+                "2xl": "100px",
               }}
               id={nodeId}
-              bg="#FFFFFF"
             />
           </Stack>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />
-          <PopoverHeader fontWeight="semibold">{title}</PopoverHeader>
+          <PopoverHeader fontFamily="Averia Serif Libre" fontWeight="semibold">
+            {title}
+          </PopoverHeader>
           <PopoverBody fontSize="14px" textAlign="justify">
             {message}
           </PopoverBody>
           <PopoverBody
+            fontFamily="Roboto"
             fontSize="14px"
             fontWeight="semibold"
             color={statusColour}
             textAlign="justify"
-            data-cy = 'popup'
+            data-cy="popup"
           >
             <Stack direction="row" justifyContent="space-between">
-              <Text>{status}</Text>
+              <Text fontFamily="Roboto">{status}</Text>
             </Stack>
           </PopoverBody>
         </PopoverContent>
@@ -216,7 +222,12 @@ export const LessonNodes = ({ lessonProgress }) => {
       height="100vh"
       background="#FFFFFF"
     >
-      <Header buttontext="Back to Main" path={"/curriculum/topic"} />
+      <Header
+        showBack
+        showLogout
+        buttontext="Back to Main"
+        path={"/curriculum/topic"}
+      />
 
       <Stack
         width="90vw"
@@ -237,7 +248,7 @@ export const LessonNodes = ({ lessonProgress }) => {
           overflowX="scroll"
           direction="row"
           marginx="100px"
-          data-cy = 'scrollbar'
+          data-cy="scrollbar"
           sx={{
             "&::-webkit-scrollbar": {
               width: "8px",
@@ -254,7 +265,9 @@ export const LessonNodes = ({ lessonProgress }) => {
           }}
         >
           <Stack
-            height="500px"
+            height="100%"
+            maxHeight="500px"
+            minWidth="90vw"
             width="fit-content"
             justify="flex-start"
             align="center"

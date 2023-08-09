@@ -1,4 +1,5 @@
 require 'json'
+require 'securerandom'
 class ExerciseController < ApplicationController
   before_action :set_exercise, only: %i[show destroy]
   def index
@@ -25,7 +26,11 @@ class ExerciseController < ApplicationController
   end
 
   def show
-    render json: @exercise
+    if @exercise
+      render json: @exercise
+    else
+      render json: { error: 'Exercise not found' }, status: :not_found
+    end
   end
 
   def destroy
@@ -43,7 +48,11 @@ class ExerciseController < ApplicationController
     params.permit(:exercise_id, :topic_id, :lesson_id, :title, :qns)
   end
 
-  def set_page
+  def set_exercise
     @exercise = Exercise.find(params[:exercise_id])
+  end
+
+  def generate_uuid
+    SecureRandom.uuid
   end
 end

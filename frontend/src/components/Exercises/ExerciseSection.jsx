@@ -1,11 +1,11 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
 
-const LessonSection = ({ title, content, headerSize, contentSize }) => {
+const ExerciseSection = ({ title, content, headerSize, contentSize }) => {
   return (
     <>
       {title && (
-        <Text lineHeight="1.2" fontWeight="bold" fontSize={headerSize} fontFamily="Averia Serif Libre">
+        <Text lineHeight="1.2" fontWeight="bold" fontSize={headerSize}>
           {title}
         </Text>
       )}
@@ -16,7 +16,6 @@ const LessonSection = ({ title, content, headerSize, contentSize }) => {
           fontWeight="regular"
           fontSize={contentSize}
           textAlign="justify"
-          fontFamily="Roboto"
         >
           {segment}
         </Text>
@@ -25,4 +24,4 @@ const LessonSection = ({ title, content, headerSize, contentSize }) => {
   );
 };
 
-export default LessonSection;
+export default ExerciseSection;

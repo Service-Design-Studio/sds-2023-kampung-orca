@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Stack, Text, Button, ScaleFade } from "@chakra-ui/react";
-import Particles from "../Misc/Particles.jsx";
+import { Stack, Text, Button, ScaleFade, Heading } from "@chakra-ui/react";
+import DrawImageAnimation from "./DrawImageAnimation";
 
 const CoverLogin = () => {
   const [showContent, setShowContent] = useState(false);
@@ -11,72 +11,63 @@ const CoverLogin = () => {
   }, []);
 
   return (
-    <>
-      <Particles />
+    <Stack direction="row">
+      <DrawImageAnimation />
+
+      <Stack width="40vw" />
       <Stack
+        bg="rgba(255, 255, 255, 0.5)"
         direction="column"
         justify="center"
         align="center"
         spacing="0"
-        width="100%"
+        width="60vw"
         height="100vh"
         color="#000"
-        textAlign="center"
-        fontFamily="Arial"
-        position="relative"
       >
-        <ScaleFade
-          initialScale={0.9}
-          in={showContent}
-          transitionDuration={1000}
+        <Stack
+          width="45vw"
+          textAlign="center"
+          borderRadius="20px"
+          bg="#FFFFFF"
+          shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
+          padding="40px"
+          mb="20px"
         >
-          <Text
-            fontSize={["32px", "48px", "96px"]}
-            fontWeight="500"
-            lineHeight="normal"
-            color="#000000"
+          <Heading
             fontFamily="Averia Serif Libre"
+            fontSize={{ base: "25px", lg: "55px", xl: "75px", "2xl": "80px" }}
+          >
+            Welcome to
+          </Heading>
+          <Heading
+            fontFamily="Averia Serif Libre"
+            fontSize={{ base: "30px", lg: "60px", xl: "80px", "2xl": "90px" }}
+            textColor="#ed2e38"
           >
             Kampung.SG
-          </Text>
-          <Text
-            fontSize={["11px", "16px", "32px"]}
-            fontWeight="800"
-            lineHeight="normal"
-            color="#000000"
-            fontFamily="Roboto"
-          >
-            Celebrating Our Multicultural Commons
-          </Text>
-        </ScaleFade>
+          </Heading>
+        </Stack>
+
         <Link to="/login">
-          <ScaleFade
-            initialScale={0.9}
-            in={showContent}
-            transitionDuration={2000}
+          <Button
+            width="45vw"
+            fontSize={{ base: "16px", lg: "24px", xl: "28px", "2xl": "30px" }}
+            borderRadius="20px"
+            bg="#ed2e38"
+            textColor="#FFFFFF"
+            _hover={{ bg: "#7c191c" }}
+            size="lg"
+            height="65px"
+            fontFamily="Roboto"
+            shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
+            id="login-button"
           >
-            <Button
-              fontSize={["12px", "20px", "36px"]}
-              fontWeight="700"
-              lineHeight="normal"
-              bg="#ef3340"
-              textColor="#FFFFFF"
-              mt="8"
-              mb="4"
-              fontFamily="Roboto"
-              padding="1em"
-              size="lg"
-              height="56px"
-              shadow="md"
-              className="transition-all duration-300 transform-gpu hover:scale-110"
-              id="login-button"
-            >
-              Start your interfaith journey!
-            </Button>
-          </ScaleFade>
+            Start your learning journey here!
+          </Button>
         </Link>
       </Stack>
-    </>
+    </Stack>
   );
 };
 

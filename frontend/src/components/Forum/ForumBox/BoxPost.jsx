@@ -290,10 +290,26 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                     left="-20px"
                     top="-10px"
                   >
-                    <Avatar size="sm" />
+                    <Avatar size="sm">
+                      {comment.user_id === "admin" ? (
+                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdyNDNtMGMzNmtkaThoNG03cWFqMjdyc2VxMWNoM2FtOHVxYzZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1o1uxm9c9YcNoJrQ3W/giphy.gif"/>
+                      ) : (
+                         null
+                      )}
+                    </Avatar>
                     <Stack direction="row" align="center">
                       <Heading size="s">
-                        {comment.user && comment.user.name}{" "}
+                        <span
+                          style={{
+                            fontFamily:
+                              comment.user_id === "admin"
+                                ? "Averia Serif Libre"
+                                : "Roboto",
+                            // Add more styling properties as needed
+                          }}
+                        >
+                          {comment.user && comment.user.name}{" "}
+                        </span>
                       </Heading>
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}

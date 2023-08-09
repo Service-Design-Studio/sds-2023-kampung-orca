@@ -11,15 +11,26 @@ class CurriculumController < ApplicationController
     p "New URL: " + modified_api
     url = ENV["CURRICULUM_URL"] + modified_api # Replace with the URL of your backend
     p "Current user: " + @current_user.to_json
+
+    lesson_id = params[:lesson_id]
+    user_answer = params[:user_answer]
+
     case request.method.capitalize
+
     when "Get"
       data = HTTParty.get(url, {
         :query => {user_id: @current_user[:user_id]},
       }).parsed_response
 
     when "Post"
+      request_body = {
+        user_id: @current_user[:user_id],
+        lesson_id: lesson_id,
+        user_answer: user_answer
+      }.to_json
+
       data = HTTParty.post(url, {
-        :query => {user_id: @current_user[:user_id]},
+        body: request_body,
         headers: {
           'Content-Type' => 'application/json',
           'charset' => 'utf-8'
@@ -28,5 +39,5 @@ class CurriculumController < ApplicationController
     end
     p "Data received: " + request.method.capitalize + " " + url + " " + data.to_json
     render json: {token: @current_user[:token], data: data}
-  end 
+  end
 end
