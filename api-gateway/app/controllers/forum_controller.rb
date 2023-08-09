@@ -24,15 +24,16 @@ class ForumController < ApplicationController
   private
 
   def forward_request(url, request, user_id)
-    full_path = request.original_fullpath + "?user_id=#{user_id}"
+    full_path = request.original_fullpath
   
     uri = URI.join(url, full_path)
+    uri.query = URI.encode_www_form({"user_id" => user_id})
     p "Forward path: " + uri.to_s
   
     req = Net::HTTP.const_get(request.method.capitalize).new(uri)
     req.body = request.body.read if request.body
     req.content_type = request.content_type if request.content_type
-    req.add_field("user_id", user_id)
+    # req.add_field("user_id", user_id)
     response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.request(req)
     end

@@ -4,28 +4,25 @@ class InactivityCheckerController < ApplicationController
 
   def fetch_posts_and_comments(lesson_id)
     puts lesson_id
-    url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts?token=#{ENV["ML_TOKEN"]}"
+    url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts"
 
     #puts url
 
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true if uri.scheme == 'https'
-    path = uri.query.present? ? "#{uri.path}?#{uri.query}" : uri.path
+    uri.query = URI.encode_www_form({ "token" => ENV["ML_TOKEN"] })
 
-
-    request = Net::HTTP::Get.new(path)
-    request['Content-Type'] = 'application/json'
-    request['charset'] = 'utf-8'
-
+    request = Net::HTTP::Get.new(uri, initheader={'Content-Type' => 'application/json', 'charset' => 'utf-8'})
     response = http.request(request)
 
     posts_data = JSON.parse(response.body)
 
     posts_data = posts_data.map do |post|
       post_id = post["id"]
-      comments_url = "#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments?token=#{ENV["ML_TOKEN"]}"
-      comments_response = Net::HTTP.get(URI(comments_url))
+      comments_uri = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments")
+      comments_uri.query = URI.encode_www_form({ "token" => ENV["ML_TOKEN"] })
+      comments_response = Net::HTTP.get(comments_uri)
       comments_data = JSON.parse(comments_response)
   
       # Store comments as an array directly in the post data
@@ -143,9 +140,8 @@ class InactivityCheckerController < ApplicationController
     url = "#{ENV["GATEWAY_URL"]}/lessons?token=#{ENV["ML_TOKEN"]}"
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true if uri.scheme == 'https'
-    path = uri.query.present? ? "#{uri.path}?#{uri.query}" : uri.path
-    request = Net::HTTP::Get.new(path)
+    http.use_ssl = true if uri.scheme == 'https' 
+    request = Net::HTTP::Get.new(uri)
     request['Content-Type'] = 'application/json'
     request['charset'] = 'utf-8'
 
@@ -159,7 +155,7 @@ class InactivityCheckerController < ApplicationController
     puts "Class of lesson_ids: #{lesson_ids.class}"
 
     #text-bison can only process up to 60 requests a minute by default T_T
-    interval_seconds = 300 #params[:interval_seconds].to_i || 90
+    interval_seconds = 61 #params[:interval_seconds].to_i || 90
 
     #render json: {message: "Inactivity checker started with interval of #{interval_seconds} seconds."}
 

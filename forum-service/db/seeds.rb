@@ -12,7 +12,7 @@ three_days_ago = (Time.zone.now - 3.days).strftime("%Y-%m-%d %H:%M:%S")
 five_days_ago = (Time.zone.now - 5.days).strftime("%Y-%m-%d %H:%M:%S")
 four_days_ago = (Time.zone.now - 4.days).strftime("%Y-%m-%d %H:%M:%S")
 
-Lesson.create([{ title: "Lesson 1"}, { title: "Lesson 2"}])
+Lesson.create([{ title: "Lesson 1" }, { title: "Lesson 2" }])
 User.create([{ name: "Matt", email: "danny@gmail.com", user_id: "1" }, { name: "Mohammad", email: "mohi@gmail.com", user_id: "2" },
 { name: "Aloysius", email: "aloy@gmail.com", user_id: "3" },{ name: "Kampung Kaki", email: "kaki@gmail.com", user_id: "admin" } ])
 Post.create([{ title: "What are the most fun religious festivals?", content: "Give me your top 5.", user_id: "1", lesson_id: 1 }])
