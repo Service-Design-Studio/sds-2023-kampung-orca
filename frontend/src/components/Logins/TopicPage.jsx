@@ -57,7 +57,7 @@ const TopicPage = () => {
             paddingY="30px"
           >
             <Heading fontFamily="Roboto" fontSize="60px">
-              Welcome back, {userData || "Guest"}!
+              Welcome back, {userData.name || "Guest"}!
             </Heading>
             <Text fontFamily="Roboto" fontSize="24px">
               Sharpen your interfaith knowledge
