@@ -42,6 +42,7 @@ class ExerciseController < ApplicationController
     exercise = Exercise.find_by(lesson_id: params[:lesson_id])
     render json: exercise
   end
+
   private
 
   def exercise_params
