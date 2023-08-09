@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'entries/new'
-  get 'entries/create'
-  get 'entries/show'
-  get 'entries/index'
   resources :topic, only: [:index, :show, :create, :destroy], param: :topic_id do
     member do
       get 'lesson/show_lessons', to: 'lesson#show_lessons'

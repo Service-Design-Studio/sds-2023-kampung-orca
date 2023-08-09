@@ -1,5 +1,5 @@
+require 'net/http'
 class ForumController < ApplicationController
-  require 'net/http'
   before_action :authenticate_user
 
   #access user id with this! @current_user[:user_id]

@@ -1,5 +1,5 @@
 require 'securerandom'
-
+require 'net/http'
 class EntriesController < ApplicationController
   before_action :set_entry, only: %i[show destroy]
   def index
@@ -84,9 +84,10 @@ class EntriesController < ApplicationController
 
     prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
 
-    ml_url = URI("#{ENV["GATEWAY_URL"]}/ml/review")
-    http = Net::HTTP.new(ml_url.host, ml_url.port)
-    request = Net::HTTP::Post.new(ml_url)
+    ml_uri = URI("#{ENV["GATEWAY_URL"]}/ml/review")
+    http = Net::HTTP.new(ml_uri.host, ml_uri.port)
+    http.use_ssl = ml_uri.scheme == 'https'
+    request = Net::HTTP::Post.new(ml_uri)
     request['Content-Type'] = 'application/json'
     request.body = { prompts: prompts }.to_json
 
