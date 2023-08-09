@@ -66,7 +66,7 @@ const TopicPage = () => {
           </Stack>
 
           <Box
-            width="100%"
+            width="fit-content"
             maxWidth="90vw"
             display="flex"
             flexDirection="column"
