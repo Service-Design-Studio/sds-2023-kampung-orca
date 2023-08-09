@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Stack, Text, Button, Box } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
+import { Stack, Text, Button, Image, Heading } from "@chakra-ui/react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import imgkampung from "../../assets/img/kampung.png";
-import { FaGoogle } from "react-icons/fa";
+import Cookies from "js-cookie";
+import { Header } from "../Header";
 
 const GoogleLoginButton = () => {
   const googleLogin = useGoogleLogin({
@@ -19,121 +19,167 @@ const GoogleLoginButton = () => {
 
   return (
     <Button
-      onClick={() => googleLogin()}
-      display="flex"
-      alignItems="center" // Center the icon vertically
-      width={["60%", "90%"]}
-      height="78px"
-      flexDirection="column"
-      justifyContent="center"
-      flexShrink="0"
-      color="#FFFFFF"
-      fontFamily="Roboto"
-      fontWeight="700"
-      lineHeight="normal"
+      width="100%"
+      // fontSize="24px"
+      borderRadius="20px"
       bg="#ed2e38"
-      mt="4"
-      _hover={{ bg: "blue.600" }}
-      _active={{ bg: "blue.700" }}
+      textColor="#FFFFFF"
+      _hover={{ bg: "#7c191c" }}
+      size="lg"
+      height="65px"
+      shadow="md"
+      onClick={() => googleLogin()}
+      // as="a"
+
+      color="#FFFFFF"
+      // fontSize={["36px", "40px", "44px", "48px"]}
+
       id="google-login"
       fontSize="clamp(12px, 3vw, 36px)" // Set the font size using the clamp function
     >
-      Sign in to Google 🚀
+      <img
+        src="https://ragsdalemartin.com/wp-content/uploads/2020/07/white-google-logo.png" // Replace with the actual path to the Google icon image
+        width="40px"
+        height="auto"
+      />
+
+      <Text
+        fontFamily="Roboto"
+        fontStyle="normal"
+        margin="20px"
+        fontSize={{
+          base: "16px",
+          lg: "20px",
+          xl: "24px",
+          "2xl": "24px",
+        }}
+      >
+        Sign in with Google
+      </Text>
     </Button>
   );
 };
 
 const LoginPage = () => {
   return (
-    <Box width="100%" height="100vh" color="#000" textAlign="center">
+    <Stack
+      justify="flex-start"
+      align="flex-start"
+      height="100vh"
+      width="100vw"
+      background="#FFFFFF"
+    >
+      <Header showBack buttontext="Back to Main" path="/" />
       <Stack
-        direction="column"
+        direction="row"
         justify="center"
         align="center"
-        spacing="4%" // Adjust the spacing as needed
-        height="100%"
-        p="4"
-        backgroundImage={`url(${imgkampung})`}
-        backgroundSize="cover"
+        spacing="0"
+        width="100%"
+        height={`calc(100vh - 120px)`}
+        color="#000"
+        textAlign="center"
+        style={{
+          backgroundImage:
+            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+        }}
       >
-        <Text
-          fontSize={["48px", "64px", "72px"]}
-          fontFamily="Outfit"
-          fontWeight="700"
-          lineHeight="normal"
-          textAlign="center" // Center the text horizontally
-          mt="5%"
-        >
-          Login to Kampung.SG
-        </Text>
-        <Stack
-          direction={["column", "row"]}
-          justify="top"
-          align="center"
-          spacing="4"
+        {/* Video Embedding */}
+        {/* <Stack
+                borderRadius="0px 0px 0px 0px"
+                justify="flex-start"
+                align="center"
+                overflow="hidden"
+                background="#E0C825"
+                shadow="0 0 10px 5px rgba(0, 0, 0, 0.3)"
+                width="47vw"
+                height="50vh"
+              >
+      
+        <iframe
+          src="https://www.youtube.com/embed/cpP-fCo8Dn4"
           width="100%"
           height="100%"
-          px="4"
+          title="Embedded Video"
+        />
+      
+      </Stack> */}
+
+        <Stack
+          paddingX={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          paddingY={{
+            base: "40px",
+            lg: "50px",
+            xl: "60px",
+            "2xl": "70px",
+          }}
+          spacing={{
+            base: "20px",
+            lg: "20px",
+            xl: "30px",
+            "2xl": "30px",
+          }}
+          justify="center"
+          align="center"
+          overflow="hidden"
+          width="45vw"
+          height="fit-content"
+          background="#FFFFFF"
+          shadow="0 0 10px 5px rgba(0, 0, 0, 0.1)"
+          marginX="2vw"
+          marginY="2vh"
+          borderRadius="20px"
         >
-          <Stack width="50%" height="90%" align="flex-start">
-            {/* Video Embedding */}
-            <iframe
-              src="https://www.youtube.com/embed/your-video-id"
-              width="100%"
-              height="400px"
-              title="Embedded Video"
-            />
-          </Stack>
           <Stack
-            width="50%"
-            height="90%"
-            align="flex-start"
-            mt="-6"
-            spacing="4"
-            paddingLeft="12"
+            direction="column"
+            justify="center"
+            align="center"
+            spacing="8"
+            width="100%"
+            height="100%"
+            px="4"
           >
+            <Heading fontSize="50px" fontFamily="Averia Serif Libre">
+              Login to Interfaith
+            </Heading>
             <GoogleOAuthProvider
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             >
               <GoogleLoginButton />
             </GoogleOAuthProvider>
-            <Box
-              // Group 48
-              width="90%"
-              bg="rgba(217, 217, 217, 0.9)"
-              borderRadius="15px"
-              mt="6"
-              p="4"
-              textAlign="center"
-            >
-              <Text
-                fontFamily="Roboto"
-                fontWeight="700"
-                fontSize={["8px", "24px", "36px"]}
-                lineHeight="60px"
-                color="#000000"
-              >
-                How To Login
-              </Text>
-              <Text
-                fontFamily="Roboto"
-                fontSize={["8px", "18px", "24px"]}
-                lineHeight="33px"
-                color="#000000"
-                mt="4"
-                textAlign="left"
-              >
-                Enter your username in the top box. <br />
-                Enter your password in the bottom box. <br />
-                <br />
-                If you forgot your username or password, click on &ldquo;Forgot
-                your username or password?&rdquo;
-              </Text>
-            </Box>
+
+            {/* <Button
+          as={Link}
+          to="/signin-facebook"
+          display="flex"
+          width={["80%", "70%", "60%", "606.477px"]}
+          height="78px"
+          flexDirection="column"
+          justifyContent="center"
+          flexShrink="0"
+          color="#FFFFFF"
+          fontSize={["36px", "40px", "44px", "48px"]}
+          fontFamily="Outfit"
+          fontWeight="700"
+          lineHeight="normal"
+          bg="#ed2e38"
+          mt="4"
+          _hover={{ bg: "blue.600" }}
+          _active={{ bg: "blue.700" }}
+        >
+          Sign in with Facebook
+        </Button> */}
           </Stack>
         </Stack>
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

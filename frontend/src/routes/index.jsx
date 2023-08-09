@@ -15,6 +15,8 @@ import {
   Exercise,
 } from "../components/Lessons";
 
+import Exercises from "../components/Exercises/Exercises";
+
 import {
   CurriculumErrorPage,
   ErrorPage,
@@ -52,7 +54,7 @@ export default (
         />
         <Route
           path="/curriculum/lesson/:lesson_id/exercise"
-          element={<Exercise />}
+          element={<Exercises />}
         />
       </Route>
 

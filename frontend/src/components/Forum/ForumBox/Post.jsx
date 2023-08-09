@@ -48,7 +48,8 @@ function Post({ post, onClick, onDelete, onUpdate }) {
                 noOfLines={2}
                 as="h3"
                 size="md"
-                textTransform="uppercase"
+                fontWeight="700"
+                fontFamily="Roboto"
                 color="#333"
               >
                 {post.title}

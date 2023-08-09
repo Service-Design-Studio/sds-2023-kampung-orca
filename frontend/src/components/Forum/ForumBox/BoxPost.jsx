@@ -37,6 +37,8 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const lessonnum = parts[parts.length - 1];
   const lessonNumber = parseInt(lessonnum, 10);
 
+  const postsUrl = `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonnum}/posts`;
+
   //console.log(lessonnum, '    ', lessonNumber);
   //console.log(current_user_id);
 
@@ -56,10 +58,9 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const fetchPosts = async () => {
     const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
-        { params: { token: cookieValue } }
-      );
+      const response = await axios.get(postsUrl, {
+        params: { token: cookieValue },
+      });
       const uniquePosts = response.data.filter(
         (post, index, self) => self.findIndex((p) => p.id === post.id) === index
       );
@@ -72,10 +73,9 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const fetchComments = async (postId) => {
     const cookieValue = Cookies.get("token");
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments`,
-        { params: { token: cookieValue } }
-      );
+      const response = await axios.get(`${postsUrl}/${postId}/comments`, {
+        params: { token: cookieValue },
+      });
       setComments((prevComments) => ({
         ...prevComments,
         [postId]: response.data,
@@ -112,7 +112,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
+        `${postsUrl}/${postId}/comments/${commentId}`,
         {
           params: {
             token: cookieValue,
@@ -130,14 +130,11 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const deletePost = async (postId) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
-        {
-          params: {
-            token: cookieValue,
-          },
-        }
-      );
+      await axios.delete(`${postsUrl}/${postId}`, {
+        params: {
+          token: cookieValue,
+        },
+      });
 
       //updates the list of post displayed
       await fetchPosts();
@@ -159,13 +156,10 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
   const updateComment = async (postId, commentId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
-        {
-          token: cookieValue,
-          comment: updatedData,
-        }
-      );
+      await axios.patch(`${postsUrl}/${postId}/comments/${commentId}`, {
+        token: cookieValue,
+        comment: updatedData,
+      });
       await fetchPosts();
     } catch (error) {
       console.log(error.response.status);
@@ -290,10 +284,24 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                     left="-20px"
                     top="-10px"
                   >
-                    <Avatar size="sm" />
+                    <Avatar size="sm">
+                      {comment.user_id === "admin" ? (
+                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdyNDNtMGMzNmtkaThoNG03cWFqMjdyc2VxMWNoM2FtOHVxYzZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1o1uxm9c9YcNoJrQ3W/giphy.gif" />
+                      ) : null}
+                    </Avatar>
                     <Stack direction="row" align="center">
                       <Heading size="s">
-                        {comment.user && comment.user.name}{" "}
+                        <span
+                          style={{
+                            fontFamily:
+                              comment.user_id === "admin"
+                                ? "Averia Serif Libre"
+                                : "Roboto",
+                            // Add more styling properties as needed
+                          }}
+                        >
+                          {comment.user && comment.user.name}{" "}
+                        </span>
                       </Heading>
                       <Text fontSize="xs" fontStyle="italic">
                         {" "}

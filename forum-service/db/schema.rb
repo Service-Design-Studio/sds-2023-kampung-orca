@@ -21,18 +21,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_025641) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "lessons", force: :cascade do |t|
+  create_table "lessons", primary_key: "lesson_id", id: :string, force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "\"lesson_id\"", name: "index_lessons_on_lesson_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "user_id", null: false
-    t.integer "lesson_id", null: false
+    t.string "lesson_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_posts_on_lesson_id"
@@ -49,6 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_025641) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users", primary_key: "user_id"
-  add_foreign_key "posts", "lessons"
+  add_foreign_key "posts", "lessons", primary_key: "lesson_id"
   add_foreign_key "posts", "users", primary_key: "user_id"
 end

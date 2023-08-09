@@ -1,15 +1,18 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box, Flex, HStack, theme} from "@chakra-ui/react";
+import { Stack, Text, Button, Square, Box, Heading } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
 import { motion } from "framer-motion";
 import { FiLogOut, FiGrid, FiList } from "react-icons/fi";
 import NavigationButton from "./NavigationButton";
+import { Header } from "../Header";
 
 const TopicPage = () => {
   // TODO: CHANGE THIS!
   const [topics] = useGateway(window.location.pathname);
+
+  // TODO - Update userData to the actual current user id
   const [userData] = useGateway("/users/profile");
   const handleLogout = () => {
     // Implement your logout logic here
@@ -18,138 +21,78 @@ const TopicPage = () => {
     window.location.href = "/";
   };
   return (
+    userData &&
     topics && (
       <Stack
-        direction="column"
-        justify="center"
-        align="center"
-        spacing="0"
-        width="100%"
-        minHeight="100vh"
-        color="#000"
-        textAlign="center"
-        fontFamily="Arial"
-        position="relative"
-        overflow="auto"
-        style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        justify="flex-start"
+        align="flex-start"
+        height="100vh"
+        width="100vw"
+        background="#FFFFFF"
       >
-        <Box
-  position="fixed"
-  top="0"
-  left="0"
-  width="100%"
-  display="flex"
-  alignItems="center"
-  justifyContent="flex-end"
-  padding="10px"
-  background="#ed2e38"
-  height="90px" 
-  zIndex="9999"
->
-         <Flex align="center"> 
-         
-         <Button
-            onClick={handleLogout}
-            variant="unstyled"
-            fontSize="md"
-            marginLeft="1"
-            size="lg"
+        <Header showLogout path="/" />
+
+        <Stack
+          paddingX="91px"
+          paddingY="40px"
+          direction="column"
+          align="center"
+          justify="flex-start"
+          spacing="20px"
+          width="100vw"
+          height={`calc(100vh - 120px)`}
+          maxWidth="100%"
+          style={{
+            backgroundImage:
+              'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+          }}
+        >
+          <Stack
+            align="center"
+            borderRadius="20px"
+            bg="#F9F9F9"
             shadow="lg"
-            bg="#FFFFFF"
-            display="flex"
-            alignItems="center"
-            textColor="#000000"
-            _hover={{ bg: "#d8d9e3" }}
-            height="48px"
-            padding = "10px"
-            marginRight="20px"          >
-            Logout
-            <FiLogOut size={20} style={{ marginLeft: "10px" }} /> 
-          </Button>
-          </Flex>
-        </Box>
-
-        <div
-        style={{
-          position: "absolute",
-          
-          top: "100px",
-          width: "100%",
-          textAlign: "center",
-          marginTop: "10vh",
-          padding: `0 ${theme.space["4"]}`, // Adjust the spacing as needed
-          
-        }}
-      >
-          <Stack direction="column" spacing="10px" >
-            <Text
-              fontSize={["24px","36px","48px"]}
-              fontWeight="700"
-              fontFamily="Roboto"
-              lineHeight="normal"
-              color="#000000"
-            >
+            paddingX="50px"
+            paddingY="30px"
+          >
+            <Heading fontFamily="Roboto" fontSize="60px">
               Welcome back, {userData.name || "Guest"}!
+            </Heading>
+            <Text fontFamily="Roboto" fontSize="24px">
+              Sharpen your interfaith knowledge
             </Text>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <Text fontSize={["8px","16px","36px"]} fontFamily="Roboto" lineHeight="normal">
-                Sharpen your interfaith knowledge
-              </Text>
-            </motion.div>
           </Stack>
-        </div>
 
-        <Box
-      width="100%"
-      maxWidth="1200px"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      flex="1"
-      paddingY="15vh"
-    >
-      <Stack
-  width="100%"
-  maxWidth="1200px"
-  overflowX="auto"
-  spacing = "10px"
-  
-  
-  sx={{
-    "&::-webkit-scrollbar": {
-      width: "16px",
-      borderRadius: "8px",
-      backgroundColor: "rgba(0, 0, 0, 0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      width: "16px",
-      borderRadius: "8px",
-      backgroundColor: "rgba(237, 46, 56, 1)",
-    },
-  }}
->
+          <Box
+            width="100%"
+            maxWidth="90vw"
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            justifyContent="center"
+            flex="1"
+            overflowX="auto"
+            sx={{
+              "&::-webkit-scrollbar": {
+                width: "16px",
+                borderRadius: "8px",
+                backgroundColor: `rgba(0, 0, 0, 0.1)`,
+              },
+              "&::-webkit-scrollbar-thumb": {
+                width: "16px",
+                borderRadius: "8px",
+                backgroundColor: `rgba(237, 46, 56, 1)`,
+              },
+            }}
+          >
             <Stack
               direction="row"
               spacing="50px"
               width="max-content"
               justifyContent="center"
               alignItems="center"
-              paddingX="10vw"
-              paddingY={["15vh", "220px"]} // Adjust the spacing as needed
-              overflowY="hidden"
-              
-              
-              
             >
               {topics.map((topic) => (
                 <NavigationButton
@@ -161,9 +104,8 @@ const TopicPage = () => {
                 />
               ))}
             </Stack>
-          </Stack>
-        </Box>
-        
+          </Box>
+        </Stack>
       </Stack>
     )
   );
