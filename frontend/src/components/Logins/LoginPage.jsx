@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack, Text, Button, Image, Heading } from "@chakra-ui/react";
-import axios from "./api.jsx";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Cookies from "js-cookie";
@@ -21,7 +20,7 @@ const GoogleLoginButton = () => {
   return (
     <Button
       width="100%"
-      fontSize="24px"
+      // fontSize="24px"
       borderRadius="20px"
       bg="#ed2e38"
       textColor="#FFFFFF"
@@ -180,7 +179,7 @@ const LoginPage = () => {
           </Stack>
         </Stack>
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

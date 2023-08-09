@@ -19,6 +19,7 @@ class InactivityCheckerController < ApplicationController
     posts_data = JSON.parse(response.body)
 
     posts_data = posts_data.map do |post|
+      p post
       post_id = post["id"]
       comments_uri = URI("#{ENV["GATEWAY_URL"]}/lessons/#{lesson_id}/posts/#{post_id}/comments")
       comments_uri.query = URI.encode_www_form({ "token" => ENV["ML_TOKEN"] })
@@ -149,7 +150,7 @@ class InactivityCheckerController < ApplicationController
 
     lessons_array = JSON.parse(response.body)
 
-    lesson_ids = lessons_array.map { |lesson| lesson['id'] }
+    lesson_ids = lessons_array.map { |lesson| lesson['lesson_id'] }
 
     puts "Lesson Ids: #{lesson_ids}"
     puts "Class of lesson_ids: #{lesson_ids.class}"

@@ -8,7 +8,7 @@ class CreateDatabase < ActiveRecord::Migration[7.0]
       t.datetime :updated_at, null: false
     end
 
-    create_table :lessons, force: :cascade do |t|
+    create_table :lessons, id: :string, primary_key: :lesson_id, force: :cascade do |t|
       t.string :title
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
@@ -18,7 +18,7 @@ class CreateDatabase < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :content
       t.string :user_id, null: false
-      t.integer :lesson_id, null: false
+      t.string :lesson_id, null: false
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
     end
@@ -36,10 +36,10 @@ class CreateDatabase < ActiveRecord::Migration[7.0]
     add_index :posts, :lesson_id
     add_index :comments, :post_id
     add_index :comments, :user_id
-    add_index :lessons, :lesson_id
+    # add_index :lessons, :lesson_id
 
     add_foreign_key :posts, :users, column: :user_id, primary_key: :user_id
-    add_foreign_key :posts, :lessons
+    add_foreign_key :posts, :lessons, column: :lesson_id, primary_key: :lesson_id
     add_foreign_key :comments, :posts
     add_foreign_key :comments, :users, column: :user_id, primary_key: :user_id
   end

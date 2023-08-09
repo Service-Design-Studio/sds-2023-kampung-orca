@@ -42,6 +42,8 @@ function EditField({
   const lessonnum = parts[parts.length - 1];
   const lessonNumber = parseInt(lessonnum, 10);
 
+  const postsUrl = `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonnum}/posts`;
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -88,13 +90,10 @@ function EditField({
   const updatePost = async (postId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}`,
-        {
-          token: cookieValue,
-          content: updatedData,
-        }
-      );
+      await axios.patch(`${postsUrl}/${postId}`, {
+        token: cookieValue,
+        content: updatedData,
+      });
 
       await fetchPosts();
       //const temp = selectedPost;
@@ -107,13 +106,10 @@ function EditField({
   const updateComment = async (postId, commentId, updatedData) => {
     const cookieValue = Cookies.get("token");
     try {
-      await axios.patch(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments/${commentId}`,
-        {
-          token: cookieValue,
-          content: updatedData,
-        }
-      );
+      await axios.patch(`${postsUrl}/${postId}/comments/${commentId}`, {
+        token: cookieValue,
+        content: updatedData,
+      });
 
       await fetchComments(postId);
     } catch (error) {

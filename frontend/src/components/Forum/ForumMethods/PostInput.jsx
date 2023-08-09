@@ -18,6 +18,8 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
   const lessonnum = parts[parts.length - 1];
   const lessonNumber = parseInt(lessonnum, 10);
 
+  const postsUrl = `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonnum}/posts`;
+
   const handleButtonClick = () => {
     setFormOpen(true);
     console.log(setRefreshPosts);
@@ -56,13 +58,10 @@ function PostInput({ isFormOpen, setFormOpen, refreshPosts, setRefreshPosts }) {
     const cookieValue = Cookies.get("token");
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts`,
-        {
-          token: cookieValue,
-          post: { title, content },
-        }
-      );
+      const response = await axios.post(postsUrl, {
+        token: cookieValue,
+        post: { title, content },
+      });
       setRefreshPosts(true);
       setTimeout(() => {
         setRefreshPosts(false);

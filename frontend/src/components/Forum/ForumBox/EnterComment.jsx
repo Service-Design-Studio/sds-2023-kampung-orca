@@ -16,6 +16,8 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const lessonnum = parts[parts.length - 1];
   const lessonNumber = parseInt(lessonnum, 10);
 
+  const postsUrl = `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonnum}/posts`;
+
   const handleButtonClick = () => {
     CreateComment(valueContent, postId);
     console.log(postId);
@@ -33,13 +35,10 @@ export const EnterComment = ({ image, name, postId, fetchComments }) => {
     const cookieValue = Cookies.get("token");
     const postId = id;
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_GATEWAY_URL}/lessons/${lessonNumber}/posts/${postId}/comments`,
-        {
-          token: cookieValue,
-          comment: { content: con },
-        }
-      );
+      const response = await axios.post(`${postsUrl}/${postId}/comments`, {
+        token: cookieValue,
+        comment: { content: con },
+      });
       console.log(response);
       setValueContent("");
       await fetchComments(postId);
