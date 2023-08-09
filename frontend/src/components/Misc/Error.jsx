@@ -11,6 +11,7 @@ export const ErrorPage = () => {
       align="flex-start"
       spacing="13px"
       height="100vh"
+      width="100vw"
       background="#FFFFFF"
     >
       <Header buttontext="Back to Main" path="/curriculum/topic" />
@@ -22,8 +23,8 @@ export const ErrorPage = () => {
         justify="center"
         align="center"
         spacing="50px"
-        width="1440px"
-        height="625px"
+        width="100%"
+        height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
           backgroundImage:
@@ -77,7 +78,7 @@ export const ErrorPage = () => {
             height="48px"
             fontSize="18px"
             shadow="md"
-            data-cy = "go-to-home"
+            data-cy="go-to-home"
           >
             Go to Home
           </Button>
