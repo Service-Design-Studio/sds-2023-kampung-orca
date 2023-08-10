@@ -23,16 +23,16 @@ module.exports = defineConfig({
     env: {
       omitFiltered: true,
       filterSpecs: true,
-      gatewayUrl: "http://localhost:3000",
+      gatewayUrl: "https://kampung-frontend-hkacpxzqia-as.a.run.app", //"http://localhost:3000"
       googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN,
       googleClientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       googleClientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
     },
     fixturesFolder: false,
     specPattern: "cypress/e2e/features/*.feature",
-    baseUrl: "http://localhost:3000/SnapShot#/SnapScout/",
+    baseUrl: "https://kampung-frontend-hkacpxzqia-as.a.run.app/Snapshot#/SnapScout/", //"http://localhost:3000/SnapShot#/SnapScout/",
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
-    experimentalModifyObstructiveThirdPartyCode: true
+    experimentalModifyObstructiveThirdPartyCode: true,
   },
 });
