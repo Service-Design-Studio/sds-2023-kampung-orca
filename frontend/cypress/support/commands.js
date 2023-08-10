@@ -141,7 +141,7 @@ Cypress.Commands.add("getDataToken", () => {
 Cypress.Commands.add("loginByGoogleApi", (username) => {
   // username can be [ "aloysius", "thomas", "mohammad" ]
   cy.setCookie("token", username);
-  cy.setCookie("user_id","admin");
+  cy.setCookie("user_id", "admin");
 });
 
 Cypress.Commands.add("checkPage", (page) => {
