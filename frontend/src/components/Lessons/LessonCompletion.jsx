@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Link, useParams, useEffect } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { BsPatchCheck } from "react-icons/bs";
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
-import ForumButton from "../Forum/ForumBox/ForumButton";
+import leafBg from "../../assets/img/leaf-background.png";
 
 export const LessonCompletion = () => {
   const params = useParams();
@@ -14,8 +13,8 @@ export const LessonCompletion = () => {
   if (!data) return;
 
   let back_to_topic = `/curriculum/topic/${data.topic}`;
-  console.log(back_to_topic);
-  console.log(params.lesson_id);
+  // console.log(back_to_topic);
+  // console.log(params.lesson_id);
   let pre_lesson = `/curriculum/lesson/${data.pre_lesson}`;
   let next_lesson = `/curriculum/lesson/${data.next_lesson}`;
 
@@ -54,8 +53,7 @@ export const LessonCompletion = () => {
         height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
@@ -187,7 +185,7 @@ export const LessonCompletion = () => {
               height="60px"
               shadow="md"
               fontFamily="Roboto"
-              data-cy ="test-your-understanding"
+              data-cy="test-your-understanding"
               // leftIcon={<Icon as={BsChatDots} boxSize="7" />}
             >
               Test your understanding!

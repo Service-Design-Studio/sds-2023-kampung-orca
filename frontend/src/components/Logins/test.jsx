@@ -2,11 +2,14 @@ import React from "react";
 import { Box, Text, Stack, Button, Heading, Icon } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineHistoryEdu } from "react-icons/md";
-import { PiBookBookmarkBold, PiScalesBold, PiHandsPrayingBold, PiChatsCircleBold } from "react-icons/pi";
+import {
+  PiBookBookmarkBold,
+  PiScalesBold,
+  PiHandsPrayingBold,
+  PiChatsCircleBold,
+} from "react-icons/pi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import "./NavigationButton.css"; // Import the CSS file
-
-
 
 function NavigationButton({ data, to, topic_id, children, hideButton }) {
   console.log("Received topic_id:", topic_id);
@@ -23,8 +26,6 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
     "00004": PiChatsCircleBold,
     "00005": PiHandsPrayingBold,
   };
-
- 
 
   const title = {
     "00001": "Introduction",
@@ -45,21 +46,25 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
 
   return (
     <Stack direction="column" align="center">
-      <Button 
-          height={{
-            base: "100px",
-            lg: "150px",
-            xl: "200px",
-            "2xl": "200px",
-          }}
-          width={{
-            base: "100px",
-            lg: "150px",
-            xl: "200px",
-            "2xl": "200px",
-          }}
-          onClick={handleClick} data-cy={data} bg="#FFFFFF" shadow="lg">
-        <Stack direction="column" align="center">       
+      <Button
+        height={{
+          base: "100px",
+          lg: "150px",
+          xl: "200px",
+          "2xl": "200px",
+        }}
+        width={{
+          base: "100px",
+          lg: "150px",
+          xl: "200px",
+          "2xl": "200px",
+        }}
+        onClick={handleClick}
+        data-cy={data}
+        bg="#FFFFFF"
+        shadow="lg"
+      >
+        <Stack direction="column" align="center">
           <Icon
             as={imageSrc}
             boxSize={{
@@ -69,21 +74,23 @@ function NavigationButton({ data, to, topic_id, children, hideButton }) {
               "2xl": "130px",
             }}
           />
-          </Stack> 
+        </Stack>
       </Button>
-      <Heading textAlign="center" mt="5px" fontSize={{
-            base: "14px",
-            lg: "18px",
-            xl: "20px",
-            "2xl": "20px",
-          }}
-          fontStyle="italic"
+      <Heading
+        textAlign="center"
+        mt="5px"
+        fontSize={{
+          base: "14px",
+          lg: "18px",
+          xl: "20px",
+          "2xl": "20px",
+        }}
+        fontStyle="italic"
       >
-
-      {title[topic_id]}
-    </Heading>
+        {title[topic_id]}
+      </Heading>
     </Stack>
-    );
-  }
-  
-  export default NavigationButton;
+  );
+}
+
+export default NavigationButton;

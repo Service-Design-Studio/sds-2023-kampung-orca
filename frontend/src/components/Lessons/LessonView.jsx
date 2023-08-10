@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
-import axios from "axios";
+
 import { Header } from "../Header";
 import LessonSection from "./LessonSection";
 import useGateway from "../../hooks/useGateway";
 import ForumButton from "../Forum/ForumBox/ForumButton";
-import useCookie from "../../hooks/useCookie";
+import leafBg from "../../assets/img/leaf-background.png";
 
 export const LessonView = () => {
   const params = useParams();
@@ -55,7 +55,12 @@ export const LessonView = () => {
       width="100vw"
       background="#FFFFFF"
     >
-      <Header showBack showLogout buttontext="Back to Lessons" path={back_to_lesson_pathway} />
+      <Header
+        showBack
+        showLogout
+        buttontext="Back to Lessons"
+        path={back_to_lesson_pathway}
+      />
 
       <Stack
         direction="row"
@@ -65,8 +70,7 @@ export const LessonView = () => {
         height={`calc(100vh - 120px)`}
         maxWidth="100%"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}

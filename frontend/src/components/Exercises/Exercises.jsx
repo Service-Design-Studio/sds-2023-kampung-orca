@@ -1,22 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
-import { useDisclosure } from "@chakra-ui/react";
-import SubmitAlert from "./SubmitAlert";
-import ExerciseSection from "./ExerciseSection";
-import SendAnswer from "./SendAnswer";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
+  useDisclosure,
   Stack,
   Button,
-  Icon,
   Text,
-  Box,
   Textarea,
   Avatar,
   Heading,
+  Spinner,
 } from "@chakra-ui/react";
+
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
-import { Spinner } from "@chakra-ui/react";
+import SubmitAlert from "./SubmitAlert";
+import ExerciseSection from "./ExerciseSection";
+import SendAnswer from "./SendAnswer";
+import leafBg from "../../assets/img/leaf-background.png";
+import adminAvatar from "../../assets/img/merlion.gif";
 
 export const Exercises = () => {
   const params = useParams();
@@ -116,8 +117,7 @@ export const Exercises = () => {
           width="100vw"
           maxWidth="100%"
           style={{
-            backgroundImage:
-              'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+            backgroundImage: `url(${leafBg})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
           }}
@@ -375,7 +375,7 @@ export const Exercises = () => {
                   size="md"
                   shadow="lg"
                   border="1px solid black"
-                  src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdyNDNtMGMzNmtkaThoNG03cWFqMjdyc2VxMWNoM2FtOHVxYzZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1o1uxm9c9YcNoJrQ3W/giphy.gif"
+                  src={adminAvatar}
                 />
                 <Stack direction="row" align="center">
                   <Heading fontFamily="Averia Serif Libre" size="lg">

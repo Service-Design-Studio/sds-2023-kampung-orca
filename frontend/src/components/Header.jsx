@@ -4,19 +4,16 @@ import { Stack, Button, Icon } from "@chakra-ui/react";
 import { GoChevronLeft } from "react-icons/go";
 import { RxExit } from "react-icons/rx";
 import Cookies from "js-cookie";
-import { useToast } from "@chakra-ui/react";
 import {
+  useToast,
+  useDisclosure,
   AlertDialog,
   AlertDialogBody,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  AlertDialogCloseButton,
-  Flex,
-  ButtonGroup,
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
 
 export const Header = ({ path, buttontext, showLogout, showBack }) => {
   const toast = useToast();

@@ -4,8 +4,6 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
-import { useParams } from "react-router-dom";
-
 export const EnterComment = ({ image, name, postId, fetchComments }) => {
   const toast = useToast();
   const [valueContent, setValueContent] = React.useState("");

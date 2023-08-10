@@ -11,20 +11,12 @@ import {
   Flex,
   Avatar,
 } from "@chakra-ui/react";
-import PostList from "./PostList";
-import DeleteButton from "../ForumMethods/DeleteButton";
-
-import { EnterComment } from "./EnterComment";
-import EditField from "../ForumMethods/EditField";
-import { useParams } from "react-router-dom";
 import moment from "moment";
 
-import {
-  Editable,
-  EditableInput,
-  EditableTextarea,
-  EditablePreview,
-} from "@chakra-ui/react";
+import PostList from "./PostList";
+import { EnterComment } from "./EnterComment";
+import EditField from "../ForumMethods/EditField";
+import adminAvatar from "../../../assets/img/merlion.gif";
 
 function ForumApp({ refreshPosts, setRefreshPosts }) {
   const [posts, setPosts] = useState([]);
@@ -286,7 +278,7 @@ function ForumApp({ refreshPosts, setRefreshPosts }) {
                   >
                     <Avatar size="sm">
                       {comment.user_id === "admin" ? (
-                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdyNDNtMGMzNmtkaThoNG03cWFqMjdyc2VxMWNoM2FtOHVxYzZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1o1uxm9c9YcNoJrQ3W/giphy.gif" />
+                        <img src={adminAvatar} alt="Admin Avatar" />
                       ) : null}
                     </Avatar>
                     <Stack direction="row" align="center">

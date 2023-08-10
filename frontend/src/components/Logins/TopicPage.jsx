@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { Stack, Text, Button, Square, Box, Heading } from "@chakra-ui/react";
+import { Stack, Text, Box, Heading } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import useGateway from "../../hooks/useGateway";
-import { motion } from "framer-motion";
-import { FiLogOut, FiGrid, FiList } from "react-icons/fi";
 import NavigationButton from "./NavigationButton";
 import { Header } from "../Header";
+import leafBg from "../../assets/img/leaf-background.png";
 
 const TopicPage = () => {
   // TODO: CHANGE THIS!
@@ -43,8 +41,7 @@ const TopicPage = () => {
           height={`calc(100vh - 120px)`}
           maxWidth="100%"
           style={{
-            backgroundImage:
-              'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+            backgroundImage: `url(${leafBg})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
           }}

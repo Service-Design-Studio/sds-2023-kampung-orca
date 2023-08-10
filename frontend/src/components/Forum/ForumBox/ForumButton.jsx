@@ -1,22 +1,13 @@
 import React from "react";
-import Chat from "../../Chatbox/Chat";
-import { Link } from "react-router-dom";
 import NewPost from "./ContentInTheBox";
-import { BsChatDots, BsFillPlusCircleFill } from "react-icons/bs";
+import { BsChatDots } from "react-icons/bs";
 import {
   useDisclosure,
   Button,
   Slide,
-  Container,
-  Flex,
   Icon,
   Box,
   CloseButton,
-  Text,
-  Card,
-  Stack,
-  Heading,
-  Avatar,
 } from "@chakra-ui/react";
 
 function ForumButton() {
@@ -54,7 +45,13 @@ function ForumButton() {
           // borderRadius="20px 0 0 0px"
           // border="1px solid black"
         >
-          <CloseButton data-cy="forum-close-button" mb="10px" size="lg" onClick={onToggle} color="black" />
+          <CloseButton
+            data-cy="forum-close-button"
+            mb="10px"
+            size="lg"
+            onClick={onToggle}
+            color="black"
+          />
 
           <NewPost />
         </Box>

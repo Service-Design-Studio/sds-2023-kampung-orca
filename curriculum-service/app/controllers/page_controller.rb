@@ -26,7 +26,7 @@ class PageController < ApplicationController
   def show
     render json: @page
   end
-  
+
   def destroy
     Page&.destroy(params[:id])
     render json: { message: 'Page deleted!' }
@@ -37,7 +37,7 @@ class PageController < ApplicationController
       user = User.find(params[:user_id])
       if user.lessons_access.include?(params[:lesson_id])
         pages = Page.where(lesson_id: params[:lesson_id]).order(order_index: :asc)
-        render json: {pages: pages, topic_id: Lesson.where(lesson_id: params[:lesson_id]).first.topic_id}
+        render json: { pages:, topic_id: Lesson.where(lesson_id: params[:lesson_id]).first.topic_id }
       else
         render json: { message: 'User unauthorized to see lesson' }
       end
@@ -45,7 +45,7 @@ class PageController < ApplicationController
       render json: { message: 'Lesson does not exist' }
     end
   end
-  
+
   private
 
   def page_params

@@ -37,19 +37,16 @@ const GoogleCallback = () => {
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.href);
   useEffect(() => {
-    
-    
     for (const key of params.keys()) {
       if (key.includes("/oauth/google?state")) {
         const value = params.get(key);
         setlink(value.replace(process.env.REACT_APP_FRONTEND_URL, ""));
-      }
-      else if(key === "code"){
+      } else if (key === "code") {
         setCode(params.get("code"));
       }
     }
   }, []);
-  
+
   const [data] = useGateway_oauth("/users/signup", "Post", code);
   useEffect(() => {
     if (data) {

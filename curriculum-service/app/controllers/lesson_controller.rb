@@ -27,14 +27,12 @@ class LessonController < ApplicationController
     render json: @lesson
   end
 
-
-
   def show_lessons
     user = User.find(params[:user_id])
     print(params)
     lessons = Lesson.where(topic_id: params[:topic_id]).order(order_index: :asc)
     lessons_access = lessons.where(lesson_id: user[:lessons_access]).order(order_index: :asc)
-    render json: { lessons: lessons, lessons_access: lessons_access,  topic_id: params[:topic_id]}
+    render json: { lessons:, lessons_access:, topic_id: params[:topic_id] }
   end
 
   def destroy
@@ -45,16 +43,14 @@ class LessonController < ApplicationController
   def lesson_completed
     current_lesson = Lesson.find(params[:lesson_id])
     topic_id = current_lesson.topic_id
-    next_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index + 1)
-    pre_lesson = Lesson.find_by(topic_id: topic_id, order_index: current_lesson.order_index - 1)
+    next_lesson = Lesson.find_by(topic_id:, order_index: current_lesson.order_index + 1)
+    pre_lesson = Lesson.find_by(topic_id:, order_index: current_lesson.order_index - 1)
     user = User.find(params[:user_id])
-  
-    if next_lesson != nil
-      unless user.lessons_access.include?(next_lesson.lesson_id)
-        user.lessons_access << next_lesson.lesson_id if next_lesson
-      end
+
+    if !next_lesson.nil? && !user.lessons_access.include?(next_lesson.lesson_id) && next_lesson
+      user.lessons_access << next_lesson.lesson_id
     end
-    
+
     this_exercise = Exercise.find_by(params[current_lesson.lesson_id]) if current_lesson
     if !user.exercises_access.include?(this_exercise.exercise_id) && this_exercise
       user.exercises_access << this_exercise.exercise_id
@@ -69,6 +65,7 @@ class LessonController < ApplicationController
     }
     render json: response
   end
+
   private
 
   def lesson_params

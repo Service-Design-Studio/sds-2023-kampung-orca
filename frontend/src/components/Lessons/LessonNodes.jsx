@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
-import Xarrow from "react-xarrows";
-import { Link, useOutletContext, useParams } from "react-router-dom";
-import { Stack, Icon, Text, Box } from "@chakra-ui/react";
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaCircleExclamation } from "react-icons/fa6";
 import { BsStopCircle, BsCheckCircle } from "react-icons/bs";
-import { Progress } from "@chakra-ui/react";
 import {
+  Stack,
+  Icon,
+  Text,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -16,7 +16,7 @@ import {
 
 import { Header } from "../Header";
 import useGateway from "../../hooks/useGateway";
-import { FaCircleExclamation } from "react-icons/fa6";
+import leafBg from "../../assets/img/leaf-background.png";
 
 const nodeHeights = ["100px", "250px", "10px", "220px", "150px"];
 
@@ -275,8 +275,7 @@ export const LessonNodes = ({ lessonProgress }) => {
             paddingLeft="20px"
             paddingRight="20px"
             style={{
-              backgroundImage:
-                'url("https://i.ibb.co/rQ80rXn/Untitled-design.png")',
+              backgroundImage: `url(${leafBg})`,
               backgroundSize: "contain",
               backgroundPosition: "left",
               backgroundColor: "rgba(255, 255, 255, 0.5)",

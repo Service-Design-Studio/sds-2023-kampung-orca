@@ -12,13 +12,12 @@ class EntriesController < ApplicationController
 
     exercise = Exercise.find_by(lesson_id: params[:lesson_id])
 
-
     user = User.find_by(user_id: params[:user_id])
 
     puts user
 
-    entry = Entry.create!(entry_id: generate_uuid, exercise: exercise, user: user,
-                                user_answer: params[:user_answer], ml_answer:  ml_result)
+    entry = Entry.create!(entry_id: generate_uuid, exercise:, user:,
+                          user_answer: params[:user_answer], ml_answer:  ml_result)
     if entry
       render json: entry
     else
@@ -44,9 +43,9 @@ class EntriesController < ApplicationController
     @entry = Entry.find_by(exercise_id: params[:exercise_id], user_id: params[:user_id])
 
     # You can also add some error handling if the entry is not found
-    if @entry.nil?
-      render json: { error: 'Entry not found' }, status: :not_found
-    end
+    return unless @entry.nil?
+
+    render json: { error: 'Entry not found' }, status: :not_found
   end
 
   def generate_uuid
@@ -56,10 +55,10 @@ class EntriesController < ApplicationController
   def answer_question
     lesson_id = params[:lesson_id]
 
-    lesson = Lesson.find_by(lesson_id: lesson_id)
-    pages = Page.where(lesson_id: lesson_id)
+    lesson = Lesson.find_by(lesson_id:)
+    pages = Page.where(lesson_id:)
 
-    exercise = Exercise.find_by(lesson_id: lesson_id)
+    exercise = Exercise.find_by(lesson_id:)
 
     p params, lesson_id
     question_content = exercise.qns.to_s
@@ -67,50 +66,46 @@ class EntriesController < ApplicationController
 
     lesson_content = pages.pluck(:sections).flatten.compact
 
-
     puts params[:user_answer]
 
-    #need sth here
-    question = question_content#"Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
+    # need sth here
+    question = question_content # "Share with Kampung Kaki a project you would like to do in your neighborhood to promote interfaith dialogue."
 
-    #here also
-    answer = answer_content#"‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
+    # here also
+    answer = answer_content # "‘I will distribute burritos made from prata as the tortilla and chicken rice and satay as the filling."
 
     lesson = lesson_content.join("\n")
 
-    puts "Lesson" + lesson
-    puts "Question" + question
-    puts "Answer" + answer
+    puts 'Lesson' + lesson
+    puts 'Question' + question
+    puts 'Answer' + answer
 
-    prompts = "Lesson Content: " + lesson + "\nQuestion: " + question + "\nAnswer " + answer
+    prompts = 'Lesson Content: ' + lesson + "\nQuestion: " + question + "\nAnswer " + answer
 
-    ml_uri = URI("#{ENV["GATEWAY_URL"]}/ml/review")
+    ml_uri = URI("#{ENV['GATEWAY_URL']}/ml/review")
     http = Net::HTTP.new(ml_uri.host, ml_uri.port)
     http.use_ssl = ml_uri.scheme == 'https'
     request = Net::HTTP::Post.new(ml_uri)
     request['Content-Type'] = 'application/json'
-    request.body = { prompts: prompts }.to_json
+    request.body = { prompts: }.to_json
 
     response = http.request(request)
-    #render json: question_data#response.body
+    # render json: question_data#response.body
 
     response_data = JSON.parse(response.body)
-    ml_result = response_data["generated_text"]
+    ml_result = response_data['generated_text']
 
     puts response_data
-    return ml_result
-
+    ml_result
   end
 end
 
+# def destroy
+#   entry&.destroy(params[:id])
+#   render json: { message: 'entry deleted!' }
+# end
 
-
-  # def destroy
-  #   entry&.destroy(params[:id])
-  #   render json: { message: 'entry deleted!' }
-  # end
-
-  # def show_entry
-  #   entry = entry.find_by(lesson_id: params[:lesson_id])
-  #   render json: entry
-  # end
+# def show_entry
+#   entry = entry.find_by(lesson_id: params[:lesson_id])
+#   render json: entry
+# end

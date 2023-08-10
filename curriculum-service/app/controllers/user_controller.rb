@@ -9,7 +9,7 @@ class UserController < ApplicationController
     end
     begin
       user = User.create!(user_id: params[:user_id], lessons_access: lessons_array, exercises_access: [])
-    rescue
+    rescue StandardError
     end
     head 202
   end

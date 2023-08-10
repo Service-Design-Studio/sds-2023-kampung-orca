@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Stack, Text, Button, Image, Heading } from "@chakra-ui/react";
+import { Stack, Text, Button, Heading } from "@chakra-ui/react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Cookies from "js-cookie";
 import { Header } from "../Header";
+import leafBg from "../../assets/img/leaf-background.png";
+import googleIcon from "../../assets/img/white-google-logo.png";
 
 const GoogleLoginButton = () => {
   const googleLogin = useGoogleLogin({
@@ -37,11 +37,7 @@ const GoogleLoginButton = () => {
       id="google-login"
       fontSize="clamp(12px, 3vw, 36px)" // Set the font size using the clamp function
     >
-      <img
-        src="https://ragsdalemartin.com/wp-content/uploads/2020/07/white-google-logo.png" // Replace with the actual path to the Google icon image
-        width="40px"
-        height="auto"
-      />
+      <img src={googleIcon} width="40px" height="auto" />
 
       <Text
         fontFamily="Roboto"
@@ -80,8 +76,7 @@ const LoginPage = () => {
         color="#000"
         textAlign="center"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}

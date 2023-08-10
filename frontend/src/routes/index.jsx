@@ -63,7 +63,7 @@ export default (
       <Route path="/oauth/google" element={<GoogleCallback />} />
       <Route path="/" element={<CoverLogin />} />
       <Route path="/login" element={<LoginPage />} />
-      
+
       <Route path="*" element={<Navigate to="/error" />} />
     </Routes>
   </Router>
