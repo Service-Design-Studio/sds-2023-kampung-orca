@@ -55,12 +55,12 @@ Then("I should not see the second latest comment is an AI comment", () => {
 });
 
 Given("I am on a post with recent comments", () => {
-  cy.contains("What are the most fun religious festivals?").click();
+  cy.contains("Curious about Christianity").click();
   cy.get('[data-cy="comment"]').should('exist');
 });
 
 When("the latest comment is a recent comment", () => {
-  cy.get('[data-cy="comment"]').last().contains("day").should('not.exist');
+  cy.get('[data-cy="comment"]').last("Curious about Christianity").contains("day").should('not.exist');
 });
 
 Then("I should not see the latest comment is an AI comment", () => {

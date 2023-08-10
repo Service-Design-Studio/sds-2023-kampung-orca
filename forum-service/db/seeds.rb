@@ -20,6 +20,7 @@ Post.create([{ title: "Create some games for people to learn about interfaith.",
 Post.create([{ title: "Why are we using English as the standard language of Singapore even though the national language is Malay?", content: "Is it colonialism?", user_id: "2", lesson_id: "00001" }])
 Comment.create([{ content: "I like Hari Raya!", post_id: 1, user_id: "2" }])
 Post.create([{ title: "Curious about Christianity", content: "What questions do you have?", user_id: "4", lesson_id: "00001" }])
+Comment.create([{ content: "I want to know more!", post_id: 4, user_id: "3" }])
 Post.create([{ title: "Hi, I am new here.", content: "What can I learn with Kampung.sg?", user_id: "2", lesson_id: "00001" , created_at: five_days_ago}])
 Post.create([{ title: "What is the best way to approach interfaith dialogue?", content: "I'm not sure exactly how I should start. Would be good if someone led me in the right direction.", user_id: "3", lesson_id: "00001" , created_at: five_days_ago}])
 Comment.create([{ content: "I want to know more!", post_id: 5, user_id: "3" , created_at: four_days_ago}])

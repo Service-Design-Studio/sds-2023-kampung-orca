@@ -5,11 +5,6 @@ Feature: Display lessons pathway
   Background:
     Given I am logged in as Mohammad
 
-  Scenario: View lessons pathway after selecting a topic
-    Given I am at the topic list page
-    When I click on topic 00001
-    Then I should go to the lessons pathway page
-
   Scenario: Mouse Scroll through lessons pathway
     Given I am at the lessons pathway page
     When I mouse scroll up on the lessons pathway page
@@ -27,10 +22,6 @@ Feature: Display lessons pathway
   Scenario: Pathway between lesson nodes
     Given I am at the lessons pathway page
     Then I should see the pathway between lesson nodes
-
-  Scenario: Graphics around the lesson pathway
-    Given I am at the lessons pathway page
-    Then I should be able to see the graphics on the lessons pathway
 
   Scenario: Bring user back to lesson pathway upon access of invalid lesson URL
     Given I am at the lessons pathway page

@@ -54,7 +54,10 @@ export const Header = ({ path, buttontext, showLogout, showBack }) => {
     >
       <Stack direction="row" justify="space-between" width="100%">
         {showBack && (
-          <Link to={path}>
+          <Link
+            // to={path}
+            onClick={() => (window.location.href = path)}
+          >
             <Button
               style={{ zIndex: 999 }}
               size="lg"

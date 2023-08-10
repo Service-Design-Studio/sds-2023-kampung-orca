@@ -45,17 +45,19 @@ function SubmitAlert({ isOpen, onClose, onSubmit }) {
               Submit
             </AlertDialogHeader>
 
-            <AlertDialogBody>
+            <AlertDialogBody
+              data-cy="exercise-submit-alert"
+            >
               {
                 "Do you want to submit your answer? You cannot change your response after it has been submitted!"
               }
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={handleCancel}>
+              <Button ref={cancelRef} onClick={handleCancel} data-cy="exercise-submit-alert-cancel-button">
                 Cancel
               </Button>
-              <Button colorScheme="red" ml={3} onClick={handleSubmit}>
+              <Button colorScheme="red" ml={3} onClick={handleSubmit} data-cy="exercise-submit-alert-button">
                 Submit
               </Button>
             </AlertDialogFooter>

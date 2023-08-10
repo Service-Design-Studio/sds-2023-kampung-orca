@@ -106,6 +106,7 @@ export const Exercises = () => {
           showLogout
           buttontext="Back to Lessons"
           path={back_to_complete}
+          data-cy = "exercise-back-to-lessons-button"
         />
 
         <Stack
@@ -268,11 +269,15 @@ export const Exercises = () => {
                         shadow="md"
                         onClick={handleResubmission}
                         marginX="auto" // Change the marginX value to adjust the horizontal position
+                        data-cy="exercise-resubmit-button"
                       >
                         Re-submit Answer
                       </Button>
                     ) : (
-                      <Spinner size="lg" />
+                      <Spinner
+                        size="lg"
+                        data-cy = "exercise-spinner"
+                      />
                     )}
                   </Stack>
                 </>
@@ -398,7 +403,9 @@ export const Exercises = () => {
               >
                 <div>
                   {userAnswer ? (
-                    <Text>
+                    <Text
+                    data-cy="exercise-ai-response"
+                    >
                       {contentLines.map((line, index) => (
                         <p key={index}>
                           {line}
@@ -414,7 +421,7 @@ export const Exercises = () => {
                           {line}
                           <br />
                         </p>
-                      ))}
+                      ))}"
                     </Text>
                   )}
                 </div>
