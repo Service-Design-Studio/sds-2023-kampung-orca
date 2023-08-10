@@ -9,7 +9,7 @@ Feature: Forum functionality
     Given the forum box is open
     Given a post with the following details:
       | Title                      | Content                     | Author   |
-      | Curious about Christianity | What questions do you have? | Mohammad |
+      | Curious about Christianity | What questions do you have? | Thomas |
     Given a comment with the following details:
       | Post Title                 | Content              | Author   |
       | Curious about Christianity | I want to know more! | Aloysius |
@@ -17,8 +17,8 @@ Feature: Forum functionality
   Scenario: Creating a post
     Given I am on the forum home page
     When I create a post with the following details:
-      | Title               | Content                                          |
-      | Internalised Racism | I have been struggling with internalised racism. |
+      | Title               | Content                                  |
+      | About Buddhism      | I would like to know more about Buddhism |
     # Then I should see a success message confirming the post creation
     And I should see the post on the forum home page
 
@@ -40,7 +40,7 @@ Feature: Forum functionality
 
   Scenario: Viewing my new post
     Given I am on the forum home page
-    When I click on the post titled Internalised Racism
+    When I click on the post titled About Buddhism
     Then I should see the forum post page
     And I should see no comments
     And I should see the interface to create a new comment
@@ -49,9 +49,8 @@ Feature: Forum functionality
     Given I am on the forum post page
     And I have created a post
     When I edit my post with the following details:
-      | Content                                |
-      | Does internalised racism really exist? |
-    #Then I should see a success message confirming the post edit
+      | Content                                                            |
+      | I would like to know more about Buddhism. Can anyone tell me more? |
     And the content should be updated on the forum post page
 
   Scenario: Cannot edit a post with empty content
@@ -119,13 +118,13 @@ Feature: Forum functionality
 
   Scenario: Cannot edit or delete another person's post
     Given I am on the forum home page
-    When I click on a post titled Hello People 1
+    When I click on a post titled Curious about Christianity
     Then I should see the corresponding forum post page
-    But I should not see the post's Edit and Delete buttons
+    And I should not see the post's Edit and Delete buttons
 
   Scenario: Cannot edit or delete another person's comment
     Given I am on the forum home page
-    When I click on a post titled Hello People 1
-    Then I should see the comment saying yoyo
-    But I should not see the comment's Edit and Delete buttons
+    When I click on a post titled Curious about Christianity
+    Then I should see the comment saying I want to know more!
+    And I should not see the comment's Edit and Delete buttons
 
