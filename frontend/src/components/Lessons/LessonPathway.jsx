@@ -3,6 +3,7 @@ import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BiDonateHeart, BiGroup, BiSpa } from "react-icons/bi";
 import { GoChevronLeft } from "react-icons/go";
+import leafBg from "../../assets/img/leaf-background.png";
 
 export const LessonPathway = () => {
   return (
@@ -49,8 +50,7 @@ export const LessonPathway = () => {
         spacing="100px"
         width="1440px"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}

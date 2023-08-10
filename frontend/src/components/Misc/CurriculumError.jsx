@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { BsEmojiFrown } from "react-icons/bs";
 import { Header } from "../Header";
+import leafBg from "../../assets/img/leaf-background.png";
 
 export const CurriculumErrorPage = () => {
   const params = useParams();
@@ -32,8 +33,7 @@ export const CurriculumErrorPage = () => {
         height="625px"
         maxWidth="100%"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}

@@ -5,7 +5,12 @@ const LessonSection = ({ title, content, headerSize, contentSize }) => {
   return (
     <>
       {title && (
-        <Text lineHeight="1.2" fontWeight="bold" fontSize={headerSize} fontFamily="Averia Serif Libre">
+        <Text
+          lineHeight="1.2"
+          fontWeight="bold"
+          fontSize={headerSize}
+          fontFamily="Averia Serif Libre"
+        >
           {title}
         </Text>
       )}

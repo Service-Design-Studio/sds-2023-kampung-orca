@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Stack, Button, Icon, Text } from "@chakra-ui/react";
 import { BsEmojiFrown } from "react-icons/bs";
 import { Header } from "../Header";
+import leafBg from "../../assets/img/leaf-background.png";
 
 export const ErrorPage = () => {
   return (
@@ -26,8 +27,7 @@ export const ErrorPage = () => {
         height="625px"
         maxWidth="100%"
         style={{
-          backgroundImage:
-            'url("https://i.ibb.co/NFxpGV6/Untitled-design.png")',
+          backgroundImage: `url(${leafBg})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
@@ -77,7 +77,7 @@ export const ErrorPage = () => {
             height="48px"
             fontSize="18px"
             shadow="md"
-            data-cy = "go-to-home"
+            data-cy="go-to-home"
           >
             Go to Home
           </Button>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import BoxPost from "./BoxPost";
 import PostInput from "../ForumMethods/PostInput";
 import { Stack } from "@chakra-ui/react";
-import ForumApp from "./BoxPost";
 
 function ContentInTheBox() {
   const [isFormOpen, setFormOpen] = useState(false);
