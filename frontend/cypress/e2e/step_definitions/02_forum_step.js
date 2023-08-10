@@ -44,7 +44,7 @@ When("I create a post with the following details:", (datatable) => {
   });
 
   Then("I should see the post on the forum home page",()=>{
-    cy.contains("Internalised Racism").should('exist');
+    cy.contains("About Buddhism").should('exist');
   })
 
   When("I try to create a post with the following details:", (datatable) => {
@@ -63,6 +63,7 @@ When("I create a post with the following details:", (datatable) => {
     cy.contains("Go Back").should('exist');
   });
   Given("I am on the forum post page", ()=>{
+    cy.contains("About Buddhism").click();
     cy.contains("Go Back").should('exist');
   });
 
@@ -75,7 +76,7 @@ When("I create a post with the following details:", (datatable) => {
   });
 
   Then("I have created a post", ()=>{
-    cy.contains('by Thomas').click();
+    cy.contains('by Kampung Kaki').click();
   });
 
   When("I edit my post with the following details:", (datatable) => {
@@ -95,10 +96,10 @@ When("I create a post with the following details:", (datatable) => {
     cy.get('[data-cy="edit-post-button"]').eq(0).click();
   })
     Then("the content should be updated on the forum post page",()=>{
-      cy.contains("Does internalised racism really exist?").should('exist');
+      cy.contains("I would like to know more about Buddhism. Can anyone tell me more?").should('exist');
     });
 
-  Then( "the confirm edit post button should be disabled", ()=>{
+  Then("the confirm edit post button should be disabled", ()=>{
     cy.get('[data-cy="confirm-edit-post"]').isDisabled
   })
 
@@ -139,7 +140,7 @@ When("I create a post with the following details:", (datatable) => {
     cy.contains("Well said!").should('exist');
   });
   Then("I have created a comment",()=>{
-    cy.contains("Thomas").should('exist');
+    cy.contains("Kampung Kaki").should('exist');
   })
   When("I edit my comment with the following details:",(dataTable)=>{
     cy.get('[data-cy="edit-post-button"]').eq(1).click();
@@ -169,11 +170,11 @@ When("I create a post with the following details:", (datatable) => {
 When("I click on a post titled {}",(postTitle)=>{
   cy.contains(postTitle).click();
 });
-Then ("I should see the corresponding forum post page",()=>{
-  cy.contains('Hello People 1').should('exist');
+Then("I should see the corresponding forum post page",()=>{
+  cy.contains('I want to know more!').should('exist');
 });
-Then ("I should see the comment saying yoyo",()=>{
-  cy.contains('yoyo').should('exist');
+Then ("I should see the comment saying {}",(comment)=>{
+  cy.contains(comment).should('exist');
 });
 
 Then("I should not see the {} Edit and Delete buttons",()=>{

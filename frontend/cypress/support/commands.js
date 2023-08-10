@@ -38,6 +38,8 @@ const buttonComponentMap = {
   Post: '[data-cy="post-button"]',
   "previous lesson" : '[data-cy="completion-previous-lesson"]',
   "Test Your Understanding": '[data-cy="test-your-understanding"]',
+  "submit exercise": '[data-cy="exercise-submit-button"]',
+  "resubmit exercise": '[data-cy="exercise-resubmit-button"]',
 };
 
 const pages = {
@@ -139,7 +141,7 @@ Cypress.Commands.add("getDataToken", () => {
 Cypress.Commands.add("loginByGoogleApi", (username) => {
   // username can be [ "aloysius", "thomas", "mohammad" ]
   cy.setCookie("token", username);
-  cy.setCookie("user_id","admin");
+  cy.setCookie("user_id", "admin");
 });
 
 Cypress.Commands.add("checkPage", (page) => {
