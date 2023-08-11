@@ -90,4 +90,7 @@ Rails.application.configure do
   ENV["USER_URL"] = Rails.application.credentials[:user_url]
   ENV["ML_URL"] = Rails.application.credentials[:ml_url]
   ENV["ML_TOKEN"] = Rails.application.credentials[:ml_token]
+  ENV["ADMIN"] = Rails.application.credentials[:admin_token]
+  ENV["NORMAL_USER"] = Rails.application.credentials[:user1_token]
+  ENV["NORMAL_USER2"] = Rails.application.credentials[:user2_token]
 end
