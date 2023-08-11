@@ -87,7 +87,7 @@ Then("I should be able to resubmit my answer", () => {
 });
 
 When("I go to the lesson completion page", () => {
-  cy.get(`a[href="/curriculum/lesson/00001/lesson_completed"]`).click();
+  cy.get(`a[href="/curriculum/lesson/00001/exercise"]`).click();
 });
 
 When("I return to the exercise page", () => {
