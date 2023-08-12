@@ -9,6 +9,13 @@ require("dotenv").config();
 module.exports = defineConfig({
   viewportWidth: 1440,
   viewportHeight: 900,
+  reporter: 'mochawesome',
+  reporterOptions: defineConfig({
+    mochaFile: 'cypress/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  }),
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
