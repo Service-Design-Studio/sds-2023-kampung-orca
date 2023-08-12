@@ -58,7 +58,7 @@ Given("I have submitted and confirmed my answer", () => {
   cy.get(`[data-cy="exercise-answer-input"]`).type("Interfaith dialogue is important!");
   cy.get(`[data-cy="exercise-submit-button"]`).click();
   cy.get(`[data-cy="exercise-submit-alert-button"]`).click();
-  cy.wait(5000);
+  cy.wait(10000);
 });
 
 When("I see an empty AI response", () => {
