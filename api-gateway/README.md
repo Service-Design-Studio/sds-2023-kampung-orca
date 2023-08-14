@@ -25,3 +25,25 @@ This project uses Rubocop for its linting.
 gem install rubocop # Already included in Gemfile
 rubocop app
 ```
+
+## Routes
+
+```sh
+[Get, Post, Put, Patch, Delete]
+'/lessons': forwards to forum service
+'/posts': forwards to forum service
+'/lessons/*': forwards to forum service
+'/posts/*': forwards to forum service
+
+
+Post /users/signup: forwards to user service, creates user for all services
+Get /usrs/profile: forwards to user-service, returns user profile
+
+Get /curriculum/*path: forwards to curriculum service
+Post  /curriculum/*path: forwards to curriculum service
+
+
+Post '/ml/review': forwards to ml service
+Post '/ml/generate-comment': forwards to ml service
+
+```
