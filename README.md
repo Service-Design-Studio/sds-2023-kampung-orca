@@ -2,6 +2,12 @@
 
 Interfaith LMS in collaboration with Google and Being Bridges
 
+## Deliverables
+
+- [Design Workbook](https://docs.google.com/document/d/1dIW-vm0ISwece4mlQvVqD7lyuq_7T8Ina56y5l7O-jA/edit?usp=sharing)
+- [Figma](https://www.figma.com/file/Ue6tyPi82K6uQnGP9iTJGX/SDS-Prototyping?type=design&node-id=976%3A466&mode=design&t=rhIhXUyM0tg2JHXJ-1)
+- [Google Site](https://sites.google.com/view/sdsteamorca/home)
+
 ## Deployment
 
 The file structure is as follows.
@@ -54,6 +60,8 @@ Then in the service's corresponding `cloudbuild.yaml`, edit `substitutions:_SECR
 
 Always make sure to `git pull` before you `git commit` your changes.
 
+Read the `README.md` in each service folder for more instructions.
+
 ### Running the app
 
 #### Mac (Silicon)
@@ -81,6 +89,59 @@ To run each service with its own containers, run this command in the root direct
 ```sh
 docker compose up -d
 ```
+
+## Behaviour-Driven Development
+
+The automated tests are done with [Cypress](https://docs.cypress.io/guides/overview/why-cypress) to simulate user behaviour on the Kampung.SG platform.
+
+To check for the finalised reports ran on our deployed website please see the following file
+
+```
+frontend/mochawesome-report/mochawesome.html
+```
+
+For the full feature file for each of the tests you can visit
+
+```
+frontend/cypress/e2e/features
+```
+
+For the test code
+
+```
+frontend/cypress/e2e/step_definitions
+```
+
+Some of our custom-made commands are on
+
+```
+frontend/cypress/e2e/support/commands.js
+```
+
+### Running the tests
+
+#### On deployment
+
+- To run the tests on deployment simply run the following.
+
+```bash
+cd frontend
+npx cypress open # For GUI
+npx cypress run # For CLI
+```
+
+#### Locally
+
+Make sure to change the `gatewayURL` and the `baseURL` based on which port the react app is running. In the following example, and as per this documentation, the port will be `3000` and is commented out in the image below.
+**Make sure to uncomment it**
+
+- On `cypress.config.js`
+
+![Alt tex](frontend/cypress/cypressconfigimage.png)
+
+## Architecture
+
+![Software Architecture](assets/software_architecture.png)
 
 ### Ports
 

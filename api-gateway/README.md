@@ -26,7 +26,7 @@ gem install rubocop # Already included in Gemfile
 rubocop app
 ```
 
-##Routes
+## Routes
 
 ```sh
 [Get, Post, Put, Patch, Delete]

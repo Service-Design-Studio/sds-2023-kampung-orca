@@ -6,9 +6,7 @@
 bundle install --without production
 
 # Initialise db
-rails db:drop
-rails db:migrate
-rails db:seed
+rails db:drop db:migrate db:seed
 
 rails s
 ```
@@ -29,9 +27,10 @@ gem install rubocop # Already included in Gemfile
 rubocop app
 ```
 
-##Routes
 
-```sh
+## Routes
+
+```text
 /user/{id}: [Get, Show, Destroy]
 returns user details with id
 

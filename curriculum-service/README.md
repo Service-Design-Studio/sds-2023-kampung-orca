@@ -29,10 +29,10 @@ gem install rubocop # Already included in Gemfile
 rubocop app
 ```
 
-##Routes
+
+## Routes
 
 ```sh
-Routes
 /lesson: Index, Create, Destroy, Show
 /topic: Index, Create, Destroy, Show
 /page: Index, Create, Destroy, Show
@@ -53,5 +53,4 @@ output: list of pages of the lessons
 
 /lesson/{lesson_id}/show_exercise: shows exercise related  to the lesson
 output: exercise
-
 ```
