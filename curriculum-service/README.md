@@ -31,7 +31,7 @@ rubocop app
 
 ##Routes
 
-'''sh
+```sh
 Routes
 /lesson: Index, Create, Destroy, Show
 /topic: Index, Create, Destroy, Show
@@ -54,4 +54,4 @@ output: list of pages of the lessons
 /lesson/{lesson_id}/show_exercise: shows exercise related  to the lesson
 output: exercise
 
-'''
+```
