@@ -27,6 +27,7 @@ gem install rubocop # Already included in Gemfile
 rubocop app
 ```
 
+
 ## Routes
 
 ```text
