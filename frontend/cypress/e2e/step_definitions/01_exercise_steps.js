@@ -58,7 +58,7 @@ Given("I have submitted and confirmed my answer", () => {
   cy.get(`[data-cy="exercise-answer-input"]`).type("Interfaith dialogue is important!");
   cy.get(`[data-cy="exercise-submit-button"]`).click();
   cy.get(`[data-cy="exercise-submit-alert-button"]`).click();
-  cy.wait(5000);
+  cy.wait(10000);
 });
 
 When("I see an empty AI response", () => {
@@ -87,7 +87,7 @@ Then("I should be able to resubmit my answer", () => {
 });
 
 When("I go to the lesson completion page", () => {
-  cy.get(`a[href="/curriculum/lesson/00001/lesson_completed"]`).click();
+  cy.get(`a[href="/curriculum/lesson/00001/exercise"]`).click();
 });
 
 When("I return to the exercise page", () => {

@@ -93,3 +93,49 @@ docker compose up -d
 | Users          | 3004 |
 | ML             | 3005 |
 | Inactivity     | 3006 |
+
+## Automated Cucumber Tests done with Cypress for Behaviour-Driven Development
+
+The automated tests are done with [Cypress](https://docs.cypress.io/guides/overview/why-cypress) to simulate user behaviour on the Kampung.SG platform.
+
+To check for the finalised reports ran on our deployed website please see the following file
+```
+frontend/mochawesome-report/mochawesome.html
+```
+
+For the full feature file for each of the tests you can visit
+```
+frontend/cypress/e2e/features
+```
+
+For the test code
+```
+frontend/cypress/e2e/step_definitions
+```
+
+Some of our custom-made commands are on
+```
+frontend/cypress/e2e/support/commands.js
+```
+
+### Running the tests
+
+#### On deployment
+- To run the tests on deployment simply run the following (assuming `frontend` is your working directory)
+
+**To see Cypress GUI**
+```
+npx cypress open
+```
+**To run Cypress tests on the CLI**
+```
+npx cypress run
+```
+
+#### Locally
+Make sure to change the `gatewayURL` and the `baseURL` based on which port the react app is running. In the following example, and as per this documentation, the port will be `3000` and is commented out in the image below.
+**Make sure to uncomment it**
+
+- On `cypress.config.js`
+
+![Alt tex](frontend/cypress/cypressconfigimage.png)
