@@ -2,6 +2,8 @@
 
 ## Local Development
 
+For easy library installation, we can use [`pipenv`](https://pipenv.pypa.io/en/latest/).
+
 1. Change directory to forum-ml-test
 ```
 cd forum-ml-test
@@ -20,5 +22,5 @@ pipenv shell
 
 4. Wait to enter the virtual environment and start the application
 ```
-python app.py
+python main.py
 ```
