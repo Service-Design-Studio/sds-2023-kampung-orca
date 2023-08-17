@@ -15,7 +15,7 @@ npm install # Install dependencies
 
 `esbuild` is used for faster build times. Running `npm start` on WSL Bash is known to be slow, use Command Prompt on Windows instead.
 
-Copy `.env` into `.env.development.local` and edit **REACT_APP_GATEWAY_URL** with the base URL to your deployment of the API Gateway e.g `http://localhost:3001`.
+Copy `.env.example` into `.env.development.local` and edit **REACT_APP_GATEWAY_URL** with the base URL to your deployment of the API Gateway e.g `http://localhost:3001`.
 
 ```sh
 # Dev server with file watching
