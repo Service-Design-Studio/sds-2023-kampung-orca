@@ -5,8 +5,11 @@
 ```sh
 bundle install --without production
 
+cp .env.example .env # Copy .env
+nano .env # Edit environmental variables
+
 # Initialise db
-rails db:drop db:migrate db:seed
+rails db:drop db:create db:migrate db:seed
 
 rails s
 ```
